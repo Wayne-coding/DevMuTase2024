@@ -1,0 +1,1537 @@
+{
+    "edges": [
+        [
+            "Conv2D",
+            "BatchNormalization"
+        ],
+        [
+            "BatchNormalization",
+            "Activation"
+        ],
+        [
+            "Activation",
+            "Conv2D"
+        ],
+        [
+            "Conv2D",
+            "CustomExpandLayer"
+        ],
+        [
+            "CustomExpandLayer",
+            "BatchNormalization"
+        ],
+        [
+            "BatchNormalization",
+            "Conv3D"
+        ],
+        [
+            "Conv3D",
+            "CustomCropLayer"
+        ],
+        [
+            "CustomCropLayer",
+            "CustomDropDimLayer"
+        ],
+        [
+            "CustomDropDimLayer",
+            "Activation"
+        ],
+        [
+            "Activation",
+            "CustomCastLayer"
+        ],
+        [
+            "CustomCastLayer",
+            "MaxPooling2D"
+        ],
+        [
+            "MaxPooling2D",
+            "CustomCastLayer"
+        ],
+        [
+            "CustomCastLayer",
+            "Conv2D"
+        ],
+        [
+            "Activation",
+            "MaxPooling2D"
+        ],
+        [
+            "MaxPooling2D",
+            "ZeroPadding2D"
+        ],
+        [
+            "ZeroPadding2D",
+            "CustomCropLayer"
+        ],
+        [
+            "CustomCropLayer",
+            "Conv2D"
+        ],
+        [
+            "CustomCropLayer",
+            "AveragePooling2D"
+        ],
+        [
+            "Conv2D",
+            "Average"
+        ],
+        [
+            "AveragePooling2D",
+            "Conv2D"
+        ],
+        [
+            "Activation",
+            "Average"
+        ],
+        [
+            "Activation",
+            "Concatenate"
+        ],
+        [
+            "Average",
+            "Concatenate"
+        ],
+        [
+            "Concatenate",
+            "Conv2D"
+        ],
+        [
+            "Concatenate",
+            "AveragePooling2D"
+        ],
+        [
+            "Concatenate",
+            "CustomCastLayer"
+        ],
+        [
+            "CustomCastLayer",
+            "AveragePooling2D"
+        ],
+        [
+            "AveragePooling2D",
+            "PReLU"
+        ],
+        [
+            "PReLU",
+            "CustomCastLayer"
+        ],
+        [
+            "Concatenate",
+            "MaxPooling2D"
+        ],
+        [
+            "Conv2D",
+            "CustomCastLayer"
+        ],
+        [
+            "CustomCastLayer",
+            "BatchNormalization"
+        ],
+        [
+            "BatchNormalization",
+            "CustomCastLayer"
+        ],
+        [
+            "CustomCastLayer",
+            "Activation"
+        ],
+        [
+            "MaxPooling2D",
+            "Concatenate"
+        ],
+        [
+            "MaxPooling2D",
+            "ThresholdedReLU"
+        ],
+        [
+            "ThresholdedReLU",
+            "CustomCastLayer"
+        ],
+        [
+            "CustomCastLayer",
+            "Concatenate"
+        ],
+        [
+            "Concatenate",
+            "Concatenate"
+        ],
+        [
+            "Concatenate",
+            "GlobalAveragePooling2D"
+        ],
+        [
+            "GlobalAveragePooling2D",
+            "LayerNormalization"
+        ],
+        [
+            "LayerNormalization",
+            "Dense"
+        ],
+        [
+            "Dense",
+            "RepeatVector"
+        ],
+        [
+            "RepeatVector",
+            "CustomDropDimLayer"
+        ],
+        [
+            "CustomDropDimLayer",
+            "Dense"
+        ]
+    ],
+    "layer_config": {
+        "Conv2D": [
+            {
+                "trainable": true,
+                "dtype": "float32",
+                "kernel_size": [
+                    3,
+                    3
+                ],
+                "strides": [
+                    2,
+                    2
+                ],
+                "padding": "valid",
+                "data_format": "channels_last",
+                "dilation_rate": [
+                    1,
+                    1
+                ],
+                "groups": 1,
+                "activation": "linear",
+                "use_bias": false,
+                "kernel_initializer": {
+                    "class_name": "VarianceScaling",
+                    "config": {
+                        "scale": 1.0,
+                        "mode": "fan_avg",
+                        "distribution": "uniform",
+                        "seed": null
+                    }
+                },
+                "bias_initializer": {
+                    "class_name": "Zeros",
+                    "config": {}
+                },
+                "kernel_regularizer": null,
+                "bias_regularizer": null,
+                "activity_regularizer": null,
+                "kernel_constraint": null,
+                "bias_constraint": null
+            },
+            {
+                "trainable": true,
+                "dtype": "float32",
+                "kernel_size": [
+                    3,
+                    3
+                ],
+                "strides": [
+                    1,
+                    1
+                ],
+                "padding": "valid",
+                "data_format": "channels_last",
+                "dilation_rate": [
+                    1,
+                    1
+                ],
+                "groups": 1,
+                "activation": "linear",
+                "use_bias": false,
+                "kernel_initializer": {
+                    "class_name": "VarianceScaling",
+                    "config": {
+                        "scale": 1.0,
+                        "mode": "fan_avg",
+                        "distribution": "uniform",
+                        "seed": null
+                    }
+                },
+                "bias_initializer": {
+                    "class_name": "Zeros",
+                    "config": {}
+                },
+                "kernel_regularizer": null,
+                "bias_regularizer": null,
+                "activity_regularizer": null,
+                "kernel_constraint": null,
+                "bias_constraint": null
+            },
+            {
+                "trainable": true,
+                "dtype": "float32",
+                "kernel_size": [
+                    3,
+                    3
+                ],
+                "strides": [
+                    1,
+                    1
+                ],
+                "padding": "same",
+                "data_format": "channels_last",
+                "dilation_rate": [
+                    1,
+                    1
+                ],
+                "groups": 1,
+                "activation": "linear",
+                "use_bias": false,
+                "kernel_initializer": {
+                    "class_name": "VarianceScaling",
+                    "config": {
+                        "scale": 1.0,
+                        "mode": "fan_avg",
+                        "distribution": "uniform",
+                        "seed": null
+                    }
+                },
+                "bias_initializer": {
+                    "class_name": "Zeros",
+                    "config": {}
+                },
+                "kernel_regularizer": null,
+                "bias_regularizer": null,
+                "activity_regularizer": null,
+                "kernel_constraint": null,
+                "bias_constraint": null
+            },
+            {
+                "trainable": true,
+                "dtype": "float32",
+                "kernel_size": [
+                    1,
+                    1
+                ],
+                "strides": [
+                    1,
+                    1
+                ],
+                "padding": "valid",
+                "data_format": "channels_last",
+                "dilation_rate": [
+                    1,
+                    1
+                ],
+                "groups": 1,
+                "activation": "linear",
+                "use_bias": false,
+                "kernel_initializer": {
+                    "class_name": "VarianceScaling",
+                    "config": {
+                        "scale": 1.0,
+                        "mode": "fan_avg",
+                        "distribution": "uniform",
+                        "seed": null
+                    }
+                },
+                "bias_initializer": {
+                    "class_name": "Zeros",
+                    "config": {}
+                },
+                "kernel_regularizer": null,
+                "bias_regularizer": null,
+                "activity_regularizer": null,
+                "kernel_constraint": null,
+                "bias_constraint": null
+            },
+            {
+                "trainable": true,
+                "dtype": "float32",
+                "kernel_size": [
+                    1,
+                    1
+                ],
+                "strides": [
+                    1,
+                    1
+                ],
+                "padding": "same",
+                "data_format": "channels_last",
+                "dilation_rate": [
+                    1,
+                    1
+                ],
+                "groups": 1,
+                "activation": "linear",
+                "use_bias": false,
+                "kernel_initializer": {
+                    "class_name": "VarianceScaling",
+                    "config": {
+                        "scale": 1.0,
+                        "mode": "fan_avg",
+                        "distribution": "uniform",
+                        "seed": null
+                    }
+                },
+                "bias_initializer": {
+                    "class_name": "Zeros",
+                    "config": {}
+                },
+                "kernel_regularizer": null,
+                "bias_regularizer": null,
+                "activity_regularizer": null,
+                "kernel_constraint": null,
+                "bias_constraint": null
+            },
+            {
+                "trainable": true,
+                "dtype": "float32",
+                "kernel_size": [
+                    5,
+                    5
+                ],
+                "strides": [
+                    1,
+                    1
+                ],
+                "padding": "same",
+                "data_format": "channels_last",
+                "dilation_rate": [
+                    1,
+                    1
+                ],
+                "groups": 1,
+                "activation": "linear",
+                "use_bias": false,
+                "kernel_initializer": {
+                    "class_name": "VarianceScaling",
+                    "config": {
+                        "scale": 1.0,
+                        "mode": "fan_avg",
+                        "distribution": "uniform",
+                        "seed": null
+                    }
+                },
+                "bias_initializer": {
+                    "class_name": "Zeros",
+                    "config": {}
+                },
+                "kernel_regularizer": null,
+                "bias_regularizer": null,
+                "activity_regularizer": null,
+                "kernel_constraint": null,
+                "bias_constraint": null
+            },
+            {
+                "trainable": true,
+                "dtype": "float32",
+                "kernel_size": [
+                    7,
+                    1
+                ],
+                "strides": [
+                    1,
+                    1
+                ],
+                "padding": "same",
+                "data_format": "channels_last",
+                "dilation_rate": [
+                    1,
+                    1
+                ],
+                "groups": 1,
+                "activation": "linear",
+                "use_bias": false,
+                "kernel_initializer": {
+                    "class_name": "VarianceScaling",
+                    "config": {
+                        "scale": 1.0,
+                        "mode": "fan_avg",
+                        "distribution": "uniform",
+                        "seed": null
+                    }
+                },
+                "bias_initializer": {
+                    "class_name": "Zeros",
+                    "config": {}
+                },
+                "kernel_regularizer": null,
+                "bias_regularizer": null,
+                "activity_regularizer": null,
+                "kernel_constraint": null,
+                "bias_constraint": null
+            },
+            {
+                "trainable": true,
+                "dtype": "float32",
+                "kernel_size": [
+                    1,
+                    7
+                ],
+                "strides": [
+                    1,
+                    1
+                ],
+                "padding": "same",
+                "data_format": "channels_last",
+                "dilation_rate": [
+                    1,
+                    1
+                ],
+                "groups": 1,
+                "activation": "linear",
+                "use_bias": false,
+                "kernel_initializer": {
+                    "class_name": "VarianceScaling",
+                    "config": {
+                        "scale": 1.0,
+                        "mode": "fan_avg",
+                        "distribution": "uniform",
+                        "seed": null
+                    }
+                },
+                "bias_initializer": {
+                    "class_name": "Zeros",
+                    "config": {}
+                },
+                "kernel_regularizer": null,
+                "bias_regularizer": null,
+                "activity_regularizer": null,
+                "kernel_constraint": null,
+                "bias_constraint": null
+            },
+            {
+                "trainable": true,
+                "dtype": "float16",
+                "kernel_size": [
+                    1,
+                    7
+                ],
+                "strides": [
+                    1,
+                    1
+                ],
+                "padding": "same",
+                "data_format": "channels_last",
+                "dilation_rate": [
+                    1,
+                    1
+                ],
+                "groups": 1,
+                "activation": "linear",
+                "use_bias": false,
+                "kernel_initializer": {
+                    "class_name": "VarianceScaling",
+                    "config": {
+                        "scale": 1.0,
+                        "mode": "fan_avg",
+                        "distribution": "uniform",
+                        "seed": null
+                    }
+                },
+                "bias_initializer": {
+                    "class_name": "Zeros",
+                    "config": {}
+                },
+                "kernel_regularizer": null,
+                "bias_regularizer": null,
+                "activity_regularizer": null,
+                "kernel_constraint": null,
+                "bias_constraint": null
+            },
+            {
+                "trainable": true,
+                "dtype": "float32",
+                "kernel_size": [
+                    1,
+                    3
+                ],
+                "strides": [
+                    1,
+                    1
+                ],
+                "padding": "same",
+                "data_format": "channels_last",
+                "dilation_rate": [
+                    1,
+                    1
+                ],
+                "groups": 1,
+                "activation": "linear",
+                "use_bias": false,
+                "kernel_initializer": {
+                    "class_name": "VarianceScaling",
+                    "config": {
+                        "scale": 1.0,
+                        "mode": "fan_avg",
+                        "distribution": "uniform",
+                        "seed": null
+                    }
+                },
+                "bias_initializer": {
+                    "class_name": "Zeros",
+                    "config": {}
+                },
+                "kernel_regularizer": null,
+                "bias_regularizer": null,
+                "activity_regularizer": null,
+                "kernel_constraint": null,
+                "bias_constraint": null
+            },
+            {
+                "trainable": true,
+                "dtype": "float32",
+                "kernel_size": [
+                    3,
+                    1
+                ],
+                "strides": [
+                    1,
+                    1
+                ],
+                "padding": "same",
+                "data_format": "channels_last",
+                "dilation_rate": [
+                    1,
+                    1
+                ],
+                "groups": 1,
+                "activation": "linear",
+                "use_bias": false,
+                "kernel_initializer": {
+                    "class_name": "VarianceScaling",
+                    "config": {
+                        "scale": 1.0,
+                        "mode": "fan_avg",
+                        "distribution": "uniform",
+                        "seed": null
+                    }
+                },
+                "bias_initializer": {
+                    "class_name": "Zeros",
+                    "config": {}
+                },
+                "kernel_regularizer": null,
+                "bias_regularizer": null,
+                "activity_regularizer": null,
+                "kernel_constraint": null,
+                "bias_constraint": null
+            }
+        ],
+        "BatchNormalization": [
+            {
+                "trainable": true,
+                "dtype": "float32",
+                "axis": [
+                    3
+                ],
+                "momentum": 0.99,
+                "epsilon": 0.001,
+                "center": true,
+                "scale": false,
+                "beta_initializer": {
+                    "class_name": "Zeros",
+                    "config": {}
+                },
+                "gamma_initializer": {
+                    "class_name": "Ones",
+                    "config": {}
+                },
+                "moving_mean_initializer": {
+                    "class_name": "Zeros",
+                    "config": {}
+                },
+                "moving_variance_initializer": {
+                    "class_name": "Ones",
+                    "config": {}
+                },
+                "beta_regularizer": null,
+                "gamma_regularizer": null,
+                "beta_constraint": null,
+                "gamma_constraint": null
+            },
+            {
+                "trainable": true,
+                "dtype": "bfloat16",
+                "axis": [
+                    3
+                ],
+                "momentum": 0.99,
+                "epsilon": 0.001,
+                "center": true,
+                "scale": false,
+                "beta_initializer": {
+                    "class_name": "Zeros",
+                    "config": {}
+                },
+                "gamma_initializer": {
+                    "class_name": "Ones",
+                    "config": {}
+                },
+                "moving_mean_initializer": {
+                    "class_name": "Zeros",
+                    "config": {}
+                },
+                "moving_variance_initializer": {
+                    "class_name": "Ones",
+                    "config": {}
+                },
+                "beta_regularizer": null,
+                "gamma_regularizer": null,
+                "beta_constraint": null,
+                "gamma_constraint": null
+            }
+        ],
+        "Activation": [
+            {
+                "trainable": true,
+                "dtype": "float32",
+                "activation": "relu"
+            }
+        ],
+        "CustomExpandLayer": [
+            {
+                "trainable": true,
+                "dtype": "float32",
+                "axis": 1
+            }
+        ],
+        "Conv3D": [
+            {
+                "trainable": true,
+                "dtype": "float32",
+                "kernel_size": [
+                    7,
+                    2,
+                    9
+                ],
+                "strides": [
+                    1,
+                    1,
+                    1
+                ],
+                "padding": "same",
+                "data_format": "channels_first",
+                "dilation_rate": [
+                    1,
+                    1,
+                    1
+                ],
+                "groups": 1,
+                "activation": "elu",
+                "use_bias": false,
+                "kernel_initializer": {
+                    "class_name": "HeNormal",
+                    "config": {
+                        "seed": null
+                    }
+                },
+                "bias_initializer": {
+                    "class_name": "RandomUniform",
+                    "config": {
+                        "minval": -0.05,
+                        "maxval": 0.05,
+                        "seed": null
+                    }
+                },
+                "kernel_regularizer": {
+                    "class_name": "L1",
+                    "config": {
+                        "l1": 0.009999999776482582
+                    }
+                },
+                "bias_regularizer": {
+                    "class_name": "L2",
+                    "config": {
+                        "l2": 0.009999999776482582
+                    }
+                },
+                "activity_regularizer": {
+                    "class_name": "L2",
+                    "config": {
+                        "l2": 0.009999999776482582
+                    }
+                },
+                "kernel_constraint": {
+                    "class_name": "MinMaxNorm",
+                    "config": {
+                        "min_value": 0.0,
+                        "max_value": 1.0,
+                        "rate": 1.0,
+                        "axis": 0
+                    }
+                },
+                "bias_constraint": {
+                    "class_name": "MinMaxNorm",
+                    "config": {
+                        "min_value": 0.0,
+                        "max_value": 1.0,
+                        "rate": 1.0,
+                        "axis": 0
+                    }
+                }
+            }
+        ],
+        "CustomCropLayer": [
+            {
+                "trainable": true,
+                "dtype": "float32",
+                "cropping": [
+                    [
+                        15,
+                        16
+                    ],
+                    [
+                        0,
+                        0
+                    ],
+                    [
+                        0,
+                        0
+                    ],
+                    [
+                        0,
+                        0
+                    ]
+                ]
+            },
+            {
+                "trainable": true,
+                "dtype": "float32",
+                "cropping": [
+                    [
+                        4,
+                        4
+                    ],
+                    [
+                        2,
+                        2
+                    ],
+                    [
+                        0,
+                        0
+                    ]
+                ]
+            }
+        ],
+        "CustomDropDimLayer": [
+            {
+                "trainable": true,
+                "dtype": "float32",
+                "axis": 1
+            }
+        ],
+        "CustomCastLayer": [
+            {
+                "trainable": true,
+                "dtype": "float32",
+                "target_dtype": "float32"
+            },
+            {
+                "trainable": true,
+                "dtype": "float32",
+                "target_dtype": "bfloat16"
+            },
+            {
+                "trainable": true,
+                "dtype": "float32",
+                "target_dtype": "half"
+            },
+            {
+                "trainable": true,
+                "dtype": "float32",
+                "target_dtype": "float16"
+            }
+        ],
+        "MaxPooling2D": [
+            {
+                "trainable": true,
+                "dtype": "float32",
+                "pool_size": [
+                    3,
+                    3
+                ],
+                "padding": "valid",
+                "strides": [
+                    2,
+                    2
+                ],
+                "data_format": "channels_last"
+            },
+            {
+                "trainable": true,
+                "dtype": "float16",
+                "pool_size": [
+                    3,
+                    3
+                ],
+                "padding": "valid",
+                "strides": [
+                    2,
+                    2
+                ],
+                "data_format": "channels_last"
+            }
+        ],
+        "ZeroPadding2D": [
+            {
+                "trainable": true,
+                "dtype": "float32",
+                "padding": [
+                    [
+                        4,
+                        4
+                    ],
+                    [
+                        2,
+                        2
+                    ]
+                ],
+                "data_format": "channels_last"
+            }
+        ],
+        "AveragePooling2D": [
+            {
+                "trainable": true,
+                "dtype": "float32",
+                "pool_size": [
+                    3,
+                    3
+                ],
+                "padding": "same",
+                "strides": [
+                    1,
+                    1
+                ],
+                "data_format": "channels_last"
+            },
+            {
+                "trainable": true,
+                "dtype": "bfloat16",
+                "pool_size": [
+                    3,
+                    3
+                ],
+                "padding": "same",
+                "strides": [
+                    1,
+                    1
+                ],
+                "data_format": "channels_last"
+            }
+        ],
+        "Average": [
+            {
+                "trainable": true,
+                "dtype": "float32"
+            }
+        ],
+        "Concatenate": [
+            {
+                "trainable": true,
+                "dtype": "float32",
+                "axis": 3
+            }
+        ],
+        "PReLU": [
+            {
+                "trainable": true,
+                "dtype": "float32",
+                "alpha_initializer": {
+                    "class_name": "VarianceScaling",
+                    "config": {
+                        "scale": 1.0,
+                        "mode": "fan_in",
+                        "distribution": "truncated_normal",
+                        "seed": null
+                    }
+                },
+                "alpha_regularizer": {
+                    "class_name": "L2",
+                    "config": {
+                        "l2": 0.009999999776482582
+                    }
+                },
+                "alpha_constraint": {
+                    "class_name": "Constraint",
+                    "config": {}
+                },
+                "shared_axes": [
+                    -2
+                ]
+            }
+        ],
+        "ThresholdedReLU": [
+            {
+                "trainable": true,
+                "dtype": "float32",
+                "theta": 1.0
+            }
+        ],
+        "GlobalAveragePooling2D": [
+            {
+                "trainable": true,
+                "dtype": "float32",
+                "data_format": "channels_last",
+                "keepdims": false
+            }
+        ],
+        "LayerNormalization": [
+            {
+                "trainable": true,
+                "dtype": "float32",
+                "axis": [
+                    1
+                ],
+                "epsilon": 0.149041213073689,
+                "center": true,
+                "scale": false,
+                "beta_initializer": {
+                    "class_name": "Zeros",
+                    "config": {}
+                },
+                "gamma_initializer": {
+                    "class_name": "Ones",
+                    "config": {}
+                },
+                "beta_regularizer": null,
+                "gamma_regularizer": null,
+                "beta_constraint": null,
+                "gamma_constraint": null
+            }
+        ],
+        "Dense": [
+            {
+                "trainable": true,
+                "dtype": "float32",
+                "activation": "softmax",
+                "use_bias": true,
+                "kernel_initializer": {
+                    "class_name": "VarianceScaling",
+                    "config": {
+                        "scale": 1.0,
+                        "mode": "fan_avg",
+                        "distribution": "uniform",
+                        "seed": null
+                    }
+                },
+                "bias_initializer": {
+                    "class_name": "Zeros",
+                    "config": {}
+                },
+                "kernel_regularizer": null,
+                "bias_regularizer": null,
+                "activity_regularizer": null,
+                "kernel_constraint": null,
+                "bias_constraint": null
+            },
+            {
+                "trainable": true,
+                "dtype": "float32",
+                "activation": "linear",
+                "use_bias": true,
+                "kernel_initializer": {
+                    "class_name": "GlorotUniform",
+                    "config": {
+                        "seed": null
+                    }
+                },
+                "bias_initializer": {
+                    "class_name": "Zeros",
+                    "config": {}
+                },
+                "kernel_regularizer": null,
+                "bias_regularizer": null,
+                "activity_regularizer": null,
+                "kernel_constraint": null,
+                "bias_constraint": null
+            }
+        ],
+        "RepeatVector": [
+            {
+                "trainable": true,
+                "dtype": "float32",
+                "n": 2
+            }
+        ]
+    },
+    "layer_input_info": {
+        "Conv2D": {
+            "input_dims": [
+                4
+            ],
+            "dtype": [
+                "<dtype: 'float32'>",
+                "<dtype: 'float16'>"
+            ],
+            "shape": [
+                "[None, 299, 299, 3]",
+                "[None, 149, 149, 32]",
+                "[None, 147, 147, 32]",
+                "[None, 73, 73, 64]",
+                "[None, 73, 73, 80]",
+                "[None, 35, 35, 192]",
+                "[None, 35, 35, 64]",
+                "[None, 35, 35, 96]",
+                "[None, 35, 35, 48]",
+                "[None, 35, 35, 256]",
+                "[None, 35, 35, 288]",
+                "[None, 17, 17, 768]",
+                "[None, 17, 17, 128]",
+                "[None, 17, 17, 160]",
+                "[None, 17, 17, 192]",
+                "[None, 8, 8, 1280]",
+                "[None, 8, 8, 448]",
+                "[None, 8, 8, 384]",
+                "[None, 8, 8, 2048]"
+            ]
+        },
+        "BatchNormalization": {
+            "input_dims": [
+                4,
+                5
+            ],
+            "dtype": [
+                "<dtype: 'float32'>",
+                "<dtype: 'bfloat16'>"
+            ],
+            "shape": [
+                "[None, 149, 149, 32]",
+                "[None, 1, 147, 147, 32]",
+                "[None, 147, 147, 64]",
+                "[None, 73, 73, 80]",
+                "[None, 71, 71, 192]",
+                "[None, 35, 35, 64]",
+                "[None, 35, 35, 96]",
+                "[None, 35, 35, 48]",
+                "[None, 35, 35, 32]",
+                "[None, 17, 17, 384]",
+                "[None, 17, 17, 96]",
+                "[None, 17, 17, 128]",
+                "[None, 17, 17, 192]",
+                "[None, 17, 17, 160]",
+                "[None, 8, 8, 192]",
+                "[None, 8, 8, 320]",
+                "[None, 8, 8, 448]",
+                "[None, 8, 8, 384]"
+            ]
+        },
+        "Activation": {
+            "input_dims": [
+                4
+            ],
+            "dtype": [
+                "<dtype: 'float32'>"
+            ],
+            "shape": [
+                "[None, 149, 149, 32]",
+                "[None, 147, 147, 32]",
+                "[None, 147, 147, 64]",
+                "[None, 73, 73, 80]",
+                "[None, 71, 71, 192]",
+                "[None, 35, 35, 64]",
+                "[None, 35, 35, 96]",
+                "[None, 35, 35, 48]",
+                "[None, 35, 35, 32]",
+                "[None, 17, 17, 384]",
+                "[None, 17, 17, 96]",
+                "[None, 17, 17, 128]",
+                "[None, 17, 17, 192]",
+                "[None, 17, 17, 160]",
+                "[None, 8, 8, 320]",
+                "[None, 8, 8, 192]",
+                "[None, 8, 8, 448]",
+                "[None, 8, 8, 384]"
+            ]
+        },
+        "CustomExpandLayer": {
+            "input_dims": [
+                4
+            ],
+            "dtype": [
+                "<dtype: 'float32'>"
+            ],
+            "shape": [
+                "[None, 147, 147, 32]"
+            ]
+        },
+        "Conv3D": {
+            "input_dims": [
+                5
+            ],
+            "dtype": [
+                "<dtype: 'float32'>"
+            ],
+            "shape": [
+                "[None, 1, 147, 147, 32]"
+            ]
+        },
+        "CustomCropLayer": {
+            "input_dims": [
+                5,
+                4
+            ],
+            "dtype": [
+                "<dtype: 'float32'>"
+            ],
+            "shape": [
+                "[None, 32, 147, 147, 32]",
+                "[None, 43, 39, 192]"
+            ]
+        },
+        "CustomDropDimLayer": {
+            "input_dims": [
+                5,
+                3
+            ],
+            "dtype": [
+                "<dtype: 'float32'>"
+            ],
+            "shape": [
+                "[None, 1, 147, 147, 32]",
+                "[None, 2, 1000]"
+            ]
+        },
+        "CustomCastLayer": {
+            "input_dims": [
+                4
+            ],
+            "dtype": [
+                "<dtype: 'float32'>",
+                "<dtype: 'float16'>",
+                "<dtype: 'bfloat16'>"
+            ],
+            "shape": [
+                "[None, 147, 147, 64]",
+                "[None, 73, 73, 64]",
+                "[None, 35, 35, 288]",
+                "[None, 35, 35, 64]",
+                "[None, 17, 17, 160]",
+                "[None, 17, 17, 192]",
+                "[None, 8, 8, 192]",
+                "[None, 17, 17, 768]",
+                "[None, 8, 8, 768]"
+            ]
+        },
+        "MaxPooling2D": {
+            "input_dims": [
+                4
+            ],
+            "dtype": [
+                "<dtype: 'float32'>",
+                "<dtype: 'float16'>"
+            ],
+            "shape": [
+                "[None, 147, 147, 64]",
+                "[None, 71, 71, 192]",
+                "[None, 35, 35, 288]",
+                "[None, 17, 17, 768]"
+            ]
+        },
+        "ZeroPadding2D": {
+            "input_dims": [
+                4
+            ],
+            "dtype": [
+                "<dtype: 'float32'>"
+            ],
+            "shape": [
+                "[None, 35, 35, 192]"
+            ]
+        },
+        "AveragePooling2D": {
+            "input_dims": [
+                4
+            ],
+            "dtype": [
+                "<dtype: 'float32'>",
+                "<dtype: 'bfloat16'>"
+            ],
+            "shape": [
+                "[None, 35, 35, 192]",
+                "[None, 35, 35, 256]",
+                "[None, 35, 35, 288]",
+                "[None, 17, 17, 768]",
+                "[None, 8, 8, 1280]",
+                "[None, 8, 8, 2048]"
+            ]
+        },
+        "Average": {
+            "input_dims": [
+                4
+            ],
+            "dtype": [
+                "<dtype: 'float32'>"
+            ],
+            "shape": [
+                "[None, 35, 35, 96]"
+            ]
+        },
+        "Concatenate": {
+            "input_dims": [
+                4
+            ],
+            "dtype": [
+                "<dtype: 'float32'>"
+            ],
+            "shape": [
+                "[None, 35, 35, 64]",
+                "[None, 35, 35, 96]",
+                "[None, 35, 35, 32]",
+                "[None, 17, 17, 384]",
+                "[None, 17, 17, 96]",
+                "[None, 17, 17, 288]",
+                "[None, 17, 17, 192]",
+                "[None, 8, 8, 320]",
+                "[None, 8, 8, 192]",
+                "[None, 8, 8, 768]",
+                "[None, 8, 8, 384]"
+            ]
+        },
+        "PReLU": {
+            "input_dims": [
+                4
+            ],
+            "dtype": [
+                "<dtype: 'bfloat16'>"
+            ],
+            "shape": [
+                "[None, 35, 35, 288]"
+            ]
+        },
+        "ThresholdedReLU": {
+            "input_dims": [
+                4
+            ],
+            "dtype": [
+                "<dtype: 'float16'>"
+            ],
+            "shape": [
+                "[None, 8, 8, 768]"
+            ]
+        },
+        "GlobalAveragePooling2D": {
+            "input_dims": [
+                4
+            ],
+            "dtype": [
+                "<dtype: 'float32'>"
+            ],
+            "shape": [
+                "[None, 8, 8, 2048]"
+            ]
+        },
+        "LayerNormalization": {
+            "input_dims": [
+                2
+            ],
+            "dtype": [
+                "<dtype: 'float32'>"
+            ],
+            "shape": [
+                "[None, 2048]"
+            ]
+        },
+        "Dense": {
+            "input_dims": [
+                2
+            ],
+            "dtype": [
+                "<dtype: 'float32'>"
+            ],
+            "shape": [
+                "[None, 2048]",
+                "[None, 1000]"
+            ]
+        },
+        "RepeatVector": {
+            "input_dims": [
+                2
+            ],
+            "dtype": [
+                "<dtype: 'float32'>"
+            ],
+            "shape": [
+                "[None, 1000]"
+            ]
+        }
+    },
+    "layer_num": 337,
+    "layer_type": [
+        "Conv2D",
+        "BatchNormalization",
+        "Activation",
+        "CustomExpandLayer",
+        "Conv3D",
+        "CustomCropLayer",
+        "CustomDropDimLayer",
+        "CustomCastLayer",
+        "MaxPooling2D",
+        "ZeroPadding2D",
+        "AveragePooling2D",
+        "Average",
+        "Concatenate",
+        "PReLU",
+        "ThresholdedReLU",
+        "GlobalAveragePooling2D",
+        "LayerNormalization",
+        "Dense",
+        "RepeatVector"
+    ],
+    "cur_edge_num": 337,
+    "layer_dims": {
+        "Conv2D": {
+            "input_dims": [
+                4
+            ],
+            "output_dims": [
+                4
+            ]
+        },
+        "BatchNormalization": {
+            "input_dims": [
+                4,
+                5
+            ],
+            "output_dims": [
+                4,
+                5
+            ]
+        },
+        "Activation": {
+            "input_dims": [
+                4
+            ],
+            "output_dims": [
+                4
+            ]
+        },
+        "CustomExpandLayer": {
+            "input_dims": [
+                4
+            ],
+            "output_dims": [
+                5
+            ]
+        },
+        "Conv3D": {
+            "input_dims": [
+                5
+            ],
+            "output_dims": [
+                5
+            ]
+        },
+        "CustomCropLayer": {
+            "input_dims": [
+                5,
+                4
+            ],
+            "output_dims": [
+                5,
+                4
+            ]
+        },
+        "CustomDropDimLayer": {
+            "input_dims": [
+                5,
+                3
+            ],
+            "output_dims": [
+                4,
+                2
+            ]
+        },
+        "CustomCastLayer": {
+            "input_dims": [
+                4
+            ],
+            "output_dims": [
+                4
+            ]
+        },
+        "MaxPooling2D": {
+            "input_dims": [
+                4
+            ],
+            "output_dims": [
+                4
+            ]
+        },
+        "ZeroPadding2D": {
+            "input_dims": [
+                4
+            ],
+            "output_dims": [
+                4
+            ]
+        },
+        "AveragePooling2D": {
+            "input_dims": [
+                4
+            ],
+            "output_dims": [
+                4
+            ]
+        },
+        "Average": {
+            "input_dims": [
+                4
+            ],
+            "output_dims": [
+                4
+            ]
+        },
+        "Concatenate": {
+            "input_dims": [
+                4
+            ],
+            "output_dims": [
+                4
+            ]
+        },
+        "PReLU": {
+            "input_dims": [
+                4
+            ],
+            "output_dims": [
+                4
+            ]
+        },
+        "ThresholdedReLU": {
+            "input_dims": [
+                4
+            ],
+            "output_dims": [
+                4
+            ]
+        },
+        "GlobalAveragePooling2D": {
+            "input_dims": [
+                4
+            ],
+            "output_dims": [
+                2
+            ]
+        },
+        "LayerNormalization": {
+            "input_dims": [
+                2
+            ],
+            "output_dims": [
+                2
+            ]
+        },
+        "Dense": {
+            "input_dims": [
+                2
+            ],
+            "output_dims": [
+                2
+            ]
+        },
+        "RepeatVector": {
+            "input_dims": [
+                2
+            ],
+            "output_dims": [
+                3
+            ]
+        }
+    }
+}

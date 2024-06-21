@@ -1,0 +1,910 @@
+{
+    "edges": [
+        [
+            "Conv2d",
+            "ReLU"
+        ],
+        [
+            "ReLU",
+            "AvgPool2d"
+        ],
+        [
+            "AvgPool2d",
+            "Replace_ms"
+        ],
+        [
+            "Replace_ms",
+            "BatchNorm2d"
+        ],
+        [
+            "BatchNorm2d",
+            "Replace_ms"
+        ],
+        [
+            "Replace_ms",
+            "Replace_ms"
+        ],
+        [
+            "Replace_ms",
+            "Conv2d"
+        ],
+        [
+            "Conv2d",
+            "Replace_ms"
+        ],
+        [
+            "Replace_ms",
+            "ReLU"
+        ],
+        [
+            "ReLU",
+            "MaxPool2d"
+        ],
+        [
+            "MaxPool2d",
+            "Dropout"
+        ],
+        [
+            "Dropout",
+            "Conv2dTranspose"
+        ],
+        [
+            "Conv2dTranspose",
+            "Replace_ms"
+        ],
+        [
+            "Replace_ms",
+            "Dense"
+        ],
+        [
+            "Dense",
+            "ReLU"
+        ],
+        [
+            "ReLU",
+            "Dense"
+        ]
+    ],
+    "layer_config": {
+        "Conv2d": [
+            {
+                "ge_sync_data": false,
+                "_is_check_and_refresh": true,
+                "_amp_level": "",
+                "in_channels": 84,
+                "out_channels": 10,
+                "kernel_size": [
+                    1,
+                    1
+                ],
+                "stride": [
+                    1,
+                    1
+                ],
+                "pad_mode": "same",
+                "data_format": "NCHW",
+                "padding": 0,
+                "dilation": [
+                    1,
+                    1
+                ],
+                "group": 1,
+                "has_bias": true,
+                "weight_init": null,
+                "bias_init": null,
+                "bias": null,
+                "format": "NCHW",
+                "is_expand": false,
+                "in_shape": [
+                    2,
+                    1568,
+                    7,
+                    7
+                ],
+                "output_shape": [
+                    2,
+                    1568
+                ],
+                "_forward_pre_hook_key": 0,
+                "_forward_hook_key": 0,
+                "_func_graph_flags": null,
+                "_params": null,
+                "_cells": null,
+                "_params_list": null,
+                "_tensor_list": null,
+                "use_batch_statistics": null,
+                "num_features": 64,
+                "eps": 1e-05,
+                "beta_init": "zeros",
+                "gamma_init": "ones",
+                "moving_mean_init": "zeros",
+                "moving_var_init": "ones",
+                "parallel_mode": "stand_alone",
+                "shape": null,
+                "_dilation": 1,
+                "_attr_synced": false,
+                "return_indices": false,
+                "use_pad": false,
+                "is_valid": false,
+                "is_same": true,
+                "is_pad": false,
+                "output_padding": 0,
+                "reshape": null,
+                "shape_op": null,
+                "relu": null
+            }
+        ],
+        "AvgPool2d": [
+            {
+                "ge_sync_data": false,
+                "_is_check_and_refresh": true,
+                "_amp_level": "",
+                "in_channels": 84,
+                "out_channels": 10,
+                "kernel_size": [
+                    1,
+                    1
+                ],
+                "stride": [
+                    1,
+                    1
+                ],
+                "pad_mode": "same",
+                "data_format": "NCHW",
+                "padding": 0,
+                "dilation": [
+                    1,
+                    1
+                ],
+                "group": 1,
+                "has_bias": true,
+                "weight_init": null,
+                "bias_init": null,
+                "bias": null,
+                "format": "NCHW",
+                "is_expand": false,
+                "in_shape": [
+                    2,
+                    1568,
+                    7,
+                    7
+                ],
+                "output_shape": [
+                    2,
+                    1568
+                ],
+                "_forward_pre_hook_key": 0,
+                "_forward_hook_key": 0,
+                "_func_graph_flags": null,
+                "_params": null,
+                "_cells": null,
+                "_params_list": null,
+                "_tensor_list": null,
+                "use_batch_statistics": null,
+                "num_features": 64,
+                "eps": 1e-05,
+                "beta_init": "zeros",
+                "gamma_init": "ones",
+                "moving_mean_init": "zeros",
+                "moving_var_init": "ones",
+                "parallel_mode": "stand_alone",
+                "shape": null,
+                "_dilation": 1,
+                "_attr_synced": false,
+                "return_indices": false,
+                "use_pad": false,
+                "is_valid": false,
+                "is_same": true,
+                "is_pad": false,
+                "output_padding": 0,
+                "reshape": null,
+                "shape_op": null,
+                "relu": null
+            }
+        ],
+        "Replace_ms": [
+            {
+                "ge_sync_data": false,
+                "_is_check_and_refresh": true,
+                "_amp_level": "",
+                "in_channels": 84,
+                "out_channels": 10,
+                "kernel_size": [
+                    1,
+                    1
+                ],
+                "stride": [
+                    1,
+                    1
+                ],
+                "pad_mode": "same",
+                "data_format": "NCHW",
+                "padding": 0,
+                "dilation": [
+                    1,
+                    1
+                ],
+                "group": 1,
+                "has_bias": true,
+                "weight_init": null,
+                "bias_init": null,
+                "bias": null,
+                "format": "NCHW",
+                "is_expand": false,
+                "in_shape": [
+                    2,
+                    1568,
+                    7,
+                    7
+                ],
+                "output_shape": [
+                    2,
+                    1568
+                ],
+                "_forward_pre_hook_key": 0,
+                "_forward_hook_key": 0,
+                "_func_graph_flags": null,
+                "_params": null,
+                "_cells": null,
+                "_params_list": null,
+                "_tensor_list": null,
+                "use_batch_statistics": null,
+                "num_features": 64,
+                "eps": 1e-05,
+                "beta_init": "zeros",
+                "gamma_init": "ones",
+                "moving_mean_init": "zeros",
+                "moving_var_init": "ones",
+                "parallel_mode": "stand_alone",
+                "shape": null,
+                "_dilation": 1,
+                "_attr_synced": false,
+                "return_indices": false,
+                "use_pad": false,
+                "is_valid": false,
+                "is_same": true,
+                "is_pad": false,
+                "output_padding": 0,
+                "reshape": null,
+                "shape_op": null,
+                "relu": null
+            }
+        ],
+        "BatchNorm2d": [
+            {
+                "ge_sync_data": false,
+                "_is_check_and_refresh": true,
+                "_amp_level": "",
+                "in_channels": 84,
+                "out_channels": 10,
+                "kernel_size": [
+                    1,
+                    1
+                ],
+                "stride": [
+                    1,
+                    1
+                ],
+                "pad_mode": "same",
+                "data_format": "NCHW",
+                "padding": 0,
+                "dilation": [
+                    1,
+                    1
+                ],
+                "group": 1,
+                "has_bias": true,
+                "weight_init": null,
+                "bias_init": null,
+                "bias": null,
+                "format": "NCHW",
+                "is_expand": false,
+                "in_shape": [
+                    2,
+                    1568,
+                    7,
+                    7
+                ],
+                "output_shape": [
+                    2,
+                    1568
+                ],
+                "_forward_pre_hook_key": 0,
+                "_forward_hook_key": 0,
+                "_func_graph_flags": null,
+                "_params": null,
+                "_cells": null,
+                "_params_list": null,
+                "_tensor_list": null,
+                "use_batch_statistics": null,
+                "num_features": 64,
+                "eps": 1e-05,
+                "beta_init": "zeros",
+                "gamma_init": "ones",
+                "moving_mean_init": "zeros",
+                "moving_var_init": "ones",
+                "parallel_mode": "stand_alone",
+                "shape": null,
+                "_dilation": 1,
+                "_attr_synced": false,
+                "return_indices": false,
+                "use_pad": false,
+                "is_valid": false,
+                "is_same": true,
+                "is_pad": false,
+                "output_padding": 0,
+                "reshape": null,
+                "shape_op": null,
+                "relu": null
+            }
+        ],
+        "MaxPool2d": [
+            {
+                "ge_sync_data": false,
+                "_is_check_and_refresh": true,
+                "_amp_level": "",
+                "in_channels": 84,
+                "out_channels": 10,
+                "kernel_size": [
+                    1,
+                    1
+                ],
+                "stride": [
+                    1,
+                    1
+                ],
+                "pad_mode": "same",
+                "data_format": "NCHW",
+                "padding": 0,
+                "dilation": [
+                    1,
+                    1
+                ],
+                "group": 1,
+                "has_bias": true,
+                "weight_init": null,
+                "bias_init": null,
+                "bias": null,
+                "format": "NCHW",
+                "is_expand": false,
+                "in_shape": [
+                    2,
+                    1568,
+                    7,
+                    7
+                ],
+                "output_shape": [
+                    2,
+                    1568
+                ],
+                "_forward_pre_hook_key": 0,
+                "_forward_hook_key": 0,
+                "_func_graph_flags": null,
+                "_params": null,
+                "_cells": null,
+                "_params_list": null,
+                "_tensor_list": null,
+                "use_batch_statistics": null,
+                "num_features": 64,
+                "eps": 1e-05,
+                "beta_init": "zeros",
+                "gamma_init": "ones",
+                "moving_mean_init": "zeros",
+                "moving_var_init": "ones",
+                "parallel_mode": "stand_alone",
+                "shape": null,
+                "_dilation": 1,
+                "_attr_synced": false,
+                "return_indices": false,
+                "use_pad": false,
+                "is_valid": false,
+                "is_same": true,
+                "is_pad": false,
+                "output_padding": 0,
+                "reshape": null,
+                "shape_op": null,
+                "relu": null
+            }
+        ],
+        "Dropout": [
+            {
+                "ge_sync_data": false,
+                "_is_check_and_refresh": true,
+                "_amp_level": "",
+                "in_channels": 84,
+                "out_channels": 10,
+                "kernel_size": [
+                    1,
+                    1
+                ],
+                "stride": [
+                    1,
+                    1
+                ],
+                "pad_mode": "same",
+                "data_format": "NCHW",
+                "padding": 0,
+                "dilation": [
+                    1,
+                    1
+                ],
+                "group": 1,
+                "has_bias": true,
+                "weight_init": null,
+                "bias_init": null,
+                "bias": null,
+                "format": "NCHW",
+                "is_expand": false,
+                "in_shape": [
+                    2,
+                    1568,
+                    7,
+                    7
+                ],
+                "output_shape": [
+                    2,
+                    1568
+                ],
+                "_forward_pre_hook_key": 0,
+                "_forward_hook_key": 0,
+                "_func_graph_flags": null,
+                "_params": null,
+                "_cells": null,
+                "_params_list": null,
+                "_tensor_list": null,
+                "use_batch_statistics": null,
+                "num_features": 64,
+                "eps": 1e-05,
+                "beta_init": "zeros",
+                "gamma_init": "ones",
+                "moving_mean_init": "zeros",
+                "moving_var_init": "ones",
+                "parallel_mode": "stand_alone",
+                "shape": null,
+                "_dilation": 1,
+                "_attr_synced": false,
+                "return_indices": false,
+                "use_pad": false,
+                "is_valid": false,
+                "is_same": true,
+                "is_pad": false,
+                "output_padding": 0,
+                "reshape": null,
+                "shape_op": null,
+                "relu": null
+            }
+        ],
+        "Conv2dTranspose": [
+            {
+                "ge_sync_data": false,
+                "_is_check_and_refresh": true,
+                "_amp_level": "",
+                "in_channels": 84,
+                "out_channels": 10,
+                "kernel_size": [
+                    1,
+                    1
+                ],
+                "stride": [
+                    1,
+                    1
+                ],
+                "pad_mode": "same",
+                "data_format": "NCHW",
+                "padding": 0,
+                "dilation": [
+                    1,
+                    1
+                ],
+                "group": 1,
+                "has_bias": true,
+                "weight_init": null,
+                "bias_init": null,
+                "bias": null,
+                "format": "NCHW",
+                "is_expand": false,
+                "in_shape": [
+                    2,
+                    1568,
+                    7,
+                    7
+                ],
+                "output_shape": [
+                    2,
+                    1568
+                ],
+                "_forward_pre_hook_key": 0,
+                "_forward_hook_key": 0,
+                "_func_graph_flags": null,
+                "_params": null,
+                "_cells": null,
+                "_params_list": null,
+                "_tensor_list": null,
+                "use_batch_statistics": null,
+                "num_features": 64,
+                "eps": 1e-05,
+                "beta_init": "zeros",
+                "gamma_init": "ones",
+                "moving_mean_init": "zeros",
+                "moving_var_init": "ones",
+                "parallel_mode": "stand_alone",
+                "shape": null,
+                "_dilation": 1,
+                "_attr_synced": false,
+                "return_indices": false,
+                "use_pad": false,
+                "is_valid": false,
+                "is_same": true,
+                "is_pad": false,
+                "output_padding": 0,
+                "reshape": null,
+                "shape_op": null,
+                "relu": null
+            }
+        ],
+        "Dense": [
+            {
+                "ge_sync_data": false,
+                "_is_check_and_refresh": true,
+                "_amp_level": "",
+                "in_channels": 84,
+                "out_channels": 10,
+                "kernel_size": [
+                    1,
+                    1
+                ],
+                "stride": [
+                    1,
+                    1
+                ],
+                "pad_mode": "same",
+                "data_format": "NCHW",
+                "padding": 0,
+                "dilation": [
+                    1,
+                    1
+                ],
+                "group": 1,
+                "has_bias": true,
+                "weight_init": null,
+                "bias_init": null,
+                "bias": null,
+                "format": "NCHW",
+                "is_expand": false,
+                "in_shape": [
+                    2,
+                    1568,
+                    7,
+                    7
+                ],
+                "output_shape": [
+                    2,
+                    1568
+                ],
+                "_forward_pre_hook_key": 0,
+                "_forward_hook_key": 0,
+                "_func_graph_flags": null,
+                "_params": null,
+                "_cells": null,
+                "_params_list": null,
+                "_tensor_list": null,
+                "use_batch_statistics": null,
+                "num_features": 64,
+                "eps": 1e-05,
+                "beta_init": "zeros",
+                "gamma_init": "ones",
+                "moving_mean_init": "zeros",
+                "moving_var_init": "ones",
+                "parallel_mode": "stand_alone",
+                "shape": null,
+                "_dilation": 1,
+                "_attr_synced": false,
+                "return_indices": false,
+                "use_pad": false,
+                "is_valid": false,
+                "is_same": true,
+                "is_pad": false,
+                "output_padding": 0,
+                "reshape": null,
+                "shape_op": null,
+                "relu": null
+            }
+        ],
+        "ReLU": [
+            {
+                "ge_sync_data": false,
+                "_is_check_and_refresh": true,
+                "_amp_level": "",
+                "in_channels": 84,
+                "out_channels": 10,
+                "kernel_size": [
+                    1,
+                    1
+                ],
+                "stride": [
+                    1,
+                    1
+                ],
+                "pad_mode": "same",
+                "data_format": "NCHW",
+                "padding": 0,
+                "dilation": [
+                    1,
+                    1
+                ],
+                "group": 1,
+                "has_bias": true,
+                "weight_init": null,
+                "bias_init": null,
+                "bias": null,
+                "format": "NCHW",
+                "is_expand": false,
+                "in_shape": [
+                    2,
+                    1568,
+                    7,
+                    7
+                ],
+                "output_shape": [
+                    2,
+                    1568
+                ],
+                "_forward_pre_hook_key": 0,
+                "_forward_hook_key": 0,
+                "_func_graph_flags": null,
+                "_params": null,
+                "_cells": null,
+                "_params_list": null,
+                "_tensor_list": null,
+                "use_batch_statistics": null,
+                "num_features": 64,
+                "eps": 1e-05,
+                "beta_init": "zeros",
+                "gamma_init": "ones",
+                "moving_mean_init": "zeros",
+                "moving_var_init": "ones",
+                "parallel_mode": "stand_alone",
+                "shape": null,
+                "_dilation": 1,
+                "_attr_synced": false,
+                "return_indices": false,
+                "use_pad": false,
+                "is_valid": false,
+                "is_same": true,
+                "is_pad": false,
+                "output_padding": 0,
+                "reshape": null,
+                "shape_op": null,
+                "relu": null
+            }
+        ]
+    },
+    "layer_input_info": {
+        "Conv2d": {
+            "input_dims": [
+                4
+            ],
+            "dtype": [
+                "[mindspore.float32]"
+            ],
+            "shape": [
+                "[2, 1, 28, 28]",
+                "[2, 64, 14, 14]"
+            ]
+        },
+        "ReLU": {
+            "input_dims": [
+                4,
+                2
+            ],
+            "dtype": [
+                "[mindspore.float32]"
+            ],
+            "shape": [
+                "[2, 64, 28, 28]",
+                "[2, 32, 14, 14]",
+                "[2, 120]",
+                "[2, 84]"
+            ]
+        },
+        "SequentialCell": {
+            "input_dims": [
+                4
+            ],
+            "dtype": [
+                "[mindspore.float32]"
+            ],
+            "shape": [
+                "[2, 64, 28, 28]",
+                "[2, 64, 14, 14]",
+                "[2, 32, 7, 7]"
+            ]
+        },
+        "AvgPool2d": {
+            "input_dims": [
+                4
+            ],
+            "dtype": [
+                "[mindspore.float32]"
+            ],
+            "shape": [
+                "[2, 64, 28, 28]"
+            ]
+        },
+        "Replace_ms": {
+            "input_dims": [
+                4,
+                5
+            ],
+            "dtype": [
+                "[mindspore.float32]"
+            ],
+            "shape": [
+                "[2, 64, 28, 28]",
+                "[2, 64, 14, 14]",
+                "[2, 40, 8, 3, 2]",
+                "[2, 32, 14, 14]",
+                "[2, 39, 25, 40, 46]",
+                "[2, 1568, 7, 7]"
+            ]
+        },
+        "BatchNorm2d": {
+            "input_dims": [
+                4
+            ],
+            "dtype": [
+                "[mindspore.float32]"
+            ],
+            "shape": [
+                "[2, 64, 14, 14]"
+            ]
+        },
+        "MaxPool2d": {
+            "input_dims": [
+                4
+            ],
+            "dtype": [
+                "[mindspore.float32]"
+            ],
+            "shape": [
+                "[2, 32, 14, 14]"
+            ]
+        },
+        "Dropout": {
+            "input_dims": [
+                4
+            ],
+            "dtype": [
+                "[mindspore.float32]"
+            ],
+            "shape": [
+                "[2, 32, 7, 7]"
+            ]
+        },
+        "Conv2dTranspose": {
+            "input_dims": [
+                4
+            ],
+            "dtype": [
+                "[mindspore.float32]"
+            ],
+            "shape": [
+                "[2, 32, 7, 7]"
+            ]
+        },
+        "Dense": {
+            "input_dims": [
+                2
+            ],
+            "dtype": [
+                "[mindspore.float32]"
+            ],
+            "shape": [
+                "[2, 1568]",
+                "[2, 120]",
+                "[2, 84]"
+            ]
+        }
+    },
+    "cur_edge_num": 18,
+    "layer_num": 17,
+    "layer_type": [
+        "Conv2d",
+        "AvgPool2d",
+        "Replace_ms",
+        "BatchNorm2d",
+        "MaxPool2d",
+        "Dropout",
+        "Conv2dTranspose",
+        "Dense",
+        "ReLU"
+    ],
+    "layer_dims": {
+        "Conv2d": {
+            "input_dims": [
+                4
+            ],
+            "output_dims": [
+                4
+            ]
+        },
+        "ReLU": {
+            "input_dims": [
+                4,
+                2
+            ],
+            "output_dims": [
+                4,
+                2
+            ]
+        },
+        "SequentialCell": {
+            "input_dims": [
+                4
+            ],
+            "output_dims": [
+                4,
+                2
+            ]
+        },
+        "AvgPool2d": {
+            "input_dims": [
+                4
+            ],
+            "output_dims": [
+                4
+            ]
+        },
+        "Replace_ms": {
+            "input_dims": [
+                4,
+                5
+            ],
+            "output_dims": [
+                4,
+                5,
+                2
+            ]
+        },
+        "BatchNorm2d": {
+            "input_dims": [
+                4
+            ],
+            "output_dims": [
+                4
+            ]
+        },
+        "MaxPool2d": {
+            "input_dims": [
+                4
+            ],
+            "output_dims": [
+                4
+            ]
+        },
+        "Dropout": {
+            "input_dims": [
+                4
+            ],
+            "output_dims": [
+                4
+            ]
+        },
+        "Conv2dTranspose": {
+            "input_dims": [
+                4
+            ],
+            "output_dims": [
+                4
+            ]
+        },
+        "Dense": {
+            "input_dims": [
+                2
+            ],
+            "output_dims": [
+                2
+            ]
+        }
+    }
+}

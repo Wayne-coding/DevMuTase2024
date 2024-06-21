@@ -1,0 +1,187 @@
+{
+    "edges": [
+        [
+            "max_pooling2D",
+            "dense"
+        ],
+        [
+            "dense",
+            "global_max_pooling2D"
+        ],
+        [
+            "global_max_pooling2D",
+            "reshape"
+        ],
+        [
+            "reshape",
+            "dense"
+        ],
+        [
+            "dense",
+            "reshape"
+        ]
+    ],
+    "layer_config": {
+        "max_pooling2D": [
+            {
+                "pool_size": [
+                    27,
+                    27
+                ],
+                "strides": [
+                    13,
+                    13
+                ],
+                "padding": "valid",
+                "data_format": "channels_last"
+            }
+        ],
+        "dense": [
+            {
+                "activation": "linear",
+                "use_bias": false,
+                "kernel_initializer": "random_uniform",
+                "bias_initializer": "random_uniform",
+                "kernel_regularizer": null,
+                "bias_regularizer": null,
+                "activity_regularizer": null,
+                "kernel_constraint": null,
+                "bias_constraint": null
+            }
+        ],
+        "global_max_pooling2D": [
+            {
+                "data_format": "channels_last"
+            }
+        ],
+        "reshape": [
+            {
+                "target_shape": [
+                    3
+                ]
+            },
+            {
+                "target_shape": [
+                    10
+                ]
+            }
+        ]
+    },
+    "layer_input_info": {
+        "max_pooling2D": {
+            "input_dims": [
+                4
+            ],
+            "dtype": [
+                "float32"
+            ],
+            "shape": [
+                [
+                    null,
+                    32,
+                    32,
+                    3
+                ]
+            ]
+        },
+        "dense": {
+            "input_dims": [
+                4,
+                2
+            ],
+            "dtype": [
+                "float32"
+            ],
+            "shape": [
+                [
+                    null,
+                    1,
+                    1,
+                    3
+                ],
+                [
+                    null,
+                    3
+                ]
+            ]
+        },
+        "global_max_pooling2D": {
+            "input_dims": [
+                4
+            ],
+            "dtype": [
+                "float32"
+            ],
+            "shape": [
+                [
+                    null,
+                    1,
+                    1,
+                    3
+                ]
+            ]
+        },
+        "reshape": {
+            "input_dims": [
+                2
+            ],
+            "dtype": [
+                "float32"
+            ],
+            "shape": [
+                [
+                    null,
+                    3
+                ],
+                [
+                    null,
+                    10
+                ]
+            ]
+        }
+    },
+    "layer_num": 7,
+    "layer_type": [
+        "max_pooling2D",
+        "dense",
+        "global_max_pooling2D",
+        "reshape"
+    ],
+    "cur_edge_num": 6,
+    "layer_dims": {
+        "max_pooling2D": {
+            "input_dims": [
+                4
+            ],
+            "output_dims": [
+                4
+            ]
+        },
+        "dense": {
+            "input_dims": [
+                4,
+                2
+            ],
+            "output_dims": [
+                4,
+                2
+            ]
+        },
+        "global_max_pooling2D": {
+            "input_dims": [
+                4
+            ],
+            "output_dims": [
+                2
+            ]
+        },
+        "reshape": {
+            "input_dims": [
+                2
+            ],
+            "output_dims": [
+                2
+            ]
+        }
+    }
+}

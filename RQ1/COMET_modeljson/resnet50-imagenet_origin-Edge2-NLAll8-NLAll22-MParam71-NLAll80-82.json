@@ -1,0 +1,1472 @@
+{
+    "edges": [
+        [
+            "ZeroPadding2D",
+            "Conv2D"
+        ],
+        [
+            "Conv2D",
+            "BatchNormalization"
+        ],
+        [
+            "BatchNormalization",
+            "Activation"
+        ],
+        [
+            "Activation",
+            "ZeroPadding2D"
+        ],
+        [
+            "ZeroPadding2D",
+            "GaussianDropout"
+        ],
+        [
+            "GaussianDropout",
+            "Conv2DTranspose"
+        ],
+        [
+            "Conv2DTranspose",
+            "CustomCropLayer"
+        ],
+        [
+            "CustomCropLayer",
+            "MaxPooling2D"
+        ],
+        [
+            "CustomCropLayer",
+            "BatchNormalization"
+        ],
+        [
+            "MaxPooling2D",
+            "ReLU"
+        ],
+        [
+            "ReLU",
+            "Conv2D"
+        ],
+        [
+            "ReLU",
+            "MaxPooling2D"
+        ],
+        [
+            "BatchNormalization",
+            "BatchNormalization"
+        ],
+        [
+            "Activation",
+            "Conv2D"
+        ],
+        [
+            "BatchNormalization",
+            "Add"
+        ],
+        [
+            "Add",
+            "Activation"
+        ],
+        [
+            "Activation",
+            "Add"
+        ],
+        [
+            "BatchNormalization",
+            "TimeDistributed"
+        ],
+        [
+            "TimeDistributed",
+            "Activation"
+        ],
+        [
+            "BatchNormalization",
+            "MaxPooling2D"
+        ],
+        [
+            "BatchNormalization",
+            "ReLU"
+        ],
+        [
+            "ReLU",
+            "Activation"
+        ],
+        [
+            "Conv2D",
+            "Flatten"
+        ],
+        [
+            "Flatten",
+            "CustomExpandLayer"
+        ],
+        [
+            "CustomExpandLayer",
+            "CustomExpandLayer"
+        ],
+        [
+            "CustomExpandLayer",
+            "CustomPadLayer"
+        ],
+        [
+            "CustomPadLayer",
+            "CustomCropLayer"
+        ],
+        [
+            "BatchNormalization",
+            "GlobalMaxPooling2D"
+        ],
+        [
+            "GlobalMaxPooling2D",
+            "CustomExpandLayer"
+        ],
+        [
+            "CustomPadLayer",
+            "Activation"
+        ],
+        [
+            "Conv2D",
+            "DepthwiseConv2D"
+        ],
+        [
+            "DepthwiseConv2D",
+            "AveragePooling2D"
+        ],
+        [
+            "AveragePooling2D",
+            "BatchNormalization"
+        ],
+        [
+            "Conv2D",
+            "Conv2D"
+        ],
+        [
+            "BatchNormalization",
+            "SpatialDropout2D"
+        ],
+        [
+            "SpatialDropout2D",
+            "Activation"
+        ],
+        [
+            "BatchNormalization",
+            "ZeroPadding2D"
+        ],
+        [
+            "Conv2D",
+            "ZeroPadding2D"
+        ],
+        [
+            "Conv2D",
+            "TimeDistributed"
+        ],
+        [
+            "TimeDistributed",
+            "BatchNormalization"
+        ],
+        [
+            "Conv2D",
+            "Softmax"
+        ],
+        [
+            "Softmax",
+            "BatchNormalization"
+        ],
+        [
+            "MaxPooling2D",
+            "BatchNormalization"
+        ],
+        [
+            "MaxPooling2D",
+            "Cropping2D"
+        ],
+        [
+            "Activation",
+            "GlobalAveragePooling2D"
+        ],
+        [
+            "BatchNormalization",
+            "Cropping2D"
+        ],
+        [
+            "GlobalAveragePooling2D",
+            "Dense"
+        ],
+        [
+            "Cropping2D",
+            "Flatten"
+        ],
+        [
+            "ZeroPadding2D",
+            "GlobalAveragePooling2D"
+        ],
+        [
+            "MaxPooling2D",
+            "GlobalAveragePooling2D"
+        ],
+        [
+            "ZeroPadding2D",
+            "Flatten"
+        ],
+        [
+            "Dense",
+            "Dense"
+        ],
+        [
+            "Flatten",
+            "Dense"
+        ],
+        [
+            "Dense",
+            "Add"
+        ]
+    ],
+    "layer_config": {
+        "ZeroPadding2D": [
+            {
+                "trainable": true,
+                "dtype": "float32",
+                "padding": [
+                    [
+                        3,
+                        3
+                    ],
+                    [
+                        3,
+                        3
+                    ]
+                ],
+                "data_format": "channels_last"
+            },
+            {
+                "trainable": true,
+                "dtype": "float32",
+                "padding": [
+                    [
+                        1,
+                        1
+                    ],
+                    [
+                        1,
+                        1
+                    ]
+                ],
+                "data_format": "channels_last"
+            }
+        ],
+        "Conv2D": [
+            {
+                "trainable": true,
+                "dtype": "float32",
+                "kernel_size": [
+                    7,
+                    7
+                ],
+                "strides": [
+                    2,
+                    2
+                ],
+                "padding": "valid",
+                "data_format": "channels_last",
+                "dilation_rate": [
+                    1,
+                    1
+                ],
+                "groups": 1,
+                "activation": "linear",
+                "use_bias": true,
+                "kernel_initializer": {
+                    "class_name": "VarianceScaling",
+                    "config": {
+                        "scale": 2.0,
+                        "mode": "fan_in",
+                        "distribution": "truncated_normal",
+                        "seed": null
+                    }
+                },
+                "bias_initializer": {
+                    "class_name": "Zeros",
+                    "config": {}
+                },
+                "kernel_regularizer": null,
+                "bias_regularizer": null,
+                "activity_regularizer": null,
+                "kernel_constraint": null,
+                "bias_constraint": null
+            },
+            {
+                "trainable": true,
+                "dtype": "float32",
+                "kernel_size": [
+                    1,
+                    1
+                ],
+                "strides": [
+                    1,
+                    1
+                ],
+                "padding": "valid",
+                "data_format": "channels_last",
+                "dilation_rate": [
+                    1,
+                    1
+                ],
+                "groups": 1,
+                "activation": "linear",
+                "use_bias": true,
+                "kernel_initializer": {
+                    "class_name": "VarianceScaling",
+                    "config": {
+                        "scale": 2.0,
+                        "mode": "fan_in",
+                        "distribution": "truncated_normal",
+                        "seed": null
+                    }
+                },
+                "bias_initializer": {
+                    "class_name": "Zeros",
+                    "config": {}
+                },
+                "kernel_regularizer": null,
+                "bias_regularizer": null,
+                "activity_regularizer": null,
+                "kernel_constraint": null,
+                "bias_constraint": null
+            },
+            {
+                "trainable": true,
+                "dtype": "float32",
+                "kernel_size": [
+                    3,
+                    3
+                ],
+                "strides": [
+                    1,
+                    1
+                ],
+                "padding": "same",
+                "data_format": "channels_last",
+                "dilation_rate": [
+                    1,
+                    1
+                ],
+                "groups": 1,
+                "activation": "linear",
+                "use_bias": true,
+                "kernel_initializer": {
+                    "class_name": "VarianceScaling",
+                    "config": {
+                        "scale": 2.0,
+                        "mode": "fan_in",
+                        "distribution": "truncated_normal",
+                        "seed": null
+                    }
+                },
+                "bias_initializer": {
+                    "class_name": "Zeros",
+                    "config": {}
+                },
+                "kernel_regularizer": null,
+                "bias_regularizer": null,
+                "activity_regularizer": null,
+                "kernel_constraint": null,
+                "bias_constraint": null
+            },
+            {
+                "trainable": true,
+                "dtype": "float32",
+                "kernel_size": [
+                    1,
+                    1
+                ],
+                "strides": [
+                    2,
+                    2
+                ],
+                "padding": "valid",
+                "data_format": "channels_last",
+                "dilation_rate": [
+                    1,
+                    1
+                ],
+                "groups": 1,
+                "activation": "linear",
+                "use_bias": true,
+                "kernel_initializer": {
+                    "class_name": "VarianceScaling",
+                    "config": {
+                        "scale": 2.0,
+                        "mode": "fan_in",
+                        "distribution": "truncated_normal",
+                        "seed": null
+                    }
+                },
+                "bias_initializer": {
+                    "class_name": "Zeros",
+                    "config": {}
+                },
+                "kernel_regularizer": null,
+                "bias_regularizer": null,
+                "activity_regularizer": null,
+                "kernel_constraint": null,
+                "bias_constraint": null
+            },
+            {
+                "trainable": true,
+                "dtype": "float32",
+                "kernel_size": [
+                    1,
+                    1
+                ],
+                "strides": [
+                    1,
+                    1
+                ],
+                "padding": "valid",
+                "data_format": "channels_last",
+                "dilation_rate": [
+                    1,
+                    1
+                ],
+                "groups": 1,
+                "activation": "linear",
+                "use_bias": false,
+                "kernel_initializer": {
+                    "class_name": "VarianceScaling",
+                    "config": {
+                        "scale": 2.0,
+                        "mode": "fan_in",
+                        "distribution": "truncated_normal",
+                        "seed": null
+                    }
+                },
+                "bias_initializer": {
+                    "class_name": "Zeros",
+                    "config": {}
+                },
+                "kernel_regularizer": null,
+                "bias_regularizer": null,
+                "activity_regularizer": null,
+                "kernel_constraint": null,
+                "bias_constraint": {
+                    "class_name": "NonNeg",
+                    "config": {}
+                }
+            }
+        ],
+        "BatchNormalization": [
+            {
+                "trainable": true,
+                "dtype": "float32",
+                "axis": [
+                    3
+                ],
+                "momentum": 0.99,
+                "epsilon": 0.001,
+                "center": true,
+                "scale": true,
+                "beta_initializer": {
+                    "class_name": "Zeros",
+                    "config": {}
+                },
+                "gamma_initializer": {
+                    "class_name": "Ones",
+                    "config": {}
+                },
+                "moving_mean_initializer": {
+                    "class_name": "Zeros",
+                    "config": {}
+                },
+                "moving_variance_initializer": {
+                    "class_name": "Ones",
+                    "config": {}
+                },
+                "beta_regularizer": null,
+                "gamma_regularizer": null,
+                "beta_constraint": null,
+                "gamma_constraint": null
+            },
+            {
+                "trainable": true,
+                "dtype": "float32",
+                "axis": [
+                    2
+                ],
+                "momentum": 0.99,
+                "epsilon": 0.001,
+                "center": false,
+                "scale": false,
+                "beta_initializer": {
+                    "class_name": "Zeros",
+                    "config": {}
+                },
+                "gamma_initializer": {
+                    "class_name": "Ones",
+                    "config": {}
+                },
+                "moving_mean_initializer": {
+                    "class_name": "Zeros",
+                    "config": {}
+                },
+                "moving_variance_initializer": {
+                    "class_name": "Ones",
+                    "config": {}
+                },
+                "beta_regularizer": null,
+                "gamma_regularizer": null,
+                "beta_constraint": null,
+                "gamma_constraint": null
+            }
+        ],
+        "Activation": [
+            {
+                "trainable": true,
+                "dtype": "float32",
+                "activation": "relu"
+            }
+        ],
+        "GaussianDropout": [
+            {
+                "trainable": true,
+                "dtype": "float32",
+                "rate": 0.5351353399235739,
+                "seed": null
+            }
+        ],
+        "Conv2DTranspose": [
+            {
+                "trainable": true,
+                "dtype": "float32",
+                "kernel_size": [
+                    8,
+                    5
+                ],
+                "strides": [
+                    1,
+                    1
+                ],
+                "padding": "valid",
+                "data_format": "channels_last",
+                "dilation_rate": [
+                    1,
+                    1
+                ],
+                "groups": 1,
+                "activation": "exponential",
+                "use_bias": true,
+                "kernel_initializer": {
+                    "class_name": "GlorotUniform",
+                    "config": {
+                        "seed": null
+                    }
+                },
+                "bias_initializer": {
+                    "class_name": "HeUniform",
+                    "config": {
+                        "seed": null
+                    }
+                },
+                "kernel_regularizer": {
+                    "class_name": "L1",
+                    "config": {
+                        "l1": 0.009999999776482582
+                    }
+                },
+                "bias_regularizer": {
+                    "class_name": "L2",
+                    "config": {
+                        "l2": 0.009999999776482582
+                    }
+                },
+                "activity_regularizer": {
+                    "class_name": "L1",
+                    "config": {
+                        "l1": 0.009999999776482582
+                    }
+                },
+                "kernel_constraint": {
+                    "class_name": "MinMaxNorm",
+                    "config": {
+                        "min_value": 0.0,
+                        "max_value": 1.0,
+                        "rate": 1.0,
+                        "axis": 0
+                    }
+                },
+                "bias_constraint": {
+                    "class_name": "UnitNorm",
+                    "config": {
+                        "axis": 0
+                    }
+                },
+                "output_padding": null
+            }
+        ],
+        "CustomCropLayer": [
+            {
+                "trainable": true,
+                "dtype": "float32",
+                "cropping": [
+                    [
+                        3,
+                        4
+                    ],
+                    [
+                        2,
+                        2
+                    ],
+                    [
+                        0,
+                        0
+                    ]
+                ]
+            },
+            {
+                "trainable": true,
+                "dtype": "float32",
+                "cropping": [
+                    [
+                        0,
+                        0
+                    ],
+                    [
+                        0,
+                        0
+                    ],
+                    [
+                        24960,
+                        24960
+                    ]
+                ]
+            }
+        ],
+        "MaxPooling2D": [
+            {
+                "trainable": true,
+                "dtype": "float32",
+                "pool_size": [
+                    3,
+                    3
+                ],
+                "padding": "valid",
+                "strides": [
+                    2,
+                    2
+                ],
+                "data_format": "channels_last"
+            }
+        ],
+        "ReLU": [
+            {
+                "trainable": true,
+                "dtype": "float32",
+                "negative_slope": 0.0,
+                "threshold": 0.0
+            }
+        ],
+        "Add": [
+            {
+                "trainable": true,
+                "dtype": "float32"
+            }
+        ],
+        "TimeDistributed": [
+            {
+                "trainable": true,
+                "dtype": "float32",
+                "layer": {
+                    "class_name": "ReLU",
+                    "config": {
+                        "name": "re_lu",
+                        "trainable": true,
+                        "dtype": "float32",
+                        "max_value": null,
+                        "negative_slope": 0.0,
+                        "threshold": 0.0
+                    }
+                }
+            },
+            {
+                "trainable": true,
+                "dtype": "float32",
+                "layer": {
+                    "class_name": "ReLU",
+                    "config": {
+                        "name": "re_lu_1",
+                        "trainable": true,
+                        "dtype": "float32",
+                        "max_value": null,
+                        "negative_slope": 0.0,
+                        "threshold": 0.0
+                    }
+                }
+            }
+        ],
+        "Flatten": [
+            {
+                "trainable": true,
+                "dtype": "float32",
+                "data_format": "channels_last"
+            }
+        ],
+        "CustomExpandLayer": [
+            {
+                "trainable": true,
+                "dtype": "float32",
+                "axis": 1
+            }
+        ],
+        "CustomPadLayer": [
+            {
+                "trainable": true,
+                "dtype": "float32",
+                "padding": [
+                    [
+                        6,
+                        7
+                    ],
+                    [
+                        6,
+                        7
+                    ],
+                    [
+                        0,
+                        0
+                    ]
+                ],
+                "constant_values": 2
+            },
+            {
+                "trainable": true,
+                "dtype": "float32",
+                "padding": [
+                    [
+                        6,
+                        7
+                    ],
+                    [
+                        6,
+                        7
+                    ],
+                    [
+                        121,
+                        121
+                    ]
+                ],
+                "constant_values": 2
+            }
+        ],
+        "GlobalMaxPooling2D": [
+            {
+                "trainable": true,
+                "dtype": "float32",
+                "data_format": "channels_first",
+                "keepdims": false
+            }
+        ],
+        "DepthwiseConv2D": [
+            {
+                "trainable": true,
+                "dtype": "float32",
+                "kernel_size": [
+                    5,
+                    8
+                ],
+                "strides": [
+                    1,
+                    1
+                ],
+                "padding": "same",
+                "data_format": "channels_first",
+                "dilation_rate": [
+                    1,
+                    1
+                ],
+                "groups": 1,
+                "activation": "linear",
+                "use_bias": true,
+                "bias_initializer": {
+                    "class_name": "RandomNormal",
+                    "config": {
+                        "mean": 0.0,
+                        "stddev": 0.05,
+                        "seed": null
+                    }
+                },
+                "bias_regularizer": {
+                    "class_name": "L2",
+                    "config": {
+                        "l2": 0.009999999776482582
+                    }
+                },
+                "activity_regularizer": {
+                    "class_name": "L1",
+                    "config": {
+                        "l1": 0.009999999776482582
+                    }
+                },
+                "bias_constraint": {
+                    "class_name": "MaxNorm",
+                    "config": {
+                        "max_value": 2,
+                        "axis": 0
+                    }
+                },
+                "depth_multiplier": 1,
+                "depthwise_initializer": {
+                    "class_name": "Constant",
+                    "config": {
+                        "value": 0
+                    }
+                },
+                "depthwise_regularizer": null,
+                "depthwise_constraint": {
+                    "class_name": "UnitNorm",
+                    "config": {
+                        "axis": 0
+                    }
+                }
+            }
+        ],
+        "AveragePooling2D": [
+            {
+                "trainable": true,
+                "dtype": "float32",
+                "pool_size": [
+                    7,
+                    7
+                ],
+                "padding": "same",
+                "strides": [
+                    1,
+                    1
+                ],
+                "data_format": "channels_first"
+            }
+        ],
+        "SpatialDropout2D": [
+            {
+                "trainable": true,
+                "dtype": "float32",
+                "rate": 0.9886403304356975,
+                "noise_shape": null,
+                "seed": null
+            }
+        ],
+        "Softmax": [
+            {
+                "trainable": true,
+                "dtype": "float32",
+                "axis": -1
+            }
+        ],
+        "GlobalAveragePooling2D": [
+            {
+                "trainable": true,
+                "dtype": "float32",
+                "data_format": "channels_last",
+                "keepdims": false
+            }
+        ],
+        "Cropping2D": [
+            {
+                "trainable": true,
+                "dtype": "float32",
+                "cropping": [
+                    [
+                        8,
+                        8
+                    ],
+                    [
+                        8,
+                        8
+                    ]
+                ],
+                "data_format": "channels_last"
+            },
+            {
+                "trainable": true,
+                "dtype": "float32",
+                "cropping": [
+                    [
+                        52,
+                        52
+                    ],
+                    [
+                        52,
+                        52
+                    ]
+                ],
+                "data_format": "channels_last"
+            },
+            {
+                "trainable": true,
+                "dtype": "float32",
+                "cropping": [
+                    [
+                        23,
+                        23
+                    ],
+                    [
+                        23,
+                        23
+                    ]
+                ],
+                "data_format": "channels_last"
+            }
+        ],
+        "Dense": [
+            {
+                "trainable": true,
+                "dtype": "float32",
+                "activation": "softmax",
+                "use_bias": true,
+                "kernel_initializer": {
+                    "class_name": "VarianceScaling",
+                    "config": {
+                        "scale": 1.0,
+                        "mode": "fan_avg",
+                        "distribution": "uniform",
+                        "seed": null
+                    }
+                },
+                "bias_initializer": {
+                    "class_name": "Zeros",
+                    "config": {}
+                },
+                "kernel_regularizer": null,
+                "bias_regularizer": null,
+                "activity_regularizer": null,
+                "kernel_constraint": null,
+                "bias_constraint": null
+            },
+            {
+                "trainable": true,
+                "dtype": "float32",
+                "activation": "linear",
+                "use_bias": true,
+                "kernel_initializer": {
+                    "class_name": "GlorotUniform",
+                    "config": {
+                        "seed": null
+                    }
+                },
+                "bias_initializer": {
+                    "class_name": "Zeros",
+                    "config": {}
+                },
+                "kernel_regularizer": null,
+                "bias_regularizer": null,
+                "activity_regularizer": null,
+                "kernel_constraint": null,
+                "bias_constraint": null
+            }
+        ]
+    },
+    "layer_input_info": {
+        "ZeroPadding2D": {
+            "input_dims": [
+                4
+            ],
+            "dtype": [
+                "<dtype: 'float32'>"
+            ],
+            "shape": [
+                "[None, 224, 224, 3]",
+                "[None, 112, 112, 64]",
+                "[None, 7, 7, 512]",
+                "[None, 7, 7, 2048]"
+            ]
+        },
+        "Conv2D": {
+            "input_dims": [
+                4
+            ],
+            "dtype": [
+                "<dtype: 'float32'>"
+            ],
+            "shape": [
+                "[None, 230, 230, 3]",
+                "[None, 56, 56, 64]",
+                "[None, 56, 56, 256]",
+                "[None, 28, 28, 128]",
+                "[None, 28, 28, 512]",
+                "[None, 14, 14, 256]",
+                "[None, 14, 14, 1024]",
+                "[None, 7, 7, 512]",
+                "[None, 7, 7, 2048]"
+            ]
+        },
+        "BatchNormalization": {
+            "input_dims": [
+                4
+            ],
+            "dtype": [
+                "<dtype: 'float32'>"
+            ],
+            "shape": [
+                "[None, 112, 112, 64]",
+                "[None, 56, 56, 64]",
+                "[None, 56, 56, 256]",
+                "[None, 28, 28, 128]",
+                "[None, 28, 28, 512]",
+                "[None, 14, 14, 256]",
+                "[None, 14, 14, 1024]",
+                "[None, 7, 7, 512]",
+                "[None, 7, 7, 2048]",
+                "[None, 114, 114, 64]",
+                "[None, 27, 27, 64]"
+            ]
+        },
+        "Activation": {
+            "input_dims": [
+                4
+            ],
+            "dtype": [
+                "<dtype: 'float32'>"
+            ],
+            "shape": [
+                "[None, 112, 112, 64]",
+                "[None, 56, 56, 64]",
+                "[None, 56, 56, 256]",
+                "[None, 28, 28, 128]",
+                "[None, 28, 28, 512]",
+                "[None, 14, 14, 256]",
+                "[None, 14, 14, 1024]",
+                "[None, 7, 7, 512]",
+                "[None, 7, 7, 2048]"
+            ]
+        },
+        "GaussianDropout": {
+            "input_dims": [
+                4
+            ],
+            "dtype": [
+                "<dtype: 'float32'>"
+            ],
+            "shape": [
+                "[None, 114, 114, 64]"
+            ]
+        },
+        "Conv2DTranspose": {
+            "input_dims": [
+                4
+            ],
+            "dtype": [
+                "<dtype: 'float32'>"
+            ],
+            "shape": [
+                "[None, 114, 114, 64]"
+            ]
+        },
+        "CustomCropLayer": {
+            "input_dims": [
+                4
+            ],
+            "dtype": [
+                "<dtype: 'float32'>"
+            ],
+            "shape": [
+                "[None, 121, 118, 64]",
+                "[None, 14, 14, 50176]"
+            ]
+        },
+        "MaxPooling2D": {
+            "input_dims": [
+                4
+            ],
+            "dtype": [
+                "<dtype: 'float32'>"
+            ],
+            "shape": [
+                "[None, 114, 114, 64]",
+                "[None, 56, 56, 64]",
+                "[None, 28, 28, 128]"
+            ]
+        },
+        "ReLU": {
+            "input_dims": [
+                4
+            ],
+            "dtype": [
+                "<dtype: 'float32'>"
+            ],
+            "shape": [
+                "[None, 56, 56, 64]",
+                "[None, 28, 28, 128]"
+            ]
+        },
+        "Add": {
+            "input_dims": [
+                4,
+                2
+            ],
+            "dtype": [
+                "<dtype: 'float32'>"
+            ],
+            "shape": [
+                "[None, 56, 56, 256]",
+                "[None, 28, 28, 512]",
+                "[None, 14, 14, 1024]",
+                "[None, 7, 7, 2048]",
+                "[None, 100]"
+            ]
+        },
+        "TimeDistributed": {
+            "input_dims": [
+                4
+            ],
+            "dtype": [
+                "<dtype: 'float32'>"
+            ],
+            "shape": [
+                "[None, 56, 56, 64]",
+                "[None, 7, 7, 2048]"
+            ]
+        },
+        "Flatten": {
+            "input_dims": [
+                4
+            ],
+            "dtype": [
+                "<dtype: 'float32'>"
+            ],
+            "shape": [
+                "[None, 14, 14, 256]",
+                "[None, 11, 11, 64]",
+                "[None, 10, 10, 64]",
+                "[None, 13, 13, 2048]"
+            ]
+        },
+        "CustomExpandLayer": {
+            "input_dims": [
+                2,
+                3
+            ],
+            "dtype": [
+                "<dtype: 'float32'>"
+            ],
+            "shape": [
+                "[None, 50176]",
+                "[None, 1, 50176]",
+                "[None, 14]",
+                "[None, 1, 14]"
+            ]
+        },
+        "CustomPadLayer": {
+            "input_dims": [
+                4
+            ],
+            "dtype": [
+                "<dtype: 'float32'>"
+            ],
+            "shape": [
+                "[None, 1, 1, 50176]",
+                "[None, 1, 1, 14]"
+            ]
+        },
+        "GlobalMaxPooling2D": {
+            "input_dims": [
+                4
+            ],
+            "dtype": [
+                "<dtype: 'float32'>"
+            ],
+            "shape": [
+                "[None, 14, 14, 256]"
+            ]
+        },
+        "DepthwiseConv2D": {
+            "input_dims": [
+                4
+            ],
+            "dtype": [
+                "<dtype: 'float32'>"
+            ],
+            "shape": [
+                "[None, 14, 14, 256]"
+            ]
+        },
+        "AveragePooling2D": {
+            "input_dims": [
+                4
+            ],
+            "dtype": [
+                "<dtype: 'float32'>"
+            ],
+            "shape": [
+                "[None, 14, 14, 256]"
+            ]
+        },
+        "SpatialDropout2D": {
+            "input_dims": [
+                4
+            ],
+            "dtype": [
+                "<dtype: 'float32'>"
+            ],
+            "shape": [
+                "[None, 7, 7, 512]"
+            ]
+        },
+        "Softmax": {
+            "input_dims": [
+                4
+            ],
+            "dtype": [
+                "<dtype: 'float32'>"
+            ],
+            "shape": [
+                "[None, 7, 7, 2048]"
+            ]
+        },
+        "GlobalAveragePooling2D": {
+            "input_dims": [
+                4
+            ],
+            "dtype": [
+                "<dtype: 'float32'>"
+            ],
+            "shape": [
+                "[None, 7, 7, 2048]",
+                "[None, 13, 13, 512]",
+                "[None, 13, 13, 128]"
+            ]
+        },
+        "Cropping2D": {
+            "input_dims": [
+                4
+            ],
+            "dtype": [
+                "<dtype: 'float32'>"
+            ],
+            "shape": [
+                "[None, 27, 27, 64]",
+                "[None, 114, 114, 64]",
+                "[None, 56, 56, 64]"
+            ]
+        },
+        "Dense": {
+            "input_dims": [
+                2
+            ],
+            "dtype": [
+                "<dtype: 'float32'>"
+            ],
+            "shape": [
+                "[None, 2048]",
+                "[None, 1000]",
+                "[None, 7744]",
+                "[None, 6400]",
+                "[None, 50176]",
+                "[None, 512]",
+                "[None, 128]",
+                "[None, 346112]"
+            ]
+        }
+    },
+    "layer_num": 226,
+    "layer_type": [
+        "ZeroPadding2D",
+        "Conv2D",
+        "BatchNormalization",
+        "Activation",
+        "GaussianDropout",
+        "Conv2DTranspose",
+        "CustomCropLayer",
+        "MaxPooling2D",
+        "ReLU",
+        "Add",
+        "TimeDistributed",
+        "Flatten",
+        "CustomExpandLayer",
+        "CustomPadLayer",
+        "GlobalMaxPooling2D",
+        "DepthwiseConv2D",
+        "AveragePooling2D",
+        "SpatialDropout2D",
+        "Softmax",
+        "GlobalAveragePooling2D",
+        "Cropping2D",
+        "Dense"
+    ],
+    "cur_edge_num": 226,
+    "layer_dims": {
+        "ZeroPadding2D": {
+            "input_dims": [
+                4
+            ],
+            "output_dims": [
+                4
+            ]
+        },
+        "Conv2D": {
+            "input_dims": [
+                4
+            ],
+            "output_dims": [
+                4
+            ]
+        },
+        "BatchNormalization": {
+            "input_dims": [
+                4
+            ],
+            "output_dims": [
+                4
+            ]
+        },
+        "Activation": {
+            "input_dims": [
+                4
+            ],
+            "output_dims": [
+                4
+            ]
+        },
+        "GaussianDropout": {
+            "input_dims": [
+                4
+            ],
+            "output_dims": [
+                4
+            ]
+        },
+        "Conv2DTranspose": {
+            "input_dims": [
+                4
+            ],
+            "output_dims": [
+                4
+            ]
+        },
+        "CustomCropLayer": {
+            "input_dims": [
+                4
+            ],
+            "output_dims": [
+                4
+            ]
+        },
+        "MaxPooling2D": {
+            "input_dims": [
+                4
+            ],
+            "output_dims": [
+                4
+            ]
+        },
+        "ReLU": {
+            "input_dims": [
+                4
+            ],
+            "output_dims": [
+                4
+            ]
+        },
+        "Add": {
+            "input_dims": [
+                4,
+                2
+            ],
+            "output_dims": [
+                4,
+                2
+            ]
+        },
+        "TimeDistributed": {
+            "input_dims": [
+                4
+            ],
+            "output_dims": [
+                4
+            ]
+        },
+        "Flatten": {
+            "input_dims": [
+                4
+            ],
+            "output_dims": [
+                2
+            ]
+        },
+        "CustomExpandLayer": {
+            "input_dims": [
+                2,
+                3
+            ],
+            "output_dims": [
+                3,
+                4
+            ]
+        },
+        "CustomPadLayer": {
+            "input_dims": [
+                4
+            ],
+            "output_dims": [
+                4
+            ]
+        },
+        "GlobalMaxPooling2D": {
+            "input_dims": [
+                4
+            ],
+            "output_dims": [
+                2
+            ]
+        },
+        "DepthwiseConv2D": {
+            "input_dims": [
+                4
+            ],
+            "output_dims": [
+                4
+            ]
+        },
+        "AveragePooling2D": {
+            "input_dims": [
+                4
+            ],
+            "output_dims": [
+                4
+            ]
+        },
+        "SpatialDropout2D": {
+            "input_dims": [
+                4
+            ],
+            "output_dims": [
+                4
+            ]
+        },
+        "Softmax": {
+            "input_dims": [
+                4
+            ],
+            "output_dims": [
+                4
+            ]
+        },
+        "GlobalAveragePooling2D": {
+            "input_dims": [
+                4
+            ],
+            "output_dims": [
+                2
+            ]
+        },
+        "Cropping2D": {
+            "input_dims": [
+                4
+            ],
+            "output_dims": [
+                4
+            ]
+        },
+        "Dense": {
+            "input_dims": [
+                2
+            ],
+            "output_dims": [
+                2
+            ]
+        }
+    }
+}

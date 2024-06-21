@@ -1,0 +1,205 @@
+{
+    "edges": [
+        [
+            "cropping2D",
+            "reshape"
+        ],
+        [
+            "reshape",
+            "cropping2D"
+        ],
+        [
+            "cropping2D",
+            "global_max_pooling2D"
+        ],
+        [
+            "global_max_pooling2D",
+            "dense"
+        ],
+        [
+            "dense",
+            "reshape"
+        ]
+    ],
+    "layer_config": {
+        "cropping2D": [
+            {
+                "cropping": [
+                    [
+                        30,
+                        1
+                    ],
+                    [
+                        15,
+                        15
+                    ]
+                ],
+                "data_format": "channels_last"
+            },
+            {
+                "cropping": [
+                    [
+                        0,
+                        0
+                    ],
+                    [
+                        1,
+                        1
+                    ]
+                ],
+                "data_format": "channels_first"
+            }
+        ],
+        "reshape": [
+            {
+                "target_shape": [
+                    2,
+                    1,
+                    3
+                ]
+            },
+            {
+                "target_shape": [
+                    10
+                ]
+            }
+        ],
+        "global_max_pooling2D": [
+            {
+                "data_format": "channels_first"
+            }
+        ],
+        "dense": [
+            {
+                "activation": "linear",
+                "use_bias": true,
+                "kernel_initializer": "random_uniform",
+                "bias_initializer": "random_uniform",
+                "kernel_regularizer": null,
+                "bias_regularizer": null,
+                "activity_regularizer": null,
+                "kernel_constraint": null,
+                "bias_constraint": null
+            }
+        ]
+    },
+    "layer_input_info": {
+        "cropping2D": {
+            "input_dims": [
+                4
+            ],
+            "dtype": [
+                "float32"
+            ],
+            "shape": [
+                [
+                    null,
+                    32,
+                    32,
+                    3
+                ],
+                [
+                    null,
+                    2,
+                    1,
+                    3
+                ]
+            ]
+        },
+        "reshape": {
+            "input_dims": [
+                4,
+                2
+            ],
+            "dtype": [
+                "float32"
+            ],
+            "shape": [
+                [
+                    null,
+                    1,
+                    2,
+                    3
+                ],
+                [
+                    null,
+                    10
+                ]
+            ]
+        },
+        "global_max_pooling2D": {
+            "input_dims": [
+                4
+            ],
+            "dtype": [
+                "float32"
+            ],
+            "shape": [
+                [
+                    null,
+                    2,
+                    1,
+                    1
+                ]
+            ]
+        },
+        "dense": {
+            "input_dims": [
+                2
+            ],
+            "dtype": [
+                "float32"
+            ],
+            "shape": [
+                [
+                    null,
+                    2
+                ]
+            ]
+        }
+    },
+    "layer_num": 7,
+    "layer_type": [
+        "cropping2D",
+        "reshape",
+        "global_max_pooling2D",
+        "dense"
+    ],
+    "cur_edge_num": 6,
+    "layer_dims": {
+        "cropping2D": {
+            "input_dims": [
+                4
+            ],
+            "output_dims": [
+                4
+            ]
+        },
+        "reshape": {
+            "input_dims": [
+                4,
+                2
+            ],
+            "output_dims": [
+                4,
+                2
+            ]
+        },
+        "global_max_pooling2D": {
+            "input_dims": [
+                4
+            ],
+            "output_dims": [
+                2
+            ]
+        },
+        "dense": {
+            "input_dims": [
+                2
+            ],
+            "output_dims": [
+                2
+            ]
+        }
+    }
+}

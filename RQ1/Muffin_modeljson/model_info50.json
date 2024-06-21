@@ -1,0 +1,173 @@
+{
+    "edges": [
+        [
+            "up_sampling2D",
+            "flatten"
+        ],
+        [
+            "flatten",
+            "reshape"
+        ],
+        [
+            "reshape",
+            "reshape"
+        ],
+        [
+            "reshape",
+            "dense"
+        ],
+        [
+            "dense",
+            "reshape"
+        ]
+    ],
+    "layer_config": {
+        "up_sampling2D": [
+            {
+                "size": [
+                    4,
+                    2
+                ],
+                "data_format": "channels_last"
+            }
+        ],
+        "flatten": [
+            {
+                "data_format": "channels_first"
+            }
+        ],
+        "reshape": [
+            {
+                "target_shape": [
+                    24576
+                ]
+            },
+            {
+                "target_shape": [
+                    10
+                ]
+            }
+        ],
+        "dense": [
+            {
+                "activation": "linear",
+                "use_bias": true,
+                "kernel_initializer": "random_uniform",
+                "bias_initializer": "random_uniform",
+                "kernel_regularizer": null,
+                "bias_regularizer": null,
+                "activity_regularizer": null,
+                "kernel_constraint": null,
+                "bias_constraint": null
+            }
+        ]
+    },
+    "layer_input_info": {
+        "up_sampling2D": {
+            "input_dims": [
+                4
+            ],
+            "dtype": [
+                "float32"
+            ],
+            "shape": [
+                [
+                    null,
+                    32,
+                    32,
+                    3
+                ]
+            ]
+        },
+        "flatten": {
+            "input_dims": [
+                4
+            ],
+            "dtype": [
+                "float32"
+            ],
+            "shape": [
+                [
+                    null,
+                    128,
+                    64,
+                    3
+                ]
+            ]
+        },
+        "reshape": {
+            "input_dims": [
+                2
+            ],
+            "dtype": [
+                "float32"
+            ],
+            "shape": [
+                [
+                    null,
+                    24576
+                ],
+                [
+                    null,
+                    10
+                ]
+            ]
+        },
+        "dense": {
+            "input_dims": [
+                2
+            ],
+            "dtype": [
+                "float32"
+            ],
+            "shape": [
+                [
+                    null,
+                    24576
+                ]
+            ]
+        }
+    },
+    "layer_num": 7,
+    "layer_type": [
+        "up_sampling2D",
+        "flatten",
+        "reshape",
+        "dense"
+    ],
+    "cur_edge_num": 6,
+    "layer_dims": {
+        "up_sampling2D": {
+            "input_dims": [
+                4
+            ],
+            "output_dims": [
+                4
+            ]
+        },
+        "flatten": {
+            "input_dims": [
+                4
+            ],
+            "output_dims": [
+                2
+            ]
+        },
+        "reshape": {
+            "input_dims": [
+                2
+            ],
+            "output_dims": [
+                2
+            ]
+        },
+        "dense": {
+            "input_dims": [
+                2
+            ],
+            "output_dims": [
+                2
+            ]
+        }
+    }
+}

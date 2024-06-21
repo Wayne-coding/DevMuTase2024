@@ -1,0 +1,1020 @@
+WARNING 2024-05-28 20:01:52 - mutation_test.py:59 - For PyTorch and MindSpore running separately, CUDA_VISIBLE_DEVICES should have at least two GPUs, such as 'export CUDA_VISIBLE_DEVICES=0,1'
+INFO 2024-05-28 20:01:52 - mutation_test.py:129 - Mutation config:
+----------------------------------------------------------------------------------------
+train_config: {'model_name': 'lstm01', 'dataset_name': 'random', 'batch_size': 5, 'input_size': ['(2,49,50)'], 'test_size': 2, 'dtypes': ['float'], 'epoch': 20, 'loss_name': 'CrossEntropy', 'optimizer': 'SGD', 'learning_rate': 0.005, 'loss_ground_truth': 2.950969386100769, 'eval_ground_truth': 0.998740881321355, 'memory_threshold': '1e-2', 'dataset_path': 'lstm01', 'device': 'GPU', 'device_id': '0,1'}
+mutation_config: {'mutation_iterations': 100, 'save_iterations': 1, 'mutation_eval_metric': 'origin_diff', 'validation_threshold': 0.0006, 'output_difference_metric': 'DMAD', 'log_path': '/data1/myz/net-sv/common/log/lstm01-2024.5.28.20.1.52', 'mutation_strategy': 'ddqn', 'mutation_type': ['LD', 'PM', 'LC', 'CM', 'RA', 'SM', 'LA'], 'selected_model_num': 10}
+
+INFO 2024-05-28 20:01:52 - mutation_test.py:1038 - Stage1: start network mutation!
+INFO 2024-05-28 20:01:58 - mutation_test.py:287 - **** Start DoubleQ Learning ****
+
+INFO 2024-05-28 20:01:58 - mutation_test.py:291 - ================== start 1 generation!(1/100) ==================
+INFO 2024-05-28 20:01:58 - model_mutation_operators.py:243 - Adopt LD mut_strategy!
+INFO 2024-05-28 20:01:58 - model_mutation_operators.py:259 - delete layer_name:dense
+INFO 2024-05-28 20:01:58 - model_mutation_operators.py:321 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-28 20:01:58 - model_mutation_operators.py:330 - adopt DeleteCell Replace_ms
+INFO 2024-05-28 20:01:58 - model_mutation_operators.py:506 - mut_result:True
+INFO 2024-05-28 20:01:58 - model_mutation_operators.py:507 - 1 generation!
+
+INFO 2024-05-28 20:01:59 - mutation_test.py:291 - ================== start 2 generation!(2/100) ==================
+INFO 2024-05-28 20:01:59 - model_mutation_operators.py:24 - Adopt PM mut_strategy!
+INFO 2024-05-28 20:01:59 - model_mutation_operators.py:63 - The target model do not have the mutator operators in_channels!
+INFO 2024-05-28 20:01:59 - model_mutation_operators.py:64 - mut_result:Parameter Miss
+INFO 2024-05-28 20:01:59 - model_mutation_operators.py:65 - 2 generation!
+
+INFO 2024-05-28 20:01:59 - mutation_test.py:291 - ================== start 3 generation!(3/100) ==================
+INFO 2024-05-28 20:01:59 - model_mutation_operators.py:24 - Adopt PM mut_strategy!
+INFO 2024-05-28 20:01:59 - model_mutation_operators.py:63 - The target model do not have the mutator operators in_channels!
+INFO 2024-05-28 20:01:59 - model_mutation_operators.py:64 - mut_result:Parameter Miss
+INFO 2024-05-28 20:01:59 - model_mutation_operators.py:65 - 3 generation!
+
+INFO 2024-05-28 20:01:59 - mutation_test.py:291 - ================== start 4 generation!(4/100) ==================
+INFO 2024-05-28 20:01:59 - model_mutation_operators.py:24 - Adopt PM mut_strategy!
+INFO 2024-05-28 20:01:59 - model_mutation_operators.py:63 - The target model do not have the mutator operators eps!
+INFO 2024-05-28 20:01:59 - model_mutation_operators.py:64 - mut_result:Parameter Miss
+INFO 2024-05-28 20:01:59 - model_mutation_operators.py:65 - 4 generation!
+
+INFO 2024-05-28 20:01:59 - mutation_test.py:291 - ================== start 5 generation!(5/100) ==================
+INFO 2024-05-28 20:01:59 - model_mutation_operators.py:24 - Adopt PM mut_strategy!
+INFO 2024-05-28 20:01:59 - model_mutation_operators.py:63 - The target model do not have the mutator operators group!
+INFO 2024-05-28 20:01:59 - model_mutation_operators.py:64 - mut_result:Parameter Miss
+INFO 2024-05-28 20:01:59 - model_mutation_operators.py:65 - 5 generation!
+
+INFO 2024-05-28 20:01:59 - mutation_test.py:291 - ================== start 6 generation!(6/100) ==================
+INFO 2024-05-28 20:01:59 - model_mutation_operators.py:24 - Adopt PM mut_strategy!
+INFO 2024-05-28 20:01:59 - model_mutation_operators.py:63 - The target model do not have the mutator operators eps!
+INFO 2024-05-28 20:01:59 - model_mutation_operators.py:64 - mut_result:Parameter Miss
+INFO 2024-05-28 20:01:59 - model_mutation_operators.py:65 - 6 generation!
+
+INFO 2024-05-28 20:01:59 - mutation_test.py:291 - ================== start 7 generation!(7/100) ==================
+INFO 2024-05-28 20:01:59 - model_mutation_operators.py:24 - Adopt PM mut_strategy!
+INFO 2024-05-28 20:01:59 - model_mutation_operators.py:63 - The target model do not have the mutator operators kernel_size!
+INFO 2024-05-28 20:01:59 - model_mutation_operators.py:64 - mut_result:Parameter Miss
+INFO 2024-05-28 20:01:59 - model_mutation_operators.py:65 - 7 generation!
+
+INFO 2024-05-28 20:01:59 - mutation_test.py:291 - ================== start 8 generation!(8/100) ==================
+INFO 2024-05-28 20:01:59 - model_mutation_operators.py:24 - Adopt PM mut_strategy!
+INFO 2024-05-28 20:01:59 - model_mutation_operators.py:63 - The target model do not have the mutator operators group!
+INFO 2024-05-28 20:01:59 - model_mutation_operators.py:64 - mut_result:Parameter Miss
+INFO 2024-05-28 20:01:59 - model_mutation_operators.py:65 - 8 generation!
+
+INFO 2024-05-28 20:01:59 - mutation_test.py:291 - ================== start 9 generation!(9/100) ==================
+INFO 2024-05-28 20:01:59 - model_mutation_operators.py:1924 - Adopt LC mut_strategy!
+INFO 2024-05-28 20:01:59 - model_mutation_operators.py:1991 - select layer: dropout1 layer_type: <class 'mindspore.nn.layer.basic.Dropout'> in_shape: [1, 1, 50] out_shape: [1, 1, 50]
+INFO 2024-05-28 20:01:59 - model_mutation_operators.py:1992 - mut Basic type: True
+INFO 2024-05-28 20:01:59 - model_mutation_operators.py:1993 - add Basic layer : Basic_op
+INFO 2024-05-28 20:01:59 - model_mutation_operators.py:2006 - select insert layer: Dropout<keep_prob=0.5>
+INFO 2024-05-28 20:01:59 - model_mutation_operators.py:2041 - insert_layer_outshape equal!
+INFO 2024-05-28 20:01:59 - model_mutation_operators.py:2109 - mut_result:True
+INFO 2024-05-28 20:01:59 - model_mutation_operators.py:2110 - 9 generation!
+
+INFO 2024-05-28 20:01:59 - mutation_test.py:291 - ================== start 10 generation!(10/100) ==================
+INFO 2024-05-28 20:01:59 - model_mutation_operators.py:1071 - Adopt CM mut_strategy!
+INFO 2024-05-28 20:01:59 - model_mutation_operators.py:1154 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-28 20:01:59 - model_mutation_operators.py:1161 - select layer: dropout2 layer_type: <class 'mindspore.nn.layer.basic.Dropout'> in_shape: [1, 1, 100] out_shape: [1, 1, 100]
+INFO 2024-05-28 20:01:59 - model_mutation_operators.py:1162 - mut Basic type: True
+INFO 2024-05-28 20:01:59 - model_mutation_operators.py:1205 - select insert layer: ReLU<>
+INFO 2024-05-28 20:01:59 - model_mutation_operators.py:1250 - replace Basic with CM op!
+INFO 2024-05-28 20:01:59 - model_mutation_operators.py:1301 - mut_result:True
+INFO 2024-05-28 20:01:59 - model_mutation_operators.py:1302 - 10 generation!
+
+INFO 2024-05-28 20:01:59 - mutation_test.py:291 - ================== start 11 generation!(11/100) ==================
+INFO 2024-05-28 20:01:59 - model_mutation_operators.py:24 - Adopt PM mut_strategy!
+INFO 2024-05-28 20:01:59 - model_mutation_operators.py:63 - The target model do not have the mutator operators stride!
+INFO 2024-05-28 20:01:59 - model_mutation_operators.py:64 - mut_result:Parameter Miss
+INFO 2024-05-28 20:01:59 - model_mutation_operators.py:65 - 11 generation!
+
+INFO 2024-05-28 20:01:59 - mutation_test.py:291 - ================== start 12 generation!(12/100) ==================
+INFO 2024-05-28 20:01:59 - model_mutation_operators.py:2119 - Adopt SM mut_strategy!
+INFO 2024-05-28 20:01:59 - model_mutation_operators.py:2157 - select layer: dropout2 layer_type: <class 'mindspore.nn.layer.basic.Dropout'> in_shape: [1, 1, 100] out_shape: [1, 1, 100]
+INFO 2024-05-28 20:01:59 - model_mutation_operators.py:2158 - mut Basic type: True
+INFO 2024-05-28 20:01:59 - model_mutation_operators.py:2206 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-28 20:01:59 - model_mutation_operators.py:2279 - mutate input_shape: [2, 9]
+INFO 2024-05-28 20:01:59 - model_mutation_operators.py:2280 - mutate output_shape: [2, 29, 11, 22]
+INFO 2024-05-28 20:01:59 - model_mutation_operators.py:2360 - mut_result:True
+INFO 2024-05-28 20:01:59 - model_mutation_operators.py:2361 - 12 generation!
+
+INFO 2024-05-28 20:02:00 - mutation_test.py:291 - ================== start 13 generation!(13/100) ==================
+INFO 2024-05-28 20:02:00 - model_mutation_operators.py:24 - Adopt PM mut_strategy!
+INFO 2024-05-28 20:02:00 - model_mutation_operators.py:63 - The target model do not have the mutator operators eps!
+INFO 2024-05-28 20:02:00 - model_mutation_operators.py:64 - mut_result:Parameter Miss
+INFO 2024-05-28 20:02:00 - model_mutation_operators.py:65 - 13 generation!
+
+INFO 2024-05-28 20:02:00 - mutation_test.py:291 - ================== start 14 generation!(14/100) ==================
+INFO 2024-05-28 20:02:00 - model_mutation_operators.py:243 - Adopt LD mut_strategy!
+INFO 2024-05-28 20:02:00 - model_mutation_operators.py:259 - delete layer_name:dropout2
+INFO 2024-05-28 20:02:00 - model_mutation_operators.py:321 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-28 20:02:00 - model_mutation_operators.py:326 - adopt DeleteCell EmptyCell
+INFO 2024-05-28 20:02:00 - model_mutation_operators.py:506 - mut_result:True
+INFO 2024-05-28 20:02:00 - model_mutation_operators.py:507 - 14 generation!
+
+INFO 2024-05-28 20:02:00 - mutation_test.py:291 - ================== start 15 generation!(15/100) ==================
+INFO 2024-05-28 20:02:00 - model_mutation_operators.py:24 - Adopt PM mut_strategy!
+INFO 2024-05-28 20:02:00 - model_mutation_operators.py:63 - The target model do not have the mutator operators group!
+INFO 2024-05-28 20:02:00 - model_mutation_operators.py:64 - mut_result:Parameter Miss
+INFO 2024-05-28 20:02:00 - model_mutation_operators.py:65 - 15 generation!
+
+INFO 2024-05-28 20:02:00 - mutation_test.py:291 - ================== start 16 generation!(16/100) ==================
+INFO 2024-05-28 20:02:00 - model_mutation_operators.py:24 - Adopt PM mut_strategy!
+INFO 2024-05-28 20:02:00 - model_mutation_operators.py:63 - The target model do not have the mutator operators stride!
+INFO 2024-05-28 20:02:00 - model_mutation_operators.py:64 - mut_result:Parameter Miss
+INFO 2024-05-28 20:02:00 - model_mutation_operators.py:65 - 16 generation!
+
+INFO 2024-05-28 20:02:00 - mutation_test.py:291 - ================== start 17 generation!(17/100) ==================
+INFO 2024-05-28 20:02:00 - model_mutation_operators.py:24 - Adopt PM mut_strategy!
+INFO 2024-05-28 20:02:00 - model_mutation_operators.py:63 - The target model do not have the mutator operators momentum!
+INFO 2024-05-28 20:02:00 - model_mutation_operators.py:64 - mut_result:Parameter Miss
+INFO 2024-05-28 20:02:00 - model_mutation_operators.py:65 - 17 generation!
+
+INFO 2024-05-28 20:02:00 - mutation_test.py:291 - ================== start 18 generation!(18/100) ==================
+INFO 2024-05-28 20:02:00 - model_mutation_operators.py:1924 - Adopt LC mut_strategy!
+INFO 2024-05-28 20:02:00 - model_mutation_operators.py:1991 - select layer: dense layer_type: <class 'mindspore.nn.layer.basic.Dense'> in_shape: [2, 100] out_shape: [2, 1]
+INFO 2024-05-28 20:02:00 - model_mutation_operators.py:1992 - mut Basic type: True
+INFO 2024-05-28 20:02:00 - model_mutation_operators.py:1993 - add Basic layer : Basic_op
+INFO 2024-05-28 20:02:00 - model_mutation_operators.py:2006 - select insert layer: Dense<input_channels=100, output_channels=1, has_bias=True>
+INFO 2024-05-28 20:02:00 - model_mutation_operators.py:2028 - Illegal LC mutate!
+INFO 2024-05-28 20:02:00 - model_mutation_operators.py:2029 - mut_result:LC Create illegal layer!
+INFO 2024-05-28 20:02:00 - model_mutation_operators.py:2030 - Exception information: 
+For 'MatMul', the type of 'x2' should be same as 'x1', but got 'x1' with type Tensor[Float16] and 'x2' with type Tensor[Float32].
+
+----------------------------------------------------
+- C++ Call Stack: (For framework developers)
+----------------------------------------------------
+mindspore/core/ops/mat_mul.cc:143 InferType
+
+INFO 2024-05-28 20:02:00 - model_mutation_operators.py:2031 - 18 generation!
+
+INFO 2024-05-28 20:02:00 - mutation_test.py:291 - ================== start 19 generation!(19/100) ==================
+INFO 2024-05-28 20:02:00 - model_mutation_operators.py:24 - Adopt PM mut_strategy!
+INFO 2024-05-28 20:02:00 - model_mutation_operators.py:80 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-28 20:02:00 - model_mutation_operators.py:93 - select op: dense layer_type: Dense selected param:in_channels input_shape:[2, 100] output_shape:[2, 1]
+INFO 2024-05-28 20:02:00 - model_mutation_operators.py:160 - mutate_replace_layer: Dense<input_channels=300, output_channels=1, has_bias=True>
+INFO 2024-05-28 20:02:00 - model_mutation_operators.py:193 - Previous value: 100 Edit value: 300 new_inshape: (2, 300) new_outshape: (2, 1)
+INFO 2024-05-28 20:02:00 - model_mutation_operators.py:212 - SequentialCell<
+  (0): Replace_ms<>
+  (1): Dense<input_channels=300, output_channels=1, has_bias=True>
+  >
+INFO 2024-05-28 20:02:00 - model_mutation_operators.py:213 - mut_result:True
+INFO 2024-05-28 20:02:00 - model_mutation_operators.py:214 - 19 generation!
+
+INFO 2024-05-28 20:02:00 - mutation_test.py:291 - ================== start 20 generation!(20/100) ==================
+INFO 2024-05-28 20:02:00 - model_mutation_operators.py:24 - Adopt PM mut_strategy!
+INFO 2024-05-28 20:02:00 - model_mutation_operators.py:63 - The target model do not have the mutator operators stride!
+INFO 2024-05-28 20:02:00 - model_mutation_operators.py:64 - mut_result:Parameter Miss
+INFO 2024-05-28 20:02:00 - model_mutation_operators.py:65 - 20 generation!
+
+INFO 2024-05-28 20:02:00 - mutation_test.py:291 - ================== start 21 generation!(21/100) ==================
+INFO 2024-05-28 20:02:00 - model_mutation_operators.py:24 - Adopt PM mut_strategy!
+INFO 2024-05-28 20:02:00 - model_mutation_operators.py:80 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-28 20:02:00 - model_mutation_operators.py:93 - select op: dense layer_type: Dense selected param:out_channels input_shape:[2, 100] output_shape:[2, 1]
+INFO 2024-05-28 20:02:00 - model_mutation_operators.py:160 - mutate_replace_layer: Dense<input_channels=100, output_channels=2, has_bias=True>
+INFO 2024-05-28 20:02:00 - model_mutation_operators.py:193 - Previous value: 1 Edit value: 2 new_inshape: (2, 100) new_outshape: (2, 2)
+INFO 2024-05-28 20:02:00 - model_mutation_operators.py:232 - SequentialCell<
+  (0): Dense<input_channels=100, output_channels=2, has_bias=True>
+  (1): Replace_ms<>
+  >
+INFO 2024-05-28 20:02:00 - model_mutation_operators.py:233 - mut_result:True
+INFO 2024-05-28 20:02:00 - model_mutation_operators.py:234 - 21 generation!
+
+INFO 2024-05-28 20:02:00 - mutation_test.py:291 - ================== start 22 generation!(22/100) ==================
+INFO 2024-05-28 20:02:00 - model_mutation_operators.py:24 - Adopt PM mut_strategy!
+INFO 2024-05-28 20:02:00 - model_mutation_operators.py:63 - The target model do not have the mutator operators momentum!
+INFO 2024-05-28 20:02:00 - model_mutation_operators.py:64 - mut_result:Parameter Miss
+INFO 2024-05-28 20:02:00 - model_mutation_operators.py:65 - 22 generation!
+
+INFO 2024-05-28 20:02:00 - mutation_test.py:291 - ================== start 23 generation!(23/100) ==================
+INFO 2024-05-28 20:02:00 - model_mutation_operators.py:24 - Adopt PM mut_strategy!
+INFO 2024-05-28 20:02:00 - model_mutation_operators.py:80 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-28 20:02:00 - model_mutation_operators.py:93 - select op: dense layer_type: Dense selected param:out_channels input_shape:[2, 100] output_shape:[2, 1]
+INFO 2024-05-28 20:02:00 - model_mutation_operators.py:160 - mutate_replace_layer: Dense<input_channels=100, output_channels=3, has_bias=True>
+INFO 2024-05-28 20:02:00 - model_mutation_operators.py:193 - Previous value: 1 Edit value: 3 new_inshape: (2, 100) new_outshape: (2, 3)
+INFO 2024-05-28 20:02:00 - model_mutation_operators.py:232 - SequentialCell<
+  (0): Dense<input_channels=100, output_channels=3, has_bias=True>
+  (1): Replace_ms<>
+  >
+INFO 2024-05-28 20:02:00 - model_mutation_operators.py:233 - mut_result:True
+INFO 2024-05-28 20:02:00 - model_mutation_operators.py:234 - 23 generation!
+
+INFO 2024-05-28 20:02:00 - mutation_test.py:291 - ================== start 24 generation!(24/100) ==================
+INFO 2024-05-28 20:02:00 - model_mutation_operators.py:24 - Adopt PM mut_strategy!
+INFO 2024-05-28 20:02:00 - model_mutation_operators.py:63 - The target model do not have the mutator operators kernel_size!
+INFO 2024-05-28 20:02:00 - model_mutation_operators.py:64 - mut_result:Parameter Miss
+INFO 2024-05-28 20:02:00 - model_mutation_operators.py:65 - 24 generation!
+
+INFO 2024-05-28 20:02:00 - mutation_test.py:291 - ================== start 25 generation!(25/100) ==================
+INFO 2024-05-28 20:02:00 - model_mutation_operators.py:516 - Adopt LA mut_strategy!
+INFO 2024-05-28 20:02:00 - model_mutation_operators.py:583 - candidate_in_mutlayers_indice:0
+
+INFO 2024-05-28 20:02:00 - model_mutation_operators.py:600 - select layer: dropout1 layer_type: <class 'mindspore.nn.layer.container.SequentialCell'> in_shape: [1, 1, 50] out_shape: [1, 1, 50]
+INFO 2024-05-28 20:02:00 - model_mutation_operators.py:601 - mut Basic type: True
+INFO 2024-05-28 20:02:00 - model_mutation_operators.py:602 - add Basic layer : Cascade_op
+INFO 2024-05-28 20:02:00 - model_mutation_operators.py:616 - select insert layer: Inception_A<
+  (branch0): BasicConv2d<
+    (relu): ReLU<>
+    >
+  (branch1): SequentialCell<
+    (0): BasicConv2d<
+      (relu): ReLU<>
+      >
+    (1): BasicConv2d<
+      (relu): ReLU<>
+      >
+    >
+  (branch2): SequentialCell<
+    (0): BasicConv2d<
+      (relu): ReLU<>
+      >
+    (1): BasicConv2d<
+      (relu): ReLU<>
+      >
+    (2): BasicConv2d<
+      (relu): ReLU<>
+      >
+    >
+  (branch_pool): SequentialCell<
+    (0): AvgPool2d<kernel_size=3, stride=1, pad_mode=SAME>
+    (1): BasicConv2d<
+      (relu): ReLU<>
+      >
+    >
+  >
+INFO 2024-05-28 20:02:00 - model_mutation_operators.py:647 - insert_layer_outshape equal!
+INFO 2024-05-28 20:02:00 - model_mutation_operators.py:673 - Illegal LA mutate!
+INFO 2024-05-28 20:02:00 - model_mutation_operators.py:674 - mut_result:LA Create illegal layer!
+INFO 2024-05-28 20:02:00 - model_mutation_operators.py:675 - Exception information: 
+For primitive[Conv2D], the input type must be same.
+name:[w]:Tensor[Float32].
+name:[x]:Tensor[Float16].
+
+----------------------------------------------------
+- C++ Call Stack: (For framework developers)
+----------------------------------------------------
+mindspore/core/utils/check_convert_utils.cc:1028 _CheckTypeSame
+
+INFO 2024-05-28 20:02:00 - model_mutation_operators.py:676 - 25 generation!
+
+INFO 2024-05-28 20:02:00 - mutation_test.py:291 - ================== start 26 generation!(26/100) ==================
+INFO 2024-05-28 20:02:00 - model_mutation_operators.py:2119 - Adopt SM mut_strategy!
+INFO 2024-05-28 20:02:00 - model_mutation_operators.py:2157 - select layer: dropout2 layer_type: <class 'mindspore.nn.layer.basic.Dropout'> in_shape: [1, 1, 100] out_shape: [1, 1, 100]
+INFO 2024-05-28 20:02:00 - model_mutation_operators.py:2158 - mut Basic type: True
+INFO 2024-05-28 20:02:00 - model_mutation_operators.py:2206 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-28 20:02:00 - model_mutation_operators.py:2271 - mutate output_shape: [2, 26]
+INFO 2024-05-28 20:02:00 - model_mutation_operators.py:2360 - mut_result:True
+INFO 2024-05-28 20:02:00 - model_mutation_operators.py:2361 - 26 generation!
+
+INFO 2024-05-28 20:02:00 - mutation_test.py:291 - ================== start 27 generation!(27/100) ==================
+INFO 2024-05-28 20:02:00 - model_mutation_operators.py:24 - Adopt PM mut_strategy!
+INFO 2024-05-28 20:02:00 - model_mutation_operators.py:63 - The target model do not have the mutator operators stride!
+INFO 2024-05-28 20:02:00 - model_mutation_operators.py:64 - mut_result:Parameter Miss
+INFO 2024-05-28 20:02:00 - model_mutation_operators.py:65 - 27 generation!
+
+INFO 2024-05-28 20:02:00 - mutation_test.py:291 - ================== start 28 generation!(28/100) ==================
+INFO 2024-05-28 20:02:00 - model_mutation_operators.py:24 - Adopt PM mut_strategy!
+INFO 2024-05-28 20:02:00 - model_mutation_operators.py:63 - The target model do not have the mutator operators eps!
+INFO 2024-05-28 20:02:00 - model_mutation_operators.py:64 - mut_result:Parameter Miss
+INFO 2024-05-28 20:02:00 - model_mutation_operators.py:65 - 28 generation!
+
+INFO 2024-05-28 20:02:00 - mutation_test.py:291 - ================== start 29 generation!(29/100) ==================
+INFO 2024-05-28 20:02:00 - model_mutation_operators.py:24 - Adopt PM mut_strategy!
+INFO 2024-05-28 20:02:00 - model_mutation_operators.py:63 - The target model do not have the mutator operators kernel_size!
+INFO 2024-05-28 20:02:00 - model_mutation_operators.py:64 - mut_result:Parameter Miss
+INFO 2024-05-28 20:02:00 - model_mutation_operators.py:65 - 29 generation!
+
+INFO 2024-05-28 20:02:00 - mutation_test.py:291 - ================== start 30 generation!(30/100) ==================
+INFO 2024-05-28 20:02:00 - model_mutation_operators.py:24 - Adopt PM mut_strategy!
+INFO 2024-05-28 20:02:00 - model_mutation_operators.py:63 - The target model do not have the mutator operators eps!
+INFO 2024-05-28 20:02:00 - model_mutation_operators.py:64 - mut_result:Parameter Miss
+INFO 2024-05-28 20:02:00 - model_mutation_operators.py:65 - 30 generation!
+
+INFO 2024-05-28 20:02:00 - mutation_test.py:291 - ================== start 31 generation!(31/100) ==================
+INFO 2024-05-28 20:02:00 - model_mutation_operators.py:243 - Adopt LD mut_strategy!
+INFO 2024-05-28 20:02:00 - model_mutation_operators.py:259 - delete layer_name:dense
+INFO 2024-05-28 20:02:00 - model_mutation_operators.py:321 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-28 20:02:00 - model_mutation_operators.py:330 - adopt DeleteCell Replace_ms
+INFO 2024-05-28 20:02:00 - model_mutation_operators.py:506 - mut_result:True
+INFO 2024-05-28 20:02:00 - model_mutation_operators.py:507 - 31 generation!
+
+INFO 2024-05-28 20:02:00 - mutation_test.py:291 - ================== start 32 generation!(32/100) ==================
+INFO 2024-05-28 20:02:00 - model_mutation_operators.py:24 - Adopt PM mut_strategy!
+INFO 2024-05-28 20:02:00 - model_mutation_operators.py:63 - The target model do not have the mutator operators group!
+INFO 2024-05-28 20:02:00 - model_mutation_operators.py:64 - mut_result:Parameter Miss
+INFO 2024-05-28 20:02:00 - model_mutation_operators.py:65 - 32 generation!
+
+INFO 2024-05-28 20:02:00 - mutation_test.py:291 - ================== start 33 generation!(33/100) ==================
+INFO 2024-05-28 20:02:00 - model_mutation_operators.py:24 - Adopt PM mut_strategy!
+INFO 2024-05-28 20:02:00 - model_mutation_operators.py:63 - The target model do not have the mutator operators num_features!
+INFO 2024-05-28 20:02:00 - model_mutation_operators.py:64 - mut_result:Parameter Miss
+INFO 2024-05-28 20:02:00 - model_mutation_operators.py:65 - 33 generation!
+
+INFO 2024-05-28 20:02:00 - mutation_test.py:291 - ================== start 34 generation!(34/100) ==================
+INFO 2024-05-28 20:02:00 - model_mutation_operators.py:24 - Adopt PM mut_strategy!
+INFO 2024-05-28 20:02:00 - model_mutation_operators.py:63 - The target model do not have the mutator operators momentum!
+INFO 2024-05-28 20:02:00 - model_mutation_operators.py:64 - mut_result:Parameter Miss
+INFO 2024-05-28 20:02:00 - model_mutation_operators.py:65 - 34 generation!
+
+INFO 2024-05-28 20:02:00 - mutation_test.py:291 - ================== start 35 generation!(35/100) ==================
+INFO 2024-05-28 20:02:00 - model_mutation_operators.py:24 - Adopt PM mut_strategy!
+INFO 2024-05-28 20:02:00 - model_mutation_operators.py:63 - The target model do not have the mutator operators group!
+INFO 2024-05-28 20:02:00 - model_mutation_operators.py:64 - mut_result:Parameter Miss
+INFO 2024-05-28 20:02:00 - model_mutation_operators.py:65 - 35 generation!
+
+INFO 2024-05-28 20:02:00 - mutation_test.py:291 - ================== start 36 generation!(36/100) ==================
+INFO 2024-05-28 20:02:00 - model_mutation_operators.py:24 - Adopt PM mut_strategy!
+INFO 2024-05-28 20:02:00 - model_mutation_operators.py:63 - The target model do not have the mutator operators group!
+INFO 2024-05-28 20:02:00 - model_mutation_operators.py:64 - mut_result:Parameter Miss
+INFO 2024-05-28 20:02:00 - model_mutation_operators.py:65 - 36 generation!
+
+INFO 2024-05-28 20:02:00 - mutation_test.py:291 - ================== start 37 generation!(37/100) ==================
+INFO 2024-05-28 20:02:00 - model_mutation_operators.py:24 - Adopt PM mut_strategy!
+INFO 2024-05-28 20:02:00 - model_mutation_operators.py:63 - The target model do not have the mutator operators momentum!
+INFO 2024-05-28 20:02:00 - model_mutation_operators.py:64 - mut_result:Parameter Miss
+INFO 2024-05-28 20:02:00 - model_mutation_operators.py:65 - 37 generation!
+
+INFO 2024-05-28 20:02:00 - mutation_test.py:291 - ================== start 38 generation!(38/100) ==================
+INFO 2024-05-28 20:02:00 - model_mutation_operators.py:24 - Adopt PM mut_strategy!
+INFO 2024-05-28 20:02:00 - model_mutation_operators.py:63 - The target model do not have the mutator operators num_features!
+INFO 2024-05-28 20:02:00 - model_mutation_operators.py:64 - mut_result:Parameter Miss
+INFO 2024-05-28 20:02:00 - model_mutation_operators.py:65 - 38 generation!
+
+INFO 2024-05-28 20:02:00 - mutation_test.py:291 - ================== start 39 generation!(39/100) ==================
+INFO 2024-05-28 20:02:00 - model_mutation_operators.py:24 - Adopt PM mut_strategy!
+INFO 2024-05-28 20:02:00 - model_mutation_operators.py:63 - The target model do not have the mutator operators kernel_size!
+INFO 2024-05-28 20:02:00 - model_mutation_operators.py:64 - mut_result:Parameter Miss
+INFO 2024-05-28 20:02:00 - model_mutation_operators.py:65 - 39 generation!
+
+INFO 2024-05-28 20:02:00 - mutation_test.py:291 - ================== start 40 generation!(40/100) ==================
+INFO 2024-05-28 20:02:00 - model_mutation_operators.py:24 - Adopt PM mut_strategy!
+INFO 2024-05-28 20:02:00 - model_mutation_operators.py:63 - The target model do not have the mutator operators num_features!
+INFO 2024-05-28 20:02:00 - model_mutation_operators.py:64 - mut_result:Parameter Miss
+INFO 2024-05-28 20:02:00 - model_mutation_operators.py:65 - 40 generation!
+
+INFO 2024-05-28 20:02:00 - mutation_test.py:291 - ================== start 41 generation!(41/100) ==================
+INFO 2024-05-28 20:02:00 - model_mutation_operators.py:24 - Adopt PM mut_strategy!
+INFO 2024-05-28 20:02:00 - model_mutation_operators.py:63 - The target model do not have the mutator operators momentum!
+INFO 2024-05-28 20:02:00 - model_mutation_operators.py:64 - mut_result:Parameter Miss
+INFO 2024-05-28 20:02:00 - model_mutation_operators.py:65 - 41 generation!
+
+INFO 2024-05-28 20:02:00 - mutation_test.py:291 - ================== start 42 generation!(42/100) ==================
+INFO 2024-05-28 20:02:00 - model_mutation_operators.py:24 - Adopt PM mut_strategy!
+INFO 2024-05-28 20:02:00 - model_mutation_operators.py:63 - The target model do not have the mutator operators eps!
+INFO 2024-05-28 20:02:00 - model_mutation_operators.py:64 - mut_result:Parameter Miss
+INFO 2024-05-28 20:02:00 - model_mutation_operators.py:65 - 42 generation!
+
+INFO 2024-05-28 20:02:01 - mutation_test.py:291 - ================== start 43 generation!(43/100) ==================
+INFO 2024-05-28 20:02:01 - model_mutation_operators.py:243 - Adopt LD mut_strategy!
+INFO 2024-05-28 20:02:01 - model_mutation_operators.py:259 - delete layer_name:dropout2
+INFO 2024-05-28 20:02:01 - model_mutation_operators.py:321 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-28 20:02:01 - model_mutation_operators.py:326 - adopt DeleteCell EmptyCell
+INFO 2024-05-28 20:02:01 - model_mutation_operators.py:506 - mut_result:True
+INFO 2024-05-28 20:02:01 - model_mutation_operators.py:507 - 43 generation!
+
+INFO 2024-05-28 20:02:01 - mutation_test.py:291 - ================== start 44 generation!(44/100) ==================
+INFO 2024-05-28 20:02:01 - model_mutation_operators.py:2119 - Adopt SM mut_strategy!
+INFO 2024-05-28 20:02:01 - model_mutation_operators.py:2157 - select layer: dense layer_type: <class 'mindspore.nn.layer.basic.Dense'> in_shape: [2, 100] out_shape: [2, 1]
+INFO 2024-05-28 20:02:01 - model_mutation_operators.py:2158 - mut Basic type: True
+INFO 2024-05-28 20:02:01 - model_mutation_operators.py:2206 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-28 20:02:01 - model_mutation_operators.py:2279 - mutate input_shape: [2, 40, 27, 5]
+INFO 2024-05-28 20:02:01 - model_mutation_operators.py:2280 - mutate output_shape: [2, 32, 8, 34]
+INFO 2024-05-28 20:02:01 - model_mutation_operators.py:2360 - mut_result:True
+INFO 2024-05-28 20:02:01 - model_mutation_operators.py:2361 - 44 generation!
+
+INFO 2024-05-28 20:02:01 - mutation_test.py:291 - ================== start 45 generation!(45/100) ==================
+INFO 2024-05-28 20:02:01 - model_mutation_operators.py:24 - Adopt PM mut_strategy!
+INFO 2024-05-28 20:02:01 - model_mutation_operators.py:63 - The target model do not have the mutator operators keep_prob!
+INFO 2024-05-28 20:02:01 - model_mutation_operators.py:64 - mut_result:Parameter Miss
+INFO 2024-05-28 20:02:01 - model_mutation_operators.py:65 - 45 generation!
+
+INFO 2024-05-28 20:02:01 - mutation_test.py:291 - ================== start 46 generation!(46/100) ==================
+INFO 2024-05-28 20:02:01 - model_mutation_operators.py:24 - Adopt PM mut_strategy!
+INFO 2024-05-28 20:02:01 - model_mutation_operators.py:80 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-28 20:02:01 - model_mutation_operators.py:93 - select op: dense layer_type: Dense selected param:in_channels input_shape:[2, 100] output_shape:[2, 1]
+INFO 2024-05-28 20:02:01 - model_mutation_operators.py:160 - mutate_replace_layer: Dense<input_channels=400, output_channels=1, has_bias=True>
+INFO 2024-05-28 20:02:01 - model_mutation_operators.py:193 - Previous value: 100 Edit value: 400 new_inshape: (2, 400) new_outshape: (2, 1)
+INFO 2024-05-28 20:02:01 - model_mutation_operators.py:212 - SequentialCell<
+  (0): Replace_ms<>
+  (1): Dense<input_channels=400, output_channels=1, has_bias=True>
+  >
+INFO 2024-05-28 20:02:01 - model_mutation_operators.py:213 - mut_result:True
+INFO 2024-05-28 20:02:01 - model_mutation_operators.py:214 - 46 generation!
+
+INFO 2024-05-28 20:02:01 - mutation_test.py:291 - ================== start 47 generation!(47/100) ==================
+INFO 2024-05-28 20:02:01 - model_mutation_operators.py:2119 - Adopt SM mut_strategy!
+INFO 2024-05-28 20:02:01 - model_mutation_operators.py:2157 - select layer: dense layer_type: <class 'mindspore.nn.layer.container.SequentialCell'> in_shape: [2, 100] out_shape: [2, 1]
+INFO 2024-05-28 20:02:01 - model_mutation_operators.py:2158 - mut Basic type: True
+INFO 2024-05-28 20:02:01 - model_mutation_operators.py:2202 - candidate_in_mutlayers_indice:1
+INFO 2024-05-28 20:02:01 - model_mutation_operators.py:2257 - mutate input_shape: [2, 45, 5, 14, 34]
+INFO 2024-05-28 20:02:01 - model_mutation_operators.py:2258 - mutate output_shape: [2, 33, 4, 15, 11]
+INFO 2024-05-28 20:02:01 - model_mutation_operators.py:2360 - mut_result:True
+INFO 2024-05-28 20:02:01 - model_mutation_operators.py:2361 - 47 generation!
+
+INFO 2024-05-28 20:02:01 - mutation_test.py:291 - ================== start 48 generation!(48/100) ==================
+INFO 2024-05-28 20:02:01 - model_mutation_operators.py:243 - Adopt LD mut_strategy!
+INFO 2024-05-28 20:02:01 - model_mutation_operators.py:259 - delete layer_name:dense
+INFO 2024-05-28 20:02:01 - model_mutation_operators.py:279 - mut_result:No suitable ops for LD mutation!
+INFO 2024-05-28 20:02:01 - model_mutation_operators.py:280 - 48 generation!
+INFO 2024-05-28 20:02:01 - mutation_test.py:291 - ================== start 49 generation!(49/100) ==================
+INFO 2024-05-28 20:02:01 - model_mutation_operators.py:2119 - Adopt SM mut_strategy!
+INFO 2024-05-28 20:02:01 - model_mutation_operators.py:2157 - select layer: dropout1 layer_type: <class 'mindspore.nn.layer.basic.Dropout'> in_shape: [1, 1, 50] out_shape: [1, 1, 50]
+INFO 2024-05-28 20:02:01 - model_mutation_operators.py:2158 - mut Basic type: True
+INFO 2024-05-28 20:02:01 - model_mutation_operators.py:2206 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-28 20:02:01 - model_mutation_operators.py:2265 - mutate input_shape: [2, 20, 9]
+INFO 2024-05-28 20:02:01 - model_mutation_operators.py:2360 - mut_result:True
+INFO 2024-05-28 20:02:01 - model_mutation_operators.py:2361 - 49 generation!
+
+INFO 2024-05-28 20:02:01 - mutation_test.py:291 - ================== start 50 generation!(50/100) ==================
+INFO 2024-05-28 20:02:01 - model_mutation_operators.py:516 - Adopt LA mut_strategy!
+INFO 2024-05-28 20:02:01 - model_mutation_operators.py:591 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-28 20:02:01 - model_mutation_operators.py:600 - select layer: dense layer_type: <class 'mindspore.nn.layer.basic.Dense'> in_shape: [2, 100] out_shape: [2, 1]
+INFO 2024-05-28 20:02:01 - model_mutation_operators.py:601 - mut Basic type: True
+INFO 2024-05-28 20:02:01 - model_mutation_operators.py:602 - add Basic layer : Basic_op
+INFO 2024-05-28 20:02:01 - model_mutation_operators.py:616 - select insert layer: BatchNorm2d<num_features=1, eps=1e-05, momentum=0.9, gamma=Parameter (name=gamma, shape=(1,), dtype=Float32, requires_grad=True), beta=Parameter (name=beta, shape=(1,), dtype=Float32, requires_grad=True), moving_mean=Parameter (name=mean, shape=(1,), dtype=Float32, requires_grad=False), moving_variance=Parameter (name=variance, shape=(1,), dtype=Float32, requires_grad=False)>
+INFO 2024-05-28 20:02:01 - model_mutation_operators.py:629 - insert_layer_outshape equal!
+INFO 2024-05-28 20:02:01 - model_mutation_operators.py:746 - mut_result:True
+INFO 2024-05-28 20:02:01 - model_mutation_operators.py:747 - 50 generation!
+
+INFO 2024-05-28 20:02:02 - mutation_test.py:291 - ================== start 51 generation!(51/100) ==================
+INFO 2024-05-28 20:02:02 - model_mutation_operators.py:243 - Adopt LD mut_strategy!
+INFO 2024-05-28 20:02:02 - model_mutation_operators.py:259 - delete layer_name:dropout1
+INFO 2024-05-28 20:02:02 - model_mutation_operators.py:288 - candidate_in_mutlayers_indice:2
+
+INFO 2024-05-28 20:02:02 - model_mutation_operators.py:317 - adopt DeleteCell Replace_ms
+INFO 2024-05-28 20:02:02 - model_mutation_operators.py:506 - mut_result:True
+INFO 2024-05-28 20:02:02 - model_mutation_operators.py:507 - 51 generation!
+
+INFO 2024-05-28 20:02:02 - mutation_test.py:291 - ================== start 52 generation!(52/100) ==================
+INFO 2024-05-28 20:02:02 - model_mutation_operators.py:243 - Adopt LD mut_strategy!
+INFO 2024-05-28 20:02:02 - model_mutation_operators.py:259 - delete layer_name:dense
+INFO 2024-05-28 20:02:02 - model_mutation_operators.py:288 - candidate_in_mutlayers_indice:1
+
+INFO 2024-05-28 20:02:02 - model_mutation_operators.py:506 - mut_result:True
+INFO 2024-05-28 20:02:02 - model_mutation_operators.py:507 - 52 generation!
+
+INFO 2024-05-28 20:02:02 - mutation_test.py:367 - list index out of range
+
+INFO 2024-05-28 20:02:02 - mutation_test.py:291 - ================== start 53 generation!(53/100) ==================
+INFO 2024-05-28 20:02:02 - model_mutation_operators.py:24 - Adopt PM mut_strategy!
+INFO 2024-05-28 20:02:02 - model_mutation_operators.py:63 - The target model do not have the mutator operators keep_prob!
+INFO 2024-05-28 20:02:02 - model_mutation_operators.py:64 - mut_result:Parameter Miss
+INFO 2024-05-28 20:02:02 - model_mutation_operators.py:65 - 53 generation!
+
+INFO 2024-05-28 20:02:02 - mutation_test.py:291 - ================== start 54 generation!(54/100) ==================
+INFO 2024-05-28 20:02:02 - model_mutation_operators.py:24 - Adopt PM mut_strategy!
+INFO 2024-05-28 20:02:02 - model_mutation_operators.py:63 - The target model do not have the mutator operators in_channels!
+INFO 2024-05-28 20:02:02 - model_mutation_operators.py:64 - mut_result:Parameter Miss
+INFO 2024-05-28 20:02:02 - model_mutation_operators.py:65 - 54 generation!
+
+INFO 2024-05-28 20:02:02 - mutation_test.py:291 - ================== start 55 generation!(55/100) ==================
+INFO 2024-05-28 20:02:02 - model_mutation_operators.py:24 - Adopt PM mut_strategy!
+INFO 2024-05-28 20:02:02 - model_mutation_operators.py:80 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-28 20:02:02 - model_mutation_operators.py:93 - select op: dropout1 layer_type: Dropout selected param:keep_prob input_shape:[1, 1, 50] output_shape:[1, 1, 50]
+INFO 2024-05-28 20:02:02 - model_mutation_operators.py:160 - mutate_replace_layer: Dropout<keep_prob=0.84375>
+INFO 2024-05-28 20:02:02 - model_mutation_operators.py:193 - Previous value: 0.5 Edit value: 0.84375 new_inshape: (1, 1, 50) new_outshape: (1, 1, 50)
+INFO 2024-05-28 20:02:02 - model_mutation_operators.py:232 - Dropout<keep_prob=0.84375>
+INFO 2024-05-28 20:02:02 - model_mutation_operators.py:233 - mut_result:True
+INFO 2024-05-28 20:02:02 - model_mutation_operators.py:234 - 55 generation!
+
+INFO 2024-05-28 20:02:02 - mutation_test.py:291 - ================== start 56 generation!(56/100) ==================
+INFO 2024-05-28 20:02:02 - model_mutation_operators.py:24 - Adopt PM mut_strategy!
+INFO 2024-05-28 20:02:02 - model_mutation_operators.py:80 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-28 20:02:02 - model_mutation_operators.py:93 - select op: dense layer_type: Dense selected param:out_channels input_shape:[2, 100] output_shape:[2, 1]
+INFO 2024-05-28 20:02:02 - model_mutation_operators.py:160 - mutate_replace_layer: Dense<input_channels=100, output_channels=3, has_bias=True>
+INFO 2024-05-28 20:02:02 - model_mutation_operators.py:193 - Previous value: 1 Edit value: 3 new_inshape: (2, 100) new_outshape: (2, 3)
+INFO 2024-05-28 20:02:02 - model_mutation_operators.py:232 - SequentialCell<
+  (0): Dense<input_channels=100, output_channels=3, has_bias=True>
+  (1): Replace_ms<>
+  >
+INFO 2024-05-28 20:02:02 - model_mutation_operators.py:233 - mut_result:True
+INFO 2024-05-28 20:02:02 - model_mutation_operators.py:234 - 56 generation!
+
+INFO 2024-05-28 20:02:02 - mutation_test.py:291 - ================== start 57 generation!(57/100) ==================
+INFO 2024-05-28 20:02:02 - model_mutation_operators.py:24 - Adopt PM mut_strategy!
+INFO 2024-05-28 20:02:02 - model_mutation_operators.py:80 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-28 20:02:02 - model_mutation_operators.py:93 - select op: dropout1 layer_type: Dropout selected param:keep_prob input_shape:[1, 1, 50] output_shape:[1, 1, 50]
+INFO 2024-05-28 20:02:02 - model_mutation_operators.py:160 - mutate_replace_layer: Dropout<keep_prob=0.28125>
+INFO 2024-05-28 20:02:02 - model_mutation_operators.py:193 - Previous value: 0.84375 Edit value: 0.28125 new_inshape: (1, 1, 50) new_outshape: (1, 1, 50)
+INFO 2024-05-28 20:02:02 - model_mutation_operators.py:232 - Dropout<keep_prob=0.28125>
+INFO 2024-05-28 20:02:02 - model_mutation_operators.py:233 - mut_result:True
+INFO 2024-05-28 20:02:02 - model_mutation_operators.py:234 - 57 generation!
+
+INFO 2024-05-28 20:02:02 - mutation_test.py:291 - ================== start 58 generation!(58/100) ==================
+INFO 2024-05-28 20:02:02 - model_mutation_operators.py:756 - Adopt RA mut_strategy!
+INFO 2024-05-28 20:02:02 - model_mutation_operators.py:850 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-28 20:02:02 - model_mutation_operators.py:859 - select layer: dropout1 layer_type: <class 'mindspore.nn.layer.basic.Dropout'> in_shape: [1, 1, 50] out_shape: [1, 1, 50]
+INFO 2024-05-28 20:02:02 - model_mutation_operators.py:860 - mut Basic type: True
+INFO 2024-05-28 20:02:02 - model_mutation_operators.py:861 - add Basic layer : Basic_op
+INFO 2024-05-28 20:02:02 - model_mutation_operators.py:874 - select insert layer: ReLU<>
+INFO 2024-05-28 20:02:02 - model_mutation_operators.py:922 - insert_layer_outshape equal!
+INFO 2024-05-28 20:02:02 - model_mutation_operators.py:1061 - mut_result:True
+INFO 2024-05-28 20:02:02 - model_mutation_operators.py:1062 - 58 generation!
+
+INFO 2024-05-28 20:02:03 - mutation_test.py:291 - ================== start 59 generation!(59/100) ==================
+INFO 2024-05-28 20:02:03 - model_mutation_operators.py:24 - Adopt PM mut_strategy!
+INFO 2024-05-28 20:02:03 - model_mutation_operators.py:63 - The target model do not have the mutator operators stride!
+INFO 2024-05-28 20:02:03 - model_mutation_operators.py:64 - mut_result:Parameter Miss
+INFO 2024-05-28 20:02:03 - model_mutation_operators.py:65 - 59 generation!
+
+INFO 2024-05-28 20:02:03 - mutation_test.py:291 - ================== start 60 generation!(60/100) ==================
+INFO 2024-05-28 20:02:03 - model_mutation_operators.py:24 - Adopt PM mut_strategy!
+INFO 2024-05-28 20:02:03 - model_mutation_operators.py:80 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-28 20:02:03 - model_mutation_operators.py:93 - select op: dense layer_type: Dense selected param:out_channels input_shape:[2, 100] output_shape:[2, 1]
+INFO 2024-05-28 20:02:03 - model_mutation_operators.py:160 - mutate_replace_layer: Dense<input_channels=100, output_channels=4, has_bias=True>
+INFO 2024-05-28 20:02:03 - model_mutation_operators.py:193 - Previous value: 1 Edit value: 4 new_inshape: (2, 100) new_outshape: (2, 4)
+INFO 2024-05-28 20:02:03 - model_mutation_operators.py:232 - SequentialCell<
+  (0): Dense<input_channels=100, output_channels=4, has_bias=True>
+  (1): Replace_ms<>
+  >
+INFO 2024-05-28 20:02:03 - model_mutation_operators.py:233 - mut_result:True
+INFO 2024-05-28 20:02:03 - model_mutation_operators.py:234 - 60 generation!
+
+INFO 2024-05-28 20:02:03 - mutation_test.py:291 - ================== start 61 generation!(61/100) ==================
+INFO 2024-05-28 20:02:03 - model_mutation_operators.py:1924 - Adopt LC mut_strategy!
+INFO 2024-05-28 20:02:03 - model_mutation_operators.py:1991 - select layer: dropout1 layer_type: <class 'mindspore.nn.layer.basic.Dropout'> in_shape: [1, 1, 50] out_shape: [1, 1, 50]
+INFO 2024-05-28 20:02:03 - model_mutation_operators.py:1992 - mut Basic type: True
+INFO 2024-05-28 20:02:03 - model_mutation_operators.py:1993 - add Basic layer : Basic_op
+INFO 2024-05-28 20:02:03 - model_mutation_operators.py:2006 - select insert layer: Dropout<keep_prob=0.5>
+INFO 2024-05-28 20:02:03 - model_mutation_operators.py:2041 - insert_layer_outshape equal!
+INFO 2024-05-28 20:02:03 - model_mutation_operators.py:2109 - mut_result:True
+INFO 2024-05-28 20:02:03 - model_mutation_operators.py:2110 - 61 generation!
+
+INFO 2024-05-28 20:02:03 - mutation_test.py:291 - ================== start 62 generation!(62/100) ==================
+INFO 2024-05-28 20:02:03 - model_mutation_operators.py:24 - Adopt PM mut_strategy!
+INFO 2024-05-28 20:02:03 - model_mutation_operators.py:63 - The target model do not have the mutator operators in_channels!
+INFO 2024-05-28 20:02:03 - model_mutation_operators.py:64 - mut_result:Parameter Miss
+INFO 2024-05-28 20:02:03 - model_mutation_operators.py:65 - 62 generation!
+
+INFO 2024-05-28 20:02:03 - mutation_test.py:291 - ================== start 63 generation!(63/100) ==================
+INFO 2024-05-28 20:02:03 - model_mutation_operators.py:1071 - Adopt CM mut_strategy!
+INFO 2024-05-28 20:02:03 - model_mutation_operators.py:1154 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-28 20:02:03 - model_mutation_operators.py:1161 - select layer: dense layer_type: <class 'mindspore.nn.layer.basic.Dense'> in_shape: [2, 100] out_shape: [2, 1]
+INFO 2024-05-28 20:02:03 - model_mutation_operators.py:1162 - mut Basic type: True
+INFO 2024-05-28 20:02:03 - model_mutation_operators.py:1205 - select insert layer: Sigmoid<>
+INFO 2024-05-28 20:02:03 - model_mutation_operators.py:1250 - replace Basic with CM op!
+INFO 2024-05-28 20:02:03 - model_mutation_operators.py:1301 - mut_result:True
+INFO 2024-05-28 20:02:03 - model_mutation_operators.py:1302 - 63 generation!
+
+INFO 2024-05-28 20:02:03 - mutation_test.py:291 - ================== start 64 generation!(64/100) ==================
+INFO 2024-05-28 20:02:03 - model_mutation_operators.py:2119 - Adopt SM mut_strategy!
+INFO 2024-05-28 20:02:03 - model_mutation_operators.py:2157 - select layer: dense layer_type: <class 'common.mutation_ms.Layer_utils.CM_branchCell'> in_shape: [2, 100] out_shape: [2, 1]
+INFO 2024-05-28 20:02:03 - model_mutation_operators.py:2158 - mut Basic type: True
+INFO 2024-05-28 20:02:03 - model_mutation_operators.py:2206 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-28 20:02:03 - model_mutation_operators.py:2279 - mutate input_shape: [2, 29, 12]
+INFO 2024-05-28 20:02:03 - model_mutation_operators.py:2280 - mutate output_shape: [2, 2]
+INFO 2024-05-28 20:02:03 - model_mutation_operators.py:2360 - mut_result:True
+INFO 2024-05-28 20:02:03 - model_mutation_operators.py:2361 - 64 generation!
+
+INFO 2024-05-28 20:02:04 - mutation_test.py:291 - ================== start 65 generation!(65/100) ==================
+INFO 2024-05-28 20:02:04 - model_mutation_operators.py:24 - Adopt PM mut_strategy!
+INFO 2024-05-28 20:02:04 - model_mutation_operators.py:63 - The target model do not have the mutator operators momentum!
+INFO 2024-05-28 20:02:04 - model_mutation_operators.py:64 - mut_result:Parameter Miss
+INFO 2024-05-28 20:02:04 - model_mutation_operators.py:65 - 65 generation!
+
+INFO 2024-05-28 20:02:04 - mutation_test.py:291 - ================== start 66 generation!(66/100) ==================
+INFO 2024-05-28 20:02:04 - model_mutation_operators.py:2119 - Adopt SM mut_strategy!
+INFO 2024-05-28 20:02:04 - model_mutation_operators.py:2157 - select layer: dropout1 layer_type: <class 'mindspore.nn.layer.basic.Dropout'> in_shape: [1, 1, 50] out_shape: [1, 1, 50]
+INFO 2024-05-28 20:02:04 - model_mutation_operators.py:2158 - mut Basic type: True
+INFO 2024-05-28 20:02:04 - model_mutation_operators.py:2206 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-28 20:02:04 - model_mutation_operators.py:2279 - mutate input_shape: [2, 25, 24]
+INFO 2024-05-28 20:02:04 - model_mutation_operators.py:2280 - mutate output_shape: [2, 34, 33, 43, 20]
+INFO 2024-05-28 20:02:04 - model_mutation_operators.py:2360 - mut_result:True
+INFO 2024-05-28 20:02:04 - model_mutation_operators.py:2361 - 66 generation!
+
+INFO 2024-05-28 20:02:04 - mutation_test.py:291 - ================== start 67 generation!(67/100) ==================
+INFO 2024-05-28 20:02:04 - model_mutation_operators.py:24 - Adopt PM mut_strategy!
+INFO 2024-05-28 20:02:04 - model_mutation_operators.py:63 - The target model do not have the mutator operators eps!
+INFO 2024-05-28 20:02:04 - model_mutation_operators.py:64 - mut_result:Parameter Miss
+INFO 2024-05-28 20:02:04 - model_mutation_operators.py:65 - 67 generation!
+
+INFO 2024-05-28 20:02:04 - mutation_test.py:291 - ================== start 68 generation!(68/100) ==================
+INFO 2024-05-28 20:02:04 - model_mutation_operators.py:1071 - Adopt CM mut_strategy!
+INFO 2024-05-28 20:02:04 - model_mutation_operators.py:1154 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-28 20:02:04 - model_mutation_operators.py:1161 - select layer: dense layer_type: <class 'mindspore.nn.layer.basic.Dense'> in_shape: [2, 100] out_shape: [2, 1]
+INFO 2024-05-28 20:02:04 - model_mutation_operators.py:1162 - mut Basic type: True
+INFO 2024-05-28 20:02:04 - model_mutation_operators.py:1205 - select insert layer: convbnrelu<
+  (conbnrelu_conv): Conv2d<input_channels=100, output_channels=1, kernel_size=(1, 1), stride=(1, 1), pad_mode=same, padding=0, dilation=(1, 1), group=1, has_bias=False, weight_init=<mindspore.common.initializer.HeUniform object at 0x7f436a9364d0>, bias_init=None, format=NCHW>
+  (conbnrelu_bn): BatchNorm2d<num_features=1, eps=1e-05, momentum=0.9, gamma=Parameter (name=1.conbnrelu_bn.gamma, shape=(1,), dtype=Float32, requires_grad=True), beta=Parameter (name=1.conbnrelu_bn.beta, shape=(1,), dtype=Float32, requires_grad=True), moving_mean=Parameter (name=1.conbnrelu_bn.moving_mean, shape=(1,), dtype=Float32, requires_grad=False), moving_variance=Parameter (name=1.conbnrelu_bn.moving_variance, shape=(1,), dtype=Float32, requires_grad=False)>
+  (conbnrelu_relu): ReLU<>
+  >
+INFO 2024-05-28 20:02:04 - model_mutation_operators.py:1250 - replace Basic with CM op!
+INFO 2024-05-28 20:02:04 - model_mutation_operators.py:1301 - mut_result:True
+INFO 2024-05-28 20:02:04 - model_mutation_operators.py:1302 - 68 generation!
+
+INFO 2024-05-28 20:02:04 - mutation_test.py:291 - ================== start 69 generation!(69/100) ==================
+INFO 2024-05-28 20:02:04 - model_mutation_operators.py:24 - Adopt PM mut_strategy!
+INFO 2024-05-28 20:02:04 - model_mutation_operators.py:63 - The target model do not have the mutator operators in_channels!
+INFO 2024-05-28 20:02:04 - model_mutation_operators.py:64 - mut_result:Parameter Miss
+INFO 2024-05-28 20:02:04 - model_mutation_operators.py:65 - 69 generation!
+
+INFO 2024-05-28 20:02:04 - mutation_test.py:291 - ================== start 70 generation!(70/100) ==================
+INFO 2024-05-28 20:02:04 - model_mutation_operators.py:243 - Adopt LD mut_strategy!
+INFO 2024-05-28 20:02:04 - model_mutation_operators.py:259 - delete layer_name:dropout1
+INFO 2024-05-28 20:02:04 - model_mutation_operators.py:321 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-28 20:02:04 - model_mutation_operators.py:326 - adopt DeleteCell EmptyCell
+INFO 2024-05-28 20:02:04 - model_mutation_operators.py:506 - mut_result:True
+INFO 2024-05-28 20:02:04 - model_mutation_operators.py:507 - 70 generation!
+
+INFO 2024-05-28 20:02:05 - mutation_test.py:291 - ================== start 71 generation!(71/100) ==================
+INFO 2024-05-28 20:02:05 - model_mutation_operators.py:516 - Adopt LA mut_strategy!
+INFO 2024-05-28 20:02:05 - model_mutation_operators.py:591 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-28 20:02:05 - model_mutation_operators.py:600 - select layer: dense layer_type: <class 'mindspore.nn.layer.basic.Dense'> in_shape: [2, 100] out_shape: [2, 1]
+INFO 2024-05-28 20:02:05 - model_mutation_operators.py:601 - mut Basic type: True
+INFO 2024-05-28 20:02:05 - model_mutation_operators.py:602 - add Basic layer : Cascade_op
+INFO 2024-05-28 20:02:05 - model_mutation_operators.py:616 - select insert layer: Inception_A<
+  (branch0): BasicConv2d<
+    (relu): ReLU<>
+    >
+  (branch1): SequentialCell<
+    (0): BasicConv2d<
+      (relu): ReLU<>
+      >
+    (1): BasicConv2d<
+      (relu): ReLU<>
+      >
+    >
+  (branch2): SequentialCell<
+    (0): BasicConv2d<
+      (relu): ReLU<>
+      >
+    (1): BasicConv2d<
+      (relu): ReLU<>
+      >
+    (2): BasicConv2d<
+      (relu): ReLU<>
+      >
+    >
+  (branch_pool): SequentialCell<
+    (0): AvgPool2d<kernel_size=3, stride=1, pad_mode=SAME>
+    (1): BasicConv2d<
+      (relu): ReLU<>
+      >
+    >
+  >
+INFO 2024-05-28 20:02:05 - model_mutation_operators.py:629 - insert_layer_outshape equal!
+INFO 2024-05-28 20:02:05 - model_mutation_operators.py:673 - Illegal LA mutate!
+INFO 2024-05-28 20:02:05 - model_mutation_operators.py:674 - mut_result:LA Create illegal layer!
+INFO 2024-05-28 20:02:05 - model_mutation_operators.py:675 - Exception information: 
+For 'MatMul', the type of 'x2' should be same as 'x1', but got 'x1' with type Tensor[Float16] and 'x2' with type Tensor[Float32].
+
+----------------------------------------------------
+- C++ Call Stack: (For framework developers)
+----------------------------------------------------
+mindspore/core/ops/mat_mul.cc:143 InferType
+
+INFO 2024-05-28 20:02:05 - model_mutation_operators.py:676 - 71 generation!
+
+INFO 2024-05-28 20:02:05 - mutation_test.py:291 - ================== start 72 generation!(72/100) ==================
+INFO 2024-05-28 20:02:05 - model_mutation_operators.py:756 - Adopt RA mut_strategy!
+INFO 2024-05-28 20:02:05 - model_mutation_operators.py:850 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-28 20:02:05 - model_mutation_operators.py:859 - select layer: dropout1 layer_type: <class 'mindspore.nn.layer.basic.Dropout'> in_shape: [1, 1, 50] out_shape: [1, 1, 50]
+INFO 2024-05-28 20:02:05 - model_mutation_operators.py:860 - mut Basic type: True
+INFO 2024-05-28 20:02:05 - model_mutation_operators.py:861 - add Basic layer : Basic_op
+INFO 2024-05-28 20:02:05 - model_mutation_operators.py:874 - select insert layer: ELU<>
+INFO 2024-05-28 20:02:05 - model_mutation_operators.py:922 - insert_layer_outshape equal!
+INFO 2024-05-28 20:02:05 - model_mutation_operators.py:1061 - mut_result:True
+INFO 2024-05-28 20:02:05 - model_mutation_operators.py:1062 - 72 generation!
+
+INFO 2024-05-28 20:02:05 - mutation_test.py:291 - ================== start 73 generation!(73/100) ==================
+INFO 2024-05-28 20:02:05 - model_mutation_operators.py:24 - Adopt PM mut_strategy!
+INFO 2024-05-28 20:02:05 - model_mutation_operators.py:63 - The target model do not have the mutator operators momentum!
+INFO 2024-05-28 20:02:05 - model_mutation_operators.py:64 - mut_result:Parameter Miss
+INFO 2024-05-28 20:02:05 - model_mutation_operators.py:65 - 73 generation!
+
+INFO 2024-05-28 20:02:05 - mutation_test.py:291 - ================== start 74 generation!(74/100) ==================
+INFO 2024-05-28 20:02:05 - model_mutation_operators.py:756 - Adopt RA mut_strategy!
+INFO 2024-05-28 20:02:05 - model_mutation_operators.py:850 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-28 20:02:05 - model_mutation_operators.py:859 - select layer: dropout1 layer_type: <class 'mindspore.nn.layer.basic.Dropout'> in_shape: [1, 1, 50] out_shape: [1, 1, 50]
+INFO 2024-05-28 20:02:05 - model_mutation_operators.py:860 - mut Basic type: True
+INFO 2024-05-28 20:02:05 - model_mutation_operators.py:861 - add Basic layer : Basic_op
+INFO 2024-05-28 20:02:05 - model_mutation_operators.py:874 - select insert layer: Sigmoid<>
+INFO 2024-05-28 20:02:05 - model_mutation_operators.py:922 - insert_layer_outshape equal!
+INFO 2024-05-28 20:02:05 - model_mutation_operators.py:1061 - mut_result:True
+INFO 2024-05-28 20:02:05 - model_mutation_operators.py:1062 - 74 generation!
+
+INFO 2024-05-28 20:02:05 - mutation_test.py:291 - ================== start 75 generation!(75/100) ==================
+INFO 2024-05-28 20:02:05 - model_mutation_operators.py:24 - Adopt PM mut_strategy!
+INFO 2024-05-28 20:02:05 - model_mutation_operators.py:63 - The target model do not have the mutator operators keep_prob!
+INFO 2024-05-28 20:02:05 - model_mutation_operators.py:64 - mut_result:Parameter Miss
+INFO 2024-05-28 20:02:05 - model_mutation_operators.py:65 - 75 generation!
+
+INFO 2024-05-28 20:02:05 - mutation_test.py:291 - ================== start 76 generation!(76/100) ==================
+INFO 2024-05-28 20:02:05 - model_mutation_operators.py:24 - Adopt PM mut_strategy!
+INFO 2024-05-28 20:02:05 - model_mutation_operators.py:80 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-28 20:02:05 - model_mutation_operators.py:93 - select op: dense layer_type: Dense selected param:out_channels input_shape:[2, 100] output_shape:[2, 1]
+INFO 2024-05-28 20:02:05 - model_mutation_operators.py:160 - mutate_replace_layer: Dense<input_channels=100, output_channels=4, has_bias=True>
+INFO 2024-05-28 20:02:05 - model_mutation_operators.py:193 - Previous value: 1 Edit value: 4 new_inshape: (2, 100) new_outshape: (2, 4)
+INFO 2024-05-28 20:02:05 - model_mutation_operators.py:232 - SequentialCell<
+  (0): Dense<input_channels=100, output_channels=4, has_bias=True>
+  (1): Replace_ms<>
+  >
+INFO 2024-05-28 20:02:05 - model_mutation_operators.py:233 - mut_result:True
+INFO 2024-05-28 20:02:05 - model_mutation_operators.py:234 - 76 generation!
+
+INFO 2024-05-28 20:02:05 - mutation_test.py:291 - ================== start 77 generation!(77/100) ==================
+INFO 2024-05-28 20:02:05 - model_mutation_operators.py:24 - Adopt PM mut_strategy!
+INFO 2024-05-28 20:02:05 - model_mutation_operators.py:63 - The target model do not have the mutator operators kernel_size!
+INFO 2024-05-28 20:02:05 - model_mutation_operators.py:64 - mut_result:Parameter Miss
+INFO 2024-05-28 20:02:05 - model_mutation_operators.py:65 - 77 generation!
+
+INFO 2024-05-28 20:02:05 - mutation_test.py:291 - ================== start 78 generation!(78/100) ==================
+INFO 2024-05-28 20:02:05 - model_mutation_operators.py:24 - Adopt PM mut_strategy!
+INFO 2024-05-28 20:02:05 - model_mutation_operators.py:63 - The target model do not have the mutator operators group!
+INFO 2024-05-28 20:02:05 - model_mutation_operators.py:64 - mut_result:Parameter Miss
+INFO 2024-05-28 20:02:05 - model_mutation_operators.py:65 - 78 generation!
+
+INFO 2024-05-28 20:02:05 - mutation_test.py:291 - ================== start 79 generation!(79/100) ==================
+INFO 2024-05-28 20:02:05 - model_mutation_operators.py:756 - Adopt RA mut_strategy!
+INFO 2024-05-28 20:02:05 - model_mutation_operators.py:850 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-28 20:02:05 - model_mutation_operators.py:859 - select layer: dense layer_type: <class 'mindspore.nn.layer.basic.Dense'> in_shape: [2, 100] out_shape: [2, 1]
+INFO 2024-05-28 20:02:05 - model_mutation_operators.py:860 - mut Basic type: True
+INFO 2024-05-28 20:02:05 - model_mutation_operators.py:861 - add Basic layer : Cascade_op
+INFO 2024-05-28 20:02:05 - model_mutation_operators.py:874 - select insert layer: Inception_A<
+  (branch0): BasicConv2d<
+    (relu): ReLU<>
+    >
+  (branch1): SequentialCell<
+    (0): BasicConv2d<
+      (relu): ReLU<>
+      >
+    (1): BasicConv2d<
+      (relu): ReLU<>
+      >
+    >
+  (branch2): SequentialCell<
+    (0): BasicConv2d<
+      (relu): ReLU<>
+      >
+    (1): BasicConv2d<
+      (relu): ReLU<>
+      >
+    (2): BasicConv2d<
+      (relu): ReLU<>
+      >
+    >
+  (branch_pool): SequentialCell<
+    (0): AvgPool2d<kernel_size=3, stride=1, pad_mode=SAME>
+    (1): BasicConv2d<
+      (relu): ReLU<>
+      >
+    >
+  >
+INFO 2024-05-28 20:02:05 - model_mutation_operators.py:919 - insert_layer_outshape not equal!: [2, 1]
+INFO 2024-05-28 20:02:05 - model_mutation_operators.py:1061 - mut_result:True
+INFO 2024-05-28 20:02:05 - model_mutation_operators.py:1062 - 79 generation!
+
+INFO 2024-05-28 20:02:06 - mutation_test.py:291 - ================== start 80 generation!(80/100) ==================
+INFO 2024-05-28 20:02:06 - model_mutation_operators.py:24 - Adopt PM mut_strategy!
+INFO 2024-05-28 20:02:06 - model_mutation_operators.py:63 - The target model do not have the mutator operators eps!
+INFO 2024-05-28 20:02:06 - model_mutation_operators.py:64 - mut_result:Parameter Miss
+INFO 2024-05-28 20:02:06 - model_mutation_operators.py:65 - 80 generation!
+
+INFO 2024-05-28 20:02:06 - mutation_test.py:291 - ================== start 81 generation!(81/100) ==================
+INFO 2024-05-28 20:02:06 - model_mutation_operators.py:756 - Adopt RA mut_strategy!
+INFO 2024-05-28 20:02:06 - model_mutation_operators.py:850 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-28 20:02:06 - model_mutation_operators.py:859 - select layer: dense layer_type: <class 'mindspore.nn.layer.basic.Dense'> in_shape: [2, 100] out_shape: [2, 1]
+INFO 2024-05-28 20:02:06 - model_mutation_operators.py:860 - mut Basic type: True
+INFO 2024-05-28 20:02:06 - model_mutation_operators.py:861 - add Basic layer : Cascade_op
+INFO 2024-05-28 20:02:06 - model_mutation_operators.py:874 - select insert layer: Inception_A<
+  (branch0): BasicConv2d<
+    (relu): ReLU<>
+    >
+  (branch1): SequentialCell<
+    (0): BasicConv2d<
+      (relu): ReLU<>
+      >
+    (1): BasicConv2d<
+      (relu): ReLU<>
+      >
+    >
+  (branch2): SequentialCell<
+    (0): BasicConv2d<
+      (relu): ReLU<>
+      >
+    (1): BasicConv2d<
+      (relu): ReLU<>
+      >
+    (2): BasicConv2d<
+      (relu): ReLU<>
+      >
+    >
+  (branch_pool): SequentialCell<
+    (0): AvgPool2d<kernel_size=3, stride=1, pad_mode=SAME>
+    (1): BasicConv2d<
+      (relu): ReLU<>
+      >
+    >
+  >
+INFO 2024-05-28 20:02:06 - model_mutation_operators.py:919 - insert_layer_outshape not equal!: [2, 1]
+INFO 2024-05-28 20:02:06 - model_mutation_operators.py:1061 - mut_result:True
+INFO 2024-05-28 20:02:06 - model_mutation_operators.py:1062 - 81 generation!
+
+INFO 2024-05-28 20:02:06 - mutation_test.py:291 - ================== start 82 generation!(82/100) ==================
+INFO 2024-05-28 20:02:06 - model_mutation_operators.py:24 - Adopt PM mut_strategy!
+INFO 2024-05-28 20:02:06 - model_mutation_operators.py:63 - The target model do not have the mutator operators num_features!
+INFO 2024-05-28 20:02:06 - model_mutation_operators.py:64 - mut_result:Parameter Miss
+INFO 2024-05-28 20:02:06 - model_mutation_operators.py:65 - 82 generation!
+
+INFO 2024-05-28 20:02:06 - mutation_test.py:291 - ================== start 83 generation!(83/100) ==================
+INFO 2024-05-28 20:02:06 - model_mutation_operators.py:24 - Adopt PM mut_strategy!
+INFO 2024-05-28 20:02:06 - model_mutation_operators.py:63 - The target model do not have the mutator operators group!
+INFO 2024-05-28 20:02:06 - model_mutation_operators.py:64 - mut_result:Parameter Miss
+INFO 2024-05-28 20:02:06 - model_mutation_operators.py:65 - 83 generation!
+
+INFO 2024-05-28 20:02:06 - mutation_test.py:291 - ================== start 84 generation!(84/100) ==================
+INFO 2024-05-28 20:02:06 - model_mutation_operators.py:24 - Adopt PM mut_strategy!
+INFO 2024-05-28 20:02:06 - model_mutation_operators.py:63 - The target model do not have the mutator operators kernel_size!
+INFO 2024-05-28 20:02:06 - model_mutation_operators.py:64 - mut_result:Parameter Miss
+INFO 2024-05-28 20:02:06 - model_mutation_operators.py:65 - 84 generation!
+
+INFO 2024-05-28 20:02:06 - mutation_test.py:291 - ================== start 85 generation!(85/100) ==================
+INFO 2024-05-28 20:02:06 - model_mutation_operators.py:24 - Adopt PM mut_strategy!
+INFO 2024-05-28 20:02:06 - model_mutation_operators.py:63 - The target model do not have the mutator operators momentum!
+INFO 2024-05-28 20:02:06 - model_mutation_operators.py:64 - mut_result:Parameter Miss
+INFO 2024-05-28 20:02:06 - model_mutation_operators.py:65 - 85 generation!
+
+INFO 2024-05-28 20:02:06 - mutation_test.py:291 - ================== start 86 generation!(86/100) ==================
+INFO 2024-05-28 20:02:06 - model_mutation_operators.py:1071 - Adopt CM mut_strategy!
+INFO 2024-05-28 20:02:06 - model_mutation_operators.py:1150 - candidate_in_mutlayers_indice:1
+INFO 2024-05-28 20:02:06 - model_mutation_operators.py:1161 - select layer: dropout1 layer_type: <class 'mindspore.nn.layer.container.SequentialCell'> in_shape: [1, 1, 50] out_shape: [1, 1, 50]
+INFO 2024-05-28 20:02:06 - model_mutation_operators.py:1162 - mut Basic type: True
+INFO 2024-05-28 20:02:06 - model_mutation_operators.py:1205 - select insert layer: Sigmoid<>
+INFO 2024-05-28 20:02:06 - Other_utils.py:191 - Exception information: For 'Concat', element1 shape in input can not concat with element0. To perform concat in the axis 0 direction, except for the 0th axis, all other axes must have the same shape. But got element1_shape[0]: 2, element0_shape[0]: 1.
+
+----------------------------------------------------
+- C++ Call Stack: (For framework developers)
+----------------------------------------------------
+mindspore/core/ops/concat.cc:67 ConcatInferShape
+
+INFO 2024-05-28 20:02:06 - model_mutation_operators.py:1301 - mut_result:False
+INFO 2024-05-28 20:02:06 - model_mutation_operators.py:1302 - 86 generation!
+
+INFO 2024-05-28 20:02:06 - mutation_test.py:291 - ================== start 87 generation!(87/100) ==================
+INFO 2024-05-28 20:02:06 - model_mutation_operators.py:24 - Adopt PM mut_strategy!
+INFO 2024-05-28 20:02:06 - model_mutation_operators.py:77 - candidate_in_mutlayers_indice:2
+INFO 2024-05-28 20:02:06 - model_mutation_operators.py:93 - select op: dropout1 layer_type: Dropout selected param:keep_prob input_shape:[1, 1, 50] output_shape:[1, 1, 50]
+INFO 2024-05-28 20:02:06 - model_mutation_operators.py:160 - mutate_replace_layer: Dropout<keep_prob=0.16666666666666666>
+INFO 2024-05-28 20:02:06 - model_mutation_operators.py:193 - Previous value: 0.5 Edit value: 0.16666666666666666 new_inshape: (1, 1, 50) new_outshape: (1, 1, 50)
+INFO 2024-05-28 20:02:06 - model_mutation_operators.py:232 - Dropout<keep_prob=0.16666666666666666>
+INFO 2024-05-28 20:02:06 - model_mutation_operators.py:233 - mut_result:True
+INFO 2024-05-28 20:02:06 - model_mutation_operators.py:234 - 87 generation!
+
+INFO 2024-05-28 20:02:06 - mutation_test.py:291 - ================== start 88 generation!(88/100) ==================
+INFO 2024-05-28 20:02:06 - model_mutation_operators.py:756 - Adopt RA mut_strategy!
+INFO 2024-05-28 20:02:06 - model_mutation_operators.py:818 - candidate_in_mutlayers_indice:2
+
+INFO 2024-05-28 20:02:06 - model_mutation_operators.py:859 - select layer: dense layer_type: <class 'mindspore.nn.layer.container.SequentialCell'> in_shape: [2, 100] out_shape: [2, 1]
+INFO 2024-05-28 20:02:06 - model_mutation_operators.py:860 - mut Basic type: True
+INFO 2024-05-28 20:02:06 - model_mutation_operators.py:861 - add Basic layer : Basic_op
+INFO 2024-05-28 20:02:06 - model_mutation_operators.py:874 - select insert layer: ReLU<>
+INFO 2024-05-28 20:02:06 - model_mutation_operators.py:942 - insert_layer_outshape equal!
+INFO 2024-05-28 20:02:06 - model_mutation_operators.py:971 - Illegal RA mutate!
+INFO 2024-05-28 20:02:06 - model_mutation_operators.py:972 - mut_result:RA Create illegal layer!
+INFO 2024-05-28 20:02:06 - model_mutation_operators.py:973 - Exception information: 
+For 'MatMul', the type of 'x2' should be same as 'x1', but got 'x1' with type Tensor[Float16] and 'x2' with type Tensor[Float32].
+
+----------------------------------------------------
+- C++ Call Stack: (For framework developers)
+----------------------------------------------------
+mindspore/core/ops/mat_mul.cc:143 InferType
+
+INFO 2024-05-28 20:02:06 - model_mutation_operators.py:974 - 88 generation!
+
+INFO 2024-05-28 20:02:06 - mutation_test.py:291 - ================== start 89 generation!(89/100) ==================
+INFO 2024-05-28 20:02:06 - model_mutation_operators.py:243 - Adopt LD mut_strategy!
+INFO 2024-05-28 20:02:06 - model_mutation_operators.py:259 - delete layer_name:dropout2
+INFO 2024-05-28 20:02:06 - model_mutation_operators.py:321 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-28 20:02:06 - model_mutation_operators.py:326 - adopt DeleteCell EmptyCell
+INFO 2024-05-28 20:02:06 - model_mutation_operators.py:506 - mut_result:True
+INFO 2024-05-28 20:02:06 - model_mutation_operators.py:507 - 89 generation!
+
+INFO 2024-05-28 20:02:06 - mutation_test.py:291 - ================== start 90 generation!(90/100) ==================
+INFO 2024-05-28 20:02:06 - model_mutation_operators.py:756 - Adopt RA mut_strategy!
+INFO 2024-05-28 20:02:06 - model_mutation_operators.py:818 - candidate_in_mutlayers_indice:1
+
+INFO 2024-05-28 20:02:06 - model_mutation_operators.py:859 - select layer: dropout1 layer_type: <class 'mindspore.nn.layer.container.SequentialCell'> in_shape: [1, 1, 50] out_shape: [1, 1, 50]
+INFO 2024-05-28 20:02:06 - model_mutation_operators.py:860 - mut Basic type: True
+INFO 2024-05-28 20:02:06 - model_mutation_operators.py:861 - add Basic layer : Cascade_op
+INFO 2024-05-28 20:02:06 - model_mutation_operators.py:874 - select insert layer: Inception_A<
+  (branch0): BasicConv2d<
+    (relu): ReLU<>
+    >
+  (branch1): SequentialCell<
+    (0): BasicConv2d<
+      (relu): ReLU<>
+      >
+    (1): BasicConv2d<
+      (relu): ReLU<>
+      >
+    >
+  (branch2): SequentialCell<
+    (0): BasicConv2d<
+      (relu): ReLU<>
+      >
+    (1): BasicConv2d<
+      (relu): ReLU<>
+      >
+    (2): BasicConv2d<
+      (relu): ReLU<>
+      >
+    >
+  (branch_pool): SequentialCell<
+    (0): AvgPool2d<kernel_size=3, stride=1, pad_mode=SAME>
+    (1): BasicConv2d<
+      (relu): ReLU<>
+      >
+    >
+  >
+INFO 2024-05-28 20:02:06 - model_mutation_operators.py:942 - insert_layer_outshape equal!
+INFO 2024-05-28 20:02:06 - model_mutation_operators.py:971 - Illegal RA mutate!
+INFO 2024-05-28 20:02:06 - model_mutation_operators.py:972 - mut_result:RA Create illegal layer!
+INFO 2024-05-28 20:02:06 - model_mutation_operators.py:973 - Exception information: 
+For primitive[Conv2D], the input type must be same.
+name:[w]:Tensor[Float32].
+name:[x]:Tensor[Float16].
+
+----------------------------------------------------
+- C++ Call Stack: (For framework developers)
+----------------------------------------------------
+mindspore/core/utils/check_convert_utils.cc:1028 _CheckTypeSame
+
+INFO 2024-05-28 20:02:06 - model_mutation_operators.py:974 - 90 generation!
+
+INFO 2024-05-28 20:02:06 - mutation_test.py:291 - ================== start 91 generation!(91/100) ==================
+INFO 2024-05-28 20:02:06 - model_mutation_operators.py:24 - Adopt PM mut_strategy!
+INFO 2024-05-28 20:02:06 - model_mutation_operators.py:63 - The target model do not have the mutator operators kernel_size!
+INFO 2024-05-28 20:02:06 - model_mutation_operators.py:64 - mut_result:Parameter Miss
+INFO 2024-05-28 20:02:06 - model_mutation_operators.py:65 - 91 generation!
+
+INFO 2024-05-28 20:02:06 - mutation_test.py:291 - ================== start 92 generation!(92/100) ==================
+INFO 2024-05-28 20:02:06 - model_mutation_operators.py:24 - Adopt PM mut_strategy!
+INFO 2024-05-28 20:02:06 - model_mutation_operators.py:63 - The target model do not have the mutator operators in_channels!
+INFO 2024-05-28 20:02:06 - model_mutation_operators.py:64 - mut_result:Parameter Miss
+INFO 2024-05-28 20:02:06 - model_mutation_operators.py:65 - 92 generation!
+
+INFO 2024-05-28 20:02:06 - mutation_test.py:291 - ================== start 93 generation!(93/100) ==================
+INFO 2024-05-28 20:02:06 - model_mutation_operators.py:516 - Adopt LA mut_strategy!
+INFO 2024-05-28 20:02:06 - model_mutation_operators.py:591 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-28 20:02:06 - model_mutation_operators.py:600 - select layer: dropout1 layer_type: <class 'mindspore.nn.layer.basic.Dropout'> in_shape: [1, 1, 50] out_shape: [1, 1, 50]
+INFO 2024-05-28 20:02:06 - model_mutation_operators.py:601 - mut Basic type: True
+INFO 2024-05-28 20:02:06 - model_mutation_operators.py:602 - add Basic layer : Basic_op
+INFO 2024-05-28 20:02:06 - model_mutation_operators.py:616 - select insert layer: Conv2dTranspose<input_channels=1, output_channels=1, kernel_size=(1, 1), stride=(1, 1), pad_mode=same, padding=0, dilation=(1, 1), group=1, has_bias=False, weight_init=<mindspore.common.initializer.HeUniform object at 0x7f436a944c50>, bias_init=None, format=NCHW>
+INFO 2024-05-28 20:02:06 - model_mutation_operators.py:629 - insert_layer_outshape equal!
+INFO 2024-05-28 20:02:06 - Other_utils.py:191 - Exception information: For 'Transpose', the dim of 'input_x' and 'perm' must be equal, but got 4 and 3 respectively.
+
+----------------------------------------------------
+- C++ Call Stack: (For framework developers)
+----------------------------------------------------
+mindspore/core/ops/transpose.cc:125 InferShape
+
+INFO 2024-05-28 20:02:06 - model_mutation_operators.py:746 - mut_result:False
+INFO 2024-05-28 20:02:06 - model_mutation_operators.py:747 - 93 generation!
+
+INFO 2024-05-28 20:02:06 - mutation_test.py:291 - ================== start 94 generation!(94/100) ==================
+INFO 2024-05-28 20:02:06 - model_mutation_operators.py:24 - Adopt PM mut_strategy!
+INFO 2024-05-28 20:02:06 - model_mutation_operators.py:63 - The target model do not have the mutator operators in_channels!
+INFO 2024-05-28 20:02:06 - model_mutation_operators.py:64 - mut_result:Parameter Miss
+INFO 2024-05-28 20:02:06 - model_mutation_operators.py:65 - 94 generation!
+
+INFO 2024-05-28 20:02:07 - mutation_test.py:291 - ================== start 95 generation!(95/100) ==================
+INFO 2024-05-28 20:02:07 - model_mutation_operators.py:1924 - Adopt LC mut_strategy!
+INFO 2024-05-28 20:02:07 - model_mutation_operators.py:1991 - select layer: dropout1 layer_type: <class 'mindspore.nn.layer.basic.Dropout'> in_shape: [1, 1, 50] out_shape: [1, 1, 50]
+INFO 2024-05-28 20:02:07 - model_mutation_operators.py:1992 - mut Basic type: True
+INFO 2024-05-28 20:02:07 - model_mutation_operators.py:1993 - add Basic layer : Basic_op
+INFO 2024-05-28 20:02:07 - model_mutation_operators.py:2006 - select insert layer: Dropout<keep_prob=0.5>
+INFO 2024-05-28 20:02:07 - model_mutation_operators.py:2041 - insert_layer_outshape equal!
+INFO 2024-05-28 20:02:07 - model_mutation_operators.py:2109 - mut_result:True
+INFO 2024-05-28 20:02:07 - model_mutation_operators.py:2110 - 95 generation!
+
+INFO 2024-05-28 20:02:07 - mutation_test.py:291 - ================== start 96 generation!(96/100) ==================
+INFO 2024-05-28 20:02:07 - model_mutation_operators.py:24 - Adopt PM mut_strategy!
+INFO 2024-05-28 20:02:07 - model_mutation_operators.py:63 - The target model do not have the mutator operators num_features!
+INFO 2024-05-28 20:02:07 - model_mutation_operators.py:64 - mut_result:Parameter Miss
+INFO 2024-05-28 20:02:07 - model_mutation_operators.py:65 - 96 generation!
+
+INFO 2024-05-28 20:02:07 - mutation_test.py:291 - ================== start 97 generation!(97/100) ==================
+INFO 2024-05-28 20:02:07 - model_mutation_operators.py:24 - Adopt PM mut_strategy!
+INFO 2024-05-28 20:02:07 - model_mutation_operators.py:63 - The target model do not have the mutator operators group!
+INFO 2024-05-28 20:02:07 - model_mutation_operators.py:64 - mut_result:Parameter Miss
+INFO 2024-05-28 20:02:07 - model_mutation_operators.py:65 - 97 generation!
+
+INFO 2024-05-28 20:02:07 - mutation_test.py:291 - ================== start 98 generation!(98/100) ==================
+INFO 2024-05-28 20:02:07 - model_mutation_operators.py:24 - Adopt PM mut_strategy!
+INFO 2024-05-28 20:02:07 - model_mutation_operators.py:63 - The target model do not have the mutator operators kernel_size!
+INFO 2024-05-28 20:02:07 - model_mutation_operators.py:64 - mut_result:Parameter Miss
+INFO 2024-05-28 20:02:07 - model_mutation_operators.py:65 - 98 generation!
+
+INFO 2024-05-28 20:02:07 - mutation_test.py:291 - ================== start 99 generation!(99/100) ==================
+INFO 2024-05-28 20:02:07 - model_mutation_operators.py:24 - Adopt PM mut_strategy!
+INFO 2024-05-28 20:02:07 - model_mutation_operators.py:63 - The target model do not have the mutator operators in_channels!
+INFO 2024-05-28 20:02:07 - model_mutation_operators.py:64 - mut_result:Parameter Miss
+INFO 2024-05-28 20:02:07 - model_mutation_operators.py:65 - 99 generation!
+
+INFO 2024-05-28 20:02:07 - mutation_test.py:291 - ================== start 100 generation!(100/100) ==================
+INFO 2024-05-28 20:02:07 - model_mutation_operators.py:24 - Adopt PM mut_strategy!
+INFO 2024-05-28 20:02:07 - model_mutation_operators.py:63 - The target model do not have the mutator operators eps!
+INFO 2024-05-28 20:02:07 - model_mutation_operators.py:64 - mut_result:Parameter Miss
+INFO 2024-05-28 20:02:07 - model_mutation_operators.py:65 - 100 generation!
+
+INFO 2024-05-28 20:02:07 - mutation_test.py:441 - mutation_scores: [0.11436055, -100, -100, -100, -100, -100, -100, -100, 0.119812645, 0.10600326, -100, 0.15673847, -100, 0.18020101, -100, -100, -100, -100, 0.08433284, -100, 0.15819684, -100, 0.10763778, -100, -100, 0.17034186, -100, -100, -100, -100, 0.08279799, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, 0.067609265, 0.07117422, -100, 0.08485613, 0.076208875, -100, 0.17900032, 0.14800164, 1.4343932, 0.17642307, -100, -100, 0.07363959, 0.10159606, 0.10159606, 0.09449986, -100, 0.1204713, 0.117530026, -100, 0.14965242, 0.14767726, -100, 0.19460702, -100, 0.08460035, -100, 0.07491394, -100, 0.08226886, -100, 0.1090911, -100, 0.15034707, -100, -100, 0.14439633, -100, 0.15772285, -100, -100, -100, -100, -100, 0.08064852, -100, 0.08958006, -100, -100, -100, -100, -100, 0.07902111, -100, -100, -100, -100, -100]
+INFO 2024-05-28 20:02:07 - mutation_test.py:443 - **** stage1 select generations: [76 12 81 21 26 52 49 14 66 51] ****
+
+INFO 2024-05-28 20:02:07 - mutation_test.py:250 - mutation iteration:100 ({'LD': 9, 'PM': 65, 'LC': 4, 'CM': 4, 'RA': 7, 'SM': 7, 'LA': 4}), mutation success:37
+ ({'LD': 8, 'PM': 10, 'LC': 3, 'CM': 3, 'RA': 5, 'SM': 7, 'LA': 1})
+

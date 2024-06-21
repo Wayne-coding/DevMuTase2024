@@ -1,0 +1,218 @@
+{
+    "edges": [
+        [
+            "dense",
+            "flatten"
+        ],
+        [
+            "flatten",
+            "dense"
+        ],
+        [
+            "dense",
+            "reshape"
+        ],
+        [
+            "reshape",
+            "maximum"
+        ],
+        [
+            "maximum",
+            "dense"
+        ]
+    ],
+    "layer_config": {
+        "dense": [
+            {
+                "activation": "linear",
+                "use_bias": true,
+                "kernel_initializer": "random_uniform",
+                "bias_initializer": "random_uniform",
+                "kernel_regularizer": null,
+                "bias_regularizer": null,
+                "activity_regularizer": null,
+                "kernel_constraint": null,
+                "bias_constraint": null
+            },
+            {
+                "activation": "linear",
+                "use_bias": false,
+                "kernel_initializer": "random_uniform",
+                "bias_initializer": "random_uniform",
+                "kernel_regularizer": null,
+                "bias_regularizer": null,
+                "activity_regularizer": null,
+                "kernel_constraint": null,
+                "bias_constraint": null
+            }
+        ],
+        "flatten": [
+            {
+                "data_format": null
+            },
+            {
+                "data_format": "channels_first"
+            }
+        ],
+        "reshape": [
+            {
+                "target_shape": [
+                    5,
+                    5,
+                    3,
+                    3
+                ]
+            },
+            {
+                "target_shape": [
+                    10
+                ]
+            }
+        ],
+        "maximum": [
+            {}
+        ]
+    },
+    "layer_input_info": {
+        "dense": {
+            "input_dims": [
+                4,
+                2,
+                5
+            ],
+            "dtype": [
+                "float32"
+            ],
+            "shape": [
+                [
+                    null,
+                    32,
+                    32,
+                    3
+                ],
+                [
+                    null,
+                    5120
+                ],
+                [
+                    null,
+                    5,
+                    5,
+                    3,
+                    3
+                ],
+                [
+                    null,
+                    300
+                ]
+            ]
+        },
+        "flatten": {
+            "input_dims": [
+                4,
+                5
+            ],
+            "dtype": [
+                "float32"
+            ],
+            "shape": [
+                [
+                    null,
+                    32,
+                    32,
+                    5
+                ],
+                [
+                    null,
+                    5,
+                    5,
+                    3,
+                    4
+                ]
+            ]
+        },
+        "reshape": {
+            "input_dims": [
+                2
+            ],
+            "dtype": [
+                "float32"
+            ],
+            "shape": [
+                [
+                    null,
+                    225
+                ],
+                [
+                    null,
+                    10
+                ]
+            ]
+        },
+        "maximum": {
+            "input_dims": [
+                5
+            ],
+            "dtype": [
+                "float32"
+            ],
+            "shape": [
+                [
+                    null,
+                    5,
+                    5,
+                    3,
+                    3
+                ]
+            ]
+        }
+    },
+    "layer_num": 13,
+    "layer_type": [
+        "dense",
+        "flatten",
+        "reshape",
+        "maximum"
+    ],
+    "cur_edge_num": 13,
+    "layer_dims": {
+        "dense": {
+            "input_dims": [
+                4,
+                2,
+                5
+            ],
+            "output_dims": [
+                4,
+                2,
+                5
+            ]
+        },
+        "flatten": {
+            "input_dims": [
+                4,
+                5
+            ],
+            "output_dims": [
+                2
+            ]
+        },
+        "reshape": {
+            "input_dims": [
+                2
+            ],
+            "output_dims": [
+                5,
+                2
+            ]
+        },
+        "maximum": {
+            "input_dims": [
+                5
+            ],
+            "output_dims": [
+                5
+            ]
+        }
+    }
+}
