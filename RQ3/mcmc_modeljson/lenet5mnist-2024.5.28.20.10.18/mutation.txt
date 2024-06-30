@@ -1,0 +1,1248 @@
+Adopt RA mut_strategy!
+candidate_in_mutlayers_indice:-1
+select layer: relu layer_type: <class 'mindspore.nn.layer.activation.ReLU'> in_shape: [2, 84] out_shape: [2, 84]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: AvgPool2d<kernel_size=1, stride=1, pad_mode=VALID>
+insert_layer_outshape not equal!: [2, 84]
+mut_result:False
+1 generation!
+
+Adopt RA mut_strategy!
+candidate_in_mutlayers_indice:-1
+select layer: fc3 layer_type: <class 'mindspore.nn.layer.basic.Dense'> in_shape: [2, 84] out_shape: [2, 10]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: Softmax<>
+insert_layer_outshape not equal!: [2, 10]
+mut_result:False
+2 generation!
+
+Adopt PM mut_strategy!
+candidate_in_mutlayers_indice:-1
+select op: fc2 layer_type: Dense selected param:in_channels input_shape:[2, 120] output_shape:[2, 84]
+Edit value: 360 new_inshape: (2, 360) new_outshape: (2, 84)
+mutate op infor:
+SequentialCell<
+  (0): Replace_ms<>
+  (1): Dense<input_channels=360, output_channels=84, has_bias=True>
+  >
+mut_result:False
+3 generation!
+
+Adopt PM mut_strategy!
+candidate_in_mutlayers_indice:-1
+select op: dropout layer_type: Dropout selected param:keep_prob input_shape:[2, 120] output_shape:[2, 120]
+Edit value: 0.84375 new_inshape: (2, 120) new_outshape: (2, 120)
+Dropout<keep_prob=0.84375>
+mut_result:False
+4 generation!
+
+Adopt RA mut_strategy!
+candidate_in_mutlayers_indice:-1
+select layer: relu layer_type: <class 'mindspore.nn.layer.activation.ReLU'> in_shape: [2, 84] out_shape: [2, 84]
+mut Basic type: True
+add Basic layer : Cascade_op
+select insert layer: dwpw_group<
+  (depthwise): dwpw_basic<
+    (dwpw_conv): Conv2d<input_channels=84, output_channels=84, kernel_size=(1, 1), stride=(1, 1), pad_mode=same, padding=0, dilation=(1, 1), group=84, has_bias=False, weight_init=<mindspore.common.initializer.HeUniform object at 0x7f0fea3a6290>, bias_init=None, format=NCHW>
+    (dwpw_bn): BatchNorm2d<num_features=84, eps=1e-05, momentum=0.9, gamma=Parameter (name=depthwise.dwpw_bn.gamma, shape=(84,), dtype=Float32, requires_grad=True), beta=Parameter (name=depthwise.dwpw_bn.beta, shape=(84,), dtype=Float32, requires_grad=True), moving_mean=Parameter (name=depthwise.dwpw_bn.moving_mean, shape=(84,), dtype=Float32, requires_grad=False), moving_variance=Parameter (name=depthwise.dwpw_bn.moving_variance, shape=(84,), dtype=Float32, requires_grad=False)>
+    (dwpw_activation): Softmax<>
+    >
+  (pointwise): dwpw_basic<
+    (dwpw_conv): Conv2d<input_channels=84, output_channels=84, kernel_size=(1, 1), stride=(1, 1), pad_mode=same, padding=0, dilation=(1, 1), group=1, has_bias=False, weight_init=<mindspore.common.initializer.HeUniform object at 0x7f0fea3a6350>, bias_init=None, format=NCHW>
+    (dwpw_bn): BatchNorm2d<num_features=84, eps=1e-05, momentum=0.9, gamma=Parameter (name=pointwise.dwpw_bn.gamma, shape=(84,), dtype=Float32, requires_grad=True), beta=Parameter (name=pointwise.dwpw_bn.beta, shape=(84,), dtype=Float32, requires_grad=True), moving_mean=Parameter (name=pointwise.dwpw_bn.moving_mean, shape=(84,), dtype=Float32, requires_grad=False), moving_variance=Parameter (name=pointwise.dwpw_bn.moving_variance, shape=(84,), dtype=Float32, requires_grad=False)>
+    (dwpw_activation): Softmax<>
+    >
+  >
+insert_layer_outshape not equal!: [2, 84]
+mut_result:False
+5 generation!
+
+Adopt RA mut_strategy!
+candidate_in_mutlayers_indice:-1
+select layer: conv1 layer_type: <class 'mindspore.nn.layer.conv.Conv2d'> in_shape: [2, 1, 28, 28] out_shape: [2, 6, 28, 28]
+mut Basic type: True
+add Basic layer : Cascade_op
+select insert layer: SE<
+  (SE_pool): GlobalAvgPooling<>
+  (act): HSigmoid<>
+  (SE_act1): ReLU<>
+  (SE_act2): HSigmoid<>
+  >
+insert_layer_outshape not equal!: [2, 6, 28, 28]
+mut_result:True
+6 generation!
+
+Adopt PM mut_strategy!
+candidate_in_mutlayers_indice:-1
+select op: pool2 layer_type: AvgPool2d selected param:stride input_shape:[2, 16, 14, 14] output_shape:[2, 16, 7, 7]
+Edit value: (3, 3) new_inshape: (2, 16, 14, 14) new_outshape: (2, 16, 5, 5)
+mutate op infor:
+SequentialCell<
+  (0): AvgPool2d<kernel_size=2, stride=(3, 3), pad_mode=VALID>
+  (1): Replace_ms<>
+  >
+mut_result:False
+7 generation!
+
+Adopt PM mut_strategy!
+candidate_in_mutlayers_indice:-1
+select op: conv2 layer_type: Conv2d selected param:stride input_shape:[2, 6, 14, 14] output_shape:[2, 16, 14, 14]
+Edit value: (2, 4) new_inshape: (2, 6, 14, 14) new_outshape: (2, 16, 7, 4)
+mutate op infor:
+SequentialCell<
+  (0): Conv2d<input_channels=6, output_channels=16, kernel_size=(5, 5), stride=(2, 4), pad_mode=same, padding=0, dilation=(1, 1), group=1, has_bias=False, weight_init=<mindspore.common.initializer.HeUniform object at 0x7f0fea3b1150>, bias_init=None, format=NCHW>
+  (1): Replace_ms<>
+  >
+mut_result:True
+8 generation!
+
+Adopt SM mut_strategy!
+select layer: conv2 layer_type: <class 'mindspore.nn.layer.conv.Conv2d'> in_shape: [2, 6, 14, 14] out_shape: [2, 16, 14, 14]
+mut Basic type: True
+candidate_in_mutlayers_indice:-1
+mutate state: before
+mutate input_shape: [2, 18]
+mut_result:False
+9 generation!
+
+Adopt LA mut_strategy!
+candidate_in_mutlayers_indice:-1
+select layer: pool1 layer_type: <class 'mindspore.nn.layer.pooling.AvgPool2d'> in_shape: [2, 6, 28, 28] out_shape: [2, 6, 14, 14]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: ReLU6<>
+insert_layer_outshape equal!
+mut_result:True
+10 generation!
+
+Adopt LA mut_strategy!
+candidate_in_mutlayers_indice:-1
+select layer: conv2 layer_type: <class 'mindspore.nn.layer.conv.Conv2d'> in_shape: [2, 6, 14, 14] out_shape: [2, 16, 14, 14]
+mut Basic type: True
+add Basic layer : Cascade_op
+select insert layer: Inception_A<
+  (branch0): BasicConv2d<
+    (relu): ReLU<>
+    >
+  (branch1): SequentialCell<
+    (0): BasicConv2d<
+      (relu): ReLU<>
+      >
+    (1): BasicConv2d<
+      (relu): ReLU<>
+      >
+    >
+  (branch2): SequentialCell<
+    (0): BasicConv2d<
+      (relu): ReLU<>
+      >
+    (1): BasicConv2d<
+      (relu): ReLU<>
+      >
+    (2): BasicConv2d<
+      (relu): ReLU<>
+      >
+    >
+  (branch_pool): SequentialCell<
+    (0): AvgPool2d<kernel_size=3, stride=1, pad_mode=SAME>
+    (1): BasicConv2d<
+      (relu): ReLU<>
+      >
+    >
+  >
+insert_layer_outshape equal!
+add Cascade_op after basicop!
+mut_result:False
+11 generation!
+
+Adopt LA mut_strategy!
+candidate_in_mutlayers_indice:-1
+select layer: fc1 layer_type: <class 'mindspore.nn.layer.basic.Dense'> in_shape: [2, 784] out_shape: [2, 120]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: Dense<input_channels=120, output_channels=120>
+insert_layer_outshape equal!
+mut_result:False
+12 generation!
+
+Adopt LD mut_strategy!
+delete layer_name:fc3
+candidate_in_mutlayers_indice:-1
+adopt DeleteCell Replace_ms
+mut_result:True
+13 generation!
+
+Adopt LC mut_strategy!
+select layer: pool2 layer_type: <class 'mindspore.nn.layer.pooling.AvgPool2d'> in_shape: [2, 16, 14, 14] out_shape: [2, 16, 7, 7]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: AvgPool2d<kernel_size=2, stride=2, pad_mode=VALID>
+insert_layer_outshape not equal!: [2, 16, 7, 7]
+mut_result:False
+14 generation!
+
+Adopt SM mut_strategy!
+select layer: fc3 layer_type: <class 'mindspore.nn.layer.basic.Dense'> in_shape: [2, 84] out_shape: [2, 10]
+mut Basic type: True
+candidate_in_mutlayers_indice:-1
+mutate state: before
+mutate input_shape: [2, 4, 2, 40, 43]
+mut_result:True
+15 generation!
+
+Adopt LD mut_strategy!
+delete layer_name:pool1
+candidate_in_mutlayers_indice:-1
+adopt DeleteCell Replace_ms
+mut_result:True
+16 generation!
+
+Adopt SM mut_strategy!
+select layer: conv2 layer_type: <class 'mindspore.nn.layer.container.SequentialCell'> in_shape: [2, 6, 14, 14] out_shape: [2, 16, 14, 14]
+mut Basic type: True
+mut_result:No suitable ops for SM mutation!
+17 generation!
+
+Adopt SM mut_strategy!
+select layer: flatten layer_type: <class 'mindspore.nn.layer.basic.Flatten'> in_shape: [2, 16, 7, 7] out_shape: [2, 784]
+mut Basic type: True
+candidate_in_mutlayers_indice:-1
+mutate state: after
+mutate output_shape: [2, 8, 27, 44]
+mut_result:True
+18 generation!
+
+Adopt PM mut_strategy!
+candidate_in_mutlayers_indice:-1
+select op: conv2 layer_type: Conv2d selected param:group input_shape:[2, 6, 14, 14] output_shape:[2, 16, 14, 14]
+Edit value: 2 new_inshape: (2, 6, 14, 14) new_outshape: (2, 16, 14, 14)
+Conv2d<input_channels=6, output_channels=16, kernel_size=(5, 5), stride=(1, 1), pad_mode=same, padding=0, dilation=(1, 1), group=2, has_bias=False, weight_init=<mindspore.common.initializer.HeUniform object at 0x7f0fe978e310>, bias_init=None, format=NCHW>
+mut_result:False
+19 generation!
+
+Adopt PM mut_strategy!
+candidate_in_mutlayers_indice:-1
+select op: fc1 layer_type: Dense selected param:in_channels input_shape:[2, 784] output_shape:[2, 120]
+Edit value: 261 new_inshape: (2, 261) new_outshape: (2, 120)
+mutate op infor:
+SequentialCell<
+  (0): Replace_ms<>
+  (1): Dense<input_channels=261, output_channels=120, has_bias=True>
+  >
+mut_result:False
+20 generation!
+
+Adopt PM mut_strategy!
+candidate_in_mutlayers_indice:-1
+select op: pool1 layer_type: AvgPool2d selected param:stride input_shape:[2, 6, 28, 28] output_shape:[2, 6, 14, 14]
+Edit value: (2, 3) new_inshape: (2, 6, 28, 28) new_outshape: (2, 6, 14, 9)
+mutate op infor:
+SequentialCell<
+  (0): AvgPool2d<kernel_size=2, stride=(2, 3), pad_mode=VALID>
+  (1): Replace_ms<>
+  >
+mut_result:True
+21 generation!
+
+Adopt PM mut_strategy!
+candidate_in_mutlayers_indice:-1
+select op: conv1 layer_type: Conv2d selected param:group input_shape:[2, 1, 28, 28] output_shape:[2, 6, 28, 28]
+Edit value: 1 new_inshape: (2, 1, 28, 28) new_outshape: (2, 6, 28, 28)
+Conv2d<input_channels=1, output_channels=6, kernel_size=(5, 5), stride=(1, 1), pad_mode=same, padding=0, dilation=(1, 1), group=1, has_bias=False, weight_init=<mindspore.common.initializer.HeUniform object at 0x7f0fea3b50d0>, bias_init=None, format=NCHW>
+mut_result:False
+22 generation!
+
+Adopt LD mut_strategy!
+delete layer_name:relu
+candidate_in_mutlayers_indice:-1
+adopt DeleteCell EmptyCell
+mut_result:True
+23 generation!
+
+Adopt CM mut_strategy!
+candidate_in_mutlayers_indice:-1
+select layer: dropout layer_type: <class 'mindspore.nn.layer.basic.Dropout'> in_shape: [2, 120] out_shape: [2, 120]
+mut Basic type: True
+select insert layer: GELU<>
+replace Basic with CM op!
+mut_result:False
+24 generation!
+
+Adopt LA mut_strategy!
+candidate_in_mutlayers_indice:-1
+select layer: fc3 layer_type: <class 'mindspore.nn.layer.basic.Dense'> in_shape: [2, 84] out_shape: [2, 10]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: Dropout<keep_prob=0.5>
+insert_layer_outshape equal!
+mut_result:False
+25 generation!
+
+Adopt LD mut_strategy!
+delete layer_name:pool1
+mut_result:No suitable ops for LD mutation!
+26 generation!
+
+Adopt PM mut_strategy!
+The target model do not have the mutator operators num_features!
+mut_result:Parameter Miss
+27 generation!
+
+Adopt LA mut_strategy!
+candidate_in_mutlayers_indice:-1
+select layer: fc1 layer_type: <class 'mindspore.nn.layer.basic.Dense'> in_shape: [2, 784] out_shape: [2, 120]
+mut Basic type: True
+add Basic layer : Cascade_op
+select insert layer: Inception_A<
+  (branch0): BasicConv2d<
+    (relu): ReLU<>
+    >
+  (branch1): SequentialCell<
+    (0): BasicConv2d<
+      (relu): ReLU<>
+      >
+    (1): BasicConv2d<
+      (relu): ReLU<>
+      >
+    >
+  (branch2): SequentialCell<
+    (0): BasicConv2d<
+      (relu): ReLU<>
+      >
+    (1): BasicConv2d<
+      (relu): ReLU<>
+      >
+    (2): BasicConv2d<
+      (relu): ReLU<>
+      >
+    >
+  (branch_pool): SequentialCell<
+    (0): AvgPool2d<kernel_size=3, stride=1, pad_mode=SAME>
+    (1): BasicConv2d<
+      (relu): ReLU<>
+      >
+    >
+  >
+insert_layer_outshape equal!
+add Cascade_op after basicop!
+mut_result:False
+28 generation!
+
+Adopt LC mut_strategy!
+select layer: dropout layer_type: <class 'mindspore.nn.layer.basic.Dropout'> in_shape: [2, 120] out_shape: [2, 120]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: Dropout<keep_prob=0.5>
+insert_layer_outshape equal!
+mut_result:True
+29 generation!
+
+Adopt PM mut_strategy!
+The target model do not have the mutator operators group!
+mut_result:Parameter Miss
+30 generation!
+
+Adopt PM mut_strategy!
+candidate_in_mutlayers_indice:-1
+select op: conv1 layer_type: Conv2d selected param:group input_shape:[2, 1, 28, 28] output_shape:[2, 6, 28, 28]
+Edit value: 1 new_inshape: (2, 1, 28, 28) new_outshape: (2, 6, 28, 28)
+Conv2d<input_channels=1, output_channels=6, kernel_size=(5, 5), stride=(1, 1), pad_mode=same, padding=0, dilation=(1, 1), group=1, has_bias=False, weight_init=<mindspore.common.initializer.HeUniform object at 0x7f0fe9ed4650>, bias_init=None, format=NCHW>
+mut_result:False
+31 generation!
+
+Adopt CM mut_strategy!
+candidate_in_mutlayers_indice:-1
+select layer: pool2 layer_type: <class 'mindspore.nn.layer.pooling.AvgPool2d'> in_shape: [2, 16, 14, 14] out_shape: [2, 16, 7, 7]
+mut Basic type: True
+select insert layer: Mish<>
+replace Basic with CM op!
+mut_result:True
+32 generation!
+
+Adopt SM mut_strategy!
+select layer: fc1 layer_type: <class 'mindspore.nn.layer.basic.Dense'> in_shape: [2, 784] out_shape: [2, 120]
+mut Basic type: True
+candidate_in_mutlayers_indice:-1
+mutate state: all
+mutate input_shape: [2, 9]
+mutate output_shape: [2, 19, 40, 43, 45]
+mut_result:True
+33 generation!
+
+Adopt LC mut_strategy!
+select layer: conv2 layer_type: <class 'mindspore.nn.layer.conv.Conv2d'> in_shape: [2, 6, 14, 14] out_shape: [2, 16, 14, 14]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: Conv2d<input_channels=16, output_channels=16, kernel_size=(5, 5), stride=(1, 1), pad_mode=same, padding=0, dilation=(1, 1), group=1, has_bias=False, weight_init=<mindspore.common.initializer.HeUniform object at 0x7f0fe96cb5d0>, bias_init=None, format=NCHW>
+insert_layer_outshape equal!
+mut_result:False
+34 generation!
+
+Adopt LC mut_strategy!
+select layer: fc3 layer_type: <class 'mindspore.nn.layer.basic.Dense'> in_shape: [2, 84] out_shape: [2, 10]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: Dense<input_channels=84, output_channels=10, has_bias=True>
+Illegal LC mutate!
+For 'MatMul', the type of 'x2' should be same as 'x1', but got 'x1' with type Tensor[Float16] and 'x2' with type Tensor[Float32].
+
+----------------------------------------------------
+- C++ Call Stack: (For framework developers)
+----------------------------------------------------
+mindspore/core/ops/mat_mul.cc:143 InferType
+
+mut_result:LC Create illegal layer!
+35 generation!
+
+Adopt PM mut_strategy!
+candidate_in_mutlayers_indice:-1
+select op: conv1 layer_type: Conv2d selected param:stride input_shape:[2, 1, 28, 28] output_shape:[2, 6, 28, 28]
+Edit value: (2, 2) new_inshape: (2, 1, 28, 28) new_outshape: (2, 6, 14, 14)
+mutate op infor:
+SequentialCell<
+  (0): Conv2d<input_channels=1, output_channels=6, kernel_size=(5, 5), stride=(2, 2), pad_mode=same, padding=0, dilation=(1, 1), group=1, has_bias=False, weight_init=<mindspore.common.initializer.HeUniform object at 0x7f0fe9787f10>, bias_init=None, format=NCHW>
+  (1): Replace_ms<>
+  >
+mut_result:False
+36 generation!
+
+Adopt RA mut_strategy!
+candidate_in_mutlayers_indice:-1
+select layer: conv1 layer_type: <class 'mindspore.nn.layer.conv.Conv2d'> in_shape: [2, 1, 28, 28] out_shape: [2, 6, 28, 28]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: Dropout<keep_prob=0.5>
+insert_layer_outshape not equal!: [2, 6, 28, 28]
+mut_result:True
+37 generation!
+
+Adopt RA mut_strategy!
+candidate_in_mutlayers_indice:-1
+select layer: dropout layer_type: <class 'mindspore.nn.layer.basic.Dropout'> in_shape: [2, 120] out_shape: [2, 120]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: Conv2d<input_channels=120, output_channels=120, kernel_size=(1, 1), stride=(1, 1), pad_mode=same, padding=0, dilation=(1, 1), group=1, has_bias=False, weight_init=<mindspore.common.initializer.HeUniform object at 0x7f0fe9e4cad0>, bias_init=None, format=NCHW>
+insert_layer_outshape not equal!: [2, 120]
+mut_result:False
+38 generation!
+
+Adopt RA mut_strategy!
+candidate_in_mutlayers_indice:-1
+select layer: fc2 layer_type: <class 'mindspore.nn.layer.basic.Dense'> in_shape: [2, 120] out_shape: [2, 84]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: Tanh<>
+insert_layer_outshape not equal!: [2, 84]
+mut_result:True
+39 generation!
+
+Adopt PM mut_strategy!
+candidate_in_mutlayers_indice:-1
+select op: pool2 layer_type: AvgPool2d selected param:kernel_size input_shape:[2, 16, 14, 14] output_shape:[2, 16, 7, 7]
+Edit value: (3, 2) new_inshape: (2, 16, 14, 14) new_outshape: (2, 16, 6, 7)
+mutate op infor:
+SequentialCell<
+  (0): AvgPool2d<kernel_size=(3, 2), stride=2, pad_mode=VALID>
+  (1): Replace_ms<>
+  >
+mut_result:True
+40 generation!
+
+Adopt CM mut_strategy!
+mut_result:No suitable ops for CM mutation!
+41 generation!
+
+Adopt PM mut_strategy!
+The target model do not have the mutator operators momentum!
+mut_result:Parameter Miss
+42 generation!
+
+Adopt SM mut_strategy!
+select layer: fc1 layer_type: <class 'mindspore.nn.layer.basic.Dense'> in_shape: [2, 784] out_shape: [2, 120]
+mut Basic type: True
+candidate_in_mutlayers_indice:-1
+mutate state: all
+mutate input_shape: [2, 23, 47]
+mutate output_shape: [2, 19, 8, 21, 41]
+mut_result:False
+43 generation!
+
+Adopt SM mut_strategy!
+select layer: pool2 layer_type: <class 'mindspore.nn.layer.pooling.AvgPool2d'> in_shape: [2, 16, 14, 14] out_shape: [2, 16, 7, 7]
+mut Basic type: True
+candidate_in_mutlayers_indice:-1
+mutate state: all
+mutate input_shape: [2, 40, 27]
+mutate output_shape: [2, 15, 26, 25, 33]
+mut_result:True
+44 generation!
+
+Adopt CM mut_strategy!
+candidate_in_mutlayers_indice:-1
+select layer: dropout layer_type: <class 'mindspore.nn.layer.basic.Dropout'> in_shape: [2, 120] out_shape: [2, 120]
+mut Basic type: True
+select insert layer: Conv2d<input_channels=120, output_channels=120, kernel_size=(1, 1), stride=(1, 1), pad_mode=same, padding=0, dilation=(1, 1), group=1, has_bias=False, weight_init=<mindspore.common.initializer.HeUniform object at 0x7f0fe9740d10>, bias_init=None, format=NCHW>
+replace Basic with CM op!
+mut_result:False
+45 generation!
+
+Adopt CM mut_strategy!
+mut_result:No suitable ops for CM mutation!
+46 generation!
+
+Adopt PM mut_strategy!
+candidate_in_mutlayers_indice:-1
+select op: conv1 layer_type: Conv2d selected param:out_channels input_shape:[2, 1, 28, 28] output_shape:[2, 6, 28, 28]
+Edit value: 12 new_inshape: (2, 1, 28, 28) new_outshape: (2, 12, 28, 28)
+mutate op infor:
+SequentialCell<
+  (0): Conv2d<input_channels=1, output_channels=12, kernel_size=(5, 5), stride=(1, 1), pad_mode=same, padding=0, dilation=(1, 1), group=1, has_bias=False, weight_init=<mindspore.common.initializer.HeUniform object at 0x7f0fe9787c50>, bias_init=None, format=NCHW>
+  (1): Replace_ms<>
+  >
+mut_result:False
+47 generation!
+
+Adopt RA mut_strategy!
+candidate_in_mutlayers_indice:-1
+select layer: pool2 layer_type: <class 'mindspore.nn.layer.pooling.AvgPool2d'> in_shape: [2, 16, 14, 14] out_shape: [2, 16, 7, 7]
+mut Basic type: True
+add Basic layer : Cascade_op
+select insert layer: SE<
+  (SE_pool): GlobalAvgPooling<>
+  (act): HSigmoid<>
+  (SE_act1): ReLU<>
+  (SE_act2): HSigmoid<>
+  >
+insert_layer_outshape not equal!: [2, 16, 7, 7]
+mut_result:True
+48 generation!
+
+Adopt LC mut_strategy!
+select layer: fc3 layer_type: <class 'mindspore.nn.layer.basic.Dense'> in_shape: [2, 84] out_shape: [2, 10]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: Dense<input_channels=84, output_channels=10, has_bias=True>
+Illegal LC mutate!
+For 'MatMul', the type of 'x2' should be same as 'x1', but got 'x1' with type Tensor[Float16] and 'x2' with type Tensor[Float32].
+
+----------------------------------------------------
+- C++ Call Stack: (For framework developers)
+----------------------------------------------------
+mindspore/core/ops/mat_mul.cc:143 InferType
+
+mut_result:LC Create illegal layer!
+49 generation!
+
+Adopt RA mut_strategy!
+candidate_in_mutlayers_indice:-1
+select layer: conv2 layer_type: <class 'mindspore.nn.layer.conv.Conv2d'> in_shape: [2, 6, 14, 14] out_shape: [2, 16, 14, 14]
+mut Basic type: True
+add Basic layer : Cascade_op
+select insert layer: Inception_A<
+  (branch0): BasicConv2d<
+    (relu): ReLU<>
+    >
+  (branch1): SequentialCell<
+    (0): BasicConv2d<
+      (relu): ReLU<>
+      >
+    (1): BasicConv2d<
+      (relu): ReLU<>
+      >
+    >
+  (branch2): SequentialCell<
+    (0): BasicConv2d<
+      (relu): ReLU<>
+      >
+    (1): BasicConv2d<
+      (relu): ReLU<>
+      >
+    (2): BasicConv2d<
+      (relu): ReLU<>
+      >
+    >
+  (branch_pool): SequentialCell<
+    (0): AvgPool2d<kernel_size=3, stride=1, pad_mode=SAME>
+    (1): BasicConv2d<
+      (relu): ReLU<>
+      >
+    >
+  >
+insert_layer_outshape not equal!: [2, 16, 14, 14]
+mut_result:False
+50 generation!
+
+Adopt SM mut_strategy!
+select layer: fc3 layer_type: <class 'mindspore.nn.layer.basic.Dense'> in_shape: [2, 84] out_shape: [2, 10]
+mut Basic type: True
+candidate_in_mutlayers_indice:-1
+mutate state: before
+mutate input_shape: [2, 15]
+mut_result:False
+51 generation!
+
+Adopt SM mut_strategy!
+select layer: flatten layer_type: <class 'mindspore.nn.layer.basic.Flatten'> in_shape: [2, 16, 7, 7] out_shape: [2, 784]
+mut Basic type: True
+candidate_in_mutlayers_indice:-1
+mutate state: all
+mutate input_shape: [2, 16, 39]
+mutate output_shape: [2, 12]
+mut_result:True
+52 generation!
+
+Adopt CM mut_strategy!
+candidate_in_mutlayers_indice:-1
+select layer: flatten layer_type: <class 'mindspore.nn.layer.basic.Flatten'> in_shape: [2, 16, 7, 7] out_shape: [2, 784]
+mut Basic type: True
+select insert layer: Conv2d<input_channels=16, output_channels=784, kernel_size=(1, 1), stride=(1, 1), pad_mode=same, padding=0, dilation=(1, 1), group=1, has_bias=False, weight_init=<mindspore.common.initializer.HeUniform object at 0x7f0fe9769110>, bias_init=None, format=NCHW>
+replace Basic with CM op!
+mut_result:False
+53 generation!
+
+Adopt RA mut_strategy!
+candidate_in_mutlayers_indice:-1
+select layer: fc3 layer_type: <class 'mindspore.nn.layer.basic.Dense'> in_shape: [2, 84] out_shape: [2, 10]
+mut Basic type: True
+add Basic layer : Cascade_op
+select insert layer: Inception_A<
+  (branch0): BasicConv2d<
+    (relu): ReLU<>
+    >
+  (branch1): SequentialCell<
+    (0): BasicConv2d<
+      (relu): ReLU<>
+      >
+    (1): BasicConv2d<
+      (relu): ReLU<>
+      >
+    >
+  (branch2): SequentialCell<
+    (0): BasicConv2d<
+      (relu): ReLU<>
+      >
+    (1): BasicConv2d<
+      (relu): ReLU<>
+      >
+    (2): BasicConv2d<
+      (relu): ReLU<>
+      >
+    >
+  (branch_pool): SequentialCell<
+    (0): AvgPool2d<kernel_size=3, stride=1, pad_mode=SAME>
+    (1): BasicConv2d<
+      (relu): ReLU<>
+      >
+    >
+  >
+insert_layer_outshape not equal!: [2, 10]
+mut_result:True
+54 generation!
+
+Adopt LC mut_strategy!
+select layer: dropout layer_type: <class 'mindspore.nn.layer.basic.Dropout'> in_shape: [2, 120] out_shape: [2, 120]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: Dropout<keep_prob=0.5>
+insert_layer_outshape equal!
+mut_result:True
+55 generation!
+
+Adopt SM mut_strategy!
+select layer: fc1 layer_type: <class 'mindspore.nn.layer.basic.Dense'> in_shape: [2, 784] out_shape: [2, 120]
+mut Basic type: True
+candidate_in_mutlayers_indice:-1
+mutate state: all
+mutate input_shape: [2, 41, 26, 41]
+mutate output_shape: [2, 30, 20]
+mut_result:True
+56 generation!
+
+Adopt PM mut_strategy!
+The target model do not have the mutator operators num_features!
+mut_result:Parameter Miss
+57 generation!
+
+Adopt SM mut_strategy!
+select layer: pool2 layer_type: <class 'mindspore.nn.layer.pooling.AvgPool2d'> in_shape: [2, 16, 14, 14] out_shape: [2, 16, 7, 7]
+mut Basic type: True
+candidate_in_mutlayers_indice:-1
+mutate state: before
+mutate input_shape: [2, 24]
+mut_result:True
+58 generation!
+
+Adopt RA mut_strategy!
+mut_result:No suitable ops for RA mutation!
+59 generation!
+
+Adopt LA mut_strategy!
+candidate_in_mutlayers_indice:-1
+select layer: fc2 layer_type: <class 'mindspore.nn.layer.basic.Dense'> in_shape: [2, 120] out_shape: [2, 84]
+mut Basic type: True
+add Basic layer : Cascade_op
+select insert layer: SE<
+  (SE_pool): GlobalAvgPooling<>
+  (act): HSigmoid<>
+  (SE_act1): ReLU<>
+  (SE_act2): HSigmoid<>
+  >
+insert_layer_outshape equal!
+add Cascade_op after basicop!
+mut_result:False
+60 generation!
+
+Adopt PM mut_strategy!
+The target model do not have the mutator operators momentum!
+mut_result:Parameter Miss
+61 generation!
+
+Adopt LA mut_strategy!
+candidate_in_mutlayers_indice:-1
+select layer: conv2 layer_type: <class 'mindspore.nn.layer.conv.Conv2d'> in_shape: [2, 6, 14, 14] out_shape: [2, 16, 14, 14]
+mut Basic type: True
+add Basic layer : Cascade_op
+select insert layer: Inception_A<
+  (branch0): BasicConv2d<
+    (relu): ReLU<>
+    >
+  (branch1): SequentialCell<
+    (0): BasicConv2d<
+      (relu): ReLU<>
+      >
+    (1): BasicConv2d<
+      (relu): ReLU<>
+      >
+    >
+  (branch2): SequentialCell<
+    (0): BasicConv2d<
+      (relu): ReLU<>
+      >
+    (1): BasicConv2d<
+      (relu): ReLU<>
+      >
+    (2): BasicConv2d<
+      (relu): ReLU<>
+      >
+    >
+  (branch_pool): SequentialCell<
+    (0): AvgPool2d<kernel_size=3, stride=1, pad_mode=SAME>
+    (1): BasicConv2d<
+      (relu): ReLU<>
+      >
+    >
+  >
+insert_layer_outshape equal!
+add Cascade_op after basicop!
+mut_result:False
+62 generation!
+
+Adopt PM mut_strategy!
+candidate_in_mutlayers_indice:-1
+select op: fc3 layer_type: Dense selected param:out_channels input_shape:[2, 84] output_shape:[2, 10]
+Edit value: 40 new_inshape: (2, 84) new_outshape: (2, 40)
+mutate op infor:
+SequentialCell<
+  (0): Dense<input_channels=84, output_channels=40, has_bias=True>
+  (1): Replace_ms<>
+  >
+mut_result:True
+63 generation!
+
+Adopt SM mut_strategy!
+select layer: pool2 layer_type: <class 'mindspore.nn.layer.pooling.AvgPool2d'> in_shape: [2, 16, 14, 14] out_shape: [2, 16, 7, 7]
+mut Basic type: True
+candidate_in_mutlayers_indice:-1
+mutate state: before
+mutate input_shape: [2, 26]
+mut_result:True
+64 generation!
+
+Adopt LD mut_strategy!
+delete layer_name:pool2
+candidate_in_mutlayers_indice:-1
+adopt DeleteCell Replace_ms
+mut_result:False
+65 generation!
+
+Adopt LA mut_strategy!
+candidate_in_mutlayers_indice:-1
+select layer: dropout layer_type: <class 'mindspore.nn.layer.basic.Dropout'> in_shape: [2, 120] out_shape: [2, 120]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: ELU<>
+insert_layer_outshape equal!
+mut_result:False
+66 generation!
+
+Adopt RA mut_strategy!
+candidate_in_mutlayers_indice:-1
+select layer: fc2 layer_type: <class 'mindspore.nn.layer.basic.Dense'> in_shape: [2, 120] out_shape: [2, 84]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: LeakyReLU<>
+insert_layer_outshape not equal!: [2, 84]
+mut_result:False
+67 generation!
+
+Adopt LC mut_strategy!
+select layer: fc2 layer_type: <class 'mindspore.nn.layer.basic.Dense'> in_shape: [2, 120] out_shape: [2, 84]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: Dense<input_channels=120, output_channels=84, has_bias=True>
+Illegal LC mutate!
+For 'MatMul', the type of 'x2' should be same as 'x1', but got 'x1' with type Tensor[Float16] and 'x2' with type Tensor[Float32].
+
+----------------------------------------------------
+- C++ Call Stack: (For framework developers)
+----------------------------------------------------
+mindspore/core/ops/mat_mul.cc:143 InferType
+
+mut_result:LC Create illegal layer!
+68 generation!
+
+Adopt LC mut_strategy!
+select layer: dropout layer_type: <class 'mindspore.nn.layer.basic.Dropout'> in_shape: [2, 120] out_shape: [2, 120]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: Dropout<keep_prob=0.5>
+insert_layer_outshape equal!
+mut_result:True
+69 generation!
+
+Adopt LA mut_strategy!
+candidate_in_mutlayers_indice:-1
+select layer: relu layer_type: <class 'mindspore.nn.layer.activation.ReLU'> in_shape: [2, 84] out_shape: [2, 84]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: Tanh<>
+insert_layer_outshape equal!
+mut_result:False
+70 generation!
+
+Adopt CM mut_strategy!
+candidate_in_mutlayers_indice:-1
+select layer: dropout layer_type: <class 'mindspore.nn.layer.basic.Dropout'> in_shape: [2, 120] out_shape: [2, 120]
+mut Basic type: True
+select insert layer: ResidualBlock<
+  (residual_conv1): Conv2d<input_channels=120, output_channels=30, kernel_size=(1, 1), stride=(1, 1), pad_mode=same, padding=0, dilation=(1, 1), group=1, has_bias=False, weight_init=<mindspore.common.initializer.HeUniform object at 0x7f0fc848ccd0>, bias_init=None, format=NCHW>
+  (residual_bn1): BatchNorm2d<num_features=30, eps=0.0001, momentum=0.9, gamma=Parameter (name=1.residual_bn1.gamma, shape=(30,), dtype=Float32, requires_grad=True), beta=Parameter (name=1.residual_bn1.beta, shape=(30,), dtype=Float32, requires_grad=True), moving_mean=Parameter (name=1.residual_bn1.moving_mean, shape=(30,), dtype=Float32, requires_grad=False), moving_variance=Parameter (name=1.residual_bn1.moving_variance, shape=(30,), dtype=Float32, requires_grad=False)>
+  (residual_conv2): Conv2d<input_channels=30, output_channels=30, kernel_size=(3, 3), stride=(1, 1), pad_mode=same, padding=0, dilation=(1, 1), group=1, has_bias=False, weight_init=<mindspore.common.initializer.HeUniform object at 0x7f0fe9f697d0>, bias_init=None, format=NCHW>
+  (residual_bn2): BatchNorm2d<num_features=30, eps=0.0001, momentum=0.9, gamma=Parameter (name=1.residual_bn2.gamma, shape=(30,), dtype=Float32, requires_grad=True), beta=Parameter (name=1.residual_bn2.beta, shape=(30,), dtype=Float32, requires_grad=True), moving_mean=Parameter (name=1.residual_bn2.moving_mean, shape=(30,), dtype=Float32, requires_grad=False), moving_variance=Parameter (name=1.residual_bn2.moving_variance, shape=(30,), dtype=Float32, requires_grad=False)>
+  (residual_conv3): Conv2d<input_channels=30, output_channels=120, kernel_size=(1, 1), stride=(1, 1), pad_mode=same, padding=0, dilation=(1, 1), group=1, has_bias=False, weight_init=<mindspore.common.initializer.HeUniform object at 0x7f0fe9ff6950>, bias_init=None, format=NCHW>
+  (residual_bn3): BatchNorm2d<num_features=120, eps=0.0001, momentum=0.9, gamma=Parameter (name=1.residual_bn3.gamma, shape=(120,), dtype=Float32, requires_grad=True), beta=Parameter (name=1.residual_bn3.beta, shape=(120,), dtype=Float32, requires_grad=True), moving_mean=Parameter (name=1.residual_bn3.moving_mean, shape=(120,), dtype=Float32, requires_grad=False), moving_variance=Parameter (name=1.residual_bn3.moving_variance, shape=(120,), dtype=Float32, requires_grad=False)>
+  (residual_relu1): ReLU<>
+  (residual_relu2): ReLU<>
+  (residual_relu3): ReLU<>
+  (residual_down_sample_layer): SequentialCell<
+    (0): Conv2d<input_channels=120, output_channels=120, kernel_size=(1, 1), stride=(1, 1), pad_mode=same, padding=0, dilation=(1, 1), group=1, has_bias=False, weight_init=<mindspore.common.initializer.HeUniform object at 0x7f0fe9ff6d50>, bias_init=None, format=NCHW>
+    (1): BatchNorm2d<num_features=120, eps=0.0001, momentum=0.9, gamma=Parameter (name=1.residual_down_sample_layer.1.gamma, shape=(120,), dtype=Float32, requires_grad=True), beta=Parameter (name=1.residual_down_sample_layer.1.beta, shape=(120,), dtype=Float32, requires_grad=True), moving_mean=Parameter (name=1.residual_down_sample_layer.1.moving_mean, shape=(120,), dtype=Float32, requires_grad=False), moving_variance=Parameter (name=1.residual_down_sample_layer.1.moving_variance, shape=(120,), dtype=Float32, requires_grad=False)>
+    >
+  >
+replace Basic with CM op!
+mut_result:True
+71 generation!
+
+Adopt CM mut_strategy!
+candidate_in_mutlayers_indice:-1
+select layer: pool2 layer_type: <class 'mindspore.nn.layer.pooling.AvgPool2d'> in_shape: [2, 16, 14, 14] out_shape: [2, 16, 7, 7]
+mut Basic type: True
+select insert layer: Dropout<keep_prob=0.5>
+replace Basic with CM op!
+mut_result:True
+72 generation!
+
+Adopt PM mut_strategy!
+candidate_in_mutlayers_indice:-1
+select op: conv2 layer_type: Conv2d selected param:group input_shape:[2, 6, 14, 14] output_shape:[2, 16, 14, 14]
+Edit value: 2 new_inshape: (2, 6, 14, 14) new_outshape: (2, 16, 14, 14)
+Conv2d<input_channels=6, output_channels=16, kernel_size=(5, 5), stride=(1, 1), pad_mode=same, padding=0, dilation=(1, 1), group=2, has_bias=False, weight_init=<mindspore.common.initializer.HeUniform object at 0x7f0fea6781d0>, bias_init=None, format=NCHW>
+mut_result:True
+73 generation!
+
+Adopt RA mut_strategy!
+candidate_in_mutlayers_indice:-1
+select layer: pool1 layer_type: <class 'mindspore.nn.layer.pooling.AvgPool2d'> in_shape: [2, 6, 28, 28] out_shape: [2, 6, 14, 14]
+mut Basic type: True
+add Basic layer : Cascade_op
+select insert layer: ResidualBlock<
+  (residual_conv1): Conv2d<input_channels=6, output_channels=1, kernel_size=(1, 1), stride=(1, 1), pad_mode=same, padding=0, dilation=(1, 1), group=1, has_bias=False, weight_init=<mindspore.common.initializer.HeUniform object at 0x7f0fe9eeec90>, bias_init=None, format=NCHW>
+  (residual_bn1): BatchNorm2d<num_features=1, eps=0.0001, momentum=0.9, gamma=Parameter (name=residual_bn1.gamma, shape=(1,), dtype=Float32, requires_grad=True), beta=Parameter (name=residual_bn1.beta, shape=(1,), dtype=Float32, requires_grad=True), moving_mean=Parameter (name=residual_bn1.moving_mean, shape=(1,), dtype=Float32, requires_grad=False), moving_variance=Parameter (name=residual_bn1.moving_variance, shape=(1,), dtype=Float32, requires_grad=False)>
+  (residual_conv2): Conv2d<input_channels=1, output_channels=1, kernel_size=(3, 3), stride=(1, 1), pad_mode=same, padding=0, dilation=(1, 1), group=1, has_bias=False, weight_init=<mindspore.common.initializer.HeUniform object at 0x7f0fe9eee350>, bias_init=None, format=NCHW>
+  (residual_bn2): BatchNorm2d<num_features=1, eps=0.0001, momentum=0.9, gamma=Parameter (name=residual_bn2.gamma, shape=(1,), dtype=Float32, requires_grad=True), beta=Parameter (name=residual_bn2.beta, shape=(1,), dtype=Float32, requires_grad=True), moving_mean=Parameter (name=residual_bn2.moving_mean, shape=(1,), dtype=Float32, requires_grad=False), moving_variance=Parameter (name=residual_bn2.moving_variance, shape=(1,), dtype=Float32, requires_grad=False)>
+  (residual_conv3): Conv2d<input_channels=1, output_channels=6, kernel_size=(1, 1), stride=(1, 1), pad_mode=same, padding=0, dilation=(1, 1), group=1, has_bias=False, weight_init=<mindspore.common.initializer.HeUniform object at 0x7f0fe9f69bd0>, bias_init=None, format=NCHW>
+  (residual_bn3): BatchNorm2d<num_features=6, eps=0.0001, momentum=0.9, gamma=Parameter (name=residual_bn3.gamma, shape=(6,), dtype=Float32, requires_grad=True), beta=Parameter (name=residual_bn3.beta, shape=(6,), dtype=Float32, requires_grad=True), moving_mean=Parameter (name=residual_bn3.moving_mean, shape=(6,), dtype=Float32, requires_grad=False), moving_variance=Parameter (name=residual_bn3.moving_variance, shape=(6,), dtype=Float32, requires_grad=False)>
+  (residual_relu1): ReLU<>
+  (residual_relu2): ReLU<>
+  (residual_relu3): ReLU<>
+  (residual_down_sample_layer): SequentialCell<
+    (0): Conv2d<input_channels=6, output_channels=6, kernel_size=(1, 1), stride=(1, 1), pad_mode=same, padding=0, dilation=(1, 1), group=1, has_bias=False, weight_init=<mindspore.common.initializer.HeUniform object at 0x7f0fe9710f90>, bias_init=None, format=NCHW>
+    (1): BatchNorm2d<num_features=6, eps=0.0001, momentum=0.9, gamma=Parameter (name=residual_down_sample_layer.1.gamma, shape=(6,), dtype=Float32, requires_grad=True), beta=Parameter (name=residual_down_sample_layer.1.beta, shape=(6,), dtype=Float32, requires_grad=True), moving_mean=Parameter (name=residual_down_sample_layer.1.moving_mean, shape=(6,), dtype=Float32, requires_grad=False), moving_variance=Parameter (name=residual_down_sample_layer.1.moving_variance, shape=(6,), dtype=Float32, requires_grad=False)>
+    >
+  >
+insert_layer_outshape not equal!: [2, 6, 14, 14]
+mut_result:True
+74 generation!
+
+Adopt RA mut_strategy!
+candidate_in_mutlayers_indice:-1
+select layer: relu layer_type: <class 'mindspore.nn.layer.activation.ReLU'> in_shape: [2, 84] out_shape: [2, 84]
+mut Basic type: True
+add Basic layer : Cascade_op
+select insert layer: Inception_A<
+  (branch0): BasicConv2d<
+    (relu): ReLU<>
+    >
+  (branch1): SequentialCell<
+    (0): BasicConv2d<
+      (relu): ReLU<>
+      >
+    (1): BasicConv2d<
+      (relu): ReLU<>
+      >
+    >
+  (branch2): SequentialCell<
+    (0): BasicConv2d<
+      (relu): ReLU<>
+      >
+    (1): BasicConv2d<
+      (relu): ReLU<>
+      >
+    (2): BasicConv2d<
+      (relu): ReLU<>
+      >
+    >
+  (branch_pool): SequentialCell<
+    (0): AvgPool2d<kernel_size=3, stride=1, pad_mode=SAME>
+    (1): BasicConv2d<
+      (relu): ReLU<>
+      >
+    >
+  >
+insert_layer_outshape not equal!: [2, 84]
+mut_result:False
+75 generation!
+
+Adopt RA mut_strategy!
+candidate_in_mutlayers_indice:-1
+select layer: flatten layer_type: <class 'mindspore.nn.layer.basic.Flatten'> in_shape: [2, 16, 7, 7] out_shape: [2, 784]
+mut Basic type: True
+add Basic layer : Cascade_op
+select insert layer: SE<
+  (SE_pool): GlobalAvgPooling<>
+  (act): HSigmoid<>
+  (SE_act1): ReLU<>
+  (SE_act2): HSigmoid<>
+  >
+insert_layer_outshape not equal!: [2, 784]
+mut_result:True
+76 generation!
+
+Adopt CM mut_strategy!
+candidate_in_mutlayers_indice:-1
+select layer: fc1 layer_type: <class 'mindspore.nn.layer.basic.Dense'> in_shape: [2, 784] out_shape: [2, 120]
+mut Basic type: True
+select insert layer: Inception_A<
+  (branch0): BasicConv2d<
+    (relu): ReLU<>
+    >
+  (branch1): SequentialCell<
+    (0): BasicConv2d<
+      (relu): ReLU<>
+      >
+    (1): BasicConv2d<
+      (relu): ReLU<>
+      >
+    >
+  (branch2): SequentialCell<
+    (0): BasicConv2d<
+      (relu): ReLU<>
+      >
+    (1): BasicConv2d<
+      (relu): ReLU<>
+      >
+    (2): BasicConv2d<
+      (relu): ReLU<>
+      >
+    >
+  (branch_pool): SequentialCell<
+    (0): AvgPool2d<kernel_size=3, stride=1, pad_mode=SAME>
+    (1): BasicConv2d<
+      (relu): ReLU<>
+      >
+    >
+  >
+replace Basic with CM op!
+mut_result:True
+77 generation!
+
+Adopt LC mut_strategy!
+select layer: fc3 layer_type: <class 'mindspore.nn.layer.basic.Dense'> in_shape: [2, 84] out_shape: [2, 10]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: Dense<input_channels=84, output_channels=10, has_bias=True>
+Illegal LC mutate!
+For 'MatMul', the type of 'x2' should be same as 'x1', but got 'x1' with type Tensor[Float16] and 'x2' with type Tensor[Float32].
+
+----------------------------------------------------
+- C++ Call Stack: (For framework developers)
+----------------------------------------------------
+mindspore/core/ops/mat_mul.cc:143 InferType
+
+mut_result:LC Create illegal layer!
+78 generation!
+
+Adopt CM mut_strategy!
+candidate_in_mutlayers_indice:-1
+select layer: pool2 layer_type: <class 'mindspore.nn.layer.pooling.AvgPool2d'> in_shape: [2, 16, 14, 14] out_shape: [2, 16, 7, 7]
+mut Basic type: True
+select insert layer: Mish<>
+replace Basic with CM op!
+mut_result:True
+79 generation!
+
+Adopt RA mut_strategy!
+mut_result:No suitable ops for RA mutation!
+80 generation!
+
+Adopt CM mut_strategy!
+mut_result:No suitable ops for CM mutation!
+81 generation!
+
+Adopt PM mut_strategy!
+The target model do not have the mutator operators eps!
+mut_result:Parameter Miss
+82 generation!
+
+Adopt LA mut_strategy!
+candidate_in_mutlayers_indice:-1
+select layer: flatten layer_type: <class 'mindspore.nn.layer.basic.Flatten'> in_shape: [2, 16, 7, 7] out_shape: [2, 784]
+mut Basic type: True
+add Basic layer : Cascade_op
+select insert layer: convbnrelu<
+  (conbnrelu_conv): Conv2d<input_channels=784, output_channels=784, kernel_size=(1, 1), stride=(1, 1), pad_mode=same, padding=0, dilation=(1, 1), group=1, has_bias=False, weight_init=<mindspore.common.initializer.HeUniform object at 0x7f0fe9a70690>, bias_init=None, format=NCHW>
+  (conbnrelu_bn): BatchNorm2d<num_features=784, eps=1e-05, momentum=0.9, gamma=Parameter (name=conbnrelu_bn.gamma, shape=(784,), dtype=Float32, requires_grad=True), beta=Parameter (name=conbnrelu_bn.beta, shape=(784,), dtype=Float32, requires_grad=True), moving_mean=Parameter (name=conbnrelu_bn.moving_mean, shape=(784,), dtype=Float32, requires_grad=False), moving_variance=Parameter (name=conbnrelu_bn.moving_variance, shape=(784,), dtype=Float32, requires_grad=False)>
+  (conbnrelu_relu): ReLU<>
+  >
+insert_layer_outshape equal!
+add Cascade_op after basicop!
+mut_result:False
+83 generation!
+
+Adopt RA mut_strategy!
+candidate_in_mutlayers_indice:-1
+select layer: conv1 layer_type: <class 'mindspore.nn.layer.conv.Conv2d'> in_shape: [2, 1, 28, 28] out_shape: [2, 6, 28, 28]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: Sigmoid<>
+insert_layer_outshape not equal!: [2, 6, 28, 28]
+mut_result:True
+84 generation!
+
+Adopt LD mut_strategy!
+delete layer_name:flatten
+candidate_in_mutlayers_indice:-1
+adopt DeleteCell Replace_ms
+mut_result:True
+85 generation!
+
+Adopt RA mut_strategy!
+candidate_in_mutlayers_indice:-1
+select layer: pool2 layer_type: <class 'mindspore.nn.layer.pooling.AvgPool2d'> in_shape: [2, 16, 14, 14] out_shape: [2, 16, 7, 7]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: ReLU<>
+insert_layer_outshape not equal!: [2, 16, 7, 7]
+mut_result:True
+86 generation!
+
+Adopt PM mut_strategy!
+candidate_in_mutlayers_indice:-1
+select op: fc3 layer_type: Dense selected param:out_channels input_shape:[2, 84] output_shape:[2, 10]
+Edit value: 2 new_inshape: (2, 84) new_outshape: (2, 2)
+mutate op infor:
+SequentialCell<
+  (0): Dense<input_channels=84, output_channels=2, has_bias=True>
+  (1): Replace_ms<>
+  >
+mut_result:True
+87 generation!
+
+Adopt LD mut_strategy!
+delete layer_name:conv2
+mut_result:No suitable ops for LD mutation!
+88 generation!
+
+Adopt RA mut_strategy!
+candidate_in_mutlayers_indice:-1
+select layer: relu layer_type: <class 'mindspore.nn.layer.activation.ReLU'> in_shape: [2, 84] out_shape: [2, 84]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: ELU<>
+insert_layer_outshape equal!
+mut_result:True
+89 generation!
+
+Adopt LA mut_strategy!
+candidate_in_mutlayers_indice:-1
+select layer: fc1 layer_type: <class 'mindspore.nn.layer.basic.Dense'> in_shape: [2, 784] out_shape: [2, 120]
+mut Basic type: True
+add Basic layer : Cascade_op
+select insert layer: ResidualBlock<
+  (residual_conv1): Conv2d<input_channels=120, output_channels=30, kernel_size=(1, 1), stride=(1, 1), pad_mode=same, padding=0, dilation=(1, 1), group=1, has_bias=False, weight_init=<mindspore.common.initializer.HeUniform object at 0x7f0fe9fcb910>, bias_init=None, format=NCHW>
+  (residual_bn1): BatchNorm2d<num_features=30, eps=0.0001, momentum=0.9, gamma=Parameter (name=residual_bn1.gamma, shape=(30,), dtype=Float32, requires_grad=True), beta=Parameter (name=residual_bn1.beta, shape=(30,), dtype=Float32, requires_grad=True), moving_mean=Parameter (name=residual_bn1.moving_mean, shape=(30,), dtype=Float32, requires_grad=False), moving_variance=Parameter (name=residual_bn1.moving_variance, shape=(30,), dtype=Float32, requires_grad=False)>
+  (residual_conv2): Conv2d<input_channels=30, output_channels=30, kernel_size=(3, 3), stride=(1, 1), pad_mode=same, padding=0, dilation=(1, 1), group=1, has_bias=False, weight_init=<mindspore.common.initializer.HeUniform object at 0x7f0fe9fcb950>, bias_init=None, format=NCHW>
+  (residual_bn2): BatchNorm2d<num_features=30, eps=0.0001, momentum=0.9, gamma=Parameter (name=residual_bn2.gamma, shape=(30,), dtype=Float32, requires_grad=True), beta=Parameter (name=residual_bn2.beta, shape=(30,), dtype=Float32, requires_grad=True), moving_mean=Parameter (name=residual_bn2.moving_mean, shape=(30,), dtype=Float32, requires_grad=False), moving_variance=Parameter (name=residual_bn2.moving_variance, shape=(30,), dtype=Float32, requires_grad=False)>
+  (residual_conv3): Conv2d<input_channels=30, output_channels=120, kernel_size=(1, 1), stride=(1, 1), pad_mode=same, padding=0, dilation=(1, 1), group=1, has_bias=False, weight_init=<mindspore.common.initializer.HeUniform object at 0x7f0fe9fcb7d0>, bias_init=None, format=NCHW>
+  (residual_bn3): BatchNorm2d<num_features=120, eps=0.0001, momentum=0.9, gamma=Parameter (name=residual_bn3.gamma, shape=(120,), dtype=Float32, requires_grad=True), beta=Parameter (name=residual_bn3.beta, shape=(120,), dtype=Float32, requires_grad=True), moving_mean=Parameter (name=residual_bn3.moving_mean, shape=(120,), dtype=Float32, requires_grad=False), moving_variance=Parameter (name=residual_bn3.moving_variance, shape=(120,), dtype=Float32, requires_grad=False)>
+  (residual_relu1): ReLU<>
+  (residual_relu2): ReLU<>
+  (residual_relu3): ReLU<>
+  (residual_down_sample_layer): SequentialCell<
+    (0): Conv2d<input_channels=120, output_channels=120, kernel_size=(1, 1), stride=(1, 1), pad_mode=same, padding=0, dilation=(1, 1), group=1, has_bias=False, weight_init=<mindspore.common.initializer.HeUniform object at 0x7f0fea29c310>, bias_init=None, format=NCHW>
+    (1): BatchNorm2d<num_features=120, eps=0.0001, momentum=0.9, gamma=Parameter (name=residual_down_sample_layer.1.gamma, shape=(120,), dtype=Float32, requires_grad=True), beta=Parameter (name=residual_down_sample_layer.1.beta, shape=(120,), dtype=Float32, requires_grad=True), moving_mean=Parameter (name=residual_down_sample_layer.1.moving_mean, shape=(120,), dtype=Float32, requires_grad=False), moving_variance=Parameter (name=residual_down_sample_layer.1.moving_variance, shape=(120,), dtype=Float32, requires_grad=False)>
+    >
+  >
+insert_layer_outshape equal!
+add Cascade_op after basicop!
+mut_result:False
+90 generation!
+
+Adopt RA mut_strategy!
+candidate_in_mutlayers_indice:-1
+select layer: conv2 layer_type: <class 'mindspore.nn.layer.conv.Conv2d'> in_shape: [2, 6, 14, 14] out_shape: [2, 16, 14, 14]
+mut Basic type: True
+add Basic layer : Cascade_op
+select insert layer: ResidualBlock<
+  (residual_conv1): Conv2d<input_channels=6, output_channels=4, kernel_size=(1, 1), stride=(1, 1), pad_mode=same, padding=0, dilation=(1, 1), group=1, has_bias=False, weight_init=<mindspore.common.initializer.HeUniform object at 0x7f0fe9fcba50>, bias_init=None, format=NCHW>
+  (residual_bn1): BatchNorm2d<num_features=4, eps=0.0001, momentum=0.9, gamma=Parameter (name=residual_bn1.gamma, shape=(4,), dtype=Float32, requires_grad=True), beta=Parameter (name=residual_bn1.beta, shape=(4,), dtype=Float32, requires_grad=True), moving_mean=Parameter (name=residual_bn1.moving_mean, shape=(4,), dtype=Float32, requires_grad=False), moving_variance=Parameter (name=residual_bn1.moving_variance, shape=(4,), dtype=Float32, requires_grad=False)>
+  (residual_conv2): Conv2d<input_channels=4, output_channels=4, kernel_size=(3, 3), stride=(1, 1), pad_mode=same, padding=0, dilation=(1, 1), group=1, has_bias=False, weight_init=<mindspore.common.initializer.HeUniform object at 0x7f0fe9fcb5d0>, bias_init=None, format=NCHW>
+  (residual_bn2): BatchNorm2d<num_features=4, eps=0.0001, momentum=0.9, gamma=Parameter (name=residual_bn2.gamma, shape=(4,), dtype=Float32, requires_grad=True), beta=Parameter (name=residual_bn2.beta, shape=(4,), dtype=Float32, requires_grad=True), moving_mean=Parameter (name=residual_bn2.moving_mean, shape=(4,), dtype=Float32, requires_grad=False), moving_variance=Parameter (name=residual_bn2.moving_variance, shape=(4,), dtype=Float32, requires_grad=False)>
+  (residual_conv3): Conv2d<input_channels=4, output_channels=16, kernel_size=(1, 1), stride=(1, 1), pad_mode=same, padding=0, dilation=(1, 1), group=1, has_bias=False, weight_init=<mindspore.common.initializer.HeUniform object at 0x7f0fe9fcb410>, bias_init=None, format=NCHW>
+  (residual_bn3): BatchNorm2d<num_features=16, eps=0.0001, momentum=0.9, gamma=Parameter (name=residual_bn3.gamma, shape=(16,), dtype=Float32, requires_grad=True), beta=Parameter (name=residual_bn3.beta, shape=(16,), dtype=Float32, requires_grad=True), moving_mean=Parameter (name=residual_bn3.moving_mean, shape=(16,), dtype=Float32, requires_grad=False), moving_variance=Parameter (name=residual_bn3.moving_variance, shape=(16,), dtype=Float32, requires_grad=False)>
+  (residual_relu1): ReLU<>
+  (residual_relu2): ReLU<>
+  (residual_relu3): ReLU<>
+  (residual_down_sample_layer): SequentialCell<
+    (0): Conv2d<input_channels=6, output_channels=16, kernel_size=(1, 1), stride=(1, 1), pad_mode=same, padding=0, dilation=(1, 1), group=1, has_bias=False, weight_init=<mindspore.common.initializer.HeUniform object at 0x7f0fe9fcb8d0>, bias_init=None, format=NCHW>
+    (1): BatchNorm2d<num_features=16, eps=0.0001, momentum=0.9, gamma=Parameter (name=residual_down_sample_layer.1.gamma, shape=(16,), dtype=Float32, requires_grad=True), beta=Parameter (name=residual_down_sample_layer.1.beta, shape=(16,), dtype=Float32, requires_grad=True), moving_mean=Parameter (name=residual_down_sample_layer.1.moving_mean, shape=(16,), dtype=Float32, requires_grad=False), moving_variance=Parameter (name=residual_down_sample_layer.1.moving_variance, shape=(16,), dtype=Float32, requires_grad=False)>
+    >
+  >
+insert_layer_outshape equal!
+mut_result:False
+91 generation!
+
+Adopt LD mut_strategy!
+delete layer_name:relu
+candidate_in_mutlayers_indice:-1
+adopt DeleteCell EmptyCell
+mut_result:True
+92 generation!
+
+Adopt SM mut_strategy!
+select layer: relu layer_type: <class 'mindspore.nn.layer.activation.ReLU'> in_shape: [2, 84] out_shape: [2, 84]
+mut Basic type: True
+candidate_in_mutlayers_indice:-1
+mutate state: before
+mutate input_shape: [2, 2, 47]
+mut_result:False
+93 generation!
+
+Adopt LD mut_strategy!
+delete layer_name:dropout
+candidate_in_mutlayers_indice:-1
+adopt DeleteCell EmptyCell
+mut_result:True
+94 generation!
+
+Adopt RA mut_strategy!
+candidate_in_mutlayers_indice:-1
+select layer: fc3 layer_type: <class 'mindspore.nn.layer.basic.Dense'> in_shape: [2, 84] out_shape: [2, 10]
+mut Basic type: True
+add Basic layer : Cascade_op
+select insert layer: Inception_A<
+  (branch0): BasicConv2d<
+    (relu): ReLU<>
+    >
+  (branch1): SequentialCell<
+    (0): BasicConv2d<
+      (relu): ReLU<>
+      >
+    (1): BasicConv2d<
+      (relu): ReLU<>
+      >
+    >
+  (branch2): SequentialCell<
+    (0): BasicConv2d<
+      (relu): ReLU<>
+      >
+    (1): BasicConv2d<
+      (relu): ReLU<>
+      >
+    (2): BasicConv2d<
+      (relu): ReLU<>
+      >
+    >
+  (branch_pool): SequentialCell<
+    (0): AvgPool2d<kernel_size=3, stride=1, pad_mode=SAME>
+    (1): BasicConv2d<
+      (relu): ReLU<>
+      >
+    >
+  >
+insert_layer_outshape not equal!: [2, 10]
+mut_result:True
+95 generation!
+
+Adopt LD mut_strategy!
+delete layer_name:fc2
+candidate_in_mutlayers_indice:-1
+adopt DeleteCell Replace_ms
+mut_result:True
+96 generation!
+
+Adopt SM mut_strategy!
+select layer: pool2 layer_type: <class 'mindspore.nn.layer.pooling.AvgPool2d'> in_shape: [2, 16, 14, 14] out_shape: [2, 16, 7, 7]
+mut Basic type: True
+candidate_in_mutlayers_indice:-1
+mutate state: all
+mutate input_shape: [2, 45, 10, 8]
+mutate output_shape: [2, 23]
+mut_result:True
+97 generation!
+
+Adopt CM mut_strategy!
+candidate_in_mutlayers_indice:-1
+select layer: flatten layer_type: <class 'mindspore.nn.layer.basic.Flatten'> in_shape: [2, 16, 7, 7] out_shape: [2, 784]
+mut Basic type: True
+select insert layer: downsample<
+  (downsample_conv): Conv2d<input_channels=16, output_channels=784, kernel_size=(1, 1), stride=(1, 1), pad_mode=same, padding=0, dilation=(1, 1), group=1, has_bias=False, weight_init=<mindspore.common.initializer.HeUniform object at 0x7f0fe9e69690>, bias_init=None, format=NCHW>
+  (downsample_bn): BatchNorm2d<num_features=784, eps=1e-05, momentum=0.9, gamma=Parameter (name=1.downsample_bn.gamma, shape=(784,), dtype=Float32, requires_grad=True), beta=Parameter (name=1.downsample_bn.beta, shape=(784,), dtype=Float32, requires_grad=True), moving_mean=Parameter (name=1.downsample_bn.moving_mean, shape=(784,), dtype=Float32, requires_grad=False), moving_variance=Parameter (name=1.downsample_bn.moving_variance, shape=(784,), dtype=Float32, requires_grad=False)>
+  >
+replace Basic with CM op!
+mut_result:False
+98 generation!
+
+Adopt LD mut_strategy!
+delete layer_name:conv1
+mut_result:No suitable ops for LD mutation!
+99 generation!
+
+Adopt LA mut_strategy!
+candidate_in_mutlayers_indice:-1
+select layer: pool2 layer_type: <class 'mindspore.nn.layer.pooling.AvgPool2d'> in_shape: [2, 16, 14, 14] out_shape: [2, 16, 7, 7]
+mut Basic type: True
+add Basic layer : Cascade_op
+select insert layer: convbnrelu<
+  (conbnrelu_conv): Conv2d<input_channels=16, output_channels=16, kernel_size=(1, 1), stride=(1, 1), pad_mode=same, padding=0, dilation=(1, 1), group=1, has_bias=False, weight_init=<mindspore.common.initializer.HeUniform object at 0x7f0fe9b62c10>, bias_init=None, format=NCHW>
+  (conbnrelu_bn): BatchNorm2d<num_features=16, eps=1e-05, momentum=0.9, gamma=Parameter (name=conbnrelu_bn.gamma, shape=(16,), dtype=Float32, requires_grad=True), beta=Parameter (name=conbnrelu_bn.beta, shape=(16,), dtype=Float32, requires_grad=True), moving_mean=Parameter (name=conbnrelu_bn.moving_mean, shape=(16,), dtype=Float32, requires_grad=False), moving_variance=Parameter (name=conbnrelu_bn.moving_variance, shape=(16,), dtype=Float32, requires_grad=False)>
+  (conbnrelu_relu): ReLU<>
+  >
+insert_layer_outshape equal!
+add Cascade_op after basicop!
+mut_result:True
+100 generation!
+
+mutation trace: {'1': [1], '2': [2], '3': [3], '4': [4], '5': [5], '6': [6], '7': [7], '8': [6, 8], '9': [9], '10': [6, 10], '11': [11], '12': [12], '13': [6, 8, 13], '14': [14], '15': [6, 15], '16': [6, 8, 16], '17': [6, 8, 17], '18': [6, 18], '19': [19], '20': [20], '21': [6, 8, 21], '22': [22], '23': [6, 8, 21, 23], '24': [24], '25': [25], '26': [6, 8, 21, 26], '27': [6, 27], '28': [28], '29': [6, 29], '30': [6, 8, 30], '31': [31], '32': [6, 8, 32], '33': [6, 8, 21, 33], '34': [34], '35': [6, 8, 21, 35], '36': [36], '37': [37], '38': [38], '39': [6, 8, 39], '40': [6, 8, 21, 40], '41': [6, 8, 39, 41], '42': [42], '43': [43], '44': [6, 8, 21, 44], '45': [45], '46': [6, 8, 39, 46], '47': [47], '48': [6, 8, 39, 48], '49': [6, 8, 21, 49], '50': [50], '51': [51], '52': [6, 8, 39, 52], '53': [53], '54': [6, 8, 39, 54], '55': [6, 8, 21, 55], '56': [6, 56], '57': [6, 8, 39, 57], '58': [6, 58], '59': [6, 8, 21, 59], '60': [60], '61': [6, 8, 21, 61], '62': [6, 62], '63': [6, 8, 39, 63], '64': [6, 8, 21, 64], '65': [65], '66': [66], '67': [67], '68': [6, 68], '69': [6, 8, 69], '70': [70], '71': [6, 8, 71], '72': [6, 72], '73': [6, 73], '74': [6, 8, 74], '75': [6, 8, 75], '76': [6, 8, 21, 76], '77': [6, 77], '78': [6, 8, 39, 78], '79': [6, 79], '80': [6, 8, 21, 80], '81': [6, 8, 39, 81], '82': [6, 8, 39, 82], '83': [83], '84': [84], '85': [6, 8, 85], '86': [6, 8, 39, 86], '87': [6, 8, 85, 87], '88': [6, 8, 85, 88], '89': [6, 8, 39, 89], '90': [90], '91': [91], '92': [6, 8, 85, 92], '93': [6, 8, 21, 93], '94': [6, 8, 85, 94], '95': [6, 8, 85, 95], '96': [6, 8, 85, 96], '97': [6, 8, 97], '98': [98], '99': [6, 8, 99], '100': [6, 8, 85, 100]}

@@ -1,0 +1,570 @@
+{
+    "edges": [
+        [
+            "Replace_ms",
+            "EmptyCell"
+        ],
+        [
+            "EmptyCell",
+            "MaxPool2d"
+        ],
+        [
+            "MaxPool2d",
+            "Replace_ms"
+        ],
+        [
+            "Replace_ms",
+            "Replace_ms"
+        ],
+        [
+            "EmptyCell",
+            "Replace_ms"
+        ],
+        [
+            "Replace_ms",
+            "GlobalAvgPooling"
+        ],
+        [
+            "GlobalAvgPooling",
+            "ReLU"
+        ],
+        [
+            "ReLU",
+            "HSigmoid"
+        ],
+        [
+            "HSigmoid",
+            "Replace_ms"
+        ],
+        [
+            "MaxPool2d",
+            "MaxPool2d"
+        ],
+        [
+            "Replace_ms",
+            "Dropout"
+        ],
+        [
+            "Dropout",
+            "Softmax"
+        ],
+        [
+            "Softmax",
+            "Replace_ms"
+        ]
+    ],
+    "layer_config": {
+        "Replace_ms": [
+            {
+                "ge_sync_data": false,
+                "_is_check_and_refresh": false,
+                "_amp_level": "",
+                "in_shape": [
+                    2,
+                    2,
+                    1,
+                    1
+                ],
+                "output_shape": [
+                    2,
+                    10
+                ],
+                "_forward_pre_hook_key": 0,
+                "_forward_hook_key": 0,
+                "_func_graph_flags": null,
+                "_params": null,
+                "_cells": null,
+                "_params_list": null,
+                "_tensor_list": null,
+                "pad_mode": "VALID",
+                "format": "NCHW",
+                "kernel_size": 2,
+                "stride": 2,
+                "return_indices": false,
+                "use_pad": false,
+                "keep_dims": true,
+                "mean": null,
+                "hsigmoid": null,
+                "relu": null
+            }
+        ],
+        "MaxPool2d": [
+            {
+                "ge_sync_data": false,
+                "_is_check_and_refresh": false,
+                "_amp_level": "",
+                "in_shape": [
+                    2,
+                    2,
+                    1,
+                    1
+                ],
+                "output_shape": [
+                    2,
+                    10
+                ],
+                "_forward_pre_hook_key": 0,
+                "_forward_hook_key": 0,
+                "_func_graph_flags": null,
+                "_params": null,
+                "_cells": null,
+                "_params_list": null,
+                "_tensor_list": null,
+                "pad_mode": "VALID",
+                "format": "NCHW",
+                "kernel_size": 2,
+                "stride": 2,
+                "return_indices": false,
+                "use_pad": false,
+                "keep_dims": true,
+                "mean": null,
+                "hsigmoid": null,
+                "relu": null
+            }
+        ],
+        "Cell": [
+            {
+                "ge_sync_data": false,
+                "_is_check_and_refresh": false,
+                "_amp_level": "",
+                "in_shape": [
+                    2,
+                    2,
+                    1,
+                    1
+                ],
+                "output_shape": [
+                    2,
+                    10
+                ],
+                "_forward_pre_hook_key": 0,
+                "_forward_hook_key": 0,
+                "_func_graph_flags": null,
+                "_params": null,
+                "_cells": null,
+                "_params_list": null,
+                "_tensor_list": null,
+                "pad_mode": "VALID",
+                "format": "NCHW",
+                "kernel_size": 2,
+                "stride": 2,
+                "return_indices": false,
+                "use_pad": false,
+                "keep_dims": true,
+                "mean": null,
+                "hsigmoid": null,
+                "relu": null
+            }
+        ],
+        "GlobalAvgPooling": [
+            {
+                "ge_sync_data": false,
+                "_is_check_and_refresh": false,
+                "_amp_level": "",
+                "in_shape": [
+                    2,
+                    2,
+                    1,
+                    1
+                ],
+                "output_shape": [
+                    2,
+                    10
+                ],
+                "_forward_pre_hook_key": 0,
+                "_forward_hook_key": 0,
+                "_func_graph_flags": null,
+                "_params": null,
+                "_cells": null,
+                "_params_list": null,
+                "_tensor_list": null,
+                "pad_mode": "VALID",
+                "format": "NCHW",
+                "kernel_size": 2,
+                "stride": 2,
+                "return_indices": false,
+                "use_pad": false,
+                "keep_dims": true,
+                "mean": null,
+                "hsigmoid": null,
+                "relu": null
+            }
+        ],
+        "HSigmoid": [
+            {
+                "ge_sync_data": false,
+                "_is_check_and_refresh": false,
+                "_amp_level": "",
+                "in_shape": [
+                    2,
+                    2,
+                    1,
+                    1
+                ],
+                "output_shape": [
+                    2,
+                    10
+                ],
+                "_forward_pre_hook_key": 0,
+                "_forward_hook_key": 0,
+                "_func_graph_flags": null,
+                "_params": null,
+                "_cells": null,
+                "_params_list": null,
+                "_tensor_list": null,
+                "pad_mode": "VALID",
+                "format": "NCHW",
+                "kernel_size": 2,
+                "stride": 2,
+                "return_indices": false,
+                "use_pad": false,
+                "keep_dims": true,
+                "mean": null,
+                "hsigmoid": null,
+                "relu": null
+            }
+        ],
+        "ReLU": [
+            {
+                "ge_sync_data": false,
+                "_is_check_and_refresh": false,
+                "_amp_level": "",
+                "in_shape": [
+                    2,
+                    2,
+                    1,
+                    1
+                ],
+                "output_shape": [
+                    2,
+                    10
+                ],
+                "_forward_pre_hook_key": 0,
+                "_forward_hook_key": 0,
+                "_func_graph_flags": null,
+                "_params": null,
+                "_cells": null,
+                "_params_list": null,
+                "_tensor_list": null,
+                "pad_mode": "VALID",
+                "format": "NCHW",
+                "kernel_size": 2,
+                "stride": 2,
+                "return_indices": false,
+                "use_pad": false,
+                "keep_dims": true,
+                "mean": null,
+                "hsigmoid": null,
+                "relu": null
+            }
+        ],
+        "Dropout": [
+            {
+                "ge_sync_data": false,
+                "_is_check_and_refresh": false,
+                "_amp_level": "",
+                "in_shape": [
+                    2,
+                    2,
+                    1,
+                    1
+                ],
+                "output_shape": [
+                    2,
+                    10
+                ],
+                "_forward_pre_hook_key": 0,
+                "_forward_hook_key": 0,
+                "_func_graph_flags": null,
+                "_params": null,
+                "_cells": null,
+                "_params_list": null,
+                "_tensor_list": null,
+                "pad_mode": "VALID",
+                "format": "NCHW",
+                "kernel_size": 2,
+                "stride": 2,
+                "return_indices": false,
+                "use_pad": false,
+                "keep_dims": true,
+                "mean": null,
+                "hsigmoid": null,
+                "relu": null
+            }
+        ],
+        "Softmax": [
+            {
+                "ge_sync_data": false,
+                "_is_check_and_refresh": false,
+                "_amp_level": "",
+                "in_shape": [
+                    2,
+                    2,
+                    1,
+                    1
+                ],
+                "output_shape": [
+                    2,
+                    10
+                ],
+                "_forward_pre_hook_key": 0,
+                "_forward_hook_key": 0,
+                "_func_graph_flags": null,
+                "_params": null,
+                "_cells": null,
+                "_params_list": null,
+                "_tensor_list": null,
+                "pad_mode": "VALID",
+                "format": "NCHW",
+                "kernel_size": 2,
+                "stride": 2,
+                "return_indices": false,
+                "use_pad": false,
+                "keep_dims": true,
+                "mean": null,
+                "hsigmoid": null,
+                "relu": null
+            }
+        ]
+    },
+    "layer_input_info": {
+        "Replace_ms": {
+            "input_dims": [
+                4,
+                5,
+                2
+            ],
+            "dtype": [
+                "[mindspore.float32]"
+            ],
+            "shape": [
+                "[2, 1, 28, 28]",
+                "[2, 64, 14, 14]",
+                "[2, 36, 18, 46]",
+                "[2, 2, 1, 1]",
+                "[2, 32, 3, 3]",
+                "[2, 32, 7, 7]",
+                "[2, 42, 38, 42, 46]",
+                "[2, 1568]",
+                "[2, 120]",
+                "[2, 84]"
+            ]
+        },
+        "EmptyCell": {
+            "input_dims": [
+                4,
+                2
+            ],
+            "dtype": [
+                "[mindspore.float32]"
+            ],
+            "shape": [
+                "[2, 64, 28, 28]",
+                "[2, 64, 14, 14]",
+                "[2, 32, 14, 14]",
+                "[2, 120]",
+                "[2, 84]"
+            ]
+        },
+        "SequentialCell": {
+            "input_dims": [
+                4,
+                2
+            ],
+            "dtype": [
+                "[mindspore.float32]"
+            ],
+            "shape": [
+                "[2, 64, 28, 28]",
+                "[2, 64, 14, 14]",
+                "[2, 32, 14, 14]",
+                "[2, 32, 7, 7]",
+                "[2, 120]",
+                "[2, 84]"
+            ]
+        },
+        "MaxPool2d": {
+            "input_dims": [
+                4
+            ],
+            "dtype": [
+                "[mindspore.float32]"
+            ],
+            "shape": [
+                "[2, 64, 28, 28]",
+                "[2, 32, 14, 14]",
+                "[2, 32, 7, 7]"
+            ]
+        },
+        "SE": {
+            "input_dims": [
+                4
+            ],
+            "dtype": [
+                "[mindspore.float32]"
+            ],
+            "shape": [
+                "[2, 1, 112, 112]",
+                "[2, 1, 9, 9]"
+            ]
+        },
+        "GlobalAvgPooling": {
+            "input_dims": [
+                4
+            ],
+            "dtype": [
+                "[mindspore.float32]"
+            ],
+            "shape": [
+                "[2, 1, 112, 112]",
+                "[2, 1, 9, 9]"
+            ]
+        },
+        "ReLU": {
+            "input_dims": [
+                4
+            ],
+            "dtype": [
+                "[mindspore.float32]"
+            ],
+            "shape": [
+                "[2, 2, 1, 1]"
+            ]
+        },
+        "HSigmoid": {
+            "input_dims": [
+                4
+            ],
+            "dtype": [
+                "[mindspore.float32]"
+            ],
+            "shape": [
+                "[2, 2, 1, 1]"
+            ]
+        },
+        "Dropout": {
+            "input_dims": [
+                4
+            ],
+            "dtype": [
+                "[mindspore.float32]"
+            ],
+            "shape": [
+                "[2, 32, 7, 7]"
+            ]
+        },
+        "Softmax": {
+            "input_dims": [
+                4
+            ],
+            "dtype": [
+                "[mindspore.float32]"
+            ],
+            "shape": [
+                "[2, 32, 7, 7]"
+            ]
+        }
+    },
+    "cur_edge_num": 27,
+    "layer_num": 26,
+    "layer_type": [
+        "Replace_ms",
+        "MaxPool2d",
+        "Cell",
+        "GlobalAvgPooling",
+        "HSigmoid",
+        "ReLU",
+        "Dropout",
+        "Softmax"
+    ],
+    "layer_dims": {
+        "Replace_ms": {
+            "input_dims": [
+                4,
+                5,
+                2
+            ],
+            "output_dims": [
+                4,
+                5,
+                2
+            ]
+        },
+        "EmptyCell": {
+            "input_dims": [
+                4,
+                2
+            ],
+            "output_dims": [
+                4,
+                2
+            ]
+        },
+        "SequentialCell": {
+            "input_dims": [
+                4,
+                2
+            ],
+            "output_dims": [
+                4,
+                2
+            ]
+        },
+        "MaxPool2d": {
+            "input_dims": [
+                4
+            ],
+            "output_dims": [
+                4
+            ]
+        },
+        "SE": {
+            "input_dims": [
+                4
+            ],
+            "output_dims": [
+                4
+            ]
+        },
+        "GlobalAvgPooling": {
+            "input_dims": [
+                4
+            ],
+            "output_dims": [
+                4
+            ]
+        },
+        "ReLU": {
+            "input_dims": [
+                4
+            ],
+            "output_dims": [
+                4
+            ]
+        },
+        "HSigmoid": {
+            "input_dims": [
+                4
+            ],
+            "output_dims": [
+                4
+            ]
+        },
+        "Dropout": {
+            "input_dims": [
+                4
+            ],
+            "output_dims": [
+                4
+            ]
+        },
+        "Softmax": {
+            "input_dims": [
+                4
+            ],
+            "output_dims": [
+                4
+            ]
+        }
+    }
+}

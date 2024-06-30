@@ -977,7 +977,7 @@ The types of framework defects submitted by users usually cover a wide range of 
 
 3.**Hardware Acceleration**: It is recommended that users use GPU or TPU for training and provide relevant configuration guidance.
 
-### #Memory issue: Memory leak
+### Memory issue: Memory leak
 
 **User feedback: A user reported that after running deep learning tasks for a long time, the system memory usage continued to increase, ultimately leading to a system crash.
 

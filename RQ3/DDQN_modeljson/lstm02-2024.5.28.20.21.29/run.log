@@ -1,0 +1,927 @@
+WARNING 2024-05-28 20:21:29 - mutation_test.py:59 - For PyTorch and MindSpore running separately, CUDA_VISIBLE_DEVICES should have at least two GPUs, such as 'export CUDA_VISIBLE_DEVICES=0,1'
+INFO 2024-05-28 20:21:29 - mutation_test.py:129 - Mutation config:
+----------------------------------------------------------------------------------------
+train_config: {'model_name': 'lstm01', 'dataset_name': 'random', 'batch_size': 5, 'input_size': ['(2,49,50)'], 'test_size': 2, 'dtypes': ['float'], 'epoch': 20, 'loss_name': 'CrossEntropy', 'optimizer': 'SGD', 'learning_rate': 0.005, 'loss_ground_truth': 2.950969386100769, 'eval_ground_truth': 0.998740881321355, 'memory_threshold': '1e-2', 'dataset_path': 'lstm01', 'device': 'GPU', 'device_id': '0,1'}
+mutation_config: {'mutation_iterations': 100, 'save_iterations': 1, 'mutation_eval_metric': 'origin_diff', 'validation_threshold': 0.0006, 'output_difference_metric': 'DMAD', 'log_path': '/data1/myz/net-sv/common/log/lstm01-2024.5.28.20.21.29', 'mutation_strategy': 'ddqn', 'mutation_type': ['LA', 'LD', 'LC', 'CM', 'RA', 'PM', 'SM'], 'selected_model_num': 10}
+
+INFO 2024-05-28 20:21:29 - mutation_test.py:1039 - Stage1: start network mutation!
+INFO 2024-05-28 20:21:35 - mutation_test.py:287 - **** Start DoubleQ Learning ****
+
+INFO 2024-05-28 20:21:35 - mutation_test.py:291 - ================== start 1 generation!(1/100) ==================
+INFO 2024-05-28 20:21:35 - model_mutation_operators.py:516 - Adopt LA mut_strategy!
+INFO 2024-05-28 20:21:35 - model_mutation_operators.py:591 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-28 20:21:35 - model_mutation_operators.py:600 - select layer: dropout1 layer_type: <class 'mindspore.nn.layer.basic.Dropout'> in_shape: [1, 1, 50] out_shape: [1, 1, 50]
+INFO 2024-05-28 20:21:35 - model_mutation_operators.py:601 - mut Basic type: True
+INFO 2024-05-28 20:21:35 - model_mutation_operators.py:602 - add Basic layer : Basic_op
+INFO 2024-05-28 20:21:35 - model_mutation_operators.py:616 - select insert layer: Tanh<>
+INFO 2024-05-28 20:21:35 - model_mutation_operators.py:629 - insert_layer_outshape equal!
+INFO 2024-05-28 20:21:35 - model_mutation_operators.py:746 - mut_result:True
+INFO 2024-05-28 20:21:35 - model_mutation_operators.py:747 - 1 generation!
+
+INFO 2024-05-28 20:21:35 - mutation_test.py:291 - ================== start 2 generation!(2/100) ==================
+INFO 2024-05-28 20:21:35 - model_mutation_operators.py:1924 - Adopt LC mut_strategy!
+INFO 2024-05-28 20:21:35 - model_mutation_operators.py:1991 - select layer: dense layer_type: <class 'mindspore.nn.layer.basic.Dense'> in_shape: [2, 100] out_shape: [2, 1]
+INFO 2024-05-28 20:21:35 - model_mutation_operators.py:1992 - mut Basic type: True
+INFO 2024-05-28 20:21:35 - model_mutation_operators.py:1993 - add Basic layer : Basic_op
+INFO 2024-05-28 20:21:35 - model_mutation_operators.py:2006 - select insert layer: Dense<input_channels=100, output_channels=1, has_bias=True>
+INFO 2024-05-28 20:21:35 - model_mutation_operators.py:2028 - Illegal LC mutate!
+INFO 2024-05-28 20:21:35 - model_mutation_operators.py:2029 - mut_result:LC Create illegal layer!
+INFO 2024-05-28 20:21:35 - model_mutation_operators.py:2030 - Exception information: 
+For 'MatMul', the type of 'x2' should be same as 'x1', but got 'x1' with type Tensor[Float16] and 'x2' with type Tensor[Float32].
+
+----------------------------------------------------
+- C++ Call Stack: (For framework developers)
+----------------------------------------------------
+mindspore/core/ops/mat_mul.cc:143 InferType
+
+INFO 2024-05-28 20:21:35 - model_mutation_operators.py:2031 - 2 generation!
+
+INFO 2024-05-28 20:21:35 - mutation_test.py:291 - ================== start 3 generation!(3/100) ==================
+INFO 2024-05-28 20:21:35 - model_mutation_operators.py:1071 - Adopt CM mut_strategy!
+INFO 2024-05-28 20:21:35 - model_mutation_operators.py:1150 - candidate_in_mutlayers_indice:0
+INFO 2024-05-28 20:21:35 - model_mutation_operators.py:1161 - select layer: dropout1 layer_type: <class 'mindspore.nn.layer.container.SequentialCell'> in_shape: [1, 1, 50] out_shape: [1, 1, 50]
+INFO 2024-05-28 20:21:35 - model_mutation_operators.py:1162 - mut Basic type: True
+INFO 2024-05-28 20:21:35 - model_mutation_operators.py:1205 - select insert layer: BatchNorm2d<num_features=1, eps=1e-05, momentum=0.9, gamma=Parameter (name=1.gamma, shape=(1,), dtype=Float32, requires_grad=True), beta=Parameter (name=1.beta, shape=(1,), dtype=Float32, requires_grad=True), moving_mean=Parameter (name=1.moving_mean, shape=(1,), dtype=Float32, requires_grad=False), moving_variance=Parameter (name=1.moving_variance, shape=(1,), dtype=Float32, requires_grad=False)>
+INFO 2024-05-28 20:21:35 - model_mutation_operators.py:1231 - Illegal CM mutate!
+INFO 2024-05-28 20:21:35 - model_mutation_operators.py:1232 - mut_result:CM Create illegal layer!
+INFO 2024-05-28 20:21:35 - model_mutation_operators.py:1233 - Exception information: 
+For 'Concat', element1 shape in input can not concat with element0. To perform concat in the axis 0 direction, except for the 0th axis, all other axes must have the same shape. But got element1_shape[0]: 2, element0_shape[0]: 1.
+
+----------------------------------------------------
+- C++ Call Stack: (For framework developers)
+----------------------------------------------------
+mindspore/core/ops/concat.cc:67 ConcatInferShape
+
+INFO 2024-05-28 20:21:35 - model_mutation_operators.py:1234 - 3 generation!
+
+INFO 2024-05-28 20:21:35 - mutation_test.py:291 - ================== start 4 generation!(4/100) ==================
+INFO 2024-05-28 20:21:35 - model_mutation_operators.py:24 - Adopt PM mut_strategy!
+INFO 2024-05-28 20:21:35 - model_mutation_operators.py:80 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-28 20:21:35 - model_mutation_operators.py:93 - select op: dense layer_type: Dense selected param:in_channels input_shape:[2, 100] output_shape:[2, 1]
+INFO 2024-05-28 20:21:35 - model_mutation_operators.py:160 - mutate_replace_layer: Dense<input_channels=25, output_channels=1, has_bias=True>
+INFO 2024-05-28 20:21:35 - model_mutation_operators.py:193 - Previous value: 100 Edit value: 25 new_inshape: (2, 25) new_outshape: (2, 1)
+INFO 2024-05-28 20:21:35 - model_mutation_operators.py:212 - SequentialCell<
+  (0): Replace_ms<>
+  (1): Dense<input_channels=25, output_channels=1, has_bias=True>
+  >
+INFO 2024-05-28 20:21:35 - model_mutation_operators.py:213 - mut_result:True
+INFO 2024-05-28 20:21:35 - model_mutation_operators.py:214 - 4 generation!
+
+INFO 2024-05-28 20:21:35 - mutation_test.py:291 - ================== start 5 generation!(5/100) ==================
+INFO 2024-05-28 20:21:35 - model_mutation_operators.py:243 - Adopt LD mut_strategy!
+INFO 2024-05-28 20:21:35 - model_mutation_operators.py:259 - delete layer_name:dense
+INFO 2024-05-28 20:21:35 - model_mutation_operators.py:288 - candidate_in_mutlayers_indice:0
+
+INFO 2024-05-28 20:21:35 - model_mutation_operators.py:317 - adopt DeleteCell Replace_ms
+INFO 2024-05-28 20:21:35 - model_mutation_operators.py:506 - mut_result:True
+INFO 2024-05-28 20:21:35 - model_mutation_operators.py:507 - 5 generation!
+
+INFO 2024-05-28 20:21:35 - mutation_test.py:291 - ================== start 6 generation!(6/100) ==================
+INFO 2024-05-28 20:21:35 - model_mutation_operators.py:1924 - Adopt LC mut_strategy!
+INFO 2024-05-28 20:21:35 - model_mutation_operators.py:1991 - select layer: dropout2 layer_type: <class 'mindspore.nn.layer.basic.Dropout'> in_shape: [1, 1, 100] out_shape: [1, 1, 100]
+INFO 2024-05-28 20:21:35 - model_mutation_operators.py:1992 - mut Basic type: True
+INFO 2024-05-28 20:21:35 - model_mutation_operators.py:1993 - add Basic layer : Basic_op
+INFO 2024-05-28 20:21:35 - model_mutation_operators.py:2006 - select insert layer: Dropout<keep_prob=0.5>
+INFO 2024-05-28 20:21:35 - model_mutation_operators.py:2041 - insert_layer_outshape equal!
+INFO 2024-05-28 20:21:35 - model_mutation_operators.py:2109 - mut_result:True
+INFO 2024-05-28 20:21:35 - model_mutation_operators.py:2110 - 6 generation!
+
+INFO 2024-05-28 20:21:35 - mutation_test.py:367 - list index out of range
+
+INFO 2024-05-28 20:21:35 - mutation_test.py:291 - ================== start 7 generation!(7/100) ==================
+INFO 2024-05-28 20:21:35 - model_mutation_operators.py:1924 - Adopt LC mut_strategy!
+INFO 2024-05-28 20:21:35 - model_mutation_operators.py:1979 - Illegal LC mutate!
+INFO 2024-05-28 20:21:35 - model_mutation_operators.py:1980 - mut_result:LC Create illegal layer!
+INFO 2024-05-28 20:21:35 - model_mutation_operators.py:1981 - 7 generation!
+
+INFO 2024-05-28 20:21:35 - mutation_test.py:291 - ================== start 8 generation!(8/100) ==================
+INFO 2024-05-28 20:21:35 - model_mutation_operators.py:1924 - Adopt LC mut_strategy!
+INFO 2024-05-28 20:21:35 - model_mutation_operators.py:1979 - Illegal LC mutate!
+INFO 2024-05-28 20:21:35 - model_mutation_operators.py:1980 - mut_result:LC Create illegal layer!
+INFO 2024-05-28 20:21:35 - model_mutation_operators.py:1981 - 8 generation!
+
+INFO 2024-05-28 20:21:35 - mutation_test.py:291 - ================== start 9 generation!(9/100) ==================
+INFO 2024-05-28 20:21:35 - model_mutation_operators.py:1924 - Adopt LC mut_strategy!
+INFO 2024-05-28 20:21:35 - model_mutation_operators.py:1979 - Illegal LC mutate!
+INFO 2024-05-28 20:21:35 - model_mutation_operators.py:1980 - mut_result:LC Create illegal layer!
+INFO 2024-05-28 20:21:35 - model_mutation_operators.py:1981 - 9 generation!
+
+INFO 2024-05-28 20:21:36 - mutation_test.py:291 - ================== start 10 generation!(10/100) ==================
+INFO 2024-05-28 20:21:36 - model_mutation_operators.py:1924 - Adopt LC mut_strategy!
+INFO 2024-05-28 20:21:36 - model_mutation_operators.py:1991 - select layer: dropout1 layer_type: <class 'mindspore.nn.layer.basic.Dropout'> in_shape: [1, 1, 50] out_shape: [1, 1, 50]
+INFO 2024-05-28 20:21:36 - model_mutation_operators.py:1992 - mut Basic type: True
+INFO 2024-05-28 20:21:36 - model_mutation_operators.py:1993 - add Basic layer : Basic_op
+INFO 2024-05-28 20:21:36 - model_mutation_operators.py:2006 - select insert layer: Dropout<keep_prob=0.5>
+INFO 2024-05-28 20:21:36 - model_mutation_operators.py:2041 - insert_layer_outshape equal!
+INFO 2024-05-28 20:21:36 - model_mutation_operators.py:2109 - mut_result:True
+INFO 2024-05-28 20:21:36 - model_mutation_operators.py:2110 - 10 generation!
+
+INFO 2024-05-28 20:21:36 - mutation_test.py:367 - list index out of range
+
+INFO 2024-05-28 20:21:36 - mutation_test.py:291 - ================== start 11 generation!(11/100) ==================
+INFO 2024-05-28 20:21:36 - model_mutation_operators.py:1924 - Adopt LC mut_strategy!
+INFO 2024-05-28 20:21:36 - model_mutation_operators.py:1991 - select layer: dropout2 layer_type: <class 'mindspore.nn.layer.basic.Dropout'> in_shape: [1, 1, 100] out_shape: [1, 1, 100]
+INFO 2024-05-28 20:21:36 - model_mutation_operators.py:1992 - mut Basic type: True
+INFO 2024-05-28 20:21:36 - model_mutation_operators.py:1993 - add Basic layer : Basic_op
+INFO 2024-05-28 20:21:36 - model_mutation_operators.py:2006 - select insert layer: Dropout<keep_prob=0.5>
+INFO 2024-05-28 20:21:36 - model_mutation_operators.py:2041 - insert_layer_outshape equal!
+INFO 2024-05-28 20:21:36 - model_mutation_operators.py:2109 - mut_result:True
+INFO 2024-05-28 20:21:36 - model_mutation_operators.py:2110 - 11 generation!
+
+INFO 2024-05-28 20:21:36 - mutation_test.py:291 - ================== start 12 generation!(12/100) ==================
+INFO 2024-05-28 20:21:36 - model_mutation_operators.py:756 - Adopt RA mut_strategy!
+INFO 2024-05-28 20:21:36 - model_mutation_operators.py:807 - mut_result:No suitable ops for RA mutation!
+INFO 2024-05-28 20:21:36 - model_mutation_operators.py:808 - 12 generation!
+INFO 2024-05-28 20:21:36 - mutation_test.py:291 - ================== start 13 generation!(13/100) ==================
+INFO 2024-05-28 20:21:36 - model_mutation_operators.py:1924 - Adopt LC mut_strategy!
+INFO 2024-05-28 20:21:36 - model_mutation_operators.py:1991 - select layer: dropout2 layer_type: <class 'mindspore.nn.layer.basic.Dropout'> in_shape: [1, 1, 100] out_shape: [1, 1, 100]
+INFO 2024-05-28 20:21:36 - model_mutation_operators.py:1992 - mut Basic type: True
+INFO 2024-05-28 20:21:36 - model_mutation_operators.py:1993 - add Basic layer : Basic_op
+INFO 2024-05-28 20:21:36 - model_mutation_operators.py:2006 - select insert layer: Dropout<keep_prob=0.5>
+INFO 2024-05-28 20:21:36 - model_mutation_operators.py:2041 - insert_layer_outshape equal!
+INFO 2024-05-28 20:21:36 - model_mutation_operators.py:2109 - mut_result:True
+INFO 2024-05-28 20:21:36 - model_mutation_operators.py:2110 - 13 generation!
+
+INFO 2024-05-28 20:21:36 - mutation_test.py:291 - ================== start 14 generation!(14/100) ==================
+INFO 2024-05-28 20:21:36 - model_mutation_operators.py:1924 - Adopt LC mut_strategy!
+INFO 2024-05-28 20:21:36 - model_mutation_operators.py:1991 - select layer: dropout1 layer_type: <class 'mindspore.nn.layer.basic.Dropout'> in_shape: [1, 1, 50] out_shape: [1, 1, 50]
+INFO 2024-05-28 20:21:36 - model_mutation_operators.py:1992 - mut Basic type: True
+INFO 2024-05-28 20:21:36 - model_mutation_operators.py:1993 - add Basic layer : Basic_op
+INFO 2024-05-28 20:21:36 - model_mutation_operators.py:2006 - select insert layer: Dropout<keep_prob=0.5>
+INFO 2024-05-28 20:21:36 - model_mutation_operators.py:2041 - insert_layer_outshape equal!
+INFO 2024-05-28 20:21:36 - model_mutation_operators.py:2109 - mut_result:True
+INFO 2024-05-28 20:21:36 - model_mutation_operators.py:2110 - 14 generation!
+
+INFO 2024-05-28 20:21:36 - mutation_test.py:367 - list index out of range
+
+INFO 2024-05-28 20:21:36 - mutation_test.py:291 - ================== start 15 generation!(15/100) ==================
+INFO 2024-05-28 20:21:36 - model_mutation_operators.py:1924 - Adopt LC mut_strategy!
+INFO 2024-05-28 20:21:36 - model_mutation_operators.py:1979 - Illegal LC mutate!
+INFO 2024-05-28 20:21:36 - model_mutation_operators.py:1980 - mut_result:LC Create illegal layer!
+INFO 2024-05-28 20:21:36 - model_mutation_operators.py:1981 - 15 generation!
+
+INFO 2024-05-28 20:21:36 - mutation_test.py:291 - ================== start 16 generation!(16/100) ==================
+INFO 2024-05-28 20:21:36 - model_mutation_operators.py:243 - Adopt LD mut_strategy!
+INFO 2024-05-28 20:21:36 - model_mutation_operators.py:259 - delete layer_name:dropout1
+INFO 2024-05-28 20:21:36 - model_mutation_operators.py:321 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-28 20:21:36 - model_mutation_operators.py:326 - adopt DeleteCell EmptyCell
+INFO 2024-05-28 20:21:36 - model_mutation_operators.py:506 - mut_result:True
+INFO 2024-05-28 20:21:36 - model_mutation_operators.py:507 - 16 generation!
+
+INFO 2024-05-28 20:21:36 - mutation_test.py:367 - list index out of range
+
+INFO 2024-05-28 20:21:36 - mutation_test.py:291 - ================== start 17 generation!(17/100) ==================
+INFO 2024-05-28 20:21:36 - model_mutation_operators.py:2119 - Adopt SM mut_strategy!
+INFO 2024-05-28 20:21:36 - model_mutation_operators.py:2157 - select layer: dropout2 layer_type: <class 'mindspore.nn.layer.basic.Dropout'> in_shape: [1, 1, 100] out_shape: [1, 1, 100]
+INFO 2024-05-28 20:21:36 - model_mutation_operators.py:2158 - mut Basic type: True
+INFO 2024-05-28 20:21:36 - model_mutation_operators.py:2206 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-28 20:21:36 - model_mutation_operators.py:2265 - mutate input_shape: [2, 3, 8]
+INFO 2024-05-28 20:21:36 - model_mutation_operators.py:2360 - mut_result:True
+INFO 2024-05-28 20:21:36 - model_mutation_operators.py:2361 - 17 generation!
+
+INFO 2024-05-28 20:21:36 - mutation_test.py:291 - ================== start 18 generation!(18/100) ==================
+INFO 2024-05-28 20:21:36 - model_mutation_operators.py:1924 - Adopt LC mut_strategy!
+INFO 2024-05-28 20:21:36 - model_mutation_operators.py:1979 - Illegal LC mutate!
+INFO 2024-05-28 20:21:36 - model_mutation_operators.py:1980 - mut_result:LC Create illegal layer!
+INFO 2024-05-28 20:21:36 - model_mutation_operators.py:1981 - 18 generation!
+
+INFO 2024-05-28 20:21:36 - mutation_test.py:291 - ================== start 19 generation!(19/100) ==================
+INFO 2024-05-28 20:21:36 - model_mutation_operators.py:1924 - Adopt LC mut_strategy!
+INFO 2024-05-28 20:21:36 - model_mutation_operators.py:1991 - select layer: dropout2 layer_type: <class 'mindspore.nn.layer.basic.Dropout'> in_shape: [1, 1, 100] out_shape: [1, 1, 100]
+INFO 2024-05-28 20:21:36 - model_mutation_operators.py:1992 - mut Basic type: True
+INFO 2024-05-28 20:21:36 - model_mutation_operators.py:1993 - add Basic layer : Basic_op
+INFO 2024-05-28 20:21:36 - model_mutation_operators.py:2006 - select insert layer: Dropout<keep_prob=0.5>
+INFO 2024-05-28 20:21:36 - model_mutation_operators.py:2041 - insert_layer_outshape equal!
+INFO 2024-05-28 20:21:36 - model_mutation_operators.py:2109 - mut_result:True
+INFO 2024-05-28 20:21:36 - model_mutation_operators.py:2110 - 19 generation!
+
+INFO 2024-05-28 20:21:36 - mutation_test.py:291 - ================== start 20 generation!(20/100) ==================
+INFO 2024-05-28 20:21:36 - model_mutation_operators.py:1924 - Adopt LC mut_strategy!
+INFO 2024-05-28 20:21:36 - model_mutation_operators.py:1991 - select layer: dropout1 layer_type: <class 'mindspore.nn.layer.basic.Dropout'> in_shape: [1, 1, 50] out_shape: [1, 1, 50]
+INFO 2024-05-28 20:21:36 - model_mutation_operators.py:1992 - mut Basic type: True
+INFO 2024-05-28 20:21:36 - model_mutation_operators.py:1993 - add Basic layer : Basic_op
+INFO 2024-05-28 20:21:36 - model_mutation_operators.py:2006 - select insert layer: Dropout<keep_prob=0.5>
+INFO 2024-05-28 20:21:36 - model_mutation_operators.py:2041 - insert_layer_outshape equal!
+INFO 2024-05-28 20:21:36 - model_mutation_operators.py:2109 - mut_result:True
+INFO 2024-05-28 20:21:36 - model_mutation_operators.py:2110 - 20 generation!
+
+INFO 2024-05-28 20:21:37 - mutation_test.py:367 - list index out of range
+
+INFO 2024-05-28 20:21:37 - mutation_test.py:291 - ================== start 21 generation!(21/100) ==================
+INFO 2024-05-28 20:21:37 - model_mutation_operators.py:756 - Adopt RA mut_strategy!
+INFO 2024-05-28 20:21:37 - model_mutation_operators.py:818 - candidate_in_mutlayers_indice:1
+
+INFO 2024-05-28 20:21:37 - model_mutation_operators.py:859 - select layer: dropout2 layer_type: <class 'mindspore.nn.layer.container.SequentialCell'> in_shape: [1, 1, 100] out_shape: [1, 1, 100]
+INFO 2024-05-28 20:21:37 - model_mutation_operators.py:860 - mut Basic type: True
+INFO 2024-05-28 20:21:37 - model_mutation_operators.py:861 - add Basic layer : Cascade_op
+INFO 2024-05-28 20:21:37 - model_mutation_operators.py:874 - select insert layer: SE<
+  (SE_pool): GlobalAvgPooling<>
+  (act): HSigmoid<>
+  (SE_act1): ReLU<>
+  (SE_act2): HSigmoid<>
+  >
+INFO 2024-05-28 20:21:37 - model_mutation_operators.py:942 - insert_layer_outshape equal!
+INFO 2024-05-28 20:21:37 - model_mutation_operators.py:987 - replace Basic with Cascade!
+INFO 2024-05-28 20:21:37 - model_mutation_operators.py:1061 - mut_result:True
+INFO 2024-05-28 20:21:37 - model_mutation_operators.py:1062 - 21 generation!
+
+INFO 2024-05-28 20:21:37 - mutation_test.py:291 - ================== start 22 generation!(22/100) ==================
+INFO 2024-05-28 20:21:37 - model_mutation_operators.py:1071 - Adopt CM mut_strategy!
+INFO 2024-05-28 20:21:37 - model_mutation_operators.py:1117 - mut_result:No suitable ops for CM mutation!
+INFO 2024-05-28 20:21:37 - model_mutation_operators.py:1118 - 22 generation!
+INFO 2024-05-28 20:21:37 - mutation_test.py:291 - ================== start 23 generation!(23/100) ==================
+INFO 2024-05-28 20:21:37 - model_mutation_operators.py:1924 - Adopt LC mut_strategy!
+INFO 2024-05-28 20:21:37 - model_mutation_operators.py:1991 - select layer: dropout1 layer_type: <class 'mindspore.nn.layer.basic.Dropout'> in_shape: [1, 1, 50] out_shape: [1, 1, 50]
+INFO 2024-05-28 20:21:37 - model_mutation_operators.py:1992 - mut Basic type: True
+INFO 2024-05-28 20:21:37 - model_mutation_operators.py:1993 - add Basic layer : Basic_op
+INFO 2024-05-28 20:21:37 - model_mutation_operators.py:2006 - select insert layer: Dropout<keep_prob=0.5>
+INFO 2024-05-28 20:21:37 - model_mutation_operators.py:2041 - insert_layer_outshape equal!
+INFO 2024-05-28 20:21:37 - model_mutation_operators.py:2109 - mut_result:True
+INFO 2024-05-28 20:21:37 - model_mutation_operators.py:2110 - 23 generation!
+
+INFO 2024-05-28 20:21:37 - mutation_test.py:291 - ================== start 24 generation!(24/100) ==================
+INFO 2024-05-28 20:21:37 - model_mutation_operators.py:1924 - Adopt LC mut_strategy!
+INFO 2024-05-28 20:21:37 - model_mutation_operators.py:1979 - Illegal LC mutate!
+INFO 2024-05-28 20:21:37 - model_mutation_operators.py:1980 - mut_result:LC Create illegal layer!
+INFO 2024-05-28 20:21:37 - model_mutation_operators.py:1981 - 24 generation!
+
+INFO 2024-05-28 20:21:37 - mutation_test.py:291 - ================== start 25 generation!(25/100) ==================
+INFO 2024-05-28 20:21:37 - model_mutation_operators.py:1924 - Adopt LC mut_strategy!
+INFO 2024-05-28 20:21:37 - model_mutation_operators.py:1991 - select layer: dropout1 layer_type: <class 'mindspore.nn.layer.basic.Dropout'> in_shape: [1, 1, 50] out_shape: [1, 1, 50]
+INFO 2024-05-28 20:21:37 - model_mutation_operators.py:1992 - mut Basic type: True
+INFO 2024-05-28 20:21:37 - model_mutation_operators.py:1993 - add Basic layer : Basic_op
+INFO 2024-05-28 20:21:37 - model_mutation_operators.py:2006 - select insert layer: Dropout<keep_prob=0.5>
+INFO 2024-05-28 20:21:37 - model_mutation_operators.py:2041 - insert_layer_outshape equal!
+INFO 2024-05-28 20:21:37 - model_mutation_operators.py:2109 - mut_result:True
+INFO 2024-05-28 20:21:37 - model_mutation_operators.py:2110 - 25 generation!
+
+INFO 2024-05-28 20:21:37 - mutation_test.py:291 - ================== start 26 generation!(26/100) ==================
+INFO 2024-05-28 20:21:37 - model_mutation_operators.py:1924 - Adopt LC mut_strategy!
+INFO 2024-05-28 20:21:37 - model_mutation_operators.py:1991 - select layer: dropout2 layer_type: <class 'mindspore.nn.layer.basic.Dropout'> in_shape: [1, 1, 100] out_shape: [1, 1, 100]
+INFO 2024-05-28 20:21:37 - model_mutation_operators.py:1992 - mut Basic type: True
+INFO 2024-05-28 20:21:37 - model_mutation_operators.py:1993 - add Basic layer : Basic_op
+INFO 2024-05-28 20:21:37 - model_mutation_operators.py:2006 - select insert layer: Dropout<keep_prob=0.5>
+INFO 2024-05-28 20:21:37 - model_mutation_operators.py:2041 - insert_layer_outshape equal!
+INFO 2024-05-28 20:21:37 - model_mutation_operators.py:2109 - mut_result:True
+INFO 2024-05-28 20:21:37 - model_mutation_operators.py:2110 - 26 generation!
+
+INFO 2024-05-28 20:21:37 - mutation_test.py:367 - list index out of range
+
+INFO 2024-05-28 20:21:37 - mutation_test.py:291 - ================== start 27 generation!(27/100) ==================
+INFO 2024-05-28 20:21:37 - model_mutation_operators.py:1924 - Adopt LC mut_strategy!
+INFO 2024-05-28 20:21:37 - model_mutation_operators.py:1979 - Illegal LC mutate!
+INFO 2024-05-28 20:21:37 - model_mutation_operators.py:1980 - mut_result:LC Create illegal layer!
+INFO 2024-05-28 20:21:37 - model_mutation_operators.py:1981 - 27 generation!
+
+INFO 2024-05-28 20:21:37 - mutation_test.py:291 - ================== start 28 generation!(28/100) ==================
+INFO 2024-05-28 20:21:37 - model_mutation_operators.py:24 - Adopt PM mut_strategy!
+INFO 2024-05-28 20:21:37 - model_mutation_operators.py:63 - The target model do not have the mutator operators eps!
+INFO 2024-05-28 20:21:37 - model_mutation_operators.py:64 - mut_result:Parameter Miss
+INFO 2024-05-28 20:21:37 - model_mutation_operators.py:65 - 28 generation!
+
+INFO 2024-05-28 20:21:37 - mutation_test.py:291 - ================== start 29 generation!(29/100) ==================
+INFO 2024-05-28 20:21:37 - model_mutation_operators.py:1924 - Adopt LC mut_strategy!
+INFO 2024-05-28 20:21:37 - model_mutation_operators.py:1991 - select layer: dropout2 layer_type: <class 'mindspore.nn.layer.basic.Dropout'> in_shape: [1, 1, 100] out_shape: [1, 1, 100]
+INFO 2024-05-28 20:21:37 - model_mutation_operators.py:1992 - mut Basic type: True
+INFO 2024-05-28 20:21:37 - model_mutation_operators.py:1993 - add Basic layer : Basic_op
+INFO 2024-05-28 20:21:37 - model_mutation_operators.py:2006 - select insert layer: Dropout<keep_prob=0.5>
+INFO 2024-05-28 20:21:37 - model_mutation_operators.py:2041 - insert_layer_outshape equal!
+INFO 2024-05-28 20:21:37 - model_mutation_operators.py:2109 - mut_result:True
+INFO 2024-05-28 20:21:37 - model_mutation_operators.py:2110 - 29 generation!
+
+INFO 2024-05-28 20:21:37 - mutation_test.py:291 - ================== start 30 generation!(30/100) ==================
+INFO 2024-05-28 20:21:37 - model_mutation_operators.py:1924 - Adopt LC mut_strategy!
+INFO 2024-05-28 20:21:37 - model_mutation_operators.py:1979 - Illegal LC mutate!
+INFO 2024-05-28 20:21:37 - model_mutation_operators.py:1980 - mut_result:LC Create illegal layer!
+INFO 2024-05-28 20:21:37 - model_mutation_operators.py:1981 - 30 generation!
+
+INFO 2024-05-28 20:21:37 - mutation_test.py:291 - ================== start 31 generation!(31/100) ==================
+INFO 2024-05-28 20:21:37 - model_mutation_operators.py:1924 - Adopt LC mut_strategy!
+INFO 2024-05-28 20:21:37 - model_mutation_operators.py:1991 - select layer: dropout2 layer_type: <class 'mindspore.nn.layer.basic.Dropout'> in_shape: [1, 1, 100] out_shape: [1, 1, 100]
+INFO 2024-05-28 20:21:37 - model_mutation_operators.py:1992 - mut Basic type: True
+INFO 2024-05-28 20:21:37 - model_mutation_operators.py:1993 - add Basic layer : Basic_op
+INFO 2024-05-28 20:21:37 - model_mutation_operators.py:2006 - select insert layer: Dropout<keep_prob=0.5>
+INFO 2024-05-28 20:21:37 - model_mutation_operators.py:2041 - insert_layer_outshape equal!
+INFO 2024-05-28 20:21:37 - model_mutation_operators.py:2109 - mut_result:True
+INFO 2024-05-28 20:21:37 - model_mutation_operators.py:2110 - 31 generation!
+
+INFO 2024-05-28 20:21:37 - mutation_test.py:291 - ================== start 32 generation!(32/100) ==================
+INFO 2024-05-28 20:21:37 - model_mutation_operators.py:1924 - Adopt LC mut_strategy!
+INFO 2024-05-28 20:21:37 - model_mutation_operators.py:1979 - Illegal LC mutate!
+INFO 2024-05-28 20:21:37 - model_mutation_operators.py:1980 - mut_result:LC Create illegal layer!
+INFO 2024-05-28 20:21:37 - model_mutation_operators.py:1981 - 32 generation!
+
+INFO 2024-05-28 20:21:37 - mutation_test.py:291 - ================== start 33 generation!(33/100) ==================
+INFO 2024-05-28 20:21:37 - model_mutation_operators.py:1924 - Adopt LC mut_strategy!
+INFO 2024-05-28 20:21:37 - model_mutation_operators.py:1991 - select layer: dropout2 layer_type: <class 'mindspore.nn.layer.basic.Dropout'> in_shape: [1, 1, 100] out_shape: [1, 1, 100]
+INFO 2024-05-28 20:21:37 - model_mutation_operators.py:1992 - mut Basic type: True
+INFO 2024-05-28 20:21:37 - model_mutation_operators.py:1993 - add Basic layer : Basic_op
+INFO 2024-05-28 20:21:37 - model_mutation_operators.py:2006 - select insert layer: Dropout<keep_prob=0.5>
+INFO 2024-05-28 20:21:37 - model_mutation_operators.py:2041 - insert_layer_outshape equal!
+INFO 2024-05-28 20:21:37 - model_mutation_operators.py:2109 - mut_result:True
+INFO 2024-05-28 20:21:37 - model_mutation_operators.py:2110 - 33 generation!
+
+INFO 2024-05-28 20:21:37 - mutation_test.py:291 - ================== start 34 generation!(34/100) ==================
+INFO 2024-05-28 20:21:37 - model_mutation_operators.py:1924 - Adopt LC mut_strategy!
+INFO 2024-05-28 20:21:37 - model_mutation_operators.py:1979 - Illegal LC mutate!
+INFO 2024-05-28 20:21:37 - model_mutation_operators.py:1980 - mut_result:LC Create illegal layer!
+INFO 2024-05-28 20:21:37 - model_mutation_operators.py:1981 - 34 generation!
+
+INFO 2024-05-28 20:21:37 - mutation_test.py:291 - ================== start 35 generation!(35/100) ==================
+INFO 2024-05-28 20:21:37 - model_mutation_operators.py:1924 - Adopt LC mut_strategy!
+INFO 2024-05-28 20:21:37 - model_mutation_operators.py:1991 - select layer: dropout2 layer_type: <class 'mindspore.nn.layer.basic.Dropout'> in_shape: [1, 1, 100] out_shape: [1, 1, 100]
+INFO 2024-05-28 20:21:37 - model_mutation_operators.py:1992 - mut Basic type: True
+INFO 2024-05-28 20:21:37 - model_mutation_operators.py:1993 - add Basic layer : Basic_op
+INFO 2024-05-28 20:21:37 - model_mutation_operators.py:2006 - select insert layer: Dropout<keep_prob=0.5>
+INFO 2024-05-28 20:21:37 - model_mutation_operators.py:2041 - insert_layer_outshape equal!
+INFO 2024-05-28 20:21:37 - model_mutation_operators.py:2109 - mut_result:True
+INFO 2024-05-28 20:21:37 - model_mutation_operators.py:2110 - 35 generation!
+
+INFO 2024-05-28 20:21:37 - mutation_test.py:291 - ================== start 36 generation!(36/100) ==================
+INFO 2024-05-28 20:21:37 - model_mutation_operators.py:1924 - Adopt LC mut_strategy!
+INFO 2024-05-28 20:21:37 - model_mutation_operators.py:1979 - Illegal LC mutate!
+INFO 2024-05-28 20:21:37 - model_mutation_operators.py:1980 - mut_result:LC Create illegal layer!
+INFO 2024-05-28 20:21:37 - model_mutation_operators.py:1981 - 36 generation!
+
+INFO 2024-05-28 20:21:37 - mutation_test.py:291 - ================== start 37 generation!(37/100) ==================
+INFO 2024-05-28 20:21:37 - model_mutation_operators.py:1924 - Adopt LC mut_strategy!
+INFO 2024-05-28 20:21:37 - model_mutation_operators.py:1991 - select layer: dropout2 layer_type: <class 'mindspore.nn.layer.basic.Dropout'> in_shape: [1, 1, 100] out_shape: [1, 1, 100]
+INFO 2024-05-28 20:21:37 - model_mutation_operators.py:1992 - mut Basic type: True
+INFO 2024-05-28 20:21:37 - model_mutation_operators.py:1993 - add Basic layer : Basic_op
+INFO 2024-05-28 20:21:37 - model_mutation_operators.py:2006 - select insert layer: Dropout<keep_prob=0.5>
+INFO 2024-05-28 20:21:37 - model_mutation_operators.py:2041 - insert_layer_outshape equal!
+INFO 2024-05-28 20:21:37 - model_mutation_operators.py:2109 - mut_result:True
+INFO 2024-05-28 20:21:37 - model_mutation_operators.py:2110 - 37 generation!
+
+INFO 2024-05-28 20:21:37 - mutation_test.py:291 - ================== start 38 generation!(38/100) ==================
+INFO 2024-05-28 20:21:37 - model_mutation_operators.py:1924 - Adopt LC mut_strategy!
+INFO 2024-05-28 20:21:37 - model_mutation_operators.py:1979 - Illegal LC mutate!
+INFO 2024-05-28 20:21:37 - model_mutation_operators.py:1980 - mut_result:LC Create illegal layer!
+INFO 2024-05-28 20:21:37 - model_mutation_operators.py:1981 - 38 generation!
+
+INFO 2024-05-28 20:21:37 - mutation_test.py:291 - ================== start 39 generation!(39/100) ==================
+INFO 2024-05-28 20:21:37 - model_mutation_operators.py:1071 - Adopt CM mut_strategy!
+INFO 2024-05-28 20:21:37 - model_mutation_operators.py:1117 - mut_result:No suitable ops for CM mutation!
+INFO 2024-05-28 20:21:37 - model_mutation_operators.py:1118 - 39 generation!
+INFO 2024-05-28 20:21:37 - mutation_test.py:291 - ================== start 40 generation!(40/100) ==================
+INFO 2024-05-28 20:21:37 - model_mutation_operators.py:516 - Adopt LA mut_strategy!
+INFO 2024-05-28 20:21:37 - model_mutation_operators.py:591 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-28 20:21:37 - model_mutation_operators.py:600 - select layer: dropout1 layer_type: <class 'mindspore.nn.layer.basic.Dropout'> in_shape: [1, 1, 50] out_shape: [1, 1, 50]
+INFO 2024-05-28 20:21:37 - model_mutation_operators.py:601 - mut Basic type: True
+INFO 2024-05-28 20:21:37 - model_mutation_operators.py:602 - add Basic layer : Basic_op
+INFO 2024-05-28 20:21:37 - model_mutation_operators.py:616 - select insert layer: ReLU6<>
+INFO 2024-05-28 20:21:37 - model_mutation_operators.py:629 - insert_layer_outshape equal!
+INFO 2024-05-28 20:21:37 - model_mutation_operators.py:746 - mut_result:True
+INFO 2024-05-28 20:21:37 - model_mutation_operators.py:747 - 40 generation!
+
+INFO 2024-05-28 20:21:37 - mutation_test.py:367 - list index out of range
+
+INFO 2024-05-28 20:21:37 - mutation_test.py:291 - ================== start 41 generation!(41/100) ==================
+INFO 2024-05-28 20:21:37 - model_mutation_operators.py:1924 - Adopt LC mut_strategy!
+INFO 2024-05-28 20:21:37 - model_mutation_operators.py:1991 - select layer: dropout2 layer_type: <class 'mindspore.nn.layer.basic.Dropout'> in_shape: [1, 1, 100] out_shape: [1, 1, 100]
+INFO 2024-05-28 20:21:37 - model_mutation_operators.py:1992 - mut Basic type: True
+INFO 2024-05-28 20:21:37 - model_mutation_operators.py:1993 - add Basic layer : Basic_op
+INFO 2024-05-28 20:21:37 - model_mutation_operators.py:2006 - select insert layer: Dropout<keep_prob=0.5>
+INFO 2024-05-28 20:21:37 - model_mutation_operators.py:2041 - insert_layer_outshape equal!
+INFO 2024-05-28 20:21:37 - model_mutation_operators.py:2109 - mut_result:True
+INFO 2024-05-28 20:21:37 - model_mutation_operators.py:2110 - 41 generation!
+
+INFO 2024-05-28 20:21:37 - mutation_test.py:291 - ================== start 42 generation!(42/100) ==================
+INFO 2024-05-28 20:21:37 - model_mutation_operators.py:1071 - Adopt CM mut_strategy!
+INFO 2024-05-28 20:21:37 - model_mutation_operators.py:1117 - mut_result:No suitable ops for CM mutation!
+INFO 2024-05-28 20:21:37 - model_mutation_operators.py:1118 - 42 generation!
+INFO 2024-05-28 20:21:38 - mutation_test.py:291 - ================== start 43 generation!(43/100) ==================
+INFO 2024-05-28 20:21:38 - model_mutation_operators.py:1924 - Adopt LC mut_strategy!
+INFO 2024-05-28 20:21:38 - model_mutation_operators.py:1991 - select layer: dropout2 layer_type: <class 'mindspore.nn.layer.basic.Dropout'> in_shape: [1, 1, 100] out_shape: [1, 1, 100]
+INFO 2024-05-28 20:21:38 - model_mutation_operators.py:1992 - mut Basic type: True
+INFO 2024-05-28 20:21:38 - model_mutation_operators.py:1993 - add Basic layer : Basic_op
+INFO 2024-05-28 20:21:38 - model_mutation_operators.py:2006 - select insert layer: Dropout<keep_prob=0.5>
+INFO 2024-05-28 20:21:38 - model_mutation_operators.py:2041 - insert_layer_outshape equal!
+INFO 2024-05-28 20:21:38 - model_mutation_operators.py:2109 - mut_result:True
+INFO 2024-05-28 20:21:38 - model_mutation_operators.py:2110 - 43 generation!
+
+INFO 2024-05-28 20:21:38 - mutation_test.py:291 - ================== start 44 generation!(44/100) ==================
+INFO 2024-05-28 20:21:38 - model_mutation_operators.py:2119 - Adopt SM mut_strategy!
+INFO 2024-05-28 20:21:38 - model_mutation_operators.py:2157 - select layer: dropout2 layer_type: <class 'mindspore.nn.layer.container.SequentialCell'> in_shape: [1, 1, 100] out_shape: [1, 1, 100]
+INFO 2024-05-28 20:21:38 - model_mutation_operators.py:2158 - mut Basic type: True
+INFO 2024-05-28 20:21:38 - model_mutation_operators.py:2202 - candidate_in_mutlayers_indice:0
+INFO 2024-05-28 20:21:38 - model_mutation_operators.py:2257 - mutate input_shape: [2, 33, 35, 17, 20]
+INFO 2024-05-28 20:21:38 - model_mutation_operators.py:2258 - mutate output_shape: [2, 3, 3, 50]
+INFO 2024-05-28 20:21:38 - model_mutation_operators.py:2360 - mut_result:True
+INFO 2024-05-28 20:21:38 - model_mutation_operators.py:2361 - 44 generation!
+
+INFO 2024-05-28 20:21:38 - mutation_test.py:367 - list index out of range
+
+INFO 2024-05-28 20:21:38 - mutation_test.py:291 - ================== start 45 generation!(45/100) ==================
+INFO 2024-05-28 20:21:38 - model_mutation_operators.py:1924 - Adopt LC mut_strategy!
+INFO 2024-05-28 20:21:38 - model_mutation_operators.py:1979 - Illegal LC mutate!
+INFO 2024-05-28 20:21:38 - model_mutation_operators.py:1980 - mut_result:LC Create illegal layer!
+INFO 2024-05-28 20:21:38 - model_mutation_operators.py:1981 - 45 generation!
+
+INFO 2024-05-28 20:21:38 - mutation_test.py:291 - ================== start 46 generation!(46/100) ==================
+INFO 2024-05-28 20:21:38 - model_mutation_operators.py:1924 - Adopt LC mut_strategy!
+INFO 2024-05-28 20:21:38 - model_mutation_operators.py:1979 - Illegal LC mutate!
+INFO 2024-05-28 20:21:38 - model_mutation_operators.py:1980 - mut_result:LC Create illegal layer!
+INFO 2024-05-28 20:21:38 - model_mutation_operators.py:1981 - 46 generation!
+
+INFO 2024-05-28 20:21:38 - mutation_test.py:291 - ================== start 47 generation!(47/100) ==================
+INFO 2024-05-28 20:21:38 - model_mutation_operators.py:243 - Adopt LD mut_strategy!
+INFO 2024-05-28 20:21:38 - model_mutation_operators.py:259 - delete layer_name:dense
+INFO 2024-05-28 20:21:38 - model_mutation_operators.py:279 - mut_result:No suitable ops for LD mutation!
+INFO 2024-05-28 20:21:38 - model_mutation_operators.py:280 - 47 generation!
+INFO 2024-05-28 20:21:38 - mutation_test.py:291 - ================== start 48 generation!(48/100) ==================
+INFO 2024-05-28 20:21:38 - model_mutation_operators.py:1924 - Adopt LC mut_strategy!
+INFO 2024-05-28 20:21:38 - model_mutation_operators.py:1979 - Illegal LC mutate!
+INFO 2024-05-28 20:21:38 - model_mutation_operators.py:1980 - mut_result:LC Create illegal layer!
+INFO 2024-05-28 20:21:38 - model_mutation_operators.py:1981 - 48 generation!
+
+INFO 2024-05-28 20:21:38 - mutation_test.py:291 - ================== start 49 generation!(49/100) ==================
+INFO 2024-05-28 20:21:38 - model_mutation_operators.py:1924 - Adopt LC mut_strategy!
+INFO 2024-05-28 20:21:38 - model_mutation_operators.py:1991 - select layer: dropout2 layer_type: <class 'mindspore.nn.layer.basic.Dropout'> in_shape: [1, 1, 100] out_shape: [1, 1, 100]
+INFO 2024-05-28 20:21:38 - model_mutation_operators.py:1992 - mut Basic type: True
+INFO 2024-05-28 20:21:38 - model_mutation_operators.py:1993 - add Basic layer : Basic_op
+INFO 2024-05-28 20:21:38 - model_mutation_operators.py:2006 - select insert layer: Dropout<keep_prob=0.5>
+INFO 2024-05-28 20:21:38 - model_mutation_operators.py:2041 - insert_layer_outshape equal!
+INFO 2024-05-28 20:21:38 - model_mutation_operators.py:2109 - mut_result:True
+INFO 2024-05-28 20:21:38 - model_mutation_operators.py:2110 - 49 generation!
+
+INFO 2024-05-28 20:21:38 - mutation_test.py:291 - ================== start 50 generation!(50/100) ==================
+INFO 2024-05-28 20:21:38 - model_mutation_operators.py:1924 - Adopt LC mut_strategy!
+INFO 2024-05-28 20:21:38 - model_mutation_operators.py:1979 - Illegal LC mutate!
+INFO 2024-05-28 20:21:38 - model_mutation_operators.py:1980 - mut_result:LC Create illegal layer!
+INFO 2024-05-28 20:21:38 - model_mutation_operators.py:1981 - 50 generation!
+
+INFO 2024-05-28 20:21:38 - mutation_test.py:291 - ================== start 51 generation!(51/100) ==================
+INFO 2024-05-28 20:21:38 - model_mutation_operators.py:1924 - Adopt LC mut_strategy!
+INFO 2024-05-28 20:21:38 - model_mutation_operators.py:1991 - select layer: dropout2 layer_type: <class 'mindspore.nn.layer.basic.Dropout'> in_shape: [1, 1, 100] out_shape: [1, 1, 100]
+INFO 2024-05-28 20:21:38 - model_mutation_operators.py:1992 - mut Basic type: True
+INFO 2024-05-28 20:21:38 - model_mutation_operators.py:1993 - add Basic layer : Basic_op
+INFO 2024-05-28 20:21:38 - model_mutation_operators.py:2006 - select insert layer: Dropout<keep_prob=0.5>
+INFO 2024-05-28 20:21:38 - model_mutation_operators.py:2041 - insert_layer_outshape equal!
+INFO 2024-05-28 20:21:38 - model_mutation_operators.py:2109 - mut_result:True
+INFO 2024-05-28 20:21:38 - model_mutation_operators.py:2110 - 51 generation!
+
+INFO 2024-05-28 20:21:38 - mutation_test.py:291 - ================== start 52 generation!(52/100) ==================
+INFO 2024-05-28 20:21:38 - model_mutation_operators.py:1924 - Adopt LC mut_strategy!
+INFO 2024-05-28 20:21:38 - model_mutation_operators.py:1979 - Illegal LC mutate!
+INFO 2024-05-28 20:21:38 - model_mutation_operators.py:1980 - mut_result:LC Create illegal layer!
+INFO 2024-05-28 20:21:38 - model_mutation_operators.py:1981 - 52 generation!
+
+INFO 2024-05-28 20:21:38 - mutation_test.py:291 - ================== start 53 generation!(53/100) ==================
+INFO 2024-05-28 20:21:38 - model_mutation_operators.py:1924 - Adopt LC mut_strategy!
+INFO 2024-05-28 20:21:38 - model_mutation_operators.py:1991 - select layer: dropout2 layer_type: <class 'mindspore.nn.layer.basic.Dropout'> in_shape: [1, 1, 100] out_shape: [1, 1, 100]
+INFO 2024-05-28 20:21:38 - model_mutation_operators.py:1992 - mut Basic type: True
+INFO 2024-05-28 20:21:38 - model_mutation_operators.py:1993 - add Basic layer : Basic_op
+INFO 2024-05-28 20:21:38 - model_mutation_operators.py:2006 - select insert layer: Dropout<keep_prob=0.5>
+INFO 2024-05-28 20:21:38 - model_mutation_operators.py:2041 - insert_layer_outshape equal!
+INFO 2024-05-28 20:21:38 - model_mutation_operators.py:2109 - mut_result:True
+INFO 2024-05-28 20:21:38 - model_mutation_operators.py:2110 - 53 generation!
+
+INFO 2024-05-28 20:21:38 - mutation_test.py:291 - ================== start 54 generation!(54/100) ==================
+INFO 2024-05-28 20:21:38 - model_mutation_operators.py:1924 - Adopt LC mut_strategy!
+INFO 2024-05-28 20:21:38 - model_mutation_operators.py:1979 - Illegal LC mutate!
+INFO 2024-05-28 20:21:38 - model_mutation_operators.py:1980 - mut_result:LC Create illegal layer!
+INFO 2024-05-28 20:21:38 - model_mutation_operators.py:1981 - 54 generation!
+
+INFO 2024-05-28 20:21:39 - mutation_test.py:291 - ================== start 55 generation!(55/100) ==================
+INFO 2024-05-28 20:21:39 - model_mutation_operators.py:1924 - Adopt LC mut_strategy!
+INFO 2024-05-28 20:21:39 - model_mutation_operators.py:1991 - select layer: dropout2 layer_type: <class 'mindspore.nn.layer.basic.Dropout'> in_shape: [1, 1, 100] out_shape: [1, 1, 100]
+INFO 2024-05-28 20:21:39 - model_mutation_operators.py:1992 - mut Basic type: True
+INFO 2024-05-28 20:21:39 - model_mutation_operators.py:1993 - add Basic layer : Basic_op
+INFO 2024-05-28 20:21:39 - model_mutation_operators.py:2006 - select insert layer: Dropout<keep_prob=0.5>
+INFO 2024-05-28 20:21:39 - model_mutation_operators.py:2041 - insert_layer_outshape equal!
+INFO 2024-05-28 20:21:39 - model_mutation_operators.py:2109 - mut_result:True
+INFO 2024-05-28 20:21:39 - model_mutation_operators.py:2110 - 55 generation!
+
+INFO 2024-05-28 20:21:39 - mutation_test.py:291 - ================== start 56 generation!(56/100) ==================
+INFO 2024-05-28 20:21:39 - model_mutation_operators.py:1071 - Adopt CM mut_strategy!
+INFO 2024-05-28 20:21:39 - model_mutation_operators.py:1150 - candidate_in_mutlayers_indice:0
+INFO 2024-05-28 20:21:39 - model_mutation_operators.py:1161 - select layer: dropout2 layer_type: <class 'mindspore.nn.layer.container.SequentialCell'> in_shape: [1, 1, 100] out_shape: [1, 1, 100]
+INFO 2024-05-28 20:21:39 - model_mutation_operators.py:1162 - mut Basic type: True
+INFO 2024-05-28 20:21:39 - model_mutation_operators.py:1205 - select insert layer: Inception_A<
+  (branch0): BasicConv2d<
+    (relu): ReLU<>
+    >
+  (branch1): SequentialCell<
+    (0): BasicConv2d<
+      (relu): ReLU<>
+      >
+    (1): BasicConv2d<
+      (relu): ReLU<>
+      >
+    >
+  (branch2): SequentialCell<
+    (0): BasicConv2d<
+      (relu): ReLU<>
+      >
+    (1): BasicConv2d<
+      (relu): ReLU<>
+      >
+    (2): BasicConv2d<
+      (relu): ReLU<>
+      >
+    >
+  (branch_pool): SequentialCell<
+    (0): AvgPool2d<kernel_size=3, stride=1, pad_mode=SAME>
+    (1): BasicConv2d<
+      (relu): ReLU<>
+      >
+    >
+  >
+INFO 2024-05-28 20:21:39 - model_mutation_operators.py:1231 - Illegal CM mutate!
+INFO 2024-05-28 20:21:39 - model_mutation_operators.py:1232 - mut_result:CM Create illegal layer!
+INFO 2024-05-28 20:21:39 - model_mutation_operators.py:1233 - Exception information: 
+For primitive[Conv2D], the input type must be same.
+name:[w]:Tensor[Float32].
+name:[x]:Tensor[Float16].
+
+----------------------------------------------------
+- C++ Call Stack: (For framework developers)
+----------------------------------------------------
+mindspore/core/utils/check_convert_utils.cc:1028 _CheckTypeSame
+
+INFO 2024-05-28 20:21:39 - model_mutation_operators.py:1234 - 56 generation!
+
+INFO 2024-05-28 20:21:39 - mutation_test.py:291 - ================== start 57 generation!(57/100) ==================
+INFO 2024-05-28 20:21:39 - model_mutation_operators.py:1924 - Adopt LC mut_strategy!
+INFO 2024-05-28 20:21:39 - model_mutation_operators.py:1991 - select layer: dropout2 layer_type: <class 'mindspore.nn.layer.basic.Dropout'> in_shape: [1, 1, 100] out_shape: [1, 1, 100]
+INFO 2024-05-28 20:21:39 - model_mutation_operators.py:1992 - mut Basic type: True
+INFO 2024-05-28 20:21:39 - model_mutation_operators.py:1993 - add Basic layer : Basic_op
+INFO 2024-05-28 20:21:39 - model_mutation_operators.py:2006 - select insert layer: Dropout<keep_prob=0.5>
+INFO 2024-05-28 20:21:39 - model_mutation_operators.py:2041 - insert_layer_outshape equal!
+INFO 2024-05-28 20:21:39 - model_mutation_operators.py:2109 - mut_result:True
+INFO 2024-05-28 20:21:39 - model_mutation_operators.py:2110 - 57 generation!
+
+INFO 2024-05-28 20:21:39 - mutation_test.py:291 - ================== start 58 generation!(58/100) ==================
+INFO 2024-05-28 20:21:39 - model_mutation_operators.py:756 - Adopt RA mut_strategy!
+INFO 2024-05-28 20:21:39 - model_mutation_operators.py:807 - mut_result:No suitable ops for RA mutation!
+INFO 2024-05-28 20:21:39 - model_mutation_operators.py:808 - 58 generation!
+INFO 2024-05-28 20:21:39 - mutation_test.py:291 - ================== start 59 generation!(59/100) ==================
+INFO 2024-05-28 20:21:39 - model_mutation_operators.py:1924 - Adopt LC mut_strategy!
+INFO 2024-05-28 20:21:39 - model_mutation_operators.py:1991 - select layer: dropout2 layer_type: <class 'mindspore.nn.layer.basic.Dropout'> in_shape: [1, 1, 100] out_shape: [1, 1, 100]
+INFO 2024-05-28 20:21:39 - model_mutation_operators.py:1992 - mut Basic type: True
+INFO 2024-05-28 20:21:39 - model_mutation_operators.py:1993 - add Basic layer : Basic_op
+INFO 2024-05-28 20:21:39 - model_mutation_operators.py:2006 - select insert layer: Dropout<keep_prob=0.5>
+INFO 2024-05-28 20:21:39 - model_mutation_operators.py:2041 - insert_layer_outshape equal!
+INFO 2024-05-28 20:21:39 - model_mutation_operators.py:2109 - mut_result:True
+INFO 2024-05-28 20:21:39 - model_mutation_operators.py:2110 - 59 generation!
+
+INFO 2024-05-28 20:21:39 - mutation_test.py:291 - ================== start 60 generation!(60/100) ==================
+INFO 2024-05-28 20:21:39 - model_mutation_operators.py:1924 - Adopt LC mut_strategy!
+INFO 2024-05-28 20:21:39 - model_mutation_operators.py:1979 - Illegal LC mutate!
+INFO 2024-05-28 20:21:39 - model_mutation_operators.py:1980 - mut_result:LC Create illegal layer!
+INFO 2024-05-28 20:21:39 - model_mutation_operators.py:1981 - 60 generation!
+
+INFO 2024-05-28 20:21:39 - mutation_test.py:291 - ================== start 61 generation!(61/100) ==================
+INFO 2024-05-28 20:21:39 - model_mutation_operators.py:1924 - Adopt LC mut_strategy!
+INFO 2024-05-28 20:21:39 - model_mutation_operators.py:1991 - select layer: dropout2 layer_type: <class 'mindspore.nn.layer.basic.Dropout'> in_shape: [1, 1, 100] out_shape: [1, 1, 100]
+INFO 2024-05-28 20:21:39 - model_mutation_operators.py:1992 - mut Basic type: True
+INFO 2024-05-28 20:21:39 - model_mutation_operators.py:1993 - add Basic layer : Basic_op
+INFO 2024-05-28 20:21:39 - model_mutation_operators.py:2006 - select insert layer: Dropout<keep_prob=0.5>
+INFO 2024-05-28 20:21:39 - model_mutation_operators.py:2041 - insert_layer_outshape equal!
+INFO 2024-05-28 20:21:39 - model_mutation_operators.py:2109 - mut_result:True
+INFO 2024-05-28 20:21:39 - model_mutation_operators.py:2110 - 61 generation!
+
+INFO 2024-05-28 20:21:39 - mutation_test.py:291 - ================== start 62 generation!(62/100) ==================
+INFO 2024-05-28 20:21:39 - model_mutation_operators.py:1924 - Adopt LC mut_strategy!
+INFO 2024-05-28 20:21:39 - model_mutation_operators.py:1979 - Illegal LC mutate!
+INFO 2024-05-28 20:21:39 - model_mutation_operators.py:1980 - mut_result:LC Create illegal layer!
+INFO 2024-05-28 20:21:39 - model_mutation_operators.py:1981 - 62 generation!
+
+INFO 2024-05-28 20:21:39 - mutation_test.py:291 - ================== start 63 generation!(63/100) ==================
+INFO 2024-05-28 20:21:39 - model_mutation_operators.py:1924 - Adopt LC mut_strategy!
+INFO 2024-05-28 20:21:39 - model_mutation_operators.py:1991 - select layer: dropout2 layer_type: <class 'mindspore.nn.layer.basic.Dropout'> in_shape: [1, 1, 100] out_shape: [1, 1, 100]
+INFO 2024-05-28 20:21:39 - model_mutation_operators.py:1992 - mut Basic type: True
+INFO 2024-05-28 20:21:39 - model_mutation_operators.py:1993 - add Basic layer : Basic_op
+INFO 2024-05-28 20:21:39 - model_mutation_operators.py:2006 - select insert layer: Dropout<keep_prob=0.5>
+INFO 2024-05-28 20:21:39 - model_mutation_operators.py:2041 - insert_layer_outshape equal!
+INFO 2024-05-28 20:21:39 - model_mutation_operators.py:2109 - mut_result:True
+INFO 2024-05-28 20:21:39 - model_mutation_operators.py:2110 - 63 generation!
+
+INFO 2024-05-28 20:21:39 - mutation_test.py:291 - ================== start 64 generation!(64/100) ==================
+INFO 2024-05-28 20:21:39 - model_mutation_operators.py:1924 - Adopt LC mut_strategy!
+INFO 2024-05-28 20:21:39 - model_mutation_operators.py:1979 - Illegal LC mutate!
+INFO 2024-05-28 20:21:39 - model_mutation_operators.py:1980 - mut_result:LC Create illegal layer!
+INFO 2024-05-28 20:21:39 - model_mutation_operators.py:1981 - 64 generation!
+
+INFO 2024-05-28 20:21:39 - mutation_test.py:291 - ================== start 65 generation!(65/100) ==================
+INFO 2024-05-28 20:21:39 - model_mutation_operators.py:1924 - Adopt LC mut_strategy!
+INFO 2024-05-28 20:21:39 - model_mutation_operators.py:1991 - select layer: dropout2 layer_type: <class 'mindspore.nn.layer.basic.Dropout'> in_shape: [1, 1, 100] out_shape: [1, 1, 100]
+INFO 2024-05-28 20:21:39 - model_mutation_operators.py:1992 - mut Basic type: True
+INFO 2024-05-28 20:21:39 - model_mutation_operators.py:1993 - add Basic layer : Basic_op
+INFO 2024-05-28 20:21:39 - model_mutation_operators.py:2006 - select insert layer: Dropout<keep_prob=0.5>
+INFO 2024-05-28 20:21:39 - model_mutation_operators.py:2041 - insert_layer_outshape equal!
+INFO 2024-05-28 20:21:39 - model_mutation_operators.py:2109 - mut_result:True
+INFO 2024-05-28 20:21:39 - model_mutation_operators.py:2110 - 65 generation!
+
+INFO 2024-05-28 20:21:39 - mutation_test.py:291 - ================== start 66 generation!(66/100) ==================
+INFO 2024-05-28 20:21:39 - model_mutation_operators.py:1924 - Adopt LC mut_strategy!
+INFO 2024-05-28 20:21:39 - model_mutation_operators.py:1979 - Illegal LC mutate!
+INFO 2024-05-28 20:21:39 - model_mutation_operators.py:1980 - mut_result:LC Create illegal layer!
+INFO 2024-05-28 20:21:39 - model_mutation_operators.py:1981 - 66 generation!
+
+INFO 2024-05-28 20:21:39 - mutation_test.py:291 - ================== start 67 generation!(67/100) ==================
+INFO 2024-05-28 20:21:39 - model_mutation_operators.py:1071 - Adopt CM mut_strategy!
+INFO 2024-05-28 20:21:39 - model_mutation_operators.py:1117 - mut_result:No suitable ops for CM mutation!
+INFO 2024-05-28 20:21:39 - model_mutation_operators.py:1118 - 67 generation!
+INFO 2024-05-28 20:21:39 - mutation_test.py:291 - ================== start 68 generation!(68/100) ==================
+INFO 2024-05-28 20:21:39 - model_mutation_operators.py:2119 - Adopt SM mut_strategy!
+INFO 2024-05-28 20:21:39 - model_mutation_operators.py:2157 - select layer: dense layer_type: <class 'mindspore.nn.layer.container.SequentialCell'> in_shape: [2, 100] out_shape: [2, 1]
+INFO 2024-05-28 20:21:39 - model_mutation_operators.py:2158 - mut Basic type: True
+INFO 2024-05-28 20:21:39 - model_mutation_operators.py:2169 - No suitable ops for SM mutation!
+INFO 2024-05-28 20:21:39 - model_mutation_operators.py:2170 - 68 generation!
+INFO 2024-05-28 20:21:39 - mutation_test.py:291 - ================== start 69 generation!(69/100) ==================
+INFO 2024-05-28 20:21:39 - model_mutation_operators.py:1924 - Adopt LC mut_strategy!
+INFO 2024-05-28 20:21:39 - model_mutation_operators.py:1979 - Illegal LC mutate!
+INFO 2024-05-28 20:21:39 - model_mutation_operators.py:1980 - mut_result:LC Create illegal layer!
+INFO 2024-05-28 20:21:39 - model_mutation_operators.py:1981 - 69 generation!
+
+INFO 2024-05-28 20:21:39 - mutation_test.py:291 - ================== start 70 generation!(70/100) ==================
+INFO 2024-05-28 20:21:39 - model_mutation_operators.py:756 - Adopt RA mut_strategy!
+INFO 2024-05-28 20:21:39 - model_mutation_operators.py:850 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-28 20:21:39 - model_mutation_operators.py:859 - select layer: dropout2 layer_type: <class 'mindspore.nn.layer.basic.Dropout'> in_shape: [1, 1, 100] out_shape: [1, 1, 100]
+INFO 2024-05-28 20:21:39 - model_mutation_operators.py:860 - mut Basic type: True
+INFO 2024-05-28 20:21:39 - model_mutation_operators.py:861 - add Basic layer : Cascade_op
+INFO 2024-05-28 20:21:39 - model_mutation_operators.py:874 - select insert layer: SE<
+  (SE_pool): GlobalAvgPooling<>
+  (act): HSigmoid<>
+  (SE_act1): ReLU<>
+  (SE_act2): HSigmoid<>
+  >
+INFO 2024-05-28 20:21:39 - model_mutation_operators.py:919 - insert_layer_outshape not equal!: [1, 1, 100]
+INFO 2024-05-28 20:21:39 - model_mutation_operators.py:1061 - mut_result:True
+INFO 2024-05-28 20:21:39 - model_mutation_operators.py:1062 - 70 generation!
+
+INFO 2024-05-28 20:21:40 - mutation_test.py:291 - ================== start 71 generation!(71/100) ==================
+INFO 2024-05-28 20:21:40 - model_mutation_operators.py:1071 - Adopt CM mut_strategy!
+INFO 2024-05-28 20:21:40 - model_mutation_operators.py:1154 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-28 20:21:40 - model_mutation_operators.py:1161 - select layer: dropout1 layer_type: <class 'mindspore.nn.layer.basic.Dropout'> in_shape: [1, 1, 50] out_shape: [1, 1, 50]
+INFO 2024-05-28 20:21:40 - model_mutation_operators.py:1162 - mut Basic type: True
+INFO 2024-05-28 20:21:40 - model_mutation_operators.py:1194 - Illegal CM mutate!
+INFO 2024-05-28 20:21:40 - model_mutation_operators.py:1195 - mut_result:CM Create illegal layer!
+INFO 2024-05-28 20:21:40 - model_mutation_operators.py:1196 - Exception information: 
+For primitive[Conv2D], the input type must be same.
+name:[w]:Tensor[Float32].
+name:[x]:Tensor[Float16].
+
+----------------------------------------------------
+- C++ Call Stack: (For framework developers)
+----------------------------------------------------
+mindspore/core/utils/check_convert_utils.cc:1028 _CheckTypeSame
+
+INFO 2024-05-28 20:21:40 - model_mutation_operators.py:1197 - 71 generation!
+
+INFO 2024-05-28 20:21:40 - mutation_test.py:291 - ================== start 72 generation!(72/100) ==================
+INFO 2024-05-28 20:21:40 - model_mutation_operators.py:1924 - Adopt LC mut_strategy!
+INFO 2024-05-28 20:21:40 - model_mutation_operators.py:1991 - select layer: dropout2 layer_type: <class 'mindspore.nn.layer.basic.Dropout'> in_shape: [1, 1, 100] out_shape: [1, 1, 100]
+INFO 2024-05-28 20:21:40 - model_mutation_operators.py:1992 - mut Basic type: True
+INFO 2024-05-28 20:21:40 - model_mutation_operators.py:1993 - add Basic layer : Basic_op
+INFO 2024-05-28 20:21:40 - model_mutation_operators.py:2006 - select insert layer: Dropout<keep_prob=0.5>
+INFO 2024-05-28 20:21:40 - model_mutation_operators.py:2041 - insert_layer_outshape equal!
+INFO 2024-05-28 20:21:40 - model_mutation_operators.py:2109 - mut_result:True
+INFO 2024-05-28 20:21:40 - model_mutation_operators.py:2110 - 72 generation!
+
+INFO 2024-05-28 20:21:40 - mutation_test.py:291 - ================== start 73 generation!(73/100) ==================
+INFO 2024-05-28 20:21:40 - model_mutation_operators.py:1924 - Adopt LC mut_strategy!
+INFO 2024-05-28 20:21:40 - model_mutation_operators.py:1991 - select layer: dropout1 layer_type: <class 'mindspore.nn.layer.basic.Dropout'> in_shape: [1, 1, 50] out_shape: [1, 1, 50]
+INFO 2024-05-28 20:21:40 - model_mutation_operators.py:1992 - mut Basic type: True
+INFO 2024-05-28 20:21:40 - model_mutation_operators.py:1993 - add Basic layer : Basic_op
+INFO 2024-05-28 20:21:40 - model_mutation_operators.py:2006 - select insert layer: Dropout<keep_prob=0.5>
+INFO 2024-05-28 20:21:40 - model_mutation_operators.py:2041 - insert_layer_outshape equal!
+INFO 2024-05-28 20:21:40 - model_mutation_operators.py:2109 - mut_result:True
+INFO 2024-05-28 20:21:40 - model_mutation_operators.py:2110 - 73 generation!
+
+INFO 2024-05-28 20:21:40 - mutation_test.py:291 - ================== start 74 generation!(74/100) ==================
+INFO 2024-05-28 20:21:40 - model_mutation_operators.py:1924 - Adopt LC mut_strategy!
+INFO 2024-05-28 20:21:40 - model_mutation_operators.py:1979 - Illegal LC mutate!
+INFO 2024-05-28 20:21:40 - model_mutation_operators.py:1980 - mut_result:LC Create illegal layer!
+INFO 2024-05-28 20:21:40 - model_mutation_operators.py:1981 - 74 generation!
+
+INFO 2024-05-28 20:21:40 - mutation_test.py:291 - ================== start 75 generation!(75/100) ==================
+INFO 2024-05-28 20:21:40 - model_mutation_operators.py:24 - Adopt PM mut_strategy!
+INFO 2024-05-28 20:21:40 - model_mutation_operators.py:63 - The target model do not have the mutator operators in_channels!
+INFO 2024-05-28 20:21:40 - model_mutation_operators.py:64 - mut_result:Parameter Miss
+INFO 2024-05-28 20:21:40 - model_mutation_operators.py:65 - 75 generation!
+
+INFO 2024-05-28 20:21:40 - mutation_test.py:291 - ================== start 76 generation!(76/100) ==================
+INFO 2024-05-28 20:21:40 - model_mutation_operators.py:1924 - Adopt LC mut_strategy!
+INFO 2024-05-28 20:21:40 - model_mutation_operators.py:1991 - select layer: dropout2 layer_type: <class 'mindspore.nn.layer.basic.Dropout'> in_shape: [1, 1, 100] out_shape: [1, 1, 100]
+INFO 2024-05-28 20:21:40 - model_mutation_operators.py:1992 - mut Basic type: True
+INFO 2024-05-28 20:21:40 - model_mutation_operators.py:1993 - add Basic layer : Basic_op
+INFO 2024-05-28 20:21:40 - model_mutation_operators.py:2006 - select insert layer: Dropout<keep_prob=0.5>
+INFO 2024-05-28 20:21:40 - model_mutation_operators.py:2041 - insert_layer_outshape equal!
+INFO 2024-05-28 20:21:40 - model_mutation_operators.py:2109 - mut_result:True
+INFO 2024-05-28 20:21:40 - model_mutation_operators.py:2110 - 76 generation!
+
+INFO 2024-05-28 20:21:40 - mutation_test.py:367 - list index out of range
+
+INFO 2024-05-28 20:21:40 - mutation_test.py:291 - ================== start 77 generation!(77/100) ==================
+INFO 2024-05-28 20:21:40 - model_mutation_operators.py:1924 - Adopt LC mut_strategy!
+INFO 2024-05-28 20:21:40 - model_mutation_operators.py:1979 - Illegal LC mutate!
+INFO 2024-05-28 20:21:40 - model_mutation_operators.py:1980 - mut_result:LC Create illegal layer!
+INFO 2024-05-28 20:21:40 - model_mutation_operators.py:1981 - 77 generation!
+
+INFO 2024-05-28 20:21:40 - mutation_test.py:291 - ================== start 78 generation!(78/100) ==================
+INFO 2024-05-28 20:21:40 - model_mutation_operators.py:1924 - Adopt LC mut_strategy!
+INFO 2024-05-28 20:21:40 - model_mutation_operators.py:1991 - select layer: dropout1 layer_type: <class 'mindspore.nn.layer.basic.Dropout'> in_shape: [1, 1, 50] out_shape: [1, 1, 50]
+INFO 2024-05-28 20:21:40 - model_mutation_operators.py:1992 - mut Basic type: True
+INFO 2024-05-28 20:21:40 - model_mutation_operators.py:1993 - add Basic layer : Basic_op
+INFO 2024-05-28 20:21:40 - model_mutation_operators.py:2006 - select insert layer: Dropout<keep_prob=0.5>
+INFO 2024-05-28 20:21:40 - model_mutation_operators.py:2041 - insert_layer_outshape equal!
+INFO 2024-05-28 20:21:40 - model_mutation_operators.py:2109 - mut_result:True
+INFO 2024-05-28 20:21:40 - model_mutation_operators.py:2110 - 78 generation!
+
+INFO 2024-05-28 20:21:41 - mutation_test.py:291 - ================== start 79 generation!(79/100) ==================
+INFO 2024-05-28 20:21:41 - model_mutation_operators.py:1924 - Adopt LC mut_strategy!
+INFO 2024-05-28 20:21:41 - model_mutation_operators.py:1979 - Illegal LC mutate!
+INFO 2024-05-28 20:21:41 - model_mutation_operators.py:1980 - mut_result:LC Create illegal layer!
+INFO 2024-05-28 20:21:41 - model_mutation_operators.py:1981 - 79 generation!
+
+INFO 2024-05-28 20:21:41 - mutation_test.py:291 - ================== start 80 generation!(80/100) ==================
+INFO 2024-05-28 20:21:41 - model_mutation_operators.py:1924 - Adopt LC mut_strategy!
+INFO 2024-05-28 20:21:41 - model_mutation_operators.py:1991 - select layer: dropout1 layer_type: <class 'mindspore.nn.layer.basic.Dropout'> in_shape: [1, 1, 50] out_shape: [1, 1, 50]
+INFO 2024-05-28 20:21:41 - model_mutation_operators.py:1992 - mut Basic type: True
+INFO 2024-05-28 20:21:41 - model_mutation_operators.py:1993 - add Basic layer : Basic_op
+INFO 2024-05-28 20:21:41 - model_mutation_operators.py:2006 - select insert layer: Dropout<keep_prob=0.5>
+INFO 2024-05-28 20:21:41 - model_mutation_operators.py:2041 - insert_layer_outshape equal!
+INFO 2024-05-28 20:21:41 - model_mutation_operators.py:2109 - mut_result:True
+INFO 2024-05-28 20:21:41 - model_mutation_operators.py:2110 - 80 generation!
+
+INFO 2024-05-28 20:21:41 - mutation_test.py:291 - ================== start 81 generation!(81/100) ==================
+INFO 2024-05-28 20:21:41 - model_mutation_operators.py:1924 - Adopt LC mut_strategy!
+INFO 2024-05-28 20:21:41 - model_mutation_operators.py:1979 - Illegal LC mutate!
+INFO 2024-05-28 20:21:41 - model_mutation_operators.py:1980 - mut_result:LC Create illegal layer!
+INFO 2024-05-28 20:21:41 - model_mutation_operators.py:1981 - 81 generation!
+
+INFO 2024-05-28 20:21:41 - mutation_test.py:291 - ================== start 82 generation!(82/100) ==================
+INFO 2024-05-28 20:21:41 - model_mutation_operators.py:1071 - Adopt CM mut_strategy!
+INFO 2024-05-28 20:21:41 - model_mutation_operators.py:1150 - candidate_in_mutlayers_indice:2
+INFO 2024-05-28 20:21:41 - model_mutation_operators.py:1161 - select layer: dense layer_type: <class 'mindspore.nn.layer.container.SequentialCell'> in_shape: [2, 100] out_shape: [2, 1]
+INFO 2024-05-28 20:21:41 - model_mutation_operators.py:1162 - mut Basic type: True
+INFO 2024-05-28 20:21:41 - model_mutation_operators.py:1205 - select insert layer: SE<
+  (SE_pool): GlobalAvgPooling<>
+  (act): HSigmoid<>
+  (SE_act1): ReLU<>
+  (SE_act2): HSigmoid<>
+  >
+INFO 2024-05-28 20:21:41 - model_mutation_operators.py:1301 - mut_result:True
+INFO 2024-05-28 20:21:41 - model_mutation_operators.py:1302 - 82 generation!
+
+INFO 2024-05-28 20:21:41 - mutation_test.py:291 - ================== start 83 generation!(83/100) ==================
+INFO 2024-05-28 20:21:41 - model_mutation_operators.py:24 - Adopt PM mut_strategy!
+INFO 2024-05-28 20:21:41 - model_mutation_operators.py:80 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-28 20:21:41 - model_mutation_operators.py:93 - select op: dropout1 layer_type: Dropout selected param:keep_prob input_shape:[1, 1, 50] output_shape:[1, 1, 50]
+INFO 2024-05-28 20:21:41 - model_mutation_operators.py:160 - mutate_replace_layer: Dropout<keep_prob=0.84375>
+INFO 2024-05-28 20:21:41 - model_mutation_operators.py:193 - Previous value: 0.5 Edit value: 0.84375 new_inshape: (1, 1, 50) new_outshape: (1, 1, 50)
+INFO 2024-05-28 20:21:41 - model_mutation_operators.py:232 - Dropout<keep_prob=0.84375>
+INFO 2024-05-28 20:21:41 - model_mutation_operators.py:233 - mut_result:True
+INFO 2024-05-28 20:21:41 - model_mutation_operators.py:234 - 83 generation!
+
+INFO 2024-05-28 20:21:42 - mutation_test.py:291 - ================== start 84 generation!(84/100) ==================
+INFO 2024-05-28 20:21:42 - model_mutation_operators.py:1924 - Adopt LC mut_strategy!
+INFO 2024-05-28 20:21:42 - model_mutation_operators.py:1991 - select layer: dropout1 layer_type: <class 'mindspore.nn.layer.basic.Dropout'> in_shape: [1, 1, 50] out_shape: [1, 1, 50]
+INFO 2024-05-28 20:21:42 - model_mutation_operators.py:1992 - mut Basic type: True
+INFO 2024-05-28 20:21:42 - model_mutation_operators.py:1993 - add Basic layer : Basic_op
+INFO 2024-05-28 20:21:42 - model_mutation_operators.py:2006 - select insert layer: Dropout<keep_prob=0.84375>
+INFO 2024-05-28 20:21:42 - model_mutation_operators.py:2041 - insert_layer_outshape equal!
+INFO 2024-05-28 20:21:42 - model_mutation_operators.py:2109 - mut_result:True
+INFO 2024-05-28 20:21:42 - model_mutation_operators.py:2110 - 84 generation!
+
+INFO 2024-05-28 20:21:42 - mutation_test.py:291 - ================== start 85 generation!(85/100) ==================
+INFO 2024-05-28 20:21:42 - model_mutation_operators.py:243 - Adopt LD mut_strategy!
+INFO 2024-05-28 20:21:42 - model_mutation_operators.py:259 - delete layer_name:dropout2
+INFO 2024-05-28 20:21:42 - model_mutation_operators.py:288 - candidate_in_mutlayers_indice:0
+
+INFO 2024-05-28 20:21:42 - model_mutation_operators.py:506 - mut_result:True
+INFO 2024-05-28 20:21:42 - model_mutation_operators.py:507 - 85 generation!
+
+INFO 2024-05-28 20:21:42 - mutation_test.py:291 - ================== start 86 generation!(86/100) ==================
+INFO 2024-05-28 20:21:42 - model_mutation_operators.py:1924 - Adopt LC mut_strategy!
+INFO 2024-05-28 20:21:42 - model_mutation_operators.py:1979 - Illegal LC mutate!
+INFO 2024-05-28 20:21:42 - model_mutation_operators.py:1980 - mut_result:LC Create illegal layer!
+INFO 2024-05-28 20:21:42 - model_mutation_operators.py:1981 - 86 generation!
+
+INFO 2024-05-28 20:21:42 - mutation_test.py:291 - ================== start 87 generation!(87/100) ==================
+INFO 2024-05-28 20:21:42 - model_mutation_operators.py:1924 - Adopt LC mut_strategy!
+INFO 2024-05-28 20:21:42 - model_mutation_operators.py:1991 - select layer: dropout1 layer_type: <class 'mindspore.nn.layer.basic.Dropout'> in_shape: [1, 1, 50] out_shape: [1, 1, 50]
+INFO 2024-05-28 20:21:42 - model_mutation_operators.py:1992 - mut Basic type: True
+INFO 2024-05-28 20:21:42 - model_mutation_operators.py:1993 - add Basic layer : Basic_op
+INFO 2024-05-28 20:21:42 - model_mutation_operators.py:2006 - select insert layer: Dropout<keep_prob=0.5>
+INFO 2024-05-28 20:21:42 - model_mutation_operators.py:2041 - insert_layer_outshape equal!
+INFO 2024-05-28 20:21:42 - model_mutation_operators.py:2109 - mut_result:True
+INFO 2024-05-28 20:21:42 - model_mutation_operators.py:2110 - 87 generation!
+
+INFO 2024-05-28 20:21:42 - mutation_test.py:291 - ================== start 88 generation!(88/100) ==================
+INFO 2024-05-28 20:21:42 - model_mutation_operators.py:1924 - Adopt LC mut_strategy!
+INFO 2024-05-28 20:21:42 - model_mutation_operators.py:1979 - Illegal LC mutate!
+INFO 2024-05-28 20:21:42 - model_mutation_operators.py:1980 - mut_result:LC Create illegal layer!
+INFO 2024-05-28 20:21:42 - model_mutation_operators.py:1981 - 88 generation!
+
+INFO 2024-05-28 20:21:42 - mutation_test.py:291 - ================== start 89 generation!(89/100) ==================
+INFO 2024-05-28 20:21:42 - model_mutation_operators.py:1924 - Adopt LC mut_strategy!
+INFO 2024-05-28 20:21:42 - model_mutation_operators.py:1991 - select layer: dropout1 layer_type: <class 'mindspore.nn.layer.basic.Dropout'> in_shape: [1, 1, 50] out_shape: [1, 1, 50]
+INFO 2024-05-28 20:21:42 - model_mutation_operators.py:1992 - mut Basic type: True
+INFO 2024-05-28 20:21:42 - model_mutation_operators.py:1993 - add Basic layer : Basic_op
+INFO 2024-05-28 20:21:42 - model_mutation_operators.py:2006 - select insert layer: Dropout<keep_prob=0.5>
+INFO 2024-05-28 20:21:42 - model_mutation_operators.py:2041 - insert_layer_outshape equal!
+INFO 2024-05-28 20:21:42 - model_mutation_operators.py:2109 - mut_result:True
+INFO 2024-05-28 20:21:42 - model_mutation_operators.py:2110 - 89 generation!
+
+INFO 2024-05-28 20:21:42 - mutation_test.py:291 - ================== start 90 generation!(90/100) ==================
+INFO 2024-05-28 20:21:42 - model_mutation_operators.py:1924 - Adopt LC mut_strategy!
+INFO 2024-05-28 20:21:42 - model_mutation_operators.py:1979 - Illegal LC mutate!
+INFO 2024-05-28 20:21:42 - model_mutation_operators.py:1980 - mut_result:LC Create illegal layer!
+INFO 2024-05-28 20:21:42 - model_mutation_operators.py:1981 - 90 generation!
+
+INFO 2024-05-28 20:21:42 - mutation_test.py:291 - ================== start 91 generation!(91/100) ==================
+INFO 2024-05-28 20:21:42 - model_mutation_operators.py:1924 - Adopt LC mut_strategy!
+INFO 2024-05-28 20:21:42 - model_mutation_operators.py:1991 - select layer: dropout1 layer_type: <class 'mindspore.nn.layer.basic.Dropout'> in_shape: [1, 1, 50] out_shape: [1, 1, 50]
+INFO 2024-05-28 20:21:42 - model_mutation_operators.py:1992 - mut Basic type: True
+INFO 2024-05-28 20:21:42 - model_mutation_operators.py:1993 - add Basic layer : Basic_op
+INFO 2024-05-28 20:21:42 - model_mutation_operators.py:2006 - select insert layer: Dropout<keep_prob=0.5>
+INFO 2024-05-28 20:21:42 - model_mutation_operators.py:2041 - insert_layer_outshape equal!
+INFO 2024-05-28 20:21:42 - model_mutation_operators.py:2109 - mut_result:True
+INFO 2024-05-28 20:21:42 - model_mutation_operators.py:2110 - 91 generation!
+
+INFO 2024-05-28 20:21:42 - mutation_test.py:291 - ================== start 92 generation!(92/100) ==================
+INFO 2024-05-28 20:21:42 - model_mutation_operators.py:1071 - Adopt CM mut_strategy!
+INFO 2024-05-28 20:21:42 - model_mutation_operators.py:1150 - candidate_in_mutlayers_indice:1
+INFO 2024-05-28 20:21:42 - model_mutation_operators.py:1161 - select layer: dropout2 layer_type: <class 'mindspore.nn.layer.container.SequentialCell'> in_shape: [1, 1, 100] out_shape: [1, 1, 100]
+INFO 2024-05-28 20:21:42 - model_mutation_operators.py:1162 - mut Basic type: True
+INFO 2024-05-28 20:21:42 - model_mutation_operators.py:1205 - select insert layer: LeakyReLU<>
+INFO 2024-05-28 20:21:43 - model_mutation_operators.py:1301 - mut_result:True
+INFO 2024-05-28 20:21:43 - model_mutation_operators.py:1302 - 92 generation!
+
+INFO 2024-05-28 20:21:43 - mutation_test.py:291 - ================== start 93 generation!(93/100) ==================
+INFO 2024-05-28 20:21:43 - model_mutation_operators.py:1924 - Adopt LC mut_strategy!
+INFO 2024-05-28 20:21:43 - model_mutation_operators.py:1979 - Illegal LC mutate!
+INFO 2024-05-28 20:21:43 - model_mutation_operators.py:1980 - mut_result:LC Create illegal layer!
+INFO 2024-05-28 20:21:43 - model_mutation_operators.py:1981 - 93 generation!
+
+INFO 2024-05-28 20:21:43 - mutation_test.py:291 - ================== start 94 generation!(94/100) ==================
+INFO 2024-05-28 20:21:43 - model_mutation_operators.py:1924 - Adopt LC mut_strategy!
+INFO 2024-05-28 20:21:43 - model_mutation_operators.py:1979 - Illegal LC mutate!
+INFO 2024-05-28 20:21:43 - model_mutation_operators.py:1980 - mut_result:LC Create illegal layer!
+INFO 2024-05-28 20:21:43 - model_mutation_operators.py:1981 - 94 generation!
+
+INFO 2024-05-28 20:21:43 - mutation_test.py:291 - ================== start 95 generation!(95/100) ==================
+INFO 2024-05-28 20:21:43 - model_mutation_operators.py:243 - Adopt LD mut_strategy!
+INFO 2024-05-28 20:21:43 - model_mutation_operators.py:259 - delete layer_name:dropout2
+INFO 2024-05-28 20:21:43 - model_mutation_operators.py:321 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-28 20:21:43 - model_mutation_operators.py:326 - adopt DeleteCell EmptyCell
+INFO 2024-05-28 20:21:43 - model_mutation_operators.py:506 - mut_result:True
+INFO 2024-05-28 20:21:43 - model_mutation_operators.py:507 - 95 generation!
+
+INFO 2024-05-28 20:21:43 - mutation_test.py:291 - ================== start 96 generation!(96/100) ==================
+INFO 2024-05-28 20:21:43 - model_mutation_operators.py:243 - Adopt LD mut_strategy!
+INFO 2024-05-28 20:21:43 - model_mutation_operators.py:259 - delete layer_name:dropout1
+INFO 2024-05-28 20:21:43 - model_mutation_operators.py:321 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-28 20:21:43 - model_mutation_operators.py:326 - adopt DeleteCell EmptyCell
+INFO 2024-05-28 20:21:43 - model_mutation_operators.py:506 - mut_result:True
+INFO 2024-05-28 20:21:43 - model_mutation_operators.py:507 - 96 generation!
+
+INFO 2024-05-28 20:21:43 - mutation_test.py:291 - ================== start 97 generation!(97/100) ==================
+INFO 2024-05-28 20:21:43 - model_mutation_operators.py:1924 - Adopt LC mut_strategy!
+INFO 2024-05-28 20:21:43 - model_mutation_operators.py:1979 - Illegal LC mutate!
+INFO 2024-05-28 20:21:43 - model_mutation_operators.py:1980 - mut_result:LC Create illegal layer!
+INFO 2024-05-28 20:21:43 - model_mutation_operators.py:1981 - 97 generation!
+
+INFO 2024-05-28 20:21:43 - mutation_test.py:291 - ================== start 98 generation!(98/100) ==================
+INFO 2024-05-28 20:21:43 - model_mutation_operators.py:243 - Adopt LD mut_strategy!
+INFO 2024-05-28 20:21:43 - model_mutation_operators.py:259 - delete layer_name:dense
+INFO 2024-05-28 20:21:43 - model_mutation_operators.py:288 - candidate_in_mutlayers_indice:1
+
+INFO 2024-05-28 20:21:43 - model_mutation_operators.py:317 - adopt DeleteCell Replace_ms
+INFO 2024-05-28 20:21:43 - model_mutation_operators.py:506 - mut_result:True
+INFO 2024-05-28 20:21:43 - model_mutation_operators.py:507 - 98 generation!
+
+INFO 2024-05-28 20:21:43 - mutation_test.py:367 - list index out of range
+
+INFO 2024-05-28 20:21:43 - mutation_test.py:291 - ================== start 99 generation!(99/100) ==================
+INFO 2024-05-28 20:21:43 - model_mutation_operators.py:1924 - Adopt LC mut_strategy!
+INFO 2024-05-28 20:21:43 - model_mutation_operators.py:1991 - select layer: dropout1 layer_type: <class 'mindspore.nn.layer.basic.Dropout'> in_shape: [1, 1, 50] out_shape: [1, 1, 50]
+INFO 2024-05-28 20:21:43 - model_mutation_operators.py:1992 - mut Basic type: True
+INFO 2024-05-28 20:21:43 - model_mutation_operators.py:1993 - add Basic layer : Basic_op
+INFO 2024-05-28 20:21:43 - model_mutation_operators.py:2006 - select insert layer: Dropout<keep_prob=0.5>
+INFO 2024-05-28 20:21:43 - model_mutation_operators.py:2041 - insert_layer_outshape equal!
+INFO 2024-05-28 20:21:43 - model_mutation_operators.py:2109 - mut_result:True
+INFO 2024-05-28 20:21:43 - model_mutation_operators.py:2110 - 99 generation!
+
+INFO 2024-05-28 20:21:43 - mutation_test.py:291 - ================== start 100 generation!(100/100) ==================
+INFO 2024-05-28 20:21:43 - model_mutation_operators.py:1924 - Adopt LC mut_strategy!
+INFO 2024-05-28 20:21:43 - model_mutation_operators.py:1991 - select layer: dropout2 layer_type: <class 'mindspore.nn.layer.basic.Dropout'> in_shape: [1, 1, 100] out_shape: [1, 1, 100]
+INFO 2024-05-28 20:21:43 - model_mutation_operators.py:1992 - mut Basic type: True
+INFO 2024-05-28 20:21:43 - model_mutation_operators.py:1993 - add Basic layer : Basic_op
+INFO 2024-05-28 20:21:43 - model_mutation_operators.py:2006 - select insert layer: Dropout<keep_prob=0.5>
+INFO 2024-05-28 20:21:43 - model_mutation_operators.py:2041 - insert_layer_outshape equal!
+INFO 2024-05-28 20:21:43 - model_mutation_operators.py:2109 - mut_result:True
+INFO 2024-05-28 20:21:43 - model_mutation_operators.py:2110 - 100 generation!
+
+INFO 2024-05-28 20:21:44 - mutation_test.py:367 - list index out of range
+
+INFO 2024-05-28 20:21:44 - mutation_test.py:442 - mutation_scores: [0.0863256, -100, -100, 0.103564575, 0.1404117, 0.11882176, -100, -100, -100, 0.20760067, 0.21240477, -100, 0.097296886, 0.14911474, -100, 0.22235379, 0.10532804, -100, 0.085117884, 0.09235939, 0.71379864, -100, 0.11390817, -100, 0.118703626, 0.15053089, -100, -100, 0.080651775, -100, 0.082130805, -100, 0.06343582, -100, 0.13227649, -100, 0.11015904, -100, -100, 0.1191136, 0.18375917, -100, 0.096598335, 0.09484275, -100, -100, -100, -100, 0.12532237, -100, 0.08851416, -100, 0.13033764, -100, 0.1093603, -100, 0.107463874, -100, 0.120997384, -100, 0.1266146, -100, 0.21622674, -100, 0.121093705, -100, -100, -100, -100, 0.19328158, -100, 0.24284267, 0.2769305, -100, -100, 0.12604056, -100, 0.18241444, -100, 0.15206645, -100, 0.11101196, 0.1141204, 0.11259122, 0.11173681, -100, 0.23066887, -100, 0.116983816, -100, 0.08366124, 0.107482255, -100, -100, 0.24188073, 0.23570561, -100, 0.09895567, 0.11081223, 0.10119772]
+INFO 2024-05-28 20:21:44 - mutation_test.py:444 - **** stage1 select generations: [10 11 63 16 87 96 95 72 73 21] ****
+
+INFO 2024-05-28 20:21:44 - mutation_test.py:250 - mutation iteration:100 ({'LA': 2, 'LD': 7, 'LC': 71, 'CM': 9, 'RA': 4, 'PM': 4, 'SM': 3}), mutation success:53
+ ({'LA': 2, 'LD': 6, 'LC': 37, 'CM': 2, 'RA': 2, 'PM': 2, 'SM': 2})
+
