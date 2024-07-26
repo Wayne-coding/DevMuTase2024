@@ -1,0 +1,210 @@
+{
+    "edges": [
+        [
+            "batch_normalization",
+            "reshape"
+        ],
+        [
+            "reshape",
+            "global_max_pooling2D"
+        ],
+        [
+            "global_max_pooling2D",
+            "batch_normalization"
+        ],
+        [
+            "batch_normalization",
+            "dense"
+        ],
+        [
+            "dense",
+            "reshape"
+        ]
+    ],
+    "layer_config": {
+        "batch_normalization": [
+            {
+                "axis": 2,
+                "momentum": 0.6238365583259129,
+                "epsilon": 0.9632160897187961,
+                "center": false,
+                "scale": true,
+                "beta_initializer": "random_uniform",
+                "gamma_initializer": "random_uniform",
+                "moving_mean_initializer": "random_uniform",
+                "moving_variance_initializer": "random_uniform",
+                "beta_regularizer": null,
+                "gamma_regularizer": null,
+                "beta_constraint": null,
+                "gamma_constraint": null
+            },
+            {
+                "axis": -1,
+                "momentum": 0.5486470510766202,
+                "epsilon": 0.8338672919025648,
+                "center": false,
+                "scale": true,
+                "beta_initializer": "random_uniform",
+                "gamma_initializer": "random_uniform",
+                "moving_mean_initializer": "random_uniform",
+                "moving_variance_initializer": "random_uniform",
+                "beta_regularizer": null,
+                "gamma_regularizer": null,
+                "beta_constraint": null,
+                "gamma_constraint": null
+            }
+        ],
+        "reshape": [
+            {
+                "target_shape": [
+                    3,
+                    32,
+                    32
+                ]
+            },
+            {
+                "target_shape": [
+                    10
+                ]
+            }
+        ],
+        "global_max_pooling2D": [
+            {
+                "data_format": "channels_first"
+            }
+        ],
+        "dense": [
+            {
+                "activation": "linear",
+                "use_bias": false,
+                "kernel_initializer": "random_uniform",
+                "bias_initializer": "random_uniform",
+                "kernel_regularizer": null,
+                "bias_regularizer": null,
+                "activity_regularizer": null,
+                "kernel_constraint": null,
+                "bias_constraint": null
+            }
+        ]
+    },
+    "layer_input_info": {
+        "batch_normalization": {
+            "input_dims": [
+                4,
+                2
+            ],
+            "dtype": [
+                "float32"
+            ],
+            "shape": [
+                [
+                    null,
+                    32,
+                    32,
+                    3
+                ],
+                [
+                    null,
+                    3
+                ]
+            ]
+        },
+        "reshape": {
+            "input_dims": [
+                4,
+                2
+            ],
+            "dtype": [
+                "float32"
+            ],
+            "shape": [
+                [
+                    null,
+                    32,
+                    32,
+                    3
+                ],
+                [
+                    null,
+                    10
+                ]
+            ]
+        },
+        "global_max_pooling2D": {
+            "input_dims": [
+                4
+            ],
+            "dtype": [
+                "float32"
+            ],
+            "shape": [
+                [
+                    null,
+                    3,
+                    32,
+                    32
+                ]
+            ]
+        },
+        "dense": {
+            "input_dims": [
+                2
+            ],
+            "dtype": [
+                "float32"
+            ],
+            "shape": [
+                [
+                    null,
+                    3
+                ]
+            ]
+        }
+    },
+    "layer_num": 7,
+    "layer_type": [
+        "batch_normalization",
+        "reshape",
+        "global_max_pooling2D",
+        "dense"
+    ],
+    "cur_edge_num": 6,
+    "layer_dims": {
+        "batch_normalization": {
+            "input_dims": [
+                4,
+                2
+            ],
+            "output_dims": [
+                4,
+                2
+            ]
+        },
+        "reshape": {
+            "input_dims": [
+                4,
+                2
+            ],
+            "output_dims": [
+                4,
+                2
+            ]
+        },
+        "global_max_pooling2D": {
+            "input_dims": [
+                4
+            ],
+            "output_dims": [
+                2
+            ]
+        },
+        "dense": {
+            "input_dims": [
+                2
+            ],
+            "output_dims": [
+                2
+            ]
+        }
+    }
+}

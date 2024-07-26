@@ -1,0 +1,314 @@
+{
+    "edges": [
+        [
+            "LSTM",
+            "CustomExpandLayer"
+        ],
+        [
+            "CustomExpandLayer",
+            "CustomExpandLayer"
+        ],
+        [
+            "CustomExpandLayer",
+            "Dropout"
+        ],
+        [
+            "Dropout",
+            "CustomDropDimLayer"
+        ],
+        [
+            "CustomDropDimLayer",
+            "CustomDropDimLayer"
+        ],
+        [
+            "CustomDropDimLayer",
+            "Dense"
+        ],
+        [
+            "Dense",
+            "Flatten"
+        ],
+        [
+            "Flatten",
+            "Dense"
+        ]
+    ],
+    "layer_config": {
+        "LSTM": [
+            {
+                "trainable": true,
+                "batch_input_shape": [
+                    null,
+                    1,
+                    240
+                ],
+                "dtype": "float32",
+                "return_sequences": true,
+                "return_state": false,
+                "go_backwards": true,
+                "stateful": false,
+                "unroll": false,
+                "time_major": false,
+                "activation": "tanh",
+                "recurrent_activation": "hard_sigmoid",
+                "use_bias": false,
+                "kernel_initializer": {
+                    "class_name": "GlorotUniform",
+                    "config": {
+                        "seed": null
+                    }
+                },
+                "recurrent_initializer": {
+                    "class_name": "Orthogonal",
+                    "config": {
+                        "gain": 1.0,
+                        "seed": null
+                    }
+                },
+                "bias_initializer": {
+                    "class_name": "Zeros",
+                    "config": {}
+                },
+                "unit_forget_bias": true,
+                "kernel_regularizer": null,
+                "recurrent_regularizer": null,
+                "bias_regularizer": null,
+                "activity_regularizer": null,
+                "kernel_constraint": null,
+                "recurrent_constraint": null,
+                "bias_constraint": {
+                    "class_name": "NonNeg",
+                    "config": {}
+                },
+                "dropout": 0.0,
+                "recurrent_dropout": 0.23948358452874452,
+                "implementation": 1
+            }
+        ],
+        "CustomExpandLayer": [
+            {
+                "trainable": true,
+                "dtype": "float32",
+                "axis": 1
+            }
+        ],
+        "Dropout": [
+            {
+                "trainable": true,
+                "dtype": "float32",
+                "rate": 0.1,
+                "noise_shape": null,
+                "seed": null
+            }
+        ],
+        "CustomDropDimLayer": [
+            {
+                "trainable": true,
+                "dtype": "float32",
+                "axis": 1
+            }
+        ],
+        "Dense": [
+            {
+                "trainable": true,
+                "dtype": "float32",
+                "activation": "linear",
+                "use_bias": true,
+                "kernel_initializer": {
+                    "class_name": "VarianceScaling",
+                    "config": {
+                        "scale": 1.0,
+                        "mode": "fan_avg",
+                        "distribution": "uniform",
+                        "seed": null
+                    }
+                },
+                "bias_initializer": {
+                    "class_name": "Zeros",
+                    "config": {}
+                },
+                "kernel_regularizer": null,
+                "bias_regularizer": null,
+                "activity_regularizer": null,
+                "kernel_constraint": null,
+                "bias_constraint": null
+            },
+            {
+                "trainable": true,
+                "dtype": "float32",
+                "activation": "linear",
+                "use_bias": true,
+                "kernel_initializer": {
+                    "class_name": "GlorotUniform",
+                    "config": {
+                        "seed": null
+                    }
+                },
+                "bias_initializer": {
+                    "class_name": "Zeros",
+                    "config": {}
+                },
+                "kernel_regularizer": null,
+                "bias_regularizer": null,
+                "activity_regularizer": null,
+                "kernel_constraint": null,
+                "bias_constraint": null
+            }
+        ],
+        "Flatten": [
+            {
+                "trainable": true,
+                "dtype": "float32",
+                "data_format": "channels_last"
+            }
+        ]
+    },
+    "layer_input_info": {
+        "LSTM": {
+            "input_dims": [
+                3
+            ],
+            "dtype": [
+                "<dtype: 'float32'>"
+            ],
+            "shape": [
+                "[None, 1, 240]"
+            ]
+        },
+        "CustomExpandLayer": {
+            "input_dims": [
+                3,
+                4,
+                5
+            ],
+            "dtype": [
+                "<dtype: 'float32'>"
+            ],
+            "shape": [
+                "[None, 1, 25]",
+                "[None, 1, 1, 25]",
+                "[None, 1, 1, 1, 25]"
+            ]
+        },
+        "Dropout": {
+            "input_dims": [
+                6
+            ],
+            "dtype": [
+                "<dtype: 'float32'>"
+            ],
+            "shape": [
+                "[None, 1, 1, 1, 1, 25]"
+            ]
+        },
+        "CustomDropDimLayer": {
+            "input_dims": [
+                6,
+                5,
+                4
+            ],
+            "dtype": [
+                "<dtype: 'float32'>"
+            ],
+            "shape": [
+                "[None, 1, 1, 1, 1, 25]",
+                "[None, 1, 1, 1, 25]",
+                "[None, 1, 1, 25]"
+            ]
+        },
+        "Dense": {
+            "input_dims": [
+                3,
+                2
+            ],
+            "dtype": [
+                "<dtype: 'float32'>"
+            ],
+            "shape": [
+                "[None, 1, 25]",
+                "[None, 1]"
+            ]
+        },
+        "Flatten": {
+            "input_dims": [
+                3
+            ],
+            "dtype": [
+                "<dtype: 'float32'>"
+            ],
+            "shape": [
+                "[None, 1, 1]"
+            ]
+        }
+    },
+    "layer_num": 11,
+    "layer_type": [
+        "LSTM",
+        "CustomExpandLayer",
+        "Dropout",
+        "CustomDropDimLayer",
+        "Dense",
+        "Flatten"
+    ],
+    "cur_edge_num": 11,
+    "layer_dims": {
+        "LSTM": {
+            "input_dims": [
+                3
+            ],
+            "output_dims": [
+                3
+            ]
+        },
+        "CustomExpandLayer": {
+            "input_dims": [
+                3,
+                4,
+                5
+            ],
+            "output_dims": [
+                4,
+                5,
+                6
+            ]
+        },
+        "Dropout": {
+            "input_dims": [
+                6
+            ],
+            "output_dims": [
+                6
+            ]
+        },
+        "CustomDropDimLayer": {
+            "input_dims": [
+                6,
+                5,
+                4
+            ],
+            "output_dims": [
+                5,
+                4,
+                3
+            ]
+        },
+        "Dense": {
+            "input_dims": [
+                3,
+                2
+            ],
+            "output_dims": [
+                3,
+                2
+            ]
+        },
+        "Flatten": {
+            "input_dims": [
+                3
+            ],
+            "output_dims": [
+                2
+            ]
+        }
+    }
+}

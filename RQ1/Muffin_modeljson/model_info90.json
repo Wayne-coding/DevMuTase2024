@@ -1,0 +1,179 @@
+{
+    "edges": [
+        [
+            "permute",
+            "flatten"
+        ],
+        [
+            "flatten",
+            "dense"
+        ],
+        [
+            "dense",
+            "dense"
+        ],
+        [
+            "dense",
+            "reshape"
+        ]
+    ],
+    "layer_config": {
+        "permute": [
+            {
+                "dims": [
+                    1,
+                    2,
+                    3
+                ]
+            }
+        ],
+        "flatten": [
+            {
+                "data_format": null
+            }
+        ],
+        "dense": [
+            {
+                "activation": "linear",
+                "use_bias": true,
+                "kernel_initializer": "random_uniform",
+                "bias_initializer": "random_uniform",
+                "kernel_regularizer": null,
+                "bias_regularizer": null,
+                "activity_regularizer": null,
+                "kernel_constraint": null,
+                "bias_constraint": null
+            },
+            {
+                "activation": "linear",
+                "use_bias": false,
+                "kernel_initializer": "random_uniform",
+                "bias_initializer": "random_uniform",
+                "kernel_regularizer": null,
+                "bias_regularizer": null,
+                "activity_regularizer": null,
+                "kernel_constraint": null,
+                "bias_constraint": null
+            }
+        ],
+        "reshape": [
+            {
+                "target_shape": [
+                    10
+                ]
+            }
+        ]
+    },
+    "layer_input_info": {
+        "permute": {
+            "input_dims": [
+                4
+            ],
+            "dtype": [
+                "float32"
+            ],
+            "shape": [
+                [
+                    null,
+                    32,
+                    32,
+                    3
+                ]
+            ]
+        },
+        "flatten": {
+            "input_dims": [
+                4
+            ],
+            "dtype": [
+                "float32"
+            ],
+            "shape": [
+                [
+                    null,
+                    32,
+                    32,
+                    3
+                ]
+            ]
+        },
+        "dense": {
+            "input_dims": [
+                2
+            ],
+            "dtype": [
+                "float32"
+            ],
+            "shape": [
+                [
+                    null,
+                    3072
+                ],
+                [
+                    null,
+                    3
+                ],
+                [
+                    null,
+                    5
+                ]
+            ]
+        },
+        "reshape": {
+            "input_dims": [
+                2
+            ],
+            "dtype": [
+                "float32"
+            ],
+            "shape": [
+                [
+                    null,
+                    10
+                ]
+            ]
+        }
+    },
+    "layer_num": 7,
+    "layer_type": [
+        "permute",
+        "flatten",
+        "dense",
+        "reshape"
+    ],
+    "cur_edge_num": 6,
+    "layer_dims": {
+        "permute": {
+            "input_dims": [
+                4
+            ],
+            "output_dims": [
+                4
+            ]
+        },
+        "flatten": {
+            "input_dims": [
+                4
+            ],
+            "output_dims": [
+                2
+            ]
+        },
+        "dense": {
+            "input_dims": [
+                2
+            ],
+            "output_dims": [
+                2
+            ]
+        },
+        "reshape": {
+            "input_dims": [
+                2
+            ],
+            "output_dims": [
+                2
+            ]
+        }
+    }
+}

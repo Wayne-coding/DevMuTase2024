@@ -1,0 +1,637 @@
+{
+    "edges": [
+        [
+            "SequentialCell",
+            "Conv2d"
+        ],
+        [
+            "Conv2d",
+            "Replace_ms"
+        ],
+        [
+            "Replace_ms",
+            "ReLU"
+        ],
+        [
+            "ReLU",
+            "Conv2d"
+        ],
+        [
+            "ReLU",
+            "MaxPool2d"
+        ],
+        [
+            "MaxPool2d",
+            "Conv2d"
+        ],
+        [
+            "Conv2d",
+            "ReLU"
+        ],
+        [
+            "ReLU",
+            "Replace_ms"
+        ],
+        [
+            "Replace_ms",
+            "Conv2d"
+        ],
+        [
+            "MaxPool2d",
+            "Flatten"
+        ],
+        [
+            "Flatten",
+            "Dense"
+        ],
+        [
+            "Dense",
+            "ReLU"
+        ],
+        [
+            "ReLU",
+            "Dropout"
+        ],
+        [
+            "Dropout",
+            "Replace_ms"
+        ],
+        [
+            "Replace_ms",
+            "Dense"
+        ],
+        [
+            "Dense",
+            "EmptyCell"
+        ],
+        [
+            "EmptyCell",
+            "ReLU"
+        ]
+    ],
+    "layer_config": {
+        "Conv2d": [
+            {
+                "ge_sync_data": false,
+                "_is_check_and_refresh": true,
+                "_amp_level": "",
+                "in_channels": 1365,
+                "out_channels": 4096,
+                "kernel_size": 2,
+                "stride": 2,
+                "pad_mode": "VALID",
+                "data_format": "NCHW",
+                "padding": 0,
+                "dilation": [
+                    1,
+                    1
+                ],
+                "group": 1,
+                "has_bias": true,
+                "weight_init": null,
+                "bias_init": null,
+                "bias": null,
+                "in_shape": "(2, 4096)",
+                "output_shape": "(2, 1000)",
+                "_forward_pre_hook_key": 1,
+                "_forward_hook_key": 1,
+                "_func_graph_flags": null,
+                "_params": null,
+                "_cells": null,
+                "_params_list": null,
+                "_tensor_list": null,
+                "relu": null,
+                "_dilation": 1,
+                "_attr_synced": false,
+                "format": "NCHW",
+                "return_indices": false,
+                "use_pad": false,
+                "start_dim": 1,
+                "end_dim": -1,
+                "reshape": null,
+                "shape_op": null
+            }
+        ],
+        "Replace_ms": [
+            {
+                "ge_sync_data": false,
+                "_is_check_and_refresh": true,
+                "_amp_level": "",
+                "in_channels": 1365,
+                "out_channels": 4096,
+                "kernel_size": 2,
+                "stride": 2,
+                "pad_mode": "VALID",
+                "data_format": "NCHW",
+                "padding": 0,
+                "dilation": [
+                    1,
+                    1
+                ],
+                "group": 1,
+                "has_bias": true,
+                "weight_init": null,
+                "bias_init": null,
+                "bias": null,
+                "in_shape": "(2, 4096)",
+                "output_shape": "(2, 1000)",
+                "_forward_pre_hook_key": 1,
+                "_forward_hook_key": 1,
+                "_func_graph_flags": null,
+                "_params": null,
+                "_cells": null,
+                "_params_list": null,
+                "_tensor_list": null,
+                "relu": null,
+                "_dilation": 1,
+                "_attr_synced": false,
+                "format": "NCHW",
+                "return_indices": false,
+                "use_pad": false,
+                "start_dim": 1,
+                "end_dim": -1,
+                "reshape": null,
+                "shape_op": null
+            }
+        ],
+        "ReLU": [
+            {
+                "ge_sync_data": false,
+                "_is_check_and_refresh": true,
+                "_amp_level": "",
+                "in_channels": 1365,
+                "out_channels": 4096,
+                "kernel_size": 2,
+                "stride": 2,
+                "pad_mode": "VALID",
+                "data_format": "NCHW",
+                "padding": 0,
+                "dilation": [
+                    1,
+                    1
+                ],
+                "group": 1,
+                "has_bias": true,
+                "weight_init": null,
+                "bias_init": null,
+                "bias": null,
+                "in_shape": "(2, 4096)",
+                "output_shape": "(2, 1000)",
+                "_forward_pre_hook_key": 1,
+                "_forward_hook_key": 1,
+                "_func_graph_flags": null,
+                "_params": null,
+                "_cells": null,
+                "_params_list": null,
+                "_tensor_list": null,
+                "relu": null,
+                "_dilation": 1,
+                "_attr_synced": false,
+                "format": "NCHW",
+                "return_indices": false,
+                "use_pad": false,
+                "start_dim": 1,
+                "end_dim": -1,
+                "reshape": null,
+                "shape_op": null
+            }
+        ],
+        "MaxPool2d": [
+            {
+                "ge_sync_data": false,
+                "_is_check_and_refresh": true,
+                "_amp_level": "",
+                "in_channels": 1365,
+                "out_channels": 4096,
+                "kernel_size": 2,
+                "stride": 2,
+                "pad_mode": "VALID",
+                "data_format": "NCHW",
+                "padding": 0,
+                "dilation": [
+                    1,
+                    1
+                ],
+                "group": 1,
+                "has_bias": true,
+                "weight_init": null,
+                "bias_init": null,
+                "bias": null,
+                "in_shape": "(2, 4096)",
+                "output_shape": "(2, 1000)",
+                "_forward_pre_hook_key": 1,
+                "_forward_hook_key": 1,
+                "_func_graph_flags": null,
+                "_params": null,
+                "_cells": null,
+                "_params_list": null,
+                "_tensor_list": null,
+                "relu": null,
+                "_dilation": 1,
+                "_attr_synced": false,
+                "format": "NCHW",
+                "return_indices": false,
+                "use_pad": false,
+                "start_dim": 1,
+                "end_dim": -1,
+                "reshape": null,
+                "shape_op": null
+            }
+        ],
+        "Flatten": [
+            {
+                "ge_sync_data": false,
+                "_is_check_and_refresh": true,
+                "_amp_level": "",
+                "in_channels": 1365,
+                "out_channels": 4096,
+                "kernel_size": 2,
+                "stride": 2,
+                "pad_mode": "VALID",
+                "data_format": "NCHW",
+                "padding": 0,
+                "dilation": [
+                    1,
+                    1
+                ],
+                "group": 1,
+                "has_bias": true,
+                "weight_init": null,
+                "bias_init": null,
+                "bias": null,
+                "in_shape": "(2, 4096)",
+                "output_shape": "(2, 1000)",
+                "_forward_pre_hook_key": 1,
+                "_forward_hook_key": 1,
+                "_func_graph_flags": null,
+                "_params": null,
+                "_cells": null,
+                "_params_list": null,
+                "_tensor_list": null,
+                "relu": null,
+                "_dilation": 1,
+                "_attr_synced": false,
+                "format": "NCHW",
+                "return_indices": false,
+                "use_pad": false,
+                "start_dim": 1,
+                "end_dim": -1,
+                "reshape": null,
+                "shape_op": null
+            }
+        ],
+        "Dense": [
+            {
+                "ge_sync_data": false,
+                "_is_check_and_refresh": true,
+                "_amp_level": "",
+                "in_channels": 1365,
+                "out_channels": 4096,
+                "kernel_size": 2,
+                "stride": 2,
+                "pad_mode": "VALID",
+                "data_format": "NCHW",
+                "padding": 0,
+                "dilation": [
+                    1,
+                    1
+                ],
+                "group": 1,
+                "has_bias": true,
+                "weight_init": null,
+                "bias_init": null,
+                "bias": null,
+                "in_shape": "(2, 4096)",
+                "output_shape": "(2, 1000)",
+                "_forward_pre_hook_key": 1,
+                "_forward_hook_key": 1,
+                "_func_graph_flags": null,
+                "_params": null,
+                "_cells": null,
+                "_params_list": null,
+                "_tensor_list": null,
+                "relu": null,
+                "_dilation": 1,
+                "_attr_synced": false,
+                "format": "NCHW",
+                "return_indices": false,
+                "use_pad": false,
+                "start_dim": 1,
+                "end_dim": -1,
+                "reshape": null,
+                "shape_op": null
+            }
+        ],
+        "Dropout": [
+            {
+                "ge_sync_data": false,
+                "_is_check_and_refresh": true,
+                "_amp_level": "",
+                "in_channels": 1365,
+                "out_channels": 4096,
+                "kernel_size": 2,
+                "stride": 2,
+                "pad_mode": "VALID",
+                "data_format": "NCHW",
+                "padding": 0,
+                "dilation": [
+                    1,
+                    1
+                ],
+                "group": 1,
+                "has_bias": true,
+                "weight_init": null,
+                "bias_init": null,
+                "bias": null,
+                "in_shape": "(2, 4096)",
+                "output_shape": "(2, 1000)",
+                "_forward_pre_hook_key": 1,
+                "_forward_hook_key": 1,
+                "_func_graph_flags": null,
+                "_params": null,
+                "_cells": null,
+                "_params_list": null,
+                "_tensor_list": null,
+                "relu": null,
+                "_dilation": 1,
+                "_attr_synced": false,
+                "format": "NCHW",
+                "return_indices": false,
+                "use_pad": false,
+                "start_dim": 1,
+                "end_dim": -1,
+                "reshape": null,
+                "shape_op": null
+            }
+        ],
+        "Cell": [
+            {
+                "ge_sync_data": false,
+                "_is_check_and_refresh": true,
+                "_amp_level": "",
+                "in_channels": 1365,
+                "out_channels": 4096,
+                "kernel_size": 2,
+                "stride": 2,
+                "pad_mode": "VALID",
+                "data_format": "NCHW",
+                "padding": 0,
+                "dilation": [
+                    1,
+                    1
+                ],
+                "group": 1,
+                "has_bias": true,
+                "weight_init": null,
+                "bias_init": null,
+                "bias": null,
+                "in_shape": "(2, 4096)",
+                "output_shape": "(2, 1000)",
+                "_forward_pre_hook_key": 1,
+                "_forward_hook_key": 1,
+                "_func_graph_flags": null,
+                "_params": null,
+                "_cells": null,
+                "_params_list": null,
+                "_tensor_list": null,
+                "relu": null,
+                "_dilation": 1,
+                "_attr_synced": false,
+                "format": "NCHW",
+                "return_indices": false,
+                "use_pad": false,
+                "start_dim": 1,
+                "end_dim": -1,
+                "reshape": null,
+                "shape_op": null
+            }
+        ]
+    },
+    "layer_input_info": {
+        "SequentialCell": {
+            "input_dims": [
+                4,
+                2
+            ],
+            "dtype": [
+                "[mindspore.float32]"
+            ],
+            "shape": [
+                "[2, 3, 224, 224]",
+                "[2, 64, 224, 224]",
+                "[2, 64, 112, 112]",
+                "[2, 256, 28, 28]",
+                "[2, 512, 28, 28]",
+                "[2, 512, 14, 14]",
+                "[2, 4096]"
+            ]
+        },
+        "Conv2d": {
+            "input_dims": [
+                4
+            ],
+            "dtype": [
+                "[mindspore.float32]"
+            ],
+            "shape": [
+                "[2, 3, 224, 224]",
+                "[2, 64, 224, 224]",
+                "[2, 64, 112, 112]",
+                "[2, 128, 112, 112]",
+                "[2, 128, 56, 56]",
+                "[2, 256, 56, 56]",
+                "[2, 256, 28, 28]",
+                "[2, 512, 28, 28]",
+                "[2, 512, 14, 14]",
+                "[2, 2048, 14, 14]"
+            ]
+        },
+        "Replace_ms": {
+            "input_dims": [
+                4,
+                2
+            ],
+            "dtype": [
+                "[mindspore.float32]"
+            ],
+            "shape": [
+                "[2, 64, 112, 75]",
+                "[2, 128, 56, 38]",
+                "[2, 1536, 28, 28]",
+                "[2, 512, 14, 10]",
+                "[2, 170, 14, 14]",
+                "[2, 512, 14, 14]",
+                "[2, 4096]"
+            ]
+        },
+        "ReLU": {
+            "input_dims": [
+                4,
+                2
+            ],
+            "dtype": [
+                "[mindspore.float32]"
+            ],
+            "shape": [
+                "[2, 64, 224, 224]",
+                "[2, 128, 112, 112]",
+                "[2, 256, 56, 56]",
+                "[2, 512, 28, 28]",
+                "[2, 512, 14, 14]",
+                "[2, 4096]"
+            ]
+        },
+        "MaxPool2d": {
+            "input_dims": [
+                4
+            ],
+            "dtype": [
+                "[mindspore.float32]"
+            ],
+            "shape": [
+                "[2, 64, 224, 224]",
+                "[2, 128, 112, 112]",
+                "[2, 256, 56, 56]",
+                "[2, 512, 28, 28]",
+                "[2, 512, 14, 14]"
+            ]
+        },
+        "Flatten": {
+            "input_dims": [
+                4
+            ],
+            "dtype": [
+                "[mindspore.float32]"
+            ],
+            "shape": [
+                "[2, 512, 7, 7]"
+            ]
+        },
+        "Dense": {
+            "input_dims": [
+                2
+            ],
+            "dtype": [
+                "[mindspore.float32]"
+            ],
+            "shape": [
+                "[2, 25088]",
+                "[2, 1365]"
+            ]
+        },
+        "Dropout": {
+            "input_dims": [
+                2
+            ],
+            "dtype": [
+                "[mindspore.float32]"
+            ],
+            "shape": [
+                "[2, 4096]"
+            ]
+        },
+        "EmptyCell": {
+            "input_dims": [
+                2
+            ],
+            "dtype": [
+                "[mindspore.float32]"
+            ],
+            "shape": [
+                "[2, 4096]"
+            ]
+        }
+    },
+    "cur_edge_num": 54,
+    "layer_num": 55,
+    "layer_type": [
+        "Conv2d",
+        "Replace_ms",
+        "ReLU",
+        "MaxPool2d",
+        "Flatten",
+        "Dense",
+        "Dropout",
+        "Cell"
+    ],
+    "layer_dims": {
+        "SequentialCell": {
+            "input_dims": [
+                4,
+                2
+            ],
+            "output_dims": [
+                4,
+                2
+            ]
+        },
+        "Conv2d": {
+            "input_dims": [
+                4
+            ],
+            "output_dims": [
+                4
+            ]
+        },
+        "Replace_ms": {
+            "input_dims": [
+                4,
+                2
+            ],
+            "output_dims": [
+                4,
+                2
+            ]
+        },
+        "ReLU": {
+            "input_dims": [
+                4,
+                2
+            ],
+            "output_dims": [
+                4,
+                2
+            ]
+        },
+        "MaxPool2d": {
+            "input_dims": [
+                4
+            ],
+            "output_dims": [
+                4
+            ]
+        },
+        "Flatten": {
+            "input_dims": [
+                4
+            ],
+            "output_dims": [
+                2
+            ]
+        },
+        "Dense": {
+            "input_dims": [
+                2
+            ],
+            "output_dims": [
+                2
+            ]
+        },
+        "Dropout": {
+            "input_dims": [
+                2
+            ],
+            "output_dims": [
+                2
+            ]
+        },
+        "EmptyCell": {
+            "input_dims": [
+                2
+            ],
+            "output_dims": [
+                2
+            ]
+        }
+    }
+}

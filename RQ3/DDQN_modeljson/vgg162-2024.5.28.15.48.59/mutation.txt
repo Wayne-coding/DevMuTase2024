@@ -1,0 +1,1023 @@
+Adopt SM mut_strategy!
+select layer: maxpool2 layer_type: <class 'mindspore.nn.layer.pooling.MaxPool2d'> in_shape: [2, 128, 112, 112] out_shape: [2, 128, 56, 56]
+mut Basic type: True
+candidate_in_mutlayers_indice:-1
+mutate state: before
+mutate input_shape: [2, 27, 43, 9, 27]
+mut_result:True
+1 generation!
+
+Adopt RA mut_strategy!
+candidate_in_mutlayers_indice:-1
+select layer: conv5_1 layer_type: <class 'mindspore.nn.layer.conv.Conv2d'> in_shape: [2, 512, 14, 14] out_shape: [2, 512, 14, 14]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: Dense<input_channels=512, output_channels=512, has_bias=True>
+Illegal RA mutate!
+For 'MatMul', the type of 'x2' should be same as 'x1', but got 'x1' with type Tensor[Float16] and 'x2' with type Tensor[Float32].
+
+----------------------------------------------------
+- C++ Call Stack: (For framework developers)
+----------------------------------------------------
+mindspore/core/ops/mat_mul.cc:143 InferType
+
+mut_result:RA Create illegal layer!
+2 generation!
+
+Adopt LC mut_strategy!
+select layer: maxpool4 layer_type: <class 'mindspore.nn.layer.pooling.MaxPool2d'> in_shape: [2, 512, 28, 28] out_shape: [2, 512, 14, 14]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: MaxPool2d<kernel_size=2, stride=2, pad_mode=VALID>
+insert_layer_outshape not equal!: [2, 512, 14, 14]
+mut_result:True
+3 generation!
+
+Adopt LC mut_strategy!
+select layer: maxpool1 layer_type: <class 'mindspore.nn.layer.pooling.MaxPool2d'> in_shape: [2, 64, 224, 224] out_shape: [2, 64, 112, 112]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: MaxPool2d<kernel_size=2, stride=2, pad_mode=VALID>
+insert_layer_outshape not equal!: [2, 64, 112, 112]
+mut_result:True
+4 generation!
+
+Adopt LC mut_strategy!
+select layer: conv5_1 layer_type: <class 'mindspore.nn.layer.conv.Conv2d'> in_shape: [2, 512, 14, 14] out_shape: [2, 512, 14, 14]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: Conv2d<input_channels=512, output_channels=512, kernel_size=(3, 3), stride=(1, 1), pad_mode=same, padding=0, dilation=(1, 1), group=1, has_bias=False, weight_init=<mindspore.common.initializer.HeUniform object at 0x7f49c3661310>, bias_init=None, format=NCHW>
+insert_layer_outshape equal!
+mut_result:True
+5 generation!
+
+Adopt LC mut_strategy!
+select layer: conv3_2 layer_type: <class 'mindspore.nn.layer.conv.Conv2d'> in_shape: [2, 256, 56, 56] out_shape: [2, 256, 56, 56]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: Conv2d<input_channels=256, output_channels=256, kernel_size=(3, 3), stride=(1, 1), pad_mode=same, padding=0, dilation=(1, 1), group=1, has_bias=False, weight_init=<mindspore.common.initializer.HeUniform object at 0x7f49c33c77d0>, bias_init=None, format=NCHW>
+insert_layer_outshape equal!
+mut_result:True
+6 generation!
+
+Adopt RA mut_strategy!
+candidate_in_mutlayers_indice:-1
+select layer: relu5_2 layer_type: <class 'mindspore.nn.layer.activation.ReLU'> in_shape: [2, 512, 14, 14] out_shape: [2, 512, 14, 14]
+mut Basic type: True
+add Basic layer : Cascade_op
+select insert layer: Inception_A<
+  (branch0): BasicConv2d<
+    (relu): ReLU<>
+    >
+  (branch1): SequentialCell<
+    (0): BasicConv2d<
+      (relu): ReLU<>
+      >
+    (1): BasicConv2d<
+      (relu): ReLU<>
+      >
+    >
+  (branch2): SequentialCell<
+    (0): BasicConv2d<
+      (relu): ReLU<>
+      >
+    (1): BasicConv2d<
+      (relu): ReLU<>
+      >
+    (2): BasicConv2d<
+      (relu): ReLU<>
+      >
+    >
+  (branch_pool): SequentialCell<
+    (0): AvgPool2d<kernel_size=3, stride=1, pad_mode=SAME>
+    (1): BasicConv2d<
+      (relu): ReLU<>
+      >
+    >
+  >
+insert_layer_outshape not equal!: [2, 512, 14, 14]
+mut_result:True
+7 generation!
+
+Adopt LC mut_strategy!
+select layer: conv1_2 layer_type: <class 'mindspore.nn.layer.conv.Conv2d'> in_shape: [2, 64, 224, 224] out_shape: [2, 64, 224, 224]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: Conv2d<input_channels=64, output_channels=64, kernel_size=(3, 3), stride=(1, 1), pad_mode=same, padding=0, dilation=(1, 1), group=1, has_bias=False, weight_init=<mindspore.common.initializer.HeUniform object at 0x7f49c2ef6650>, bias_init=None, format=NCHW>
+insert_layer_outshape equal!
+mut_result:True
+8 generation!
+
+Adopt LC mut_strategy!
+select layer: conv2_2 layer_type: <class 'mindspore.nn.layer.conv.Conv2d'> in_shape: [2, 128, 112, 112] out_shape: [2, 128, 112, 112]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: Conv2d<input_channels=128, output_channels=128, kernel_size=(3, 3), stride=(1, 1), pad_mode=same, padding=0, dilation=(1, 1), group=1, has_bias=False, weight_init=<mindspore.common.initializer.HeUniform object at 0x7f49c3a6fa90>, bias_init=None, format=NCHW>
+insert_layer_outshape equal!
+mut_result:True
+9 generation!
+
+Adopt CM mut_strategy!
+candidate_in_mutlayers_indice:-1
+select layer: relu_fc2 layer_type: <class 'mindspore.nn.layer.activation.ReLU'> in_shape: [2, 4096] out_shape: [2, 4096]
+mut Basic type: True
+select insert layer: BatchNorm2d<num_features=4096, eps=1e-05, momentum=0.9, gamma=Parameter (name=1.gamma, shape=(4096,), dtype=Float32, requires_grad=True), beta=Parameter (name=1.beta, shape=(4096,), dtype=Float32, requires_grad=True), moving_mean=Parameter (name=1.moving_mean, shape=(4096,), dtype=Float32, requires_grad=False), moving_variance=Parameter (name=1.moving_variance, shape=(4096,), dtype=Float32, requires_grad=False)>
+replace Basic with CM op!
+mut_result:True
+10 generation!
+
+Adopt LC mut_strategy!
+select layer: fc3 layer_type: <class 'mindspore.nn.layer.basic.Dense'> in_shape: [2, 4096] out_shape: [2, 1000]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: Dense<input_channels=4096, output_channels=1000, has_bias=True>
+Illegal LC mutate!
+For 'MatMul', the type of 'x2' should be same as 'x1', but got 'x1' with type Tensor[Float16] and 'x2' with type Tensor[Float32].
+
+----------------------------------------------------
+- C++ Call Stack: (For framework developers)
+----------------------------------------------------
+mindspore/core/ops/mat_mul.cc:143 InferType
+
+mut_result:LC Create illegal layer!
+11 generation!
+
+Adopt LC mut_strategy!
+select layer: dropout2 layer_type: <class 'mindspore.nn.layer.basic.Dropout'> in_shape: [2, 4096] out_shape: [2, 4096]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: Dropout<keep_prob=0.5>
+insert_layer_outshape equal!
+mut_result:True
+12 generation!
+
+Adopt LC mut_strategy!
+select layer: conv3_3 layer_type: <class 'mindspore.nn.layer.conv.Conv2d'> in_shape: [2, 256, 56, 56] out_shape: [2, 256, 56, 56]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: Conv2d<input_channels=256, output_channels=256, kernel_size=(3, 3), stride=(1, 1), pad_mode=same, padding=0, dilation=(1, 1), group=1, has_bias=False, weight_init=<mindspore.common.initializer.HeUniform object at 0x7f49c2e8a410>, bias_init=None, format=NCHW>
+insert_layer_outshape equal!
+mut_result:True
+13 generation!
+
+Adopt LC mut_strategy!
+select layer: conv4_3 layer_type: <class 'mindspore.nn.layer.conv.Conv2d'> in_shape: [2, 512, 28, 28] out_shape: [2, 512, 28, 28]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: Conv2d<input_channels=512, output_channels=512, kernel_size=(3, 3), stride=(1, 1), pad_mode=same, padding=0, dilation=(1, 1), group=1, has_bias=False, weight_init=<mindspore.common.initializer.HeUniform object at 0x7f49c36bcc10>, bias_init=None, format=NCHW>
+insert_layer_outshape equal!
+mut_result:True
+14 generation!
+
+Adopt LC mut_strategy!
+select layer: conv4_1 layer_type: <class 'mindspore.nn.layer.conv.Conv2d'> in_shape: [2, 256, 28, 28] out_shape: [2, 512, 28, 28]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: Conv2d<input_channels=512, output_channels=512, kernel_size=(3, 3), stride=(1, 1), pad_mode=same, padding=0, dilation=(1, 1), group=1, has_bias=False, weight_init=<mindspore.common.initializer.HeUniform object at 0x7f49c3346fd0>, bias_init=None, format=NCHW>
+insert_layer_outshape equal!
+mut_result:True
+15 generation!
+
+Adopt LC mut_strategy!
+select layer: maxpool3 layer_type: <class 'mindspore.nn.layer.pooling.MaxPool2d'> in_shape: [2, 256, 56, 56] out_shape: [2, 256, 28, 28]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: MaxPool2d<kernel_size=2, stride=2, pad_mode=VALID>
+insert_layer_outshape not equal!: [2, 256, 28, 28]
+mut_result:True
+16 generation!
+
+Adopt LC mut_strategy!
+select layer: maxpool5 layer_type: <class 'mindspore.nn.layer.pooling.MaxPool2d'> in_shape: [2, 512, 14, 14] out_shape: [2, 512, 7, 7]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: MaxPool2d<kernel_size=2, stride=2, pad_mode=VALID>
+insert_layer_outshape not equal!: [2, 512, 7, 7]
+mut_result:True
+17 generation!
+
+Adopt LD mut_strategy!
+delete layer_name:conv5_1
+candidate_in_mutlayers_indice:1
+mut_result:True
+18 generation!
+
+Adopt LC mut_strategy!
+select layer: conv5_2 layer_type: <class 'mindspore.nn.layer.conv.Conv2d'> in_shape: [2, 512, 14, 14] out_shape: [2, 512, 14, 14]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: Conv2d<input_channels=512, output_channels=512, kernel_size=(3, 3), stride=(1, 1), pad_mode=same, padding=0, dilation=(1, 1), group=1, has_bias=False, weight_init=<mindspore.common.initializer.HeUniform object at 0x7f49c3ae7450>, bias_init=None, format=NCHW>
+insert_layer_outshape equal!
+mut_result:True
+19 generation!
+
+Adopt SM mut_strategy!
+select layer: maxpool3 layer_type: <class 'mindspore.nn.layer.container.SequentialCell'> in_shape: [2, 256, 56, 56] out_shape: [2, 256, 28, 28]
+mut Basic type: True
+mut_result:No suitable ops for SM mutation!
+20 generation!
+
+Adopt LC mut_strategy!
+select layer: dropout1 layer_type: <class 'mindspore.nn.layer.basic.Dropout'> in_shape: [2, 4096] out_shape: [2, 4096]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: Dropout<keep_prob=0.5>
+insert_layer_outshape equal!
+mut_result:True
+21 generation!
+
+Adopt LC mut_strategy!
+select layer: conv2_1 layer_type: <class 'mindspore.nn.layer.conv.Conv2d'> in_shape: [2, 64, 112, 112] out_shape: [2, 128, 112, 112]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: Conv2d<input_channels=128, output_channels=128, kernel_size=(3, 3), stride=(1, 1), pad_mode=same, padding=0, dilation=(1, 1), group=1, has_bias=False, weight_init=<mindspore.common.initializer.HeUniform object at 0x7f49c32a60d0>, bias_init=None, format=NCHW>
+insert_layer_outshape equal!
+mut_result:True
+22 generation!
+
+Adopt LC mut_strategy!
+select layer: fc3 layer_type: <class 'mindspore.nn.layer.basic.Dense'> in_shape: [2, 4096] out_shape: [2, 1000]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: Dense<input_channels=4096, output_channels=1000, has_bias=True>
+Illegal LC mutate!
+For 'MatMul', the type of 'x2' should be same as 'x1', but got 'x1' with type Tensor[Float16] and 'x2' with type Tensor[Float32].
+
+----------------------------------------------------
+- C++ Call Stack: (For framework developers)
+----------------------------------------------------
+mindspore/core/ops/mat_mul.cc:143 InferType
+
+mut_result:LC Create illegal layer!
+23 generation!
+
+Adopt LC mut_strategy!
+select layer: conv1_1 layer_type: <class 'mindspore.nn.layer.conv.Conv2d'> in_shape: [2, 3, 224, 224] out_shape: [2, 64, 224, 224]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: Conv2d<input_channels=64, output_channels=64, kernel_size=(3, 3), stride=(1, 1), pad_mode=same, padding=0, dilation=(1, 1), group=1, has_bias=False, weight_init=<mindspore.common.initializer.HeUniform object at 0x7f49c33a5650>, bias_init=None, format=NCHW>
+insert_layer_outshape equal!
+mut_result:True
+24 generation!
+
+Adopt CM mut_strategy!
+candidate_in_mutlayers_indice:-1
+select layer: relu3_1 layer_type: <class 'mindspore.nn.layer.activation.ReLU'> in_shape: [2, 256, 56, 56] out_shape: [2, 256, 56, 56]
+mut Basic type: True
+select insert layer: LeakyReLU<>
+replace Basic with CM op!
+mut_result:True
+25 generation!
+
+Adopt LC mut_strategy!
+select layer: conv4_2 layer_type: <class 'mindspore.nn.layer.conv.Conv2d'> in_shape: [2, 512, 28, 28] out_shape: [2, 512, 28, 28]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: Conv2d<input_channels=512, output_channels=512, kernel_size=(3, 3), stride=(1, 1), pad_mode=same, padding=0, dilation=(1, 1), group=1, has_bias=False, weight_init=<mindspore.common.initializer.HeUniform object at 0x7f49c27b9450>, bias_init=None, format=NCHW>
+insert_layer_outshape equal!
+mut_result:True
+26 generation!
+
+Adopt LC mut_strategy!
+select layer: fc2 layer_type: <class 'mindspore.nn.layer.basic.Dense'> in_shape: [2, 4096] out_shape: [2, 4096]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: Dense<input_channels=4096, output_channels=4096, has_bias=True>
+insert_layer_outshape equal!
+mut_result:True
+27 generation!
+
+Adopt LC mut_strategy!
+select layer: fc1 layer_type: <class 'mindspore.nn.layer.basic.Dense'> in_shape: [2, 25088] out_shape: [2, 4096]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: Dense<input_channels=25088, output_channels=4096, has_bias=True>
+Illegal LC mutate!
+For 'MatMul', the type of 'x2' should be same as 'x1', but got 'x1' with type Tensor[Float16] and 'x2' with type Tensor[Float32].
+
+----------------------------------------------------
+- C++ Call Stack: (For framework developers)
+----------------------------------------------------
+mindspore/core/ops/mat_mul.cc:143 InferType
+
+mut_result:LC Create illegal layer!
+28 generation!
+
+Adopt CM mut_strategy!
+mut_result:No suitable ops for CM mutation!
+29 generation!
+
+Adopt LC mut_strategy!
+select layer: conv2_1 layer_type: <class 'mindspore.nn.layer.conv.Conv2d'> in_shape: [2, 64, 112, 112] out_shape: [2, 128, 112, 112]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: Conv2d<input_channels=128, output_channels=128, kernel_size=(3, 3), stride=(1, 1), pad_mode=same, padding=0, dilation=(1, 1), group=1, has_bias=False, weight_init=<mindspore.common.initializer.HeUniform object at 0x7f49c3af6b50>, bias_init=None, format=NCHW>
+insert_layer_outshape equal!
+mut_result:True
+30 generation!
+
+Adopt CM mut_strategy!
+candidate_in_mutlayers_indice:-1
+select layer: fc1 layer_type: <class 'mindspore.nn.layer.basic.Dense'> in_shape: [2, 25088] out_shape: [2, 4096]
+mut Basic type: True
+select insert layer: ResidualBlock<
+  (residual_conv1): Conv2d<input_channels=25088, output_channels=1024, kernel_size=(1, 1), stride=(1, 1), pad_mode=same, padding=0, dilation=(1, 1), group=1, has_bias=False, weight_init=<mindspore.common.initializer.HeUniform object at 0x7f49c270b690>, bias_init=None, format=NCHW>
+  (residual_bn1): BatchNorm2d<num_features=1024, eps=0.0001, momentum=0.9, gamma=Parameter (name=1.residual_bn1.gamma, shape=(1024,), dtype=Float32, requires_grad=True), beta=Parameter (name=1.residual_bn1.beta, shape=(1024,), dtype=Float32, requires_grad=True), moving_mean=Parameter (name=1.residual_bn1.moving_mean, shape=(1024,), dtype=Float32, requires_grad=False), moving_variance=Parameter (name=1.residual_bn1.moving_variance, shape=(1024,), dtype=Float32, requires_grad=False)>
+  (residual_conv2): Conv2d<input_channels=1024, output_channels=1024, kernel_size=(3, 3), stride=(1, 1), pad_mode=same, padding=0, dilation=(1, 1), group=1, has_bias=False, weight_init=<mindspore.common.initializer.HeUniform object at 0x7f498409dc90>, bias_init=None, format=NCHW>
+  (residual_bn2): BatchNorm2d<num_features=1024, eps=0.0001, momentum=0.9, gamma=Parameter (name=1.residual_bn2.gamma, shape=(1024,), dtype=Float32, requires_grad=True), beta=Parameter (name=1.residual_bn2.beta, shape=(1024,), dtype=Float32, requires_grad=True), moving_mean=Parameter (name=1.residual_bn2.moving_mean, shape=(1024,), dtype=Float32, requires_grad=False), moving_variance=Parameter (name=1.residual_bn2.moving_variance, shape=(1024,), dtype=Float32, requires_grad=False)>
+  (residual_conv3): Conv2d<input_channels=1024, output_channels=4096, kernel_size=(1, 1), stride=(1, 1), pad_mode=same, padding=0, dilation=(1, 1), group=1, has_bias=False, weight_init=<mindspore.common.initializer.HeUniform object at 0x7f49c2f9ae50>, bias_init=None, format=NCHW>
+  (residual_bn3): BatchNorm2d<num_features=4096, eps=0.0001, momentum=0.9, gamma=Parameter (name=1.residual_bn3.gamma, shape=(4096,), dtype=Float32, requires_grad=True), beta=Parameter (name=1.residual_bn3.beta, shape=(4096,), dtype=Float32, requires_grad=True), moving_mean=Parameter (name=1.residual_bn3.moving_mean, shape=(4096,), dtype=Float32, requires_grad=False), moving_variance=Parameter (name=1.residual_bn3.moving_variance, shape=(4096,), dtype=Float32, requires_grad=False)>
+  (residual_relu1): ReLU<>
+  (residual_relu2): ReLU<>
+  (residual_relu3): ReLU<>
+  (residual_down_sample_layer): SequentialCell<
+    (0): Conv2d<input_channels=25088, output_channels=4096, kernel_size=(1, 1), stride=(1, 1), pad_mode=same, padding=0, dilation=(1, 1), group=1, has_bias=False, weight_init=<mindspore.common.initializer.HeUniform object at 0x7f49c26cf550>, bias_init=None, format=NCHW>
+    (1): BatchNorm2d<num_features=4096, eps=0.0001, momentum=0.9, gamma=Parameter (name=1.residual_down_sample_layer.1.gamma, shape=(4096,), dtype=Float32, requires_grad=True), beta=Parameter (name=1.residual_down_sample_layer.1.beta, shape=(4096,), dtype=Float32, requires_grad=True), moving_mean=Parameter (name=1.residual_down_sample_layer.1.moving_mean, shape=(4096,), dtype=Float32, requires_grad=False), moving_variance=Parameter (name=1.residual_down_sample_layer.1.moving_variance, shape=(4096,), dtype=Float32, requires_grad=False)>
+    >
+  >
+replace Basic with CM op!
+mut_result:True
+31 generation!
+
+Adopt LC mut_strategy!
+select layer: conv5_3 layer_type: <class 'mindspore.nn.layer.conv.Conv2d'> in_shape: [2, 512, 14, 14] out_shape: [2, 512, 14, 14]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: Conv2d<input_channels=512, output_channels=512, kernel_size=(3, 3), stride=(1, 1), pad_mode=same, padding=0, dilation=(1, 1), group=1, has_bias=False, weight_init=<mindspore.common.initializer.HeUniform object at 0x7f49c27be450>, bias_init=None, format=NCHW>
+insert_layer_outshape equal!
+mut_result:True
+32 generation!
+
+Adopt LC mut_strategy!
+select layer: dropout1 layer_type: <class 'mindspore.nn.layer.basic.Dropout'> in_shape: [2, 4096] out_shape: [2, 4096]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: Dropout<keep_prob=0.5>
+insert_layer_outshape equal!
+mut_result:True
+33 generation!
+
+Adopt PM mut_strategy!
+candidate_in_mutlayers_indice:-1
+select op: dropout2 layer_type: Dropout selected param:keep_prob input_shape:[2, 4096] output_shape:[2, 4096]
+Edit value: 0.84375 new_inshape: (2, 4096) new_outshape: (2, 4096)
+Dropout<keep_prob=0.84375>
+mut_result:True
+34 generation!
+
+Adopt LA mut_strategy!
+candidate_in_mutlayers_indice:-1
+select layer: conv3_2 layer_type: <class 'mindspore.nn.layer.conv.Conv2d'> in_shape: [2, 256, 56, 56] out_shape: [2, 256, 56, 56]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: Conv2d<input_channels=256, output_channels=256, kernel_size=(1, 1), stride=(1, 1), pad_mode=same, padding=0, dilation=(1, 1), group=1, has_bias=False, weight_init=<mindspore.common.initializer.HeUniform object at 0x7f49c2e8acd0>, bias_init=None, format=NCHW>
+insert_layer_outshape equal!
+mut_result:True
+35 generation!
+
+Adopt LC mut_strategy!
+select layer: dropout2 layer_type: <class 'mindspore.nn.layer.basic.Dropout'> in_shape: [2, 4096] out_shape: [2, 4096]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: Dropout<keep_prob=0.84375>
+insert_layer_outshape equal!
+mut_result:True
+36 generation!
+
+Adopt LC mut_strategy!
+select layer: conv5_2 layer_type: <class 'mindspore.nn.layer.conv.Conv2d'> in_shape: [2, 512, 14, 14] out_shape: [2, 512, 14, 14]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: Conv2d<input_channels=512, output_channels=512, kernel_size=(3, 3), stride=(1, 1), pad_mode=same, padding=0, dilation=(1, 1), group=1, has_bias=False, weight_init=<mindspore.common.initializer.HeUniform object at 0x7f49c2fa2fd0>, bias_init=None, format=NCHW>
+insert_layer_outshape equal!
+mut_result:True
+37 generation!
+
+Adopt LC mut_strategy!
+select layer: conv4_2 layer_type: <class 'mindspore.nn.layer.conv.Conv2d'> in_shape: [2, 512, 28, 28] out_shape: [2, 512, 28, 28]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: Conv2d<input_channels=512, output_channels=512, kernel_size=(3, 3), stride=(1, 1), pad_mode=same, padding=0, dilation=(1, 1), group=1, has_bias=False, weight_init=<mindspore.common.initializer.HeUniform object at 0x7f49c27d4f50>, bias_init=None, format=NCHW>
+insert_layer_outshape equal!
+mut_result:True
+38 generation!
+
+Adopt LC mut_strategy!
+select layer: conv5_1 layer_type: <class 'mindspore.nn.layer.conv.Conv2d'> in_shape: [2, 512, 14, 14] out_shape: [2, 512, 14, 14]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: Conv2d<input_channels=512, output_channels=512, kernel_size=(3, 3), stride=(1, 1), pad_mode=same, padding=0, dilation=(1, 1), group=1, has_bias=False, weight_init=<mindspore.common.initializer.HeUniform object at 0x7f49c32cbfd0>, bias_init=None, format=NCHW>
+insert_layer_outshape equal!
+mut_result:True
+39 generation!
+
+Adopt LC mut_strategy!
+select layer: maxpool3 layer_type: <class 'mindspore.nn.layer.pooling.MaxPool2d'> in_shape: [2, 256, 56, 56] out_shape: [2, 256, 28, 28]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: MaxPool2d<kernel_size=2, stride=2, pad_mode=VALID>
+insert_layer_outshape not equal!: [2, 256, 28, 28]
+mut_result:True
+40 generation!
+
+Adopt LC mut_strategy!
+select layer: conv1_2 layer_type: <class 'mindspore.nn.layer.conv.Conv2d'> in_shape: [2, 64, 224, 224] out_shape: [2, 64, 224, 224]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: Conv2d<input_channels=64, output_channels=64, kernel_size=(3, 3), stride=(1, 1), pad_mode=same, padding=0, dilation=(1, 1), group=1, has_bias=False, weight_init=<mindspore.common.initializer.HeUniform object at 0x7f49c36c1d90>, bias_init=None, format=NCHW>
+insert_layer_outshape equal!
+mut_result:True
+41 generation!
+
+Adopt LC mut_strategy!
+select layer: maxpool5 layer_type: <class 'mindspore.nn.layer.pooling.MaxPool2d'> in_shape: [2, 512, 14, 14] out_shape: [2, 512, 7, 7]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: MaxPool2d<kernel_size=2, stride=2, pad_mode=VALID>
+insert_layer_outshape not equal!: [2, 512, 7, 7]
+mut_result:True
+42 generation!
+
+Adopt PM mut_strategy!
+candidate_in_mutlayers_indice:-1
+select op: conv4_1 layer_type: Conv2d selected param:in_channels input_shape:[2, 256, 28, 28] output_shape:[2, 512, 28, 28]
+Edit value: 768 new_inshape: (2, 768, 28, 28) new_outshape: (2, 512, 28, 28)
+mutate op infor:
+SequentialCell<
+  (0): Replace_ms<>
+  (1): Conv2d<input_channels=768, output_channels=512, kernel_size=(3, 3), stride=(1, 1), pad_mode=same, padding=0, dilation=(1, 1), group=1, has_bias=False, weight_init=<mindspore.common.initializer.HeUniform object at 0x7f49c2ecc810>, bias_init=None, format=NCHW>
+  >
+mut_result:True
+43 generation!
+
+Adopt LC mut_strategy!
+select layer: conv3_1 layer_type: <class 'mindspore.nn.layer.conv.Conv2d'> in_shape: [2, 128, 56, 56] out_shape: [2, 256, 56, 56]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: Conv2d<input_channels=256, output_channels=256, kernel_size=(3, 3), stride=(1, 1), pad_mode=same, padding=0, dilation=(1, 1), group=1, has_bias=False, weight_init=<mindspore.common.initializer.HeUniform object at 0x7f4984032b50>, bias_init=None, format=NCHW>
+insert_layer_outshape equal!
+mut_result:True
+44 generation!
+
+Adopt LC mut_strategy!
+select layer: conv2_2 layer_type: <class 'mindspore.nn.layer.conv.Conv2d'> in_shape: [2, 128, 112, 112] out_shape: [2, 128, 112, 112]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: Conv2d<input_channels=128, output_channels=128, kernel_size=(3, 3), stride=(1, 1), pad_mode=same, padding=0, dilation=(1, 1), group=1, has_bias=False, weight_init=<mindspore.common.initializer.HeUniform object at 0x7f49c2fb2a10>, bias_init=None, format=NCHW>
+insert_layer_outshape equal!
+mut_result:True
+45 generation!
+
+Adopt LC mut_strategy!
+select layer: fc3 layer_type: <class 'mindspore.nn.layer.basic.Dense'> in_shape: [2, 4096] out_shape: [2, 1000]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: Dense<input_channels=4096, output_channels=1000, has_bias=True>
+Illegal LC mutate!
+For 'MatMul', the type of 'x2' should be same as 'x1', but got 'x1' with type Tensor[Float16] and 'x2' with type Tensor[Float32].
+
+----------------------------------------------------
+- C++ Call Stack: (For framework developers)
+----------------------------------------------------
+mindspore/core/ops/mat_mul.cc:143 InferType
+
+mut_result:LC Create illegal layer!
+46 generation!
+
+Adopt LC mut_strategy!
+select layer: fc1 layer_type: <class 'mindspore.nn.layer.basic.Dense'> in_shape: [2, 25088] out_shape: [2, 4096]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: Dense<input_channels=25088, output_channels=4096, has_bias=True>
+Illegal LC mutate!
+For 'MatMul', the type of 'x2' should be same as 'x1', but got 'x1' with type Tensor[Float16] and 'x2' with type Tensor[Float32].
+
+----------------------------------------------------
+- C++ Call Stack: (For framework developers)
+----------------------------------------------------
+mindspore/core/ops/mat_mul.cc:143 InferType
+
+mut_result:LC Create illegal layer!
+47 generation!
+
+Adopt LC mut_strategy!
+select layer: conv5_2 layer_type: <class 'mindspore.nn.layer.conv.Conv2d'> in_shape: [2, 512, 14, 14] out_shape: [2, 512, 14, 14]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: Conv2d<input_channels=512, output_channels=512, kernel_size=(3, 3), stride=(1, 1), pad_mode=same, padding=0, dilation=(1, 1), group=1, has_bias=False, weight_init=<mindspore.common.initializer.HeUniform object at 0x7f49c33c4b50>, bias_init=None, format=NCHW>
+insert_layer_outshape equal!
+mut_result:True
+48 generation!
+
+Adopt LC mut_strategy!
+select layer: maxpool2 layer_type: <class 'mindspore.nn.layer.pooling.MaxPool2d'> in_shape: [2, 128, 112, 112] out_shape: [2, 128, 56, 56]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: MaxPool2d<kernel_size=2, stride=2, pad_mode=VALID>
+insert_layer_outshape not equal!: [2, 128, 56, 56]
+mut_result:True
+49 generation!
+
+Adopt LC mut_strategy!
+select layer: maxpool1 layer_type: <class 'mindspore.nn.layer.pooling.MaxPool2d'> in_shape: [2, 64, 224, 224] out_shape: [2, 64, 112, 112]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: MaxPool2d<kernel_size=2, stride=2, pad_mode=VALID>
+insert_layer_outshape not equal!: [2, 64, 112, 112]
+mut_result:True
+50 generation!
+
+Adopt LC mut_strategy!
+select layer: dropout1 layer_type: <class 'mindspore.nn.layer.basic.Dropout'> in_shape: [2, 4096] out_shape: [2, 4096]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: Dropout<keep_prob=0.5>
+insert_layer_outshape equal!
+mut_result:True
+51 generation!
+
+Adopt LC mut_strategy!
+select layer: conv3_3 layer_type: <class 'mindspore.nn.layer.conv.Conv2d'> in_shape: [2, 256, 56, 56] out_shape: [2, 256, 56, 56]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: Conv2d<input_channels=256, output_channels=256, kernel_size=(3, 3), stride=(1, 1), pad_mode=same, padding=0, dilation=(1, 1), group=1, has_bias=False, weight_init=<mindspore.common.initializer.HeUniform object at 0x7f49c26b3250>, bias_init=None, format=NCHW>
+insert_layer_outshape equal!
+mut_result:True
+52 generation!
+
+Adopt LA mut_strategy!
+candidate_in_mutlayers_indice:-1
+select layer: relu5_1 layer_type: <class 'mindspore.nn.layer.activation.ReLU'> in_shape: [2, 512, 14, 14] out_shape: [2, 512, 14, 14]
+mut Basic type: True
+add Basic layer : Cascade_op
+select insert layer: SE<
+  (SE_pool): GlobalAvgPooling<>
+  (act): HSigmoid<>
+  (SE_act1): ReLU<>
+  (SE_act2): HSigmoid<>
+  >
+insert_layer_outshape equal!
+add Cascade_op after basicop!
+mut_result:False
+53 generation!
+
+Adopt LC mut_strategy!
+select layer: maxpool4 layer_type: <class 'mindspore.nn.layer.pooling.MaxPool2d'> in_shape: [2, 512, 28, 28] out_shape: [2, 512, 14, 14]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: MaxPool2d<kernel_size=2, stride=2, pad_mode=VALID>
+insert_layer_outshape not equal!: [2, 512, 14, 14]
+mut_result:True
+54 generation!
+
+Adopt LC mut_strategy!
+select layer: maxpool3 layer_type: <class 'mindspore.nn.layer.pooling.MaxPool2d'> in_shape: [2, 256, 56, 56] out_shape: [2, 256, 28, 28]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: MaxPool2d<kernel_size=2, stride=2, pad_mode=VALID>
+insert_layer_outshape not equal!: [2, 256, 28, 28]
+mut_result:True
+55 generation!
+
+Adopt LC mut_strategy!
+select layer: maxpool1 layer_type: <class 'mindspore.nn.layer.pooling.MaxPool2d'> in_shape: [2, 64, 224, 224] out_shape: [2, 64, 112, 112]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: MaxPool2d<kernel_size=2, stride=2, pad_mode=VALID>
+insert_layer_outshape not equal!: [2, 64, 112, 112]
+mut_result:True
+56 generation!
+
+Adopt LD mut_strategy!
+delete layer_name:relu2_1
+candidate_in_mutlayers_indice:-1
+adopt DeleteCell EmptyCell
+mut_result:True
+57 generation!
+
+Adopt LC mut_strategy!
+select layer: maxpool2 layer_type: <class 'mindspore.nn.layer.pooling.MaxPool2d'> in_shape: [2, 128, 112, 112] out_shape: [2, 128, 56, 56]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: MaxPool2d<kernel_size=2, stride=2, pad_mode=VALID>
+insert_layer_outshape not equal!: [2, 128, 56, 56]
+mut_result:True
+58 generation!
+
+Adopt LC mut_strategy!
+select layer: conv5_1 layer_type: <class 'mindspore.nn.layer.conv.Conv2d'> in_shape: [2, 512, 14, 14] out_shape: [2, 512, 14, 14]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: Conv2d<input_channels=512, output_channels=512, kernel_size=(3, 3), stride=(1, 1), pad_mode=same, padding=0, dilation=(1, 1), group=1, has_bias=False, weight_init=<mindspore.common.initializer.HeUniform object at 0x7f49c3318c50>, bias_init=None, format=NCHW>
+insert_layer_outshape equal!
+mut_result:True
+59 generation!
+
+Adopt RA mut_strategy!
+candidate_in_mutlayers_indice:-1
+select layer: conv3_3 layer_type: <class 'mindspore.nn.layer.conv.Conv2d'> in_shape: [2, 256, 56, 56] out_shape: [2, 256, 56, 56]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: ELU<>
+insert_layer_outshape equal!
+mut_result:True
+60 generation!
+
+Adopt LC mut_strategy!
+select layer: conv2_2 layer_type: <class 'mindspore.nn.layer.conv.Conv2d'> in_shape: [2, 128, 112, 112] out_shape: [2, 128, 112, 112]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: Conv2d<input_channels=128, output_channels=128, kernel_size=(3, 3), stride=(1, 1), pad_mode=same, padding=0, dilation=(1, 1), group=1, has_bias=False, weight_init=<mindspore.common.initializer.HeUniform object at 0x7f49c2795610>, bias_init=None, format=NCHW>
+insert_layer_outshape equal!
+mut_result:True
+61 generation!
+
+Adopt CM mut_strategy!
+candidate_in_mutlayers_indice:-1
+select layer: relu5_3 layer_type: <class 'mindspore.nn.layer.activation.ReLU'> in_shape: [2, 512, 14, 14] out_shape: [2, 512, 14, 14]
+mut Basic type: True
+select insert layer: SE<
+  (SE_pool): GlobalAvgPooling<>
+  (act): HSigmoid<>
+  (SE_act1): ReLU<>
+  (SE_act2): HSigmoid<>
+  >
+replace Basic with CM op!
+mut_result:True
+62 generation!
+
+Adopt LC mut_strategy!
+select layer: conv2_1 layer_type: <class 'mindspore.nn.layer.conv.Conv2d'> in_shape: [2, 64, 112, 112] out_shape: [2, 128, 112, 112]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: Conv2d<input_channels=128, output_channels=128, kernel_size=(3, 3), stride=(1, 1), pad_mode=same, padding=0, dilation=(1, 1), group=1, has_bias=False, weight_init=<mindspore.common.initializer.HeUniform object at 0x7f49c2f4de10>, bias_init=None, format=NCHW>
+insert_layer_outshape equal!
+mut_result:True
+63 generation!
+
+Adopt CM mut_strategy!
+candidate_in_mutlayers_indice:-1
+select layer: relu5_3 layer_type: <class 'common.mutation_ms.Layer_utils.CM_branchCell'> in_shape: [2, 512, 14, 14] out_shape: [2, 512, 14, 14]
+mut Basic type: True
+select insert layer: Conv2d<input_channels=512, output_channels=512, kernel_size=(1, 1), stride=(1, 1), pad_mode=same, padding=0, dilation=(1, 1), group=1, has_bias=False, weight_init=<mindspore.common.initializer.HeUniform object at 0x7f49c2b20ad0>, bias_init=None, format=NCHW>
+replace Basic with CM op!
+mut_result:True
+64 generation!
+
+Adopt LC mut_strategy!
+select layer: conv3_1 layer_type: <class 'mindspore.nn.layer.conv.Conv2d'> in_shape: [2, 128, 56, 56] out_shape: [2, 256, 56, 56]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: Conv2d<input_channels=256, output_channels=256, kernel_size=(3, 3), stride=(1, 1), pad_mode=same, padding=0, dilation=(1, 1), group=1, has_bias=False, weight_init=<mindspore.common.initializer.HeUniform object at 0x7f49c33a57d0>, bias_init=None, format=NCHW>
+insert_layer_outshape equal!
+mut_result:True
+65 generation!
+
+Adopt LC mut_strategy!
+select layer: fc2 layer_type: <class 'mindspore.nn.layer.basic.Dense'> in_shape: [2, 4096] out_shape: [2, 4096]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: Dense<input_channels=4096, output_channels=4096, has_bias=True>
+insert_layer_outshape equal!
+mut_result:True
+66 generation!
+
+Adopt LC mut_strategy!
+select layer: dropout1 layer_type: <class 'mindspore.nn.layer.basic.Dropout'> in_shape: [2, 4096] out_shape: [2, 4096]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: Dropout<keep_prob=0.5>
+insert_layer_outshape equal!
+mut_result:True
+67 generation!
+
+Adopt LA mut_strategy!
+mut_result:No suitable ops for LA mutation!
+68 generation!
+
+Adopt LC mut_strategy!
+select layer: fc3 layer_type: <class 'mindspore.nn.layer.basic.Dense'> in_shape: [2, 4096] out_shape: [2, 1000]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: Dense<input_channels=4096, output_channels=1000, has_bias=True>
+Illegal LC mutate!
+For 'MatMul', the type of 'x2' should be same as 'x1', but got 'x1' with type Tensor[Float16] and 'x2' with type Tensor[Float32].
+
+----------------------------------------------------
+- C++ Call Stack: (For framework developers)
+----------------------------------------------------
+mindspore/core/ops/mat_mul.cc:143 InferType
+
+mut_result:LC Create illegal layer!
+69 generation!
+
+Adopt LC mut_strategy!
+select layer: maxpool2 layer_type: <class 'mindspore.nn.layer.pooling.MaxPool2d'> in_shape: [2, 128, 112, 112] out_shape: [2, 128, 56, 56]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: MaxPool2d<kernel_size=2, stride=2, pad_mode=VALID>
+insert_layer_outshape not equal!: [2, 128, 56, 56]
+mut_result:True
+70 generation!
+
+Adopt CM mut_strategy!
+candidate_in_mutlayers_indice:-1
+select layer: maxpool4 layer_type: <class 'mindspore.nn.layer.pooling.MaxPool2d'> in_shape: [2, 512, 28, 28] out_shape: [2, 512, 14, 14]
+mut Basic type: True
+select insert layer: ELU<>
+replace Basic with CM op!
+mut_result:True
+71 generation!
+
+Adopt LC mut_strategy!
+select layer: conv3_2 layer_type: <class 'mindspore.nn.layer.conv.Conv2d'> in_shape: [2, 256, 56, 56] out_shape: [2, 256, 56, 56]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: Conv2d<input_channels=256, output_channels=256, kernel_size=(3, 3), stride=(1, 1), pad_mode=same, padding=0, dilation=(1, 1), group=1, has_bias=False, weight_init=<mindspore.common.initializer.HeUniform object at 0x7f49c369ca90>, bias_init=None, format=NCHW>
+insert_layer_outshape equal!
+mut_result:True
+72 generation!
+
+Adopt RA mut_strategy!
+candidate_in_mutlayers_indice:-1
+select layer: relu4_1 layer_type: <class 'mindspore.nn.layer.activation.ReLU'> in_shape: [2, 512, 28, 28] out_shape: [2, 512, 28, 28]
+mut Basic type: True
+add Basic layer : Cascade_op
+select insert layer: convbnrelu<
+  (conbnrelu_conv): Conv2d<input_channels=512, output_channels=512, kernel_size=(1, 1), stride=(1, 1), pad_mode=same, padding=0, dilation=(1, 1), group=1, has_bias=False, weight_init=<mindspore.common.initializer.HeUniform object at 0x7f49c326bd90>, bias_init=None, format=NCHW>
+  (conbnrelu_bn): BatchNorm2d<num_features=512, eps=1e-05, momentum=0.9, gamma=Parameter (name=conbnrelu_bn.gamma, shape=(512,), dtype=Float32, requires_grad=True), beta=Parameter (name=conbnrelu_bn.beta, shape=(512,), dtype=Float32, requires_grad=True), moving_mean=Parameter (name=conbnrelu_bn.moving_mean, shape=(512,), dtype=Float32, requires_grad=False), moving_variance=Parameter (name=conbnrelu_bn.moving_variance, shape=(512,), dtype=Float32, requires_grad=False)>
+  (conbnrelu_relu): ReLU<>
+  >
+insert_layer_outshape equal!
+mut_result:True
+73 generation!
+
+Adopt SM mut_strategy!
+select layer: relu1_2 layer_type: <class 'mindspore.nn.layer.activation.ReLU'> in_shape: [2, 64, 224, 224] out_shape: [2, 64, 224, 224]
+mut Basic type: True
+candidate_in_mutlayers_indice:-1
+mutate state: before
+mutate input_shape: [2, 25, 16, 2, 5]
+mut_result:True
+74 generation!
+
+Adopt LC mut_strategy!
+select layer: conv4_3 layer_type: <class 'mindspore.nn.layer.conv.Conv2d'> in_shape: [2, 512, 28, 28] out_shape: [2, 512, 28, 28]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: Conv2d<input_channels=512, output_channels=512, kernel_size=(3, 3), stride=(1, 1), pad_mode=same, padding=0, dilation=(1, 1), group=1, has_bias=False, weight_init=<mindspore.common.initializer.HeUniform object at 0x7f49c26fd710>, bias_init=None, format=NCHW>
+insert_layer_outshape equal!
+mut_result:True
+75 generation!
+
+Adopt LD mut_strategy!
+delete layer_name:conv5_3
+candidate_in_mutlayers_indice:-1
+adopt DeleteCell EmptyCell
+mut_result:True
+76 generation!
+
+Adopt LC mut_strategy!
+select layer: conv5_2 layer_type: <class 'mindspore.nn.layer.conv.Conv2d'> in_shape: [2, 512, 14, 14] out_shape: [2, 512, 14, 14]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: Conv2d<input_channels=512, output_channels=512, kernel_size=(3, 3), stride=(1, 1), pad_mode=same, padding=0, dilation=(1, 1), group=1, has_bias=False, weight_init=<mindspore.common.initializer.HeUniform object at 0x7f49c3767d90>, bias_init=None, format=NCHW>
+insert_layer_outshape equal!
+mut_result:True
+77 generation!
+
+Adopt LC mut_strategy!
+select layer: fc1 layer_type: <class 'mindspore.nn.layer.basic.Dense'> in_shape: [2, 25088] out_shape: [2, 4096]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: Dense<input_channels=25088, output_channels=4096, has_bias=True>
+Illegal LC mutate!
+For 'MatMul', the type of 'x2' should be same as 'x1', but got 'x1' with type Tensor[Float16] and 'x2' with type Tensor[Float32].
+
+----------------------------------------------------
+- C++ Call Stack: (For framework developers)
+----------------------------------------------------
+mindspore/core/ops/mat_mul.cc:143 InferType
+
+mut_result:LC Create illegal layer!
+78 generation!
+
+Adopt LC mut_strategy!
+select layer: fc1 layer_type: <class 'mindspore.nn.layer.basic.Dense'> in_shape: [2, 25088] out_shape: [2, 4096]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: Dense<input_channels=25088, output_channels=4096, has_bias=True>
+Illegal LC mutate!
+For 'MatMul', the type of 'x2' should be same as 'x1', but got 'x1' with type Tensor[Float16] and 'x2' with type Tensor[Float32].
+
+----------------------------------------------------
+- C++ Call Stack: (For framework developers)
+----------------------------------------------------
+mindspore/core/ops/mat_mul.cc:143 InferType
+
+mut_result:LC Create illegal layer!
+79 generation!
+
+Adopt LC mut_strategy!
+select layer: fc2 layer_type: <class 'mindspore.nn.layer.basic.Dense'> in_shape: [2, 4096] out_shape: [2, 4096]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: Dense<input_channels=4096, output_channels=4096, has_bias=True>
+insert_layer_outshape equal!
+mut_result:True
+80 generation!
+
+Adopt LD mut_strategy!
+delete layer_name:dropout1
+candidate_in_mutlayers_indice:-1
+adopt DeleteCell EmptyCell
+mut_result:True
+81 generation!
+
+Adopt LC mut_strategy!
+select layer: conv1_1 layer_type: <class 'mindspore.nn.layer.conv.Conv2d'> in_shape: [2, 3, 224, 224] out_shape: [2, 64, 224, 224]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: Conv2d<input_channels=64, output_channels=64, kernel_size=(3, 3), stride=(1, 1), pad_mode=same, padding=0, dilation=(1, 1), group=1, has_bias=False, weight_init=<mindspore.common.initializer.HeUniform object at 0x7f49c36c38d0>, bias_init=None, format=NCHW>
+insert_layer_outshape equal!
+mut_result:True
+82 generation!
+
+Adopt LC mut_strategy!
+select layer: conv2_2 layer_type: <class 'mindspore.nn.layer.conv.Conv2d'> in_shape: [2, 128, 112, 112] out_shape: [2, 128, 112, 112]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: Conv2d<input_channels=128, output_channels=128, kernel_size=(3, 3), stride=(1, 1), pad_mode=same, padding=0, dilation=(1, 1), group=1, has_bias=False, weight_init=<mindspore.common.initializer.HeUniform object at 0x7f49c32b05d0>, bias_init=None, format=NCHW>
+insert_layer_outshape equal!
+mut_result:True
+83 generation!
+
+Adopt LC mut_strategy!
+select layer: maxpool5 layer_type: <class 'mindspore.nn.layer.pooling.MaxPool2d'> in_shape: [2, 512, 14, 14] out_shape: [2, 512, 7, 7]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: MaxPool2d<kernel_size=2, stride=2, pad_mode=VALID>
+insert_layer_outshape not equal!: [2, 512, 7, 7]
+mut_result:True
+84 generation!
+
+Adopt LC mut_strategy!
+select layer: conv2_1 layer_type: <class 'mindspore.nn.layer.conv.Conv2d'> in_shape: [2, 64, 112, 112] out_shape: [2, 128, 112, 112]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: Conv2d<input_channels=128, output_channels=128, kernel_size=(3, 3), stride=(1, 1), pad_mode=same, padding=0, dilation=(1, 1), group=1, has_bias=False, weight_init=<mindspore.common.initializer.HeUniform object at 0x7f49c327af50>, bias_init=None, format=NCHW>
+insert_layer_outshape equal!
+mut_result:True
+85 generation!
+
+Adopt LC mut_strategy!
+select layer: conv3_2 layer_type: <class 'mindspore.nn.layer.conv.Conv2d'> in_shape: [2, 256, 56, 56] out_shape: [2, 256, 56, 56]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: Conv2d<input_channels=256, output_channels=256, kernel_size=(3, 3), stride=(1, 1), pad_mode=same, padding=0, dilation=(1, 1), group=1, has_bias=False, weight_init=<mindspore.common.initializer.HeUniform object at 0x7f49c3a6f2d0>, bias_init=None, format=NCHW>
+insert_layer_outshape equal!
+mut_result:True
+86 generation!
+
+Adopt LC mut_strategy!
+select layer: maxpool4 layer_type: <class 'mindspore.nn.layer.pooling.MaxPool2d'> in_shape: [2, 512, 28, 28] out_shape: [2, 512, 14, 14]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: MaxPool2d<kernel_size=2, stride=2, pad_mode=VALID>
+insert_layer_outshape not equal!: [2, 512, 14, 14]
+mut_result:True
+87 generation!
+
+Adopt LC mut_strategy!
+select layer: maxpool1 layer_type: <class 'mindspore.nn.layer.pooling.MaxPool2d'> in_shape: [2, 64, 224, 224] out_shape: [2, 64, 112, 112]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: MaxPool2d<kernel_size=2, stride=2, pad_mode=VALID>
+insert_layer_outshape not equal!: [2, 64, 112, 112]
+mut_result:True
+88 generation!
+
+Adopt LC mut_strategy!
+select layer: conv5_3 layer_type: <class 'mindspore.nn.layer.conv.Conv2d'> in_shape: [2, 512, 14, 14] out_shape: [2, 512, 14, 14]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: Conv2d<input_channels=512, output_channels=512, kernel_size=(3, 3), stride=(1, 1), pad_mode=same, padding=0, dilation=(1, 1), group=1, has_bias=False, weight_init=<mindspore.common.initializer.HeUniform object at 0x7f49c3327f50>, bias_init=None, format=NCHW>
+insert_layer_outshape equal!
+mut_result:True
+89 generation!
+
+Adopt LC mut_strategy!
+select layer: conv5_2 layer_type: <class 'mindspore.nn.layer.conv.Conv2d'> in_shape: [2, 512, 14, 14] out_shape: [2, 512, 14, 14]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: Conv2d<input_channels=512, output_channels=512, kernel_size=(3, 3), stride=(1, 1), pad_mode=same, padding=0, dilation=(1, 1), group=1, has_bias=False, weight_init=<mindspore.common.initializer.HeUniform object at 0x7f49c337b9d0>, bias_init=None, format=NCHW>
+insert_layer_outshape equal!
+mut_result:True
+90 generation!
+
+Adopt RA mut_strategy!
+candidate_in_mutlayers_indice:-1
+select layer: relu3_3 layer_type: <class 'mindspore.nn.layer.activation.ReLU'> in_shape: [2, 256, 56, 56] out_shape: [2, 256, 56, 56]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: ReLU6<>
+insert_layer_outshape equal!
+mut_result:True
+91 generation!
+
+Adopt LC mut_strategy!
+select layer: conv3_1 layer_type: <class 'mindspore.nn.layer.conv.Conv2d'> in_shape: [2, 128, 56, 56] out_shape: [2, 256, 56, 56]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: Conv2d<input_channels=256, output_channels=256, kernel_size=(3, 3), stride=(1, 1), pad_mode=same, padding=0, dilation=(1, 1), group=1, has_bias=False, weight_init=<mindspore.common.initializer.HeUniform object at 0x7f49c2ee8b50>, bias_init=None, format=NCHW>
+insert_layer_outshape equal!
+mut_result:True
+92 generation!
+
+Adopt LC mut_strategy!
+select layer: conv5_1 layer_type: <class 'mindspore.nn.layer.conv.Conv2d'> in_shape: [2, 512, 14, 14] out_shape: [2, 512, 14, 14]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: Conv2d<input_channels=512, output_channels=512, kernel_size=(3, 3), stride=(1, 1), pad_mode=same, padding=0, dilation=(1, 1), group=1, has_bias=False, weight_init=<mindspore.common.initializer.HeUniform object at 0x7f498409af90>, bias_init=None, format=NCHW>
+insert_layer_outshape equal!
+mut_result:True
+93 generation!
+
+Adopt LC mut_strategy!
+select layer: conv4_2 layer_type: <class 'mindspore.nn.layer.conv.Conv2d'> in_shape: [2, 512, 28, 28] out_shape: [2, 512, 28, 28]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: Conv2d<input_channels=512, output_channels=512, kernel_size=(3, 3), stride=(1, 1), pad_mode=same, padding=0, dilation=(1, 1), group=1, has_bias=False, weight_init=<mindspore.common.initializer.HeUniform object at 0x7f498409a590>, bias_init=None, format=NCHW>
+insert_layer_outshape equal!
+mut_result:True
+94 generation!
+
+Adopt LC mut_strategy!
+select layer: fc3 layer_type: <class 'mindspore.nn.layer.basic.Dense'> in_shape: [2, 4096] out_shape: [2, 1000]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: Dense<input_channels=4096, output_channels=1000, has_bias=True>
+Illegal LC mutate!
+For 'MatMul', the type of 'x2' should be same as 'x1', but got 'x1' with type Tensor[Float16] and 'x2' with type Tensor[Float32].
+
+----------------------------------------------------
+- C++ Call Stack: (For framework developers)
+----------------------------------------------------
+mindspore/core/ops/mat_mul.cc:143 InferType
+
+mut_result:LC Create illegal layer!
+95 generation!
+
+Adopt LC mut_strategy!
+select layer: maxpool2 layer_type: <class 'mindspore.nn.layer.pooling.MaxPool2d'> in_shape: [2, 128, 112, 112] out_shape: [2, 128, 56, 56]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: MaxPool2d<kernel_size=2, stride=2, pad_mode=VALID>
+insert_layer_outshape not equal!: [2, 128, 56, 56]
+mut_result:True
+96 generation!
+
+Adopt LC mut_strategy!
+select layer: conv5_2 layer_type: <class 'mindspore.nn.layer.conv.Conv2d'> in_shape: [2, 512, 14, 14] out_shape: [2, 512, 14, 14]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: Conv2d<input_channels=512, output_channels=512, kernel_size=(3, 3), stride=(1, 1), pad_mode=same, padding=0, dilation=(1, 1), group=1, has_bias=False, weight_init=<mindspore.common.initializer.HeUniform object at 0x7f49c2b627d0>, bias_init=None, format=NCHW>
+insert_layer_outshape equal!
+mut_result:True
+97 generation!
+
+Adopt LC mut_strategy!
+select layer: fc2 layer_type: <class 'mindspore.nn.layer.basic.Dense'> in_shape: [2, 4096] out_shape: [2, 4096]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: Dense<input_channels=4096, output_channels=4096, has_bias=True>
+insert_layer_outshape equal!
+mut_result:True
+98 generation!
+
+Adopt LC mut_strategy!
+select layer: fc1 layer_type: <class 'mindspore.nn.layer.basic.Dense'> in_shape: [2, 25088] out_shape: [2, 4096]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: Dense<input_channels=25088, output_channels=4096, has_bias=True>
+Illegal LC mutate!
+For 'MatMul', the type of 'x2' should be same as 'x1', but got 'x1' with type Tensor[Float16] and 'x2' with type Tensor[Float32].
+
+----------------------------------------------------
+- C++ Call Stack: (For framework developers)
+----------------------------------------------------
+mindspore/core/ops/mat_mul.cc:143 InferType
+
+mut_result:LC Create illegal layer!
+99 generation!
+
+Adopt LC mut_strategy!
+select layer: fc2 layer_type: <class 'mindspore.nn.layer.basic.Dense'> in_shape: [2, 4096] out_shape: [2, 4096]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: Dense<input_channels=4096, output_channels=4096, has_bias=True>
+insert_layer_outshape equal!
+mut_result:True
+100 generation!
+
+mutation trace: {'1': [1], '2': [1, 2], '3': [3], '4': [3, 4], '5': [3, 4, 5], '6': [3, 4, 5, 6], '7': [3, 4, 5, 6, 7], '8': [3, 4, 5, 6, 7, 8], '9': [3, 4, 5, 6, 7, 8, 9], '10': [3, 4, 5, 6, 7, 8, 9, 10], '11': [3, 4, 5, 6, 7, 8, 9, 10, 11], '12': [12], '13': [12, 13], '14': [12, 13, 14], '15': [12, 13, 14, 15], '16': [12, 13, 14, 15, 16], '17': [12, 13, 14, 15, 16, 17], '18': [12, 13, 14, 15, 16, 17, 18], '19': [12, 13, 14, 15, 16, 17, 18, 19], '20': [12, 13, 14, 15, 16, 17, 18, 19, 20], '21': [21], '22': [21, 22], '23': [21, 22, 23], '24': [24], '25': [24, 25], '26': [24, 25, 26], '27': [24, 25, 26, 27], '28': [24, 25, 26, 27, 28], '29': [29], '30': [24, 25, 30], '31': [24, 25, 30, 31], '32': [24, 25, 30, 31, 32], '33': [24, 25, 30, 31, 32, 33], '34': [24, 25, 30, 31, 32, 33, 34], '35': [24, 25, 30, 31, 32, 33, 34, 35], '36': [24, 25, 30, 31, 32, 33, 34, 35, 36], '37': [24, 25, 30, 31, 32, 33, 34, 35, 36, 37], '38': [24, 25, 30, 31, 32, 33, 34, 35, 36, 37, 38], '39': [24, 25, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39], '40': [24, 25, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40], '41': [24, 25, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41], '42': [24, 25, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42], '43': [24, 25, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43], '44': [24, 25, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44], '45': [24, 25, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45], '46': [24, 25, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46], '47': [24, 25, 47], '48': [24, 25, 26, 48], '49': [24, 25, 26, 48, 49], '50': [24, 25, 26, 48, 49, 50], '51': [24, 25, 26, 48, 49, 50, 51], '52': [24, 25, 26, 48, 49, 50, 51, 52], '53': [24, 25, 26, 48, 49, 50, 51, 52, 53], '54': [24, 25, 26, 54], '55': [24, 25, 26, 54, 55], '56': [24, 25, 26, 54, 55, 56], '57': [24, 25, 26, 54, 55, 56, 57], '58': [24, 25, 26, 54, 55, 56, 57, 58], '59': [24, 25, 26, 54, 55, 56, 57, 58, 59], '60': [24, 25, 26, 54, 55, 56, 57, 58, 59, 60], '61': [24, 25, 26, 54, 55, 56, 57, 58, 59, 60, 61], '62': [24, 25, 26, 54, 55, 56, 57, 58, 59, 60, 61, 62], '63': [24, 25, 26, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63], '64': [24, 25, 26, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64], '65': [24, 25, 26, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65], '66': [24, 25, 26, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66], '67': [24, 25, 26, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67], '68': [24, 25, 26, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68], '69': [24, 25, 26, 69], '70': [24, 70], '71': [24, 70, 71], '72': [24, 70, 71, 72], '73': [24, 70, 71, 72, 73], '74': [24, 70, 71, 72, 73, 74], '75': [24, 70, 71, 72, 73, 74, 75], '76': [24, 70, 71, 72, 73, 74, 75, 76], '77': [24, 70, 71, 72, 73, 74, 75, 76, 77], '78': [24, 70, 71, 72, 73, 74, 75, 76, 77, 78], '79': [24, 79], '80': [12, 13, 14, 15, 80], '81': [12, 13, 14, 15, 80, 81], '82': [12, 13, 14, 15, 80, 81, 82], '83': [12, 13, 14, 15, 80, 81, 82, 83], '84': [12, 13, 14, 15, 80, 81, 82, 83, 84], '85': [12, 13, 14, 15, 80, 81, 82, 83, 84, 85], '86': [12, 13, 14, 15, 80, 81, 82, 83, 84, 85, 86], '87': [12, 13, 14, 15, 80, 81, 82, 83, 84, 85, 86, 87], '88': [12, 13, 14, 15, 80, 81, 82, 83, 84, 85, 86, 87, 88], '89': [12, 13, 14, 15, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89], '90': [12, 13, 14, 15, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90], '91': [12, 13, 14, 15, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91], '92': [12, 13, 14, 15, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92], '93': [12, 13, 14, 15, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93], '94': [12, 13, 14, 15, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94], '95': [12, 13, 14, 15, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95], '96': [12, 13, 14, 15, 96], '97': [12, 13, 14, 15, 96, 97], '98': [12, 13, 14, 15, 96, 97, 98], '99': [12, 13, 14, 15, 96, 97, 98, 99], '100': [12, 13, 14, 15, 100]}

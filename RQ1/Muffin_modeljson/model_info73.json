@@ -1,0 +1,190 @@
+{
+    "edges": [
+        [
+            "dense",
+            "global_max_pooling2D"
+        ],
+        [
+            "global_max_pooling2D",
+            "batch_normalization"
+        ],
+        [
+            "batch_normalization",
+            "dense"
+        ],
+        [
+            "dense",
+            "dense"
+        ],
+        [
+            "dense",
+            "reshape"
+        ]
+    ],
+    "layer_config": {
+        "dense": [
+            {
+                "activation": "linear",
+                "use_bias": true,
+                "kernel_initializer": "random_uniform",
+                "bias_initializer": "random_uniform",
+                "kernel_regularizer": null,
+                "bias_regularizer": null,
+                "activity_regularizer": null,
+                "kernel_constraint": null,
+                "bias_constraint": null
+            },
+            {
+                "activation": "linear",
+                "use_bias": false,
+                "kernel_initializer": "random_uniform",
+                "bias_initializer": "random_uniform",
+                "kernel_regularizer": null,
+                "bias_regularizer": null,
+                "activity_regularizer": null,
+                "kernel_constraint": null,
+                "bias_constraint": null
+            }
+        ],
+        "global_max_pooling2D": [
+            {
+                "data_format": "channels_last"
+            }
+        ],
+        "batch_normalization": [
+            {
+                "axis": -1,
+                "momentum": 0.24356086463304205,
+                "epsilon": 0.21999598567796053,
+                "center": true,
+                "scale": true,
+                "beta_initializer": "random_uniform",
+                "gamma_initializer": "random_uniform",
+                "moving_mean_initializer": "random_uniform",
+                "moving_variance_initializer": "random_uniform",
+                "beta_regularizer": null,
+                "gamma_regularizer": null,
+                "beta_constraint": null,
+                "gamma_constraint": null
+            }
+        ],
+        "reshape": [
+            {
+                "target_shape": [
+                    10
+                ]
+            }
+        ]
+    },
+    "layer_input_info": {
+        "dense": {
+            "input_dims": [
+                4,
+                2
+            ],
+            "dtype": [
+                "float32"
+            ],
+            "shape": [
+                [
+                    null,
+                    32,
+                    32,
+                    3
+                ],
+                [
+                    null,
+                    5
+                ]
+            ]
+        },
+        "global_max_pooling2D": {
+            "input_dims": [
+                4
+            ],
+            "dtype": [
+                "float32"
+            ],
+            "shape": [
+                [
+                    null,
+                    32,
+                    32,
+                    5
+                ]
+            ]
+        },
+        "batch_normalization": {
+            "input_dims": [
+                2
+            ],
+            "dtype": [
+                "float32"
+            ],
+            "shape": [
+                [
+                    null,
+                    5
+                ]
+            ]
+        },
+        "reshape": {
+            "input_dims": [
+                2
+            ],
+            "dtype": [
+                "float32"
+            ],
+            "shape": [
+                [
+                    null,
+                    10
+                ]
+            ]
+        }
+    },
+    "layer_num": 7,
+    "layer_type": [
+        "dense",
+        "global_max_pooling2D",
+        "batch_normalization",
+        "reshape"
+    ],
+    "cur_edge_num": 6,
+    "layer_dims": {
+        "dense": {
+            "input_dims": [
+                4,
+                2
+            ],
+            "output_dims": [
+                4,
+                2
+            ]
+        },
+        "global_max_pooling2D": {
+            "input_dims": [
+                4
+            ],
+            "output_dims": [
+                2
+            ]
+        },
+        "batch_normalization": {
+            "input_dims": [
+                2
+            ],
+            "output_dims": [
+                2
+            ]
+        },
+        "reshape": {
+            "input_dims": [
+                2
+            ],
+            "output_dims": [
+                2
+            ]
+        }
+    }
+}

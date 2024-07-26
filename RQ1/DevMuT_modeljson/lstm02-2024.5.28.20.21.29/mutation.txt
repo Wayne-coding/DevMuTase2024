@@ -1,0 +1,789 @@
+Adopt LA mut_strategy!
+candidate_in_mutlayers_indice:-1
+select layer: dropout1 layer_type: <class 'mindspore.nn.layer.basic.Dropout'> in_shape: [1, 1, 50] out_shape: [1, 1, 50]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: Tanh<>
+insert_layer_outshape equal!
+mut_result:True
+1 generation!
+
+Adopt LC mut_strategy!
+select layer: dense layer_type: <class 'mindspore.nn.layer.basic.Dense'> in_shape: [2, 100] out_shape: [2, 1]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: Dense<input_channels=100, output_channels=1, has_bias=True>
+Illegal LC mutate!
+For 'MatMul', the type of 'x2' should be same as 'x1', but got 'x1' with type Tensor[Float16] and 'x2' with type Tensor[Float32].
+
+----------------------------------------------------
+- C++ Call Stack: (For framework developers)
+----------------------------------------------------
+mindspore/core/ops/mat_mul.cc:143 InferType
+
+mut_result:LC Create illegal layer!
+2 generation!
+
+Adopt CM mut_strategy!
+candidate_in_mutlayers_indice:0
+select layer: dropout1 layer_type: <class 'mindspore.nn.layer.container.SequentialCell'> in_shape: [1, 1, 50] out_shape: [1, 1, 50]
+mut Basic type: True
+select insert layer: BatchNorm2d<num_features=1, eps=1e-05, momentum=0.9, gamma=Parameter (name=1.gamma, shape=(1,), dtype=Float32, requires_grad=True), beta=Parameter (name=1.beta, shape=(1,), dtype=Float32, requires_grad=True), moving_mean=Parameter (name=1.moving_mean, shape=(1,), dtype=Float32, requires_grad=False), moving_variance=Parameter (name=1.moving_variance, shape=(1,), dtype=Float32, requires_grad=False)>
+Illegal CM mutate!
+For 'Concat', element1 shape in input can not concat with element0. To perform concat in the axis 0 direction, except for the 0th axis, all other axes must have the same shape. But got element1_shape[0]: 2, element0_shape[0]: 1.
+
+----------------------------------------------------
+- C++ Call Stack: (For framework developers)
+----------------------------------------------------
+mindspore/core/ops/concat.cc:67 ConcatInferShape
+
+mut_result:CM Create illegal layer!
+3 generation!
+
+Adopt PM mut_strategy!
+candidate_in_mutlayers_indice:-1
+select op: dense layer_type: Dense selected param:in_channels input_shape:[2, 100] output_shape:[2, 1]
+Edit value: 25 new_inshape: (2, 25) new_outshape: (2, 1)
+mutate op infor:
+SequentialCell<
+  (0): Replace_ms<>
+  (1): Dense<input_channels=25, output_channels=1, has_bias=True>
+  >
+mut_result:True
+4 generation!
+
+Adopt LD mut_strategy!
+delete layer_name:dense
+candidate_in_mutlayers_indice:0
+adopt DeleteCell Replace_msmut_result:True
+5 generation!
+
+Adopt LC mut_strategy!
+select layer: dropout2 layer_type: <class 'mindspore.nn.layer.basic.Dropout'> in_shape: [1, 1, 100] out_shape: [1, 1, 100]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: Dropout<keep_prob=0.5>
+insert_layer_outshape equal!
+mut_result:True
+6 generation!
+
+Adopt LC mut_strategy!
+Illegal LC mutate!
+mut_result:LC Create illegal layer!
+7 generation!
+
+Adopt LC mut_strategy!
+Illegal LC mutate!
+mut_result:LC Create illegal layer!
+8 generation!
+
+Adopt LC mut_strategy!
+Illegal LC mutate!
+mut_result:LC Create illegal layer!
+9 generation!
+
+Adopt LC mut_strategy!
+select layer: dropout1 layer_type: <class 'mindspore.nn.layer.basic.Dropout'> in_shape: [1, 1, 50] out_shape: [1, 1, 50]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: Dropout<keep_prob=0.5>
+insert_layer_outshape equal!
+mut_result:True
+10 generation!
+
+Adopt LC mut_strategy!
+select layer: dropout2 layer_type: <class 'mindspore.nn.layer.basic.Dropout'> in_shape: [1, 1, 100] out_shape: [1, 1, 100]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: Dropout<keep_prob=0.5>
+insert_layer_outshape equal!
+mut_result:True
+11 generation!
+
+Adopt RA mut_strategy!
+mut_result:No suitable ops for RA mutation!
+12 generation!
+
+Adopt LC mut_strategy!
+select layer: dropout2 layer_type: <class 'mindspore.nn.layer.basic.Dropout'> in_shape: [1, 1, 100] out_shape: [1, 1, 100]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: Dropout<keep_prob=0.5>
+insert_layer_outshape equal!
+mut_result:True
+13 generation!
+
+Adopt LC mut_strategy!
+select layer: dropout1 layer_type: <class 'mindspore.nn.layer.basic.Dropout'> in_shape: [1, 1, 50] out_shape: [1, 1, 50]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: Dropout<keep_prob=0.5>
+insert_layer_outshape equal!
+mut_result:True
+14 generation!
+
+Adopt LC mut_strategy!
+Illegal LC mutate!
+mut_result:LC Create illegal layer!
+15 generation!
+
+Adopt LD mut_strategy!
+delete layer_name:dropout1
+candidate_in_mutlayers_indice:-1
+adopt DeleteCell EmptyCell
+mut_result:True
+16 generation!
+
+Adopt SM mut_strategy!
+select layer: dropout2 layer_type: <class 'mindspore.nn.layer.basic.Dropout'> in_shape: [1, 1, 100] out_shape: [1, 1, 100]
+mut Basic type: True
+candidate_in_mutlayers_indice:-1
+mutate state: before
+mutate input_shape: [2, 3, 8]
+mut_result:True
+17 generation!
+
+Adopt LC mut_strategy!
+Illegal LC mutate!
+mut_result:LC Create illegal layer!
+18 generation!
+
+Adopt LC mut_strategy!
+select layer: dropout2 layer_type: <class 'mindspore.nn.layer.basic.Dropout'> in_shape: [1, 1, 100] out_shape: [1, 1, 100]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: Dropout<keep_prob=0.5>
+insert_layer_outshape equal!
+mut_result:True
+19 generation!
+
+Adopt LC mut_strategy!
+select layer: dropout1 layer_type: <class 'mindspore.nn.layer.basic.Dropout'> in_shape: [1, 1, 50] out_shape: [1, 1, 50]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: Dropout<keep_prob=0.5>
+insert_layer_outshape equal!
+mut_result:True
+20 generation!
+
+Adopt RA mut_strategy!
+candidate_in_mutlayers_indice:1
+select layer: dropout2 layer_type: <class 'mindspore.nn.layer.container.SequentialCell'> in_shape: [1, 1, 100] out_shape: [1, 1, 100]
+mut Basic type: True
+add Basic layer : Cascade_op
+select insert layer: SE<
+  (SE_pool): GlobalAvgPooling<>
+  (act): HSigmoid<>
+  (SE_act1): ReLU<>
+  (SE_act2): HSigmoid<>
+  >
+replace Basic with Cascade!
+mut_result:True
+21 generation!
+
+Adopt CM mut_strategy!
+mut_result:No suitable ops for CM mutation!
+22 generation!
+
+Adopt LC mut_strategy!
+select layer: dropout1 layer_type: <class 'mindspore.nn.layer.basic.Dropout'> in_shape: [1, 1, 50] out_shape: [1, 1, 50]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: Dropout<keep_prob=0.5>
+insert_layer_outshape equal!
+mut_result:True
+23 generation!
+
+Adopt LC mut_strategy!
+Illegal LC mutate!
+mut_result:LC Create illegal layer!
+24 generation!
+
+Adopt LC mut_strategy!
+select layer: dropout1 layer_type: <class 'mindspore.nn.layer.basic.Dropout'> in_shape: [1, 1, 50] out_shape: [1, 1, 50]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: Dropout<keep_prob=0.5>
+insert_layer_outshape equal!
+mut_result:True
+25 generation!
+
+Adopt LC mut_strategy!
+select layer: dropout2 layer_type: <class 'mindspore.nn.layer.basic.Dropout'> in_shape: [1, 1, 100] out_shape: [1, 1, 100]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: Dropout<keep_prob=0.5>
+insert_layer_outshape equal!
+mut_result:True
+26 generation!
+
+Adopt LC mut_strategy!
+Illegal LC mutate!
+mut_result:LC Create illegal layer!
+27 generation!
+
+Adopt PM mut_strategy!
+The target model do not have the mutator operators eps!
+mut_result:Parameter Miss
+28 generation!
+
+Adopt LC mut_strategy!
+select layer: dropout2 layer_type: <class 'mindspore.nn.layer.basic.Dropout'> in_shape: [1, 1, 100] out_shape: [1, 1, 100]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: Dropout<keep_prob=0.5>
+insert_layer_outshape equal!
+mut_result:True
+29 generation!
+
+Adopt LC mut_strategy!
+Illegal LC mutate!
+mut_result:LC Create illegal layer!
+30 generation!
+
+Adopt LC mut_strategy!
+select layer: dropout2 layer_type: <class 'mindspore.nn.layer.basic.Dropout'> in_shape: [1, 1, 100] out_shape: [1, 1, 100]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: Dropout<keep_prob=0.5>
+insert_layer_outshape equal!
+mut_result:True
+31 generation!
+
+Adopt LC mut_strategy!
+Illegal LC mutate!
+mut_result:LC Create illegal layer!
+32 generation!
+
+Adopt LC mut_strategy!
+select layer: dropout2 layer_type: <class 'mindspore.nn.layer.basic.Dropout'> in_shape: [1, 1, 100] out_shape: [1, 1, 100]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: Dropout<keep_prob=0.5>
+insert_layer_outshape equal!
+mut_result:True
+33 generation!
+
+Adopt LC mut_strategy!
+Illegal LC mutate!
+mut_result:LC Create illegal layer!
+34 generation!
+
+Adopt LC mut_strategy!
+select layer: dropout2 layer_type: <class 'mindspore.nn.layer.basic.Dropout'> in_shape: [1, 1, 100] out_shape: [1, 1, 100]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: Dropout<keep_prob=0.5>
+insert_layer_outshape equal!
+mut_result:True
+35 generation!
+
+Adopt LC mut_strategy!
+Illegal LC mutate!
+mut_result:LC Create illegal layer!
+36 generation!
+
+Adopt LC mut_strategy!
+select layer: dropout2 layer_type: <class 'mindspore.nn.layer.basic.Dropout'> in_shape: [1, 1, 100] out_shape: [1, 1, 100]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: Dropout<keep_prob=0.5>
+insert_layer_outshape equal!
+mut_result:True
+37 generation!
+
+Adopt LC mut_strategy!
+Illegal LC mutate!
+mut_result:LC Create illegal layer!
+38 generation!
+
+Adopt CM mut_strategy!
+mut_result:No suitable ops for CM mutation!
+39 generation!
+
+Adopt LA mut_strategy!
+candidate_in_mutlayers_indice:-1
+select layer: dropout1 layer_type: <class 'mindspore.nn.layer.basic.Dropout'> in_shape: [1, 1, 50] out_shape: [1, 1, 50]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: ReLU6<>
+insert_layer_outshape equal!
+mut_result:True
+40 generation!
+
+Adopt LC mut_strategy!
+select layer: dropout2 layer_type: <class 'mindspore.nn.layer.basic.Dropout'> in_shape: [1, 1, 100] out_shape: [1, 1, 100]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: Dropout<keep_prob=0.5>
+insert_layer_outshape equal!
+mut_result:True
+41 generation!
+
+Adopt CM mut_strategy!
+mut_result:No suitable ops for CM mutation!
+42 generation!
+
+Adopt LC mut_strategy!
+select layer: dropout2 layer_type: <class 'mindspore.nn.layer.basic.Dropout'> in_shape: [1, 1, 100] out_shape: [1, 1, 100]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: Dropout<keep_prob=0.5>
+insert_layer_outshape equal!
+mut_result:True
+43 generation!
+
+Adopt SM mut_strategy!
+select layer: dropout2 layer_type: <class 'mindspore.nn.layer.container.SequentialCell'> in_shape: [1, 1, 100] out_shape: [1, 1, 100]
+mut Basic type: True
+candidate_in_mutlayers_indice:0
+mutate state: all
+mutate input_shape: [2, 33, 35, 17, 20]
+mutate output_shape: [2, 3, 3, 50]
+mut_result:True
+44 generation!
+
+Adopt LC mut_strategy!
+Illegal LC mutate!
+mut_result:LC Create illegal layer!
+45 generation!
+
+Adopt LC mut_strategy!
+Illegal LC mutate!
+mut_result:LC Create illegal layer!
+46 generation!
+
+Adopt LD mut_strategy!
+delete layer_name:dense
+mut_result:No suitable ops for LD mutation!
+47 generation!
+
+Adopt LC mut_strategy!
+Illegal LC mutate!
+mut_result:LC Create illegal layer!
+48 generation!
+
+Adopt LC mut_strategy!
+select layer: dropout2 layer_type: <class 'mindspore.nn.layer.basic.Dropout'> in_shape: [1, 1, 100] out_shape: [1, 1, 100]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: Dropout<keep_prob=0.5>
+insert_layer_outshape equal!
+mut_result:True
+49 generation!
+
+Adopt LC mut_strategy!
+Illegal LC mutate!
+mut_result:LC Create illegal layer!
+50 generation!
+
+Adopt LC mut_strategy!
+select layer: dropout2 layer_type: <class 'mindspore.nn.layer.basic.Dropout'> in_shape: [1, 1, 100] out_shape: [1, 1, 100]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: Dropout<keep_prob=0.5>
+insert_layer_outshape equal!
+mut_result:True
+51 generation!
+
+Adopt LC mut_strategy!
+Illegal LC mutate!
+mut_result:LC Create illegal layer!
+52 generation!
+
+Adopt LC mut_strategy!
+select layer: dropout2 layer_type: <class 'mindspore.nn.layer.basic.Dropout'> in_shape: [1, 1, 100] out_shape: [1, 1, 100]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: Dropout<keep_prob=0.5>
+insert_layer_outshape equal!
+mut_result:True
+53 generation!
+
+Adopt LC mut_strategy!
+Illegal LC mutate!
+mut_result:LC Create illegal layer!
+54 generation!
+
+Adopt LC mut_strategy!
+select layer: dropout2 layer_type: <class 'mindspore.nn.layer.basic.Dropout'> in_shape: [1, 1, 100] out_shape: [1, 1, 100]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: Dropout<keep_prob=0.5>
+insert_layer_outshape equal!
+mut_result:True
+55 generation!
+
+Adopt CM mut_strategy!
+candidate_in_mutlayers_indice:0
+select layer: dropout2 layer_type: <class 'mindspore.nn.layer.container.SequentialCell'> in_shape: [1, 1, 100] out_shape: [1, 1, 100]
+mut Basic type: True
+select insert layer: Inception_A<
+  (branch0): BasicConv2d<
+    (relu): ReLU<>
+    >
+  (branch1): SequentialCell<
+    (0): BasicConv2d<
+      (relu): ReLU<>
+      >
+    (1): BasicConv2d<
+      (relu): ReLU<>
+      >
+    >
+  (branch2): SequentialCell<
+    (0): BasicConv2d<
+      (relu): ReLU<>
+      >
+    (1): BasicConv2d<
+      (relu): ReLU<>
+      >
+    (2): BasicConv2d<
+      (relu): ReLU<>
+      >
+    >
+  (branch_pool): SequentialCell<
+    (0): AvgPool2d<kernel_size=3, stride=1, pad_mode=SAME>
+    (1): BasicConv2d<
+      (relu): ReLU<>
+      >
+    >
+  >
+Illegal CM mutate!
+For primitive[Conv2D], the input type must be same.
+name:[w]:Tensor[Float32].
+name:[x]:Tensor[Float16].
+
+----------------------------------------------------
+- C++ Call Stack: (For framework developers)
+----------------------------------------------------
+mindspore/core/utils/check_convert_utils.cc:1028 _CheckTypeSame
+
+mut_result:CM Create illegal layer!
+56 generation!
+
+Adopt LC mut_strategy!
+select layer: dropout2 layer_type: <class 'mindspore.nn.layer.basic.Dropout'> in_shape: [1, 1, 100] out_shape: [1, 1, 100]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: Dropout<keep_prob=0.5>
+insert_layer_outshape equal!
+mut_result:True
+57 generation!
+
+Adopt RA mut_strategy!
+mut_result:No suitable ops for RA mutation!
+58 generation!
+
+Adopt LC mut_strategy!
+select layer: dropout2 layer_type: <class 'mindspore.nn.layer.basic.Dropout'> in_shape: [1, 1, 100] out_shape: [1, 1, 100]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: Dropout<keep_prob=0.5>
+insert_layer_outshape equal!
+mut_result:True
+59 generation!
+
+Adopt LC mut_strategy!
+Illegal LC mutate!
+mut_result:LC Create illegal layer!
+60 generation!
+
+Adopt LC mut_strategy!
+select layer: dropout2 layer_type: <class 'mindspore.nn.layer.basic.Dropout'> in_shape: [1, 1, 100] out_shape: [1, 1, 100]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: Dropout<keep_prob=0.5>
+insert_layer_outshape equal!
+mut_result:True
+61 generation!
+
+Adopt LC mut_strategy!
+Illegal LC mutate!
+mut_result:LC Create illegal layer!
+62 generation!
+
+Adopt LC mut_strategy!
+select layer: dropout2 layer_type: <class 'mindspore.nn.layer.basic.Dropout'> in_shape: [1, 1, 100] out_shape: [1, 1, 100]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: Dropout<keep_prob=0.5>
+insert_layer_outshape equal!
+mut_result:True
+63 generation!
+
+Adopt LC mut_strategy!
+Illegal LC mutate!
+mut_result:LC Create illegal layer!
+64 generation!
+
+Adopt LC mut_strategy!
+select layer: dropout2 layer_type: <class 'mindspore.nn.layer.basic.Dropout'> in_shape: [1, 1, 100] out_shape: [1, 1, 100]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: Dropout<keep_prob=0.5>
+insert_layer_outshape equal!
+mut_result:True
+65 generation!
+
+Adopt LC mut_strategy!
+Illegal LC mutate!
+mut_result:LC Create illegal layer!
+66 generation!
+
+Adopt CM mut_strategy!
+mut_result:No suitable ops for CM mutation!
+67 generation!
+
+Adopt SM mut_strategy!
+select layer: dense layer_type: <class 'mindspore.nn.layer.container.SequentialCell'> in_shape: [2, 100] out_shape: [2, 1]
+mut Basic type: True
+mut_result:No suitable ops for SM mutation!
+68 generation!
+
+Adopt LC mut_strategy!
+Illegal LC mutate!
+mut_result:LC Create illegal layer!
+69 generation!
+
+Adopt RA mut_strategy!
+candidate_in_mutlayers_indice:-1
+select layer: dropout2 layer_type: <class 'mindspore.nn.layer.basic.Dropout'> in_shape: [1, 1, 100] out_shape: [1, 1, 100]
+mut Basic type: True
+add Basic layer : Cascade_op
+select insert layer: SE<
+  (SE_pool): GlobalAvgPooling<>
+  (act): HSigmoid<>
+  (SE_act1): ReLU<>
+  (SE_act2): HSigmoid<>
+  >
+insert_layer_outshape not equal!: [1, 1, 100]
+mut_result:True
+70 generation!
+
+Adopt CM mut_strategy!
+candidate_in_mutlayers_indice:-1
+select layer: dropout1 layer_type: <class 'mindspore.nn.layer.basic.Dropout'> in_shape: [1, 1, 50] out_shape: [1, 1, 50]
+mut Basic type: True
+Illegal CM mutate!
+For primitive[Conv2D], the input type must be same.
+name:[w]:Tensor[Float32].
+name:[x]:Tensor[Float16].
+
+----------------------------------------------------
+- C++ Call Stack: (For framework developers)
+----------------------------------------------------
+mindspore/core/utils/check_convert_utils.cc:1028 _CheckTypeSame
+
+mut_result:CM Create illegal layer!
+71 generation!
+
+Adopt LC mut_strategy!
+select layer: dropout2 layer_type: <class 'mindspore.nn.layer.basic.Dropout'> in_shape: [1, 1, 100] out_shape: [1, 1, 100]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: Dropout<keep_prob=0.5>
+insert_layer_outshape equal!
+mut_result:True
+72 generation!
+
+Adopt LC mut_strategy!
+select layer: dropout1 layer_type: <class 'mindspore.nn.layer.basic.Dropout'> in_shape: [1, 1, 50] out_shape: [1, 1, 50]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: Dropout<keep_prob=0.5>
+insert_layer_outshape equal!
+mut_result:True
+73 generation!
+
+Adopt LC mut_strategy!
+Illegal LC mutate!
+mut_result:LC Create illegal layer!
+74 generation!
+
+Adopt PM mut_strategy!
+The target model do not have the mutator operators in_channels!
+mut_result:Parameter Miss
+75 generation!
+
+Adopt LC mut_strategy!
+select layer: dropout2 layer_type: <class 'mindspore.nn.layer.basic.Dropout'> in_shape: [1, 1, 100] out_shape: [1, 1, 100]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: Dropout<keep_prob=0.5>
+insert_layer_outshape equal!
+mut_result:True
+76 generation!
+
+Adopt LC mut_strategy!
+Illegal LC mutate!
+mut_result:LC Create illegal layer!
+77 generation!
+
+Adopt LC mut_strategy!
+select layer: dropout1 layer_type: <class 'mindspore.nn.layer.basic.Dropout'> in_shape: [1, 1, 50] out_shape: [1, 1, 50]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: Dropout<keep_prob=0.5>
+insert_layer_outshape equal!
+mut_result:True
+78 generation!
+
+Adopt LC mut_strategy!
+Illegal LC mutate!
+mut_result:LC Create illegal layer!
+79 generation!
+
+Adopt LC mut_strategy!
+select layer: dropout1 layer_type: <class 'mindspore.nn.layer.basic.Dropout'> in_shape: [1, 1, 50] out_shape: [1, 1, 50]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: Dropout<keep_prob=0.5>
+insert_layer_outshape equal!
+mut_result:True
+80 generation!
+
+Adopt LC mut_strategy!
+Illegal LC mutate!
+mut_result:LC Create illegal layer!
+81 generation!
+
+Adopt CM mut_strategy!
+candidate_in_mutlayers_indice:2
+select layer: dense layer_type: <class 'mindspore.nn.layer.container.SequentialCell'> in_shape: [2, 100] out_shape: [2, 1]
+mut Basic type: True
+select insert layer: SE<
+  (SE_pool): GlobalAvgPooling<>
+  (act): HSigmoid<>
+  (SE_act1): ReLU<>
+  (SE_act2): HSigmoid<>
+  >
+mut_result:True
+82 generation!
+
+Adopt PM mut_strategy!
+candidate_in_mutlayers_indice:-1
+select op: dropout1 layer_type: Dropout selected param:keep_prob input_shape:[1, 1, 50] output_shape:[1, 1, 50]
+Edit value: 0.84375 new_inshape: (1, 1, 50) new_outshape: (1, 1, 50)
+Dropout<keep_prob=0.84375>
+mut_result:True
+83 generation!
+
+Adopt LC mut_strategy!
+select layer: dropout1 layer_type: <class 'mindspore.nn.layer.basic.Dropout'> in_shape: [1, 1, 50] out_shape: [1, 1, 50]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: Dropout<keep_prob=0.84375>
+insert_layer_outshape equal!
+mut_result:True
+84 generation!
+
+Adopt LD mut_strategy!
+delete layer_name:dropout2
+candidate_in_mutlayers_indice:0
+mut_result:True
+85 generation!
+
+Adopt LC mut_strategy!
+Illegal LC mutate!
+mut_result:LC Create illegal layer!
+86 generation!
+
+Adopt LC mut_strategy!
+select layer: dropout1 layer_type: <class 'mindspore.nn.layer.basic.Dropout'> in_shape: [1, 1, 50] out_shape: [1, 1, 50]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: Dropout<keep_prob=0.5>
+insert_layer_outshape equal!
+mut_result:True
+87 generation!
+
+Adopt LC mut_strategy!
+Illegal LC mutate!
+mut_result:LC Create illegal layer!
+88 generation!
+
+Adopt LC mut_strategy!
+select layer: dropout1 layer_type: <class 'mindspore.nn.layer.basic.Dropout'> in_shape: [1, 1, 50] out_shape: [1, 1, 50]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: Dropout<keep_prob=0.5>
+insert_layer_outshape equal!
+mut_result:True
+89 generation!
+
+Adopt LC mut_strategy!
+Illegal LC mutate!
+mut_result:LC Create illegal layer!
+90 generation!
+
+Adopt LC mut_strategy!
+select layer: dropout1 layer_type: <class 'mindspore.nn.layer.basic.Dropout'> in_shape: [1, 1, 50] out_shape: [1, 1, 50]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: Dropout<keep_prob=0.5>
+insert_layer_outshape equal!
+mut_result:True
+91 generation!
+
+Adopt CM mut_strategy!
+candidate_in_mutlayers_indice:1
+select layer: dropout2 layer_type: <class 'mindspore.nn.layer.container.SequentialCell'> in_shape: [1, 1, 100] out_shape: [1, 1, 100]
+mut Basic type: True
+select insert layer: LeakyReLU<>
+mut_result:True
+92 generation!
+
+Adopt LC mut_strategy!
+Illegal LC mutate!
+mut_result:LC Create illegal layer!
+93 generation!
+
+Adopt LC mut_strategy!
+Illegal LC mutate!
+mut_result:LC Create illegal layer!
+94 generation!
+
+Adopt LD mut_strategy!
+delete layer_name:dropout2
+candidate_in_mutlayers_indice:-1
+adopt DeleteCell EmptyCell
+mut_result:True
+95 generation!
+
+Adopt LD mut_strategy!
+delete layer_name:dropout1
+candidate_in_mutlayers_indice:-1
+adopt DeleteCell EmptyCell
+mut_result:True
+96 generation!
+
+Adopt LC mut_strategy!
+Illegal LC mutate!
+mut_result:LC Create illegal layer!
+97 generation!
+
+Adopt LD mut_strategy!
+delete layer_name:dense
+candidate_in_mutlayers_indice:1
+adopt DeleteCell Replace_msmut_result:True
+98 generation!
+
+Adopt LC mut_strategy!
+select layer: dropout1 layer_type: <class 'mindspore.nn.layer.basic.Dropout'> in_shape: [1, 1, 50] out_shape: [1, 1, 50]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: Dropout<keep_prob=0.5>
+insert_layer_outshape equal!
+mut_result:True
+99 generation!
+
+Adopt LC mut_strategy!
+select layer: dropout2 layer_type: <class 'mindspore.nn.layer.basic.Dropout'> in_shape: [1, 1, 100] out_shape: [1, 1, 100]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: Dropout<keep_prob=0.5>
+insert_layer_outshape equal!
+mut_result:True
+100 generation!
+
+mutation trace: {'1': [1], '2': [1, 2], '3': [3], '4': [4], '5': [4, 5], '6': [4, 5, 6], '7': [4, 5, 6, 7], '8': [8], '9': [9], '10': [4, 5, 10], '11': [4, 5, 10, 11], '12': [4, 5, 10, 11, 12], '13': [4, 5, 13], '14': [4, 5, 13, 14], '15': [4, 5, 13, 14, 15], '16': [4, 5, 16], '17': [4, 5, 16, 17], '18': [4, 5, 16, 17, 18], '19': [4, 5, 19], '20': [4, 5, 19, 20], '21': [4, 5, 19, 20, 21], '22': [4, 5, 19, 20, 21, 22], '23': [4, 5, 23], '24': [4, 5, 23, 24], '25': [4, 5, 25], '26': [4, 5, 25, 26], '27': [4, 5, 25, 26, 27], '28': [4, 5, 28], '29': [4, 5, 29], '30': [4, 5, 29, 30], '31': [4, 5, 16, 31], '32': [4, 5, 16, 31, 32], '33': [4, 5, 16, 33], '34': [4, 5, 16, 33, 34], '35': [4, 5, 16, 35], '36': [4, 5, 16, 35, 36], '37': [4, 5, 16, 37], '38': [4, 5, 16, 37, 38], '39': [4, 5, 16, 39], '40': [4, 5, 40], '41': [4, 5, 40, 41], '42': [4, 5, 40, 41, 42], '43': [4, 5, 43], '44': [4, 5, 43, 44], '45': [4, 5, 43, 44, 45], '46': [4, 5, 10, 46], '47': [4, 5, 40, 47], '48': [4, 5, 16, 48], '49': [4, 5, 25, 49], '50': [4, 5, 25, 49, 50], '51': [4, 5, 25, 51], '52': [4, 5, 25, 51, 52], '53': [4, 5, 25, 53], '54': [4, 5, 25, 53, 54], '55': [4, 5, 25, 55], '56': [4, 5, 25, 55, 56], '57': [4, 5, 25, 57], '58': [4, 5, 25, 57, 58], '59': [4, 5, 25, 59], '60': [4, 5, 25, 59, 60], '61': [4, 5, 25, 61], '62': [4, 5, 25, 61, 62], '63': [4, 5, 25, 63], '64': [4, 5, 25, 63, 64], '65': [4, 5, 25, 65], '66': [4, 5, 25, 65, 66], '67': [4, 5, 25, 67], '68': [4, 5, 68], '69': [4, 5, 25, 69], '70': [4, 70], '71': [4, 70, 71], '72': [4, 72], '73': [4, 72, 73], '74': [4, 72, 73, 74], '75': [4, 75], '76': [4, 5, 25, 76], '77': [4, 5, 25, 76, 77], '78': [4, 72, 78], '79': [4, 72, 78, 79], '80': [4, 72, 80], '81': [4, 72, 80, 81], '82': [4, 72, 82], '83': [4, 72, 82, 83], '84': [4, 72, 82, 83, 84], '85': [4, 72, 82, 83, 84, 85], '86': [4, 72, 82, 83, 84, 85, 86], '87': [4, 72, 87], '88': [4, 72, 87, 88], '89': [4, 72, 89], '90': [4, 72, 89, 90], '91': [4, 72, 91], '92': [4, 72, 91, 92], '93': [4, 72, 91, 92, 93], '94': [4, 72, 94], '95': [4, 95], '96': [4, 95, 96], '97': [4, 95, 96, 97], '98': [4, 98], '99': [4, 98, 99], '100': [4, 98, 99, 100]}

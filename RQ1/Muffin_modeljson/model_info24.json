@@ -1,0 +1,203 @@
+{
+    "edges": [
+        [
+            "reshape",
+            "zero_padding2D"
+        ],
+        [
+            "zero_padding2D",
+            "zero_padding2D"
+        ],
+        [
+            "zero_padding2D",
+            "dense"
+        ],
+        [
+            "dense",
+            "flatten"
+        ],
+        [
+            "flatten",
+            "dense"
+        ],
+        [
+            "dense",
+            "reshape"
+        ]
+    ],
+    "layer_config": {
+        "reshape": [
+            {
+                "target_shape": [
+                    32,
+                    3,
+                    32
+                ]
+            },
+            {
+                "target_shape": [
+                    10
+                ]
+            }
+        ],
+        "zero_padding2D": [
+            {
+                "padding": 2,
+                "data_format": "channels_first"
+            },
+            {
+                "padding": [
+                    2,
+                    2
+                ],
+                "data_format": "channels_last"
+            }
+        ],
+        "dense": [
+            {
+                "activation": "linear",
+                "use_bias": false,
+                "kernel_initializer": "random_uniform",
+                "bias_initializer": "random_uniform",
+                "kernel_regularizer": null,
+                "bias_regularizer": null,
+                "activity_regularizer": null,
+                "kernel_constraint": null,
+                "bias_constraint": null
+            }
+        ],
+        "flatten": [
+            {
+                "data_format": null
+            }
+        ]
+    },
+    "layer_input_info": {
+        "reshape": {
+            "input_dims": [
+                4,
+                2
+            ],
+            "dtype": [
+                "float32"
+            ],
+            "shape": [
+                [
+                    null,
+                    32,
+                    32,
+                    3
+                ],
+                [
+                    null,
+                    10
+                ]
+            ]
+        },
+        "zero_padding2D": {
+            "input_dims": [
+                4
+            ],
+            "dtype": [
+                "float32"
+            ],
+            "shape": [
+                [
+                    null,
+                    32,
+                    3,
+                    32
+                ],
+                [
+                    null,
+                    32,
+                    7,
+                    36
+                ]
+            ]
+        },
+        "dense": {
+            "input_dims": [
+                4,
+                2
+            ],
+            "dtype": [
+                "float32"
+            ],
+            "shape": [
+                [
+                    null,
+                    36,
+                    11,
+                    36
+                ],
+                [
+                    null,
+                    1980
+                ]
+            ]
+        },
+        "flatten": {
+            "input_dims": [
+                4
+            ],
+            "dtype": [
+                "float32"
+            ],
+            "shape": [
+                [
+                    null,
+                    36,
+                    11,
+                    5
+                ]
+            ]
+        }
+    },
+    "layer_num": 8,
+    "layer_type": [
+        "reshape",
+        "zero_padding2D",
+        "dense",
+        "flatten"
+    ],
+    "cur_edge_num": 7,
+    "layer_dims": {
+        "reshape": {
+            "input_dims": [
+                4,
+                2
+            ],
+            "output_dims": [
+                4,
+                2
+            ]
+        },
+        "zero_padding2D": {
+            "input_dims": [
+                4
+            ],
+            "output_dims": [
+                4
+            ]
+        },
+        "dense": {
+            "input_dims": [
+                4,
+                2
+            ],
+            "output_dims": [
+                4,
+                2
+            ]
+        },
+        "flatten": {
+            "input_dims": [
+                4
+            ],
+            "output_dims": [
+                2
+            ]
+        }
+    }
+}

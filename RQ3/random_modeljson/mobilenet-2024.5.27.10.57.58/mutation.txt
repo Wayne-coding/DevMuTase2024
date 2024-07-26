@@ -1,0 +1,1157 @@
+Adopt SM mut_strategy!
+select layer: fc layer_type: <class 'mindspore.nn.layer.basic.Dense'> in_shape: [1, 1024] out_shape: [1, 1000]
+mut Basic type: True
+candidate_in_mutlayers_indice:-1
+mutate state: after
+mutate output_shape: [1, 27, 12, 39]
+mut_result:False
+1 generation!
+
+Adopt LA mut_strategy!
+candidate_in_mutlayers_indice:-1
+select layer: conv_dw6.relu layer_type: <class 'mindspore.nn.layer.activation.ReLU'> in_shape: [1, 512, 14, 14] out_shape: [1, 512, 14, 14]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: ReLU6<>
+insert_layer_outshape equal!
+mut_result:False
+2 generation!
+
+Adopt SM mut_strategy!
+select layer: conv_dw1.depthwise layer_type: <class 'mindspore.nn.layer.conv.Conv2d'> in_shape: [1, 32, 112, 112] out_shape: [1, 32, 112, 112]
+mut Basic type: True
+candidate_in_mutlayers_indice:-1
+mutate state: before
+mutate input_shape: [1, 37, 2, 20]
+mut_result:True
+3 generation!
+
+Adopt PM mut_strategy!
+candidate_in_mutlayers_indice:-1
+select op: conv_dw5.depthwise layer_type: Conv2d selected param:in_channels input_shape:[1, 256, 28, 28] output_shape:[1, 256, 28, 28]
+Edit value: 512 new_inshape: (1, 512, 28, 28) new_outshape: (1, 256, 28, 28)
+mutate op infor:
+SequentialCell<
+  (0): Replace_ms<>
+  (1): Conv2d<input_channels=512, output_channels=256, kernel_size=(3, 3), stride=(1, 1), pad_mode=same, padding=0, dilation=(1, 1), group=256, has_bias=False, weight_init=<mindspore.common.initializer.HeUniform object at 0x7fb4a7df6850>, bias_init=None, format=NCHW>
+  >
+mut_result:True
+4 generation!
+
+Adopt LC mut_strategy!
+select layer: conv_dw6.depthwise layer_type: <class 'mindspore.nn.layer.conv.Conv2d'> in_shape: [1, 256, 28, 28] out_shape: [1, 256, 14, 14]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: Conv2d<input_channels=256, output_channels=256, kernel_size=(3, 3), stride=(2, 2), pad_mode=same, padding=0, dilation=(1, 1), group=256, has_bias=False, weight_init=<mindspore.common.initializer.HeUniform object at 0x7fb4a7921ed0>, bias_init=None, format=NCHW>
+insert_layer_outshape not equal!: [1, 256, 14, 14]
+mut_result:True
+5 generation!
+
+Adopt LA mut_strategy!
+candidate_in_mutlayers_indice:-1
+select layer: conv_dw_repeated.0.relu layer_type: <class 'mindspore.nn.layer.activation.ReLU'> in_shape: [1, 512, 14, 14] out_shape: [1, 512, 14, 14]
+mut Basic type: True
+add Basic layer : Cascade_op
+select insert layer: dwpw_group<
+  (depthwise): dwpw_basic<
+    (dwpw_conv): Conv2d<input_channels=512, output_channels=512, kernel_size=(1, 1), stride=(1, 1), pad_mode=same, padding=0, dilation=(1, 1), group=512, has_bias=False, weight_init=<mindspore.common.initializer.HeUniform object at 0x7fb4a7c9fa10>, bias_init=None, format=NCHW>
+    (dwpw_bn): BatchNorm2d<num_features=512, eps=1e-05, momentum=0.9, gamma=Parameter (name=depthwise.dwpw_bn.gamma, shape=(512,), dtype=Float32, requires_grad=True), beta=Parameter (name=depthwise.dwpw_bn.beta, shape=(512,), dtype=Float32, requires_grad=True), moving_mean=Parameter (name=depthwise.dwpw_bn.moving_mean, shape=(512,), dtype=Float32, requires_grad=False), moving_variance=Parameter (name=depthwise.dwpw_bn.moving_variance, shape=(512,), dtype=Float32, requires_grad=False)>
+    (dwpw_activation): ReLU6<>
+    >
+  (pointwise): dwpw_basic<
+    (dwpw_conv): Conv2d<input_channels=512, output_channels=512, kernel_size=(1, 1), stride=(1, 1), pad_mode=same, padding=0, dilation=(1, 1), group=1, has_bias=False, weight_init=<mindspore.common.initializer.HeUniform object at 0x7fb48747ed90>, bias_init=None, format=NCHW>
+    (dwpw_bn): BatchNorm2d<num_features=512, eps=1e-05, momentum=0.9, gamma=Parameter (name=pointwise.dwpw_bn.gamma, shape=(512,), dtype=Float32, requires_grad=True), beta=Parameter (name=pointwise.dwpw_bn.beta, shape=(512,), dtype=Float32, requires_grad=True), moving_mean=Parameter (name=pointwise.dwpw_bn.moving_mean, shape=(512,), dtype=Float32, requires_grad=False), moving_variance=Parameter (name=pointwise.dwpw_bn.moving_variance, shape=(512,), dtype=Float32, requires_grad=False)>
+    (dwpw_activation): ReLU6<>
+    >
+  >
+insert_layer_outshape equal!
+add Cascade_op after basicop!
+mut_result:True
+6 generation!
+
+Adopt LC mut_strategy!
+select layer: conv_dw4.bn layer_type: <class 'mindspore.nn.layer.normalization.BatchNorm2d'> in_shape: [1, 256, 28, 28] out_shape: [1, 256, 28, 28]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: BatchNorm2d<num_features=256, eps=1e-05, momentum=0.09999999999999998, gamma=Parameter (name=gamma, shape=(256,), dtype=Float32, requires_grad=True), beta=Parameter (name=beta, shape=(256,), dtype=Float32, requires_grad=True), moving_mean=Parameter (name=mean, shape=(256,), dtype=Float32, requires_grad=False), moving_variance=Parameter (name=variance, shape=(256,), dtype=Float32, requires_grad=False)>
+insert_layer_outshape equal!
+mut_result:True
+7 generation!
+
+Adopt LD mut_strategy!
+delete layer_name:conv_dw_repeated.0.depthwise
+candidate_in_mutlayers_indice:-1
+adopt DeleteCell EmptyCell
+mut_result:True
+8 generation!
+
+Adopt LD mut_strategy!
+delete layer_name:avg_pool
+candidate_in_mutlayers_indice:-1
+adopt DeleteCell Replace_ms
+mut_result:True
+9 generation!
+
+Adopt SM mut_strategy!
+select layer: conv_dw4.relu layer_type: <class 'mindspore.nn.layer.activation.ReLU'> in_shape: [1, 256, 28, 28] out_shape: [1, 256, 28, 28]
+mut Basic type: True
+candidate_in_mutlayers_indice:-1
+mutate state: all
+mutate input_shape: [1, 47, 20]
+mutate output_shape: [1, 35, 33, 46, 28]
+mut_result:True
+10 generation!
+
+Adopt CM mut_strategy!
+candidate_in_mutlayers_indice:-1
+select layer: conv_dw6.relu layer_type: <class 'mindspore.nn.layer.activation.ReLU'> in_shape: [1, 512, 14, 14] out_shape: [1, 512, 14, 14]
+mut Basic type: True
+select insert layer: ResidualBlock<
+  (residual_conv1): Conv2d<input_channels=512, output_channels=128, kernel_size=(1, 1), stride=(1, 1), pad_mode=same, padding=0, dilation=(1, 1), group=1, has_bias=False, weight_init=<mindspore.common.initializer.HeUniform object at 0x7fb4a7586450>, bias_init=None, format=NCHW>
+  (residual_bn1): BatchNorm2d<num_features=128, eps=0.0001, momentum=0.9, gamma=Parameter (name=1.residual_bn1.gamma, shape=(128,), dtype=Float32, requires_grad=True), beta=Parameter (name=1.residual_bn1.beta, shape=(128,), dtype=Float32, requires_grad=True), moving_mean=Parameter (name=1.residual_bn1.moving_mean, shape=(128,), dtype=Float32, requires_grad=False), moving_variance=Parameter (name=1.residual_bn1.moving_variance, shape=(128,), dtype=Float32, requires_grad=False)>
+  (residual_conv2): Conv2d<input_channels=128, output_channels=128, kernel_size=(3, 3), stride=(1, 1), pad_mode=same, padding=0, dilation=(1, 1), group=1, has_bias=False, weight_init=<mindspore.common.initializer.HeUniform object at 0x7fb484217510>, bias_init=None, format=NCHW>
+  (residual_bn2): BatchNorm2d<num_features=128, eps=0.0001, momentum=0.9, gamma=Parameter (name=1.residual_bn2.gamma, shape=(128,), dtype=Float32, requires_grad=True), beta=Parameter (name=1.residual_bn2.beta, shape=(128,), dtype=Float32, requires_grad=True), moving_mean=Parameter (name=1.residual_bn2.moving_mean, shape=(128,), dtype=Float32, requires_grad=False), moving_variance=Parameter (name=1.residual_bn2.moving_variance, shape=(128,), dtype=Float32, requires_grad=False)>
+  (residual_conv3): Conv2d<input_channels=128, output_channels=512, kernel_size=(1, 1), stride=(1, 1), pad_mode=same, padding=0, dilation=(1, 1), group=1, has_bias=False, weight_init=<mindspore.common.initializer.HeUniform object at 0x7fb4a7d87650>, bias_init=None, format=NCHW>
+  (residual_bn3): BatchNorm2d<num_features=512, eps=0.0001, momentum=0.9, gamma=Parameter (name=1.residual_bn3.gamma, shape=(512,), dtype=Float32, requires_grad=True), beta=Parameter (name=1.residual_bn3.beta, shape=(512,), dtype=Float32, requires_grad=True), moving_mean=Parameter (name=1.residual_bn3.moving_mean, shape=(512,), dtype=Float32, requires_grad=False), moving_variance=Parameter (name=1.residual_bn3.moving_variance, shape=(512,), dtype=Float32, requires_grad=False)>
+  (residual_relu1): ReLU<>
+  (residual_relu2): ReLU<>
+  (residual_relu3): ReLU<>
+  (residual_down_sample_layer): SequentialCell<
+    (0): Conv2d<input_channels=512, output_channels=512, kernel_size=(1, 1), stride=(1, 1), pad_mode=same, padding=0, dilation=(1, 1), group=1, has_bias=False, weight_init=<mindspore.common.initializer.HeUniform object at 0x7fb4a74940d0>, bias_init=None, format=NCHW>
+    (1): BatchNorm2d<num_features=512, eps=0.0001, momentum=0.9, gamma=Parameter (name=1.residual_down_sample_layer.1.gamma, shape=(512,), dtype=Float32, requires_grad=True), beta=Parameter (name=1.residual_down_sample_layer.1.beta, shape=(512,), dtype=Float32, requires_grad=True), moving_mean=Parameter (name=1.residual_down_sample_layer.1.moving_mean, shape=(512,), dtype=Float32, requires_grad=False), moving_variance=Parameter (name=1.residual_down_sample_layer.1.moving_variance, shape=(512,), dtype=Float32, requires_grad=False)>
+    >
+  >
+replace Basic with CM op!
+mut_result:True
+11 generation!
+
+Adopt RA mut_strategy!
+candidate_in_mutlayers_indice:-1
+select layer: conv_dw6.relu layer_type: <class 'common.mutation_ms.Layer_utils.CM_branchCell'> in_shape: [1, 512, 14, 14] out_shape: [1, 512, 14, 14]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: Conv2dTranspose<input_channels=512, output_channels=512, kernel_size=(1, 1), stride=(1, 1), pad_mode=same, padding=0, dilation=(1, 1), group=1, has_bias=False, weight_init=<mindspore.common.initializer.HeUniform object at 0x7fb4a7859ad0>, bias_init=None, format=NCHW>
+insert_layer_outshape equal!
+mut_result:True
+12 generation!
+
+Adopt SM mut_strategy!
+select layer: conv_dw4.bn layer_type: <class 'mindspore.nn.layer.container.SequentialCell'> in_shape: [1, 256, 28, 28] out_shape: [1, 256, 28, 28]
+mut Basic type: True
+candidate_in_mutlayers_indice:0
+mutate state: after
+mutate output_shape: [1, 30, 11, 42]
+mut_result:True
+13 generation!
+
+Adopt LA mut_strategy!
+candidate_in_mutlayers_indice:-1
+select layer: conv_dw4.pointwise layer_type: <class 'mindspore.nn.layer.conv.Conv2d'> in_shape: [1, 128, 28, 28] out_shape: [1, 256, 28, 28]
+mut Basic type: True
+add Basic layer : Cascade_op
+select insert layer: ResidualBlock<
+  (residual_conv1): Conv2d<input_channels=256, output_channels=64, kernel_size=(1, 1), stride=(1, 1), pad_mode=same, padding=0, dilation=(1, 1), group=1, has_bias=False, weight_init=<mindspore.common.initializer.HeUniform object at 0x7fb4a74a5ad0>, bias_init=None, format=NCHW>
+  (residual_bn1): BatchNorm2d<num_features=64, eps=0.0001, momentum=0.9, gamma=Parameter (name=residual_bn1.gamma, shape=(64,), dtype=Float32, requires_grad=True), beta=Parameter (name=residual_bn1.beta, shape=(64,), dtype=Float32, requires_grad=True), moving_mean=Parameter (name=residual_bn1.moving_mean, shape=(64,), dtype=Float32, requires_grad=False), moving_variance=Parameter (name=residual_bn1.moving_variance, shape=(64,), dtype=Float32, requires_grad=False)>
+  (residual_conv2): Conv2d<input_channels=64, output_channels=64, kernel_size=(3, 3), stride=(1, 1), pad_mode=same, padding=0, dilation=(1, 1), group=1, has_bias=False, weight_init=<mindspore.common.initializer.HeUniform object at 0x7fb484184d10>, bias_init=None, format=NCHW>
+  (residual_bn2): BatchNorm2d<num_features=64, eps=0.0001, momentum=0.9, gamma=Parameter (name=residual_bn2.gamma, shape=(64,), dtype=Float32, requires_grad=True), beta=Parameter (name=residual_bn2.beta, shape=(64,), dtype=Float32, requires_grad=True), moving_mean=Parameter (name=residual_bn2.moving_mean, shape=(64,), dtype=Float32, requires_grad=False), moving_variance=Parameter (name=residual_bn2.moving_variance, shape=(64,), dtype=Float32, requires_grad=False)>
+  (residual_conv3): Conv2d<input_channels=64, output_channels=256, kernel_size=(1, 1), stride=(1, 1), pad_mode=same, padding=0, dilation=(1, 1), group=1, has_bias=False, weight_init=<mindspore.common.initializer.HeUniform object at 0x7fb4a7dcc7d0>, bias_init=None, format=NCHW>
+  (residual_bn3): BatchNorm2d<num_features=256, eps=0.0001, momentum=0.9, gamma=Parameter (name=residual_bn3.gamma, shape=(256,), dtype=Float32, requires_grad=True), beta=Parameter (name=residual_bn3.beta, shape=(256,), dtype=Float32, requires_grad=True), moving_mean=Parameter (name=residual_bn3.moving_mean, shape=(256,), dtype=Float32, requires_grad=False), moving_variance=Parameter (name=residual_bn3.moving_variance, shape=(256,), dtype=Float32, requires_grad=False)>
+  (residual_relu1): ReLU<>
+  (residual_relu2): ReLU<>
+  (residual_relu3): ReLU<>
+  (residual_down_sample_layer): SequentialCell<
+    (0): Conv2d<input_channels=256, output_channels=256, kernel_size=(1, 1), stride=(1, 1), pad_mode=same, padding=0, dilation=(1, 1), group=1, has_bias=False, weight_init=<mindspore.common.initializer.HeUniform object at 0x7fb4a7494b10>, bias_init=None, format=NCHW>
+    (1): BatchNorm2d<num_features=256, eps=0.0001, momentum=0.9, gamma=Parameter (name=residual_down_sample_layer.1.gamma, shape=(256,), dtype=Float32, requires_grad=True), beta=Parameter (name=residual_down_sample_layer.1.beta, shape=(256,), dtype=Float32, requires_grad=True), moving_mean=Parameter (name=residual_down_sample_layer.1.moving_mean, shape=(256,), dtype=Float32, requires_grad=False), moving_variance=Parameter (name=residual_down_sample_layer.1.moving_variance, shape=(256,), dtype=Float32, requires_grad=False)>
+    >
+  >
+insert_layer_outshape equal!
+add Cascade_op after basicop!
+mut_result:True
+14 generation!
+
+Adopt LA mut_strategy!
+candidate_in_mutlayers_indice:-1
+select layer: conv_dw5.pointwise layer_type: <class 'mindspore.nn.layer.conv.Conv2d'> in_shape: [1, 256, 28, 28] out_shape: [1, 256, 28, 28]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: Tanh<>
+insert_layer_outshape equal!
+mut_result:True
+15 generation!
+
+Adopt SM mut_strategy!
+select layer: conv_dw1.bn layer_type: <class 'mindspore.nn.layer.normalization.BatchNorm2d'> in_shape: [1, 64, 112, 112] out_shape: [1, 64, 112, 112]
+mut Basic type: True
+candidate_in_mutlayers_indice:-1
+mutate state: all
+mutate input_shape: [1, 9, 41, 39, 1]
+mutate output_shape: [1, 39, 31]
+mut_result:True
+16 generation!
+
+Adopt SM mut_strategy!
+select layer: flatten layer_type: <class 'mindspore.nn.layer.basic.Flatten'> in_shape: [1, 1024, 1, 1] out_shape: [1, 1024]
+mut Basic type: True
+candidate_in_mutlayers_indice:-1
+mutate state: after
+mutate output_shape: [1, 15, 23]
+mut_result:True
+17 generation!
+
+Adopt LA mut_strategy!
+candidate_in_mutlayers_indice:-1
+select layer: conv_dw1.pointwise layer_type: <class 'mindspore.nn.layer.conv.Conv2d'> in_shape: [1, 32, 112, 112] out_shape: [1, 64, 112, 112]
+mut Basic type: True
+add Basic layer : Cascade_op
+select insert layer: SE<
+  (SE_pool): GlobalAvgPooling<>
+  (act): HSigmoid<>
+  (SE_act1): ReLU<>
+  (SE_act2): HSigmoid<>
+  >
+insert_layer_outshape equal!
+add Cascade_op after basicop!
+mut_result:True
+18 generation!
+
+Adopt CM mut_strategy!
+candidate_in_mutlayers_indice:-1
+select layer: fc layer_type: <class 'mindspore.nn.layer.basic.Dense'> in_shape: [1, 1024] out_shape: [1, 1000]
+mut Basic type: True
+select insert layer: Softmax<>
+replace Basic with CM op!
+mut_result:True
+19 generation!
+
+Adopt LA mut_strategy!
+candidate_in_mutlayers_indice:0
+select layer: conv_dw5.depthwise layer_type: <class 'mindspore.nn.layer.container.SequentialCell'> in_shape: [1, 256, 28, 28] out_shape: [1, 256, 28, 28]
+mut Basic type: True
+add Basic layer : Cascade_op
+select insert layer: Inception_A<
+  (branch0): BasicConv2d<
+    (relu): ReLU<>
+    >
+  (branch1): SequentialCell<
+    (0): BasicConv2d<
+      (relu): ReLU<>
+      >
+    (1): BasicConv2d<
+      (relu): ReLU<>
+      >
+    >
+  (branch2): SequentialCell<
+    (0): BasicConv2d<
+      (relu): ReLU<>
+      >
+    (1): BasicConv2d<
+      (relu): ReLU<>
+      >
+    (2): BasicConv2d<
+      (relu): ReLU<>
+      >
+    >
+  (branch_pool): SequentialCell<
+    (0): AvgPool2d<kernel_size=3, stride=1, pad_mode=SAME>
+    (1): BasicConv2d<
+      (relu): ReLU<>
+      >
+    >
+  >
+insert_layer_outshape equal!
+mut_result:False
+20 generation!
+
+Adopt CM mut_strategy!
+candidate_in_mutlayers_indice:-1
+select layer: bn1 layer_type: <class 'mindspore.nn.layer.normalization.BatchNorm2d'> in_shape: [1, 32, 112, 112] out_shape: [1, 32, 112, 112]
+mut Basic type: True
+select insert layer: Sigmoid<>
+replace Basic with CM op!
+mut_result:True
+21 generation!
+
+Adopt PM mut_strategy!
+candidate_in_mutlayers_indice:-1
+select op: conv_dw_repeated.1.depthwise layer_type: Conv2d selected param:kernel_size input_shape:[1, 512, 14, 14] output_shape:[1, 512, 14, 14]
+Edit value: (2, 2) new_inshape: (1, 512, 14, 14) new_outshape: (1, 512, 14, 14)
+Conv2d<input_channels=512, output_channels=512, kernel_size=(2, 2), stride=(1, 1), pad_mode=same, padding=0, dilation=(1, 1), group=512, has_bias=False, weight_init=<mindspore.common.initializer.HeUniform object at 0x7fb4a7859790>, bias_init=None, format=NCHW>
+mut_result:True
+22 generation!
+
+Adopt RA mut_strategy!
+candidate_in_mutlayers_indice:-1
+select layer: conv_dw_repeated.3.depthwise layer_type: <class 'mindspore.nn.layer.conv.Conv2d'> in_shape: [1, 512, 14, 14] out_shape: [1, 512, 14, 14]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: ELU<>
+insert_layer_outshape equal!
+mut_result:True
+23 generation!
+
+Adopt LC mut_strategy!
+select layer: conv_dw2.pointwise layer_type: <class 'mindspore.nn.layer.conv.Conv2d'> in_shape: [1, 64, 56, 56] out_shape: [1, 128, 56, 56]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: Conv2d<input_channels=128, output_channels=128, kernel_size=(1, 1), stride=(1, 1), pad_mode=same, padding=0, dilation=(1, 1), group=1, has_bias=False, weight_init=<mindspore.common.initializer.HeUniform object at 0x7fb4840f6b50>, bias_init=None, format=NCHW>
+insert_layer_outshape equal!
+mut_result:True
+24 generation!
+
+Adopt LC mut_strategy!
+select layer: conv_dw_repeated.0.bn layer_type: <class 'mindspore.nn.layer.normalization.BatchNorm2d'> in_shape: [1, 512, 14, 14] out_shape: [1, 512, 14, 14]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: BatchNorm2d<num_features=512, eps=1e-05, momentum=0.09999999999999998, gamma=Parameter (name=gamma, shape=(512,), dtype=Float32, requires_grad=True), beta=Parameter (name=beta, shape=(512,), dtype=Float32, requires_grad=True), moving_mean=Parameter (name=mean, shape=(512,), dtype=Float32, requires_grad=False), moving_variance=Parameter (name=variance, shape=(512,), dtype=Float32, requires_grad=False)>
+insert_layer_outshape equal!
+mut_result:True
+25 generation!
+
+Adopt PM mut_strategy!
+candidate_in_mutlayers_indice:-1
+select op: conv_dw2.bn layer_type: BatchNorm2d selected param:momentum input_shape:[1, 128, 56, 56] output_shape:[1, 128, 56, 56]
+Edit value: 0.04999999999999999 new_inshape: (1, 128, 56, 56) new_outshape: (1, 128, 56, 56)
+BatchNorm2d<num_features=128, eps=1e-05, momentum=0.050000000000000044, gamma=Parameter (name=bn.gamma, shape=(128,), dtype=Float32, requires_grad=True), beta=Parameter (name=bn.beta, shape=(128,), dtype=Float32, requires_grad=True), moving_mean=Parameter (name=bn.moving_mean, shape=(128,), dtype=Float32, requires_grad=False), moving_variance=Parameter (name=bn.moving_variance, shape=(128,), dtype=Float32, requires_grad=False)>
+mut_result:True
+26 generation!
+
+Adopt LD mut_strategy!
+delete layer_name:conv_dw5.depthwise
+candidate_in_mutlayers_indice:1
+mut_result:True
+27 generation!
+
+Adopt SM mut_strategy!
+select layer: fc layer_type: <class 'common.mutation_ms.Layer_utils.CM_branchCell'> in_shape: [1, 1024] out_shape: [1, 1000]
+mut Basic type: True
+candidate_in_mutlayers_indice:-1
+mutate state: all
+mutate input_shape: [1, 43]
+mutate output_shape: [1, 28, 27]
+mut_result:True
+28 generation!
+
+Adopt PM mut_strategy!
+candidate_in_mutlayers_indice:0
+select op: conv_dw1.pointwise layer_type: Conv2d selected param:out_channels input_shape:[1, 32, 112, 112] output_shape:[1, 64, 112, 112]
+Edit value: 256 new_inshape: (1, 32, 112, 112) new_outshape: (1, 256, 112, 112)
+mutate op infor:
+SequentialCell<
+  (0): Conv2d<input_channels=32, output_channels=256, kernel_size=(1, 1), stride=(1, 1), pad_mode=same, padding=0, dilation=(1, 1), group=1, has_bias=False, weight_init=<mindspore.common.initializer.HeUniform object at 0x7fb48408b750>, bias_init=None, format=NCHW>
+  (1): Replace_ms<>
+  >
+mut_result:True
+29 generation!
+
+Adopt PM mut_strategy!
+The target model do not have the mutator operators keep_prob!
+mut_result:Parameter Miss
+30 generation!
+
+Adopt LA mut_strategy!
+candidate_in_mutlayers_indice:-1
+select layer: conv_dw_repeated.2.depthwise layer_type: <class 'mindspore.nn.layer.conv.Conv2d'> in_shape: [1, 512, 14, 14] out_shape: [1, 512, 14, 14]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: ELU<>
+insert_layer_outshape equal!
+mut_result:True
+31 generation!
+
+Adopt PM mut_strategy!
+The target model do not have the mutator operators keep_prob!
+mut_result:Parameter Miss
+32 generation!
+
+Adopt CM mut_strategy!
+candidate_in_mutlayers_indice:-1
+select layer: conv_dw5.bn layer_type: <class 'mindspore.nn.layer.normalization.BatchNorm2d'> in_shape: [1, 256, 28, 28] out_shape: [1, 256, 28, 28]
+mut Basic type: True
+select insert layer: Inception_A<
+  (branch0): BasicConv2d<
+    (relu): ReLU<>
+    >
+  (branch1): SequentialCell<
+    (0): BasicConv2d<
+      (relu): ReLU<>
+      >
+    (1): BasicConv2d<
+      (relu): ReLU<>
+      >
+    >
+  (branch2): SequentialCell<
+    (0): BasicConv2d<
+      (relu): ReLU<>
+      >
+    (1): BasicConv2d<
+      (relu): ReLU<>
+      >
+    (2): BasicConv2d<
+      (relu): ReLU<>
+      >
+    >
+  (branch_pool): SequentialCell<
+    (0): AvgPool2d<kernel_size=3, stride=1, pad_mode=SAME>
+    (1): BasicConv2d<
+      (relu): ReLU<>
+      >
+    >
+  >
+replace Basic with CM op!
+mut_result:True
+33 generation!
+
+Adopt RA mut_strategy!
+candidate_in_mutlayers_indice:-1
+select layer: conv_dw_repeated.3.depthwise layer_type: <class 'mindspore.nn.layer.activation.ELU'> in_shape: [1, 512, 14, 14] out_shape: [1, 512, 14, 14]
+mut Basic type: True
+add Basic layer : Cascade_op
+select insert layer: downsample<
+  (downsample_conv): Conv2d<input_channels=512, output_channels=512, kernel_size=(1, 1), stride=(1, 1), pad_mode=same, padding=0, dilation=(1, 1), group=1, has_bias=False, weight_init=<mindspore.common.initializer.HeUniform object at 0x7fb4a7d5d690>, bias_init=None, format=NCHW>
+  (downsample_bn): BatchNorm2d<num_features=512, eps=1e-05, momentum=0.9, gamma=Parameter (name=downsample_bn.gamma, shape=(512,), dtype=Float32, requires_grad=True), beta=Parameter (name=downsample_bn.beta, shape=(512,), dtype=Float32, requires_grad=True), moving_mean=Parameter (name=downsample_bn.moving_mean, shape=(512,), dtype=Float32, requires_grad=False), moving_variance=Parameter (name=downsample_bn.moving_variance, shape=(512,), dtype=Float32, requires_grad=False)>
+  >
+insert_layer_outshape equal!
+mut_result:True
+34 generation!
+
+Adopt PM mut_strategy!
+The target model do not have the mutator operators keep_prob!
+mut_result:Parameter Miss
+35 generation!
+
+Adopt LA mut_strategy!
+candidate_in_mutlayers_indice:0
+select layer: conv_dw_repeated.2.depthwise layer_type: <class 'mindspore.nn.layer.container.SequentialCell'> in_shape: [1, 512, 14, 14] out_shape: [1, 512, 14, 14]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: Softmax<>
+insert_layer_outshape equal!
+mut_result:True
+36 generation!
+
+Adopt LA mut_strategy!
+candidate_in_mutlayers_indice:-1
+select layer: conv_dw3.relu layer_type: <class 'mindspore.nn.layer.activation.ReLU'> in_shape: [1, 128, 56, 56] out_shape: [1, 128, 56, 56]
+mut Basic type: True
+add Basic layer : Cascade_op
+select insert layer: ResidualBlock<
+  (residual_conv1): Conv2d<input_channels=128, output_channels=32, kernel_size=(1, 1), stride=(1, 1), pad_mode=same, padding=0, dilation=(1, 1), group=1, has_bias=False, weight_init=<mindspore.common.initializer.HeUniform object at 0x7fb484067b10>, bias_init=None, format=NCHW>
+  (residual_bn1): BatchNorm2d<num_features=32, eps=0.0001, momentum=0.9, gamma=Parameter (name=residual_bn1.gamma, shape=(32,), dtype=Float32, requires_grad=True), beta=Parameter (name=residual_bn1.beta, shape=(32,), dtype=Float32, requires_grad=True), moving_mean=Parameter (name=residual_bn1.moving_mean, shape=(32,), dtype=Float32, requires_grad=False), moving_variance=Parameter (name=residual_bn1.moving_variance, shape=(32,), dtype=Float32, requires_grad=False)>
+  (residual_conv2): Conv2d<input_channels=32, output_channels=32, kernel_size=(3, 3), stride=(1, 1), pad_mode=same, padding=0, dilation=(1, 1), group=1, has_bias=False, weight_init=<mindspore.common.initializer.HeUniform object at 0x7fb438010590>, bias_init=None, format=NCHW>
+  (residual_bn2): BatchNorm2d<num_features=32, eps=0.0001, momentum=0.9, gamma=Parameter (name=residual_bn2.gamma, shape=(32,), dtype=Float32, requires_grad=True), beta=Parameter (name=residual_bn2.beta, shape=(32,), dtype=Float32, requires_grad=True), moving_mean=Parameter (name=residual_bn2.moving_mean, shape=(32,), dtype=Float32, requires_grad=False), moving_variance=Parameter (name=residual_bn2.moving_variance, shape=(32,), dtype=Float32, requires_grad=False)>
+  (residual_conv3): Conv2d<input_channels=32, output_channels=128, kernel_size=(1, 1), stride=(1, 1), pad_mode=same, padding=0, dilation=(1, 1), group=1, has_bias=False, weight_init=<mindspore.common.initializer.HeUniform object at 0x7fb4843c1b90>, bias_init=None, format=NCHW>
+  (residual_bn3): BatchNorm2d<num_features=128, eps=0.0001, momentum=0.9, gamma=Parameter (name=residual_bn3.gamma, shape=(128,), dtype=Float32, requires_grad=True), beta=Parameter (name=residual_bn3.beta, shape=(128,), dtype=Float32, requires_grad=True), moving_mean=Parameter (name=residual_bn3.moving_mean, shape=(128,), dtype=Float32, requires_grad=False), moving_variance=Parameter (name=residual_bn3.moving_variance, shape=(128,), dtype=Float32, requires_grad=False)>
+  (residual_relu1): ReLU<>
+  (residual_relu2): ReLU<>
+  (residual_relu3): ReLU<>
+  (residual_down_sample_layer): SequentialCell<
+    (0): Conv2d<input_channels=128, output_channels=128, kernel_size=(1, 1), stride=(1, 1), pad_mode=same, padding=0, dilation=(1, 1), group=1, has_bias=False, weight_init=<mindspore.common.initializer.HeUniform object at 0x7fb43809a350>, bias_init=None, format=NCHW>
+    (1): BatchNorm2d<num_features=128, eps=0.0001, momentum=0.9, gamma=Parameter (name=residual_down_sample_layer.1.gamma, shape=(128,), dtype=Float32, requires_grad=True), beta=Parameter (name=residual_down_sample_layer.1.beta, shape=(128,), dtype=Float32, requires_grad=True), moving_mean=Parameter (name=residual_down_sample_layer.1.moving_mean, shape=(128,), dtype=Float32, requires_grad=False), moving_variance=Parameter (name=residual_down_sample_layer.1.moving_variance, shape=(128,), dtype=Float32, requires_grad=False)>
+    >
+  >
+insert_layer_outshape equal!
+add Cascade_op after basicop!
+mut_result:True
+37 generation!
+
+Adopt PM mut_strategy!
+candidate_in_mutlayers_indice:-1
+select op: conv_dw7.pointwise layer_type: Conv2d selected param:stride input_shape:[1, 512, 7, 7] output_shape:[1, 1024, 7, 7]
+Edit value: (4, 2) new_inshape: (1, 512, 7, 7) new_outshape: (1, 1024, 2, 4)
+mutate op infor:
+SequentialCell<
+  (0): Conv2d<input_channels=512, output_channels=1024, kernel_size=(1, 1), stride=(4, 2), pad_mode=same, padding=0, dilation=(1, 1), group=1, has_bias=False, weight_init=<mindspore.common.initializer.HeUniform object at 0x7fb484286310>, bias_init=None, format=NCHW>
+  (1): Replace_ms<>
+  >
+mut_result:True
+38 generation!
+
+Adopt RA mut_strategy!
+candidate_in_mutlayers_indice:-1
+select layer: conv_dw_repeated.1.relu layer_type: <class 'mindspore.nn.layer.activation.ReLU'> in_shape: [1, 512, 14, 14] out_shape: [1, 512, 14, 14]
+mut Basic type: True
+add Basic layer : Cascade_op
+select insert layer: Inception_A<
+  (branch0): BasicConv2d<
+    (relu): ReLU<>
+    >
+  (branch1): SequentialCell<
+    (0): BasicConv2d<
+      (relu): ReLU<>
+      >
+    (1): BasicConv2d<
+      (relu): ReLU<>
+      >
+    >
+  (branch2): SequentialCell<
+    (0): BasicConv2d<
+      (relu): ReLU<>
+      >
+    (1): BasicConv2d<
+      (relu): ReLU<>
+      >
+    (2): BasicConv2d<
+      (relu): ReLU<>
+      >
+    >
+  (branch_pool): SequentialCell<
+    (0): AvgPool2d<kernel_size=3, stride=1, pad_mode=SAME>
+    (1): BasicConv2d<
+      (relu): ReLU<>
+      >
+    >
+  >
+insert_layer_outshape not equal!: [1, 512, 14, 14]
+mut_result:True
+39 generation!
+
+Adopt RA mut_strategy!
+candidate_in_mutlayers_indice:-1
+select layer: conv_dw5.bn layer_type: <class 'common.mutation_ms.Layer_utils.CM_branchCell'> in_shape: [1, 256, 28, 28] out_shape: [1, 256, 28, 28]
+mut Basic type: True
+add Basic layer : Cascade_op
+select insert layer: Inception_A<
+  (branch0): BasicConv2d<
+    (relu): ReLU<>
+    >
+  (branch1): SequentialCell<
+    (0): BasicConv2d<
+      (relu): ReLU<>
+      >
+    (1): BasicConv2d<
+      (relu): ReLU<>
+      >
+    >
+  (branch2): SequentialCell<
+    (0): BasicConv2d<
+      (relu): ReLU<>
+      >
+    (1): BasicConv2d<
+      (relu): ReLU<>
+      >
+    (2): BasicConv2d<
+      (relu): ReLU<>
+      >
+    >
+  (branch_pool): SequentialCell<
+    (0): AvgPool2d<kernel_size=3, stride=1, pad_mode=SAME>
+    (1): BasicConv2d<
+      (relu): ReLU<>
+      >
+    >
+  >
+insert_layer_outshape not equal!: [1, 256, 28, 28]
+mut_result:True
+40 generation!
+
+Adopt LC mut_strategy!
+select layer: conv_dw_repeated.0.pointwise layer_type: <class 'mindspore.nn.layer.conv.Conv2d'> in_shape: [1, 512, 14, 14] out_shape: [1, 512, 14, 14]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: Conv2d<input_channels=512, output_channels=512, kernel_size=(1, 1), stride=(1, 1), pad_mode=same, padding=0, dilation=(1, 1), group=1, has_bias=False, weight_init=<mindspore.common.initializer.HeUniform object at 0x7fb418855210>, bias_init=None, format=NCHW>
+insert_layer_outshape equal!
+mut_result:True
+41 generation!
+
+Adopt CM mut_strategy!
+candidate_in_mutlayers_indice:1
+select layer: conv_dw2.pointwise layer_type: <class 'mindspore.nn.layer.container.SequentialCell'> in_shape: [1, 64, 56, 56] out_shape: [1, 128, 56, 56]
+mut Basic type: True
+select insert layer: SE<
+  (SE_pool): GlobalAvgPooling<>
+  (act): HSigmoid<>
+  (SE_act1): ReLU<>
+  (SE_act2): HSigmoid<>
+  >
+Illegal CM mutate!
+For primitive[Conv2D], the input type must be same.
+name:[w]:Ref[Tensor[Float32]].
+name:[x]:Tensor[Float16].
+
+----------------------------------------------------
+- C++ Call Stack: (For framework developers)
+----------------------------------------------------
+mindspore/core/utils/check_convert_utils.cc:1028 _CheckTypeSame
+
+mut_result:CM Create illegal layer!
+42 generation!
+
+Adopt CM mut_strategy!
+candidate_in_mutlayers_indice:-1
+select layer: conv_dw_repeated.3.bn layer_type: <class 'mindspore.nn.layer.normalization.BatchNorm2d'> in_shape: [1, 512, 14, 14] out_shape: [1, 512, 14, 14]
+mut Basic type: True
+select insert layer: Softmax<>
+replace Basic with CM op!
+mut_result:True
+43 generation!
+
+Adopt LC mut_strategy!
+select layer: conv_dw8.bn layer_type: <class 'mindspore.nn.layer.normalization.BatchNorm2d'> in_shape: [1, 1024, 7, 7] out_shape: [1, 1024, 7, 7]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: BatchNorm2d<num_features=1024, eps=1e-05, momentum=0.09999999999999998, gamma=Parameter (name=gamma, shape=(1024,), dtype=Float32, requires_grad=True), beta=Parameter (name=beta, shape=(1024,), dtype=Float32, requires_grad=True), moving_mean=Parameter (name=mean, shape=(1024,), dtype=Float32, requires_grad=False), moving_variance=Parameter (name=variance, shape=(1024,), dtype=Float32, requires_grad=False)>
+insert_layer_outshape equal!
+mut_result:True
+44 generation!
+
+Adopt SM mut_strategy!
+select layer: conv_dw_repeated.4.pointwise layer_type: <class 'mindspore.nn.layer.conv.Conv2d'> in_shape: [1, 512, 14, 14] out_shape: [1, 512, 14, 14]
+mut Basic type: True
+candidate_in_mutlayers_indice:-1
+mutate state: all
+mutate input_shape: [1, 50, 21, 4]
+mutate output_shape: [1, 36]
+mut_result:True
+45 generation!
+
+Adopt LC mut_strategy!
+select layer: conv_dw_repeated.2.pointwise layer_type: <class 'mindspore.nn.layer.conv.Conv2d'> in_shape: [1, 512, 14, 14] out_shape: [1, 512, 14, 14]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: Conv2d<input_channels=512, output_channels=512, kernel_size=(1, 1), stride=(1, 1), pad_mode=same, padding=0, dilation=(1, 1), group=1, has_bias=False, weight_init=<mindspore.common.initializer.HeUniform object at 0x7fb40432e750>, bias_init=None, format=NCHW>
+insert_layer_outshape equal!
+mut_result:True
+46 generation!
+
+Adopt LD mut_strategy!
+delete layer_name:fc
+mut_result:No suitable ops for LD mutation!
+47 generation!
+
+Adopt PM mut_strategy!
+candidate_in_mutlayers_indice:0
+select op: conv_dw4.bn layer_type: BatchNorm2d selected param:momentum input_shape:[1, 256, 28, 28] output_shape:[1, 256, 28, 28]
+Edit value: 0.033333333333333326 new_inshape: (1, 256, 28, 28) new_outshape: (1, 256, 28, 28)
+BatchNorm2d<num_features=256, eps=1e-05, momentum=0.033333333333333326, gamma=Parameter (name=bn.gamma, shape=(256,), dtype=Float32, requires_grad=True), beta=Parameter (name=bn.beta, shape=(256,), dtype=Float32, requires_grad=True), moving_mean=Parameter (name=bn.moving_mean, shape=(256,), dtype=Float32, requires_grad=False), moving_variance=Parameter (name=bn.moving_variance, shape=(256,), dtype=Float32, requires_grad=False)>
+mut_result:True
+48 generation!
+
+Adopt RA mut_strategy!
+candidate_in_mutlayers_indice:-1
+select layer: bn1 layer_type: <class 'common.mutation_ms.Layer_utils.CM_branchCell'> in_shape: [1, 32, 112, 112] out_shape: [1, 32, 112, 112]
+mut Basic type: True
+add Basic layer : Cascade_op
+select insert layer: Inception_A<
+  (branch0): BasicConv2d<
+    (relu): ReLU<>
+    >
+  (branch1): SequentialCell<
+    (0): BasicConv2d<
+      (relu): ReLU<>
+      >
+    (1): BasicConv2d<
+      (relu): ReLU<>
+      >
+    >
+  (branch2): SequentialCell<
+    (0): BasicConv2d<
+      (relu): ReLU<>
+      >
+    (1): BasicConv2d<
+      (relu): ReLU<>
+      >
+    (2): BasicConv2d<
+      (relu): ReLU<>
+      >
+    >
+  (branch_pool): SequentialCell<
+    (0): AvgPool2d<kernel_size=3, stride=1, pad_mode=SAME>
+    (1): BasicConv2d<
+      (relu): ReLU<>
+      >
+    >
+  >
+insert_layer_outshape not equal!: [1, 32, 112, 112]
+mut_result:True
+49 generation!
+
+Adopt PM mut_strategy!
+candidate_in_mutlayers_indice:-1
+select op: conv_dw4.bn layer_type: BatchNorm2d selected param:momentum input_shape:[1, 256, 28, 28] output_shape:[1, 256, 28, 28]
+Edit value: 0.24166666666666667 new_inshape: (1, 256, 28, 28) new_outshape: (1, 256, 28, 28)
+BatchNorm2d<num_features=256, eps=1e-05, momentum=0.2416666666666667, gamma=Parameter (name=bn.gamma, shape=(256,), dtype=Float32, requires_grad=True), beta=Parameter (name=bn.beta, shape=(256,), dtype=Float32, requires_grad=True), moving_mean=Parameter (name=bn.moving_mean, shape=(256,), dtype=Float32, requires_grad=False), moving_variance=Parameter (name=bn.moving_variance, shape=(256,), dtype=Float32, requires_grad=False)>
+mut_result:True
+50 generation!
+
+Adopt LC mut_strategy!
+select layer: conv_dw2.bn layer_type: <class 'mindspore.nn.layer.normalization.BatchNorm2d'> in_shape: [1, 128, 56, 56] out_shape: [1, 128, 56, 56]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: BatchNorm2d<num_features=128, eps=1e-05, momentum=0.95, gamma=Parameter (name=gamma, shape=(128,), dtype=Float32, requires_grad=True), beta=Parameter (name=beta, shape=(128,), dtype=Float32, requires_grad=True), moving_mean=Parameter (name=mean, shape=(128,), dtype=Float32, requires_grad=False), moving_variance=Parameter (name=variance, shape=(128,), dtype=Float32, requires_grad=False)>
+insert_layer_outshape equal!
+mut_result:True
+51 generation!
+
+Adopt SM mut_strategy!
+select layer: conv_dw3.bn layer_type: <class 'mindspore.nn.layer.normalization.BatchNorm2d'> in_shape: [1, 128, 56, 56] out_shape: [1, 128, 56, 56]
+mut Basic type: True
+candidate_in_mutlayers_indice:-1
+mutate state: after
+mutate output_shape: [1, 40, 33]
+mut_result:True
+52 generation!
+
+Adopt PM mut_strategy!
+candidate_in_mutlayers_indice:0
+select op: conv_dw3.bn layer_type: BatchNorm2d selected param:num_features input_shape:[1, 128, 56, 56] output_shape:[1, 128, 56, 56]
+Edit value: 32 new_inshape: (1, 32, 56, 56) new_outshape: (1, 32, 56, 56)
+mutate op infor:
+SequentialCell<
+  (0): Replace_ms<>
+  (1): BatchNorm2d<num_features=32, eps=1e-05, momentum=0.09999999999999998, gamma=Parameter (name=bn.1.gamma, shape=(32,), dtype=Float32, requires_grad=True), beta=Parameter (name=bn.1.beta, shape=(32,), dtype=Float32, requires_grad=True), moving_mean=Parameter (name=bn.1.moving_mean, shape=(32,), dtype=Float32, requires_grad=False), moving_variance=Parameter (name=bn.1.moving_variance, shape=(32,), dtype=Float32, requires_grad=False)>
+  (2): Replace_ms<>
+  >
+mut_result:True
+53 generation!
+
+Adopt RA mut_strategy!
+candidate_in_mutlayers_indice:-1
+select layer: conv_dw8.relu layer_type: <class 'mindspore.nn.layer.activation.ReLU'> in_shape: [1, 1024, 7, 7] out_shape: [1, 1024, 7, 7]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: Conv2dTranspose<input_channels=1024, output_channels=1024, kernel_size=(1, 1), stride=(1, 1), pad_mode=same, padding=0, dilation=(1, 1), group=1, has_bias=False, weight_init=<mindspore.common.initializer.HeUniform object at 0x7fb418932050>, bias_init=None, format=NCHW>
+insert_layer_outshape equal!
+mut_result:True
+54 generation!
+
+Adopt RA mut_strategy!
+candidate_in_mutlayers_indice:-1
+select layer: conv_dw_repeated.1.depthwise layer_type: <class 'mindspore.nn.layer.conv.Conv2d'> in_shape: [1, 512, 14, 14] out_shape: [1, 512, 14, 14]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: ReLU<>
+insert_layer_outshape equal!
+mut_result:True
+55 generation!
+
+Adopt SM mut_strategy!
+select layer: conv_dw2.pointwise layer_type: <class 'mindspore.nn.layer.container.SequentialCell'> in_shape: [1, 64, 56, 56] out_shape: [1, 128, 56, 56]
+mut Basic type: True
+candidate_in_mutlayers_indice:1
+mutate state: all
+mutate input_shape: [1, 5, 14]
+mutate output_shape: [1, 6]
+mut_result:True
+56 generation!
+
+Adopt CM mut_strategy!
+candidate_in_mutlayers_indice:-1
+select layer: conv_dw_repeated.4.relu layer_type: <class 'mindspore.nn.layer.activation.ReLU'> in_shape: [1, 512, 14, 14] out_shape: [1, 512, 14, 14]
+mut Basic type: True
+select insert layer: ResidualBlock<
+  (residual_conv1): Conv2d<input_channels=512, output_channels=128, kernel_size=(1, 1), stride=(1, 1), pad_mode=same, padding=0, dilation=(1, 1), group=1, has_bias=False, weight_init=<mindspore.common.initializer.HeUniform object at 0x7fb4840ee210>, bias_init=None, format=NCHW>
+  (residual_bn1): BatchNorm2d<num_features=128, eps=0.0001, momentum=0.9, gamma=Parameter (name=1.residual_bn1.gamma, shape=(128,), dtype=Float32, requires_grad=True), beta=Parameter (name=1.residual_bn1.beta, shape=(128,), dtype=Float32, requires_grad=True), moving_mean=Parameter (name=1.residual_bn1.moving_mean, shape=(128,), dtype=Float32, requires_grad=False), moving_variance=Parameter (name=1.residual_bn1.moving_variance, shape=(128,), dtype=Float32, requires_grad=False)>
+  (residual_conv2): Conv2d<input_channels=128, output_channels=128, kernel_size=(3, 3), stride=(1, 1), pad_mode=same, padding=0, dilation=(1, 1), group=1, has_bias=False, weight_init=<mindspore.common.initializer.HeUniform object at 0x7fb4a7559c90>, bias_init=None, format=NCHW>
+  (residual_bn2): BatchNorm2d<num_features=128, eps=0.0001, momentum=0.9, gamma=Parameter (name=1.residual_bn2.gamma, shape=(128,), dtype=Float32, requires_grad=True), beta=Parameter (name=1.residual_bn2.beta, shape=(128,), dtype=Float32, requires_grad=True), moving_mean=Parameter (name=1.residual_bn2.moving_mean, shape=(128,), dtype=Float32, requires_grad=False), moving_variance=Parameter (name=1.residual_bn2.moving_variance, shape=(128,), dtype=Float32, requires_grad=False)>
+  (residual_conv3): Conv2d<input_channels=128, output_channels=512, kernel_size=(1, 1), stride=(1, 1), pad_mode=same, padding=0, dilation=(1, 1), group=1, has_bias=False, weight_init=<mindspore.common.initializer.HeUniform object at 0x7fb418932190>, bias_init=None, format=NCHW>
+  (residual_bn3): BatchNorm2d<num_features=512, eps=0.0001, momentum=0.9, gamma=Parameter (name=1.residual_bn3.gamma, shape=(512,), dtype=Float32, requires_grad=True), beta=Parameter (name=1.residual_bn3.beta, shape=(512,), dtype=Float32, requires_grad=True), moving_mean=Parameter (name=1.residual_bn3.moving_mean, shape=(512,), dtype=Float32, requires_grad=False), moving_variance=Parameter (name=1.residual_bn3.moving_variance, shape=(512,), dtype=Float32, requires_grad=False)>
+  (residual_relu1): ReLU<>
+  (residual_relu2): ReLU<>
+  (residual_relu3): ReLU<>
+  (residual_down_sample_layer): SequentialCell<
+    (0): Conv2d<input_channels=512, output_channels=512, kernel_size=(1, 1), stride=(1, 1), pad_mode=same, padding=0, dilation=(1, 1), group=1, has_bias=False, weight_init=<mindspore.common.initializer.HeUniform object at 0x7fb4a7cd4110>, bias_init=None, format=NCHW>
+    (1): BatchNorm2d<num_features=512, eps=0.0001, momentum=0.9, gamma=Parameter (name=1.residual_down_sample_layer.1.gamma, shape=(512,), dtype=Float32, requires_grad=True), beta=Parameter (name=1.residual_down_sample_layer.1.beta, shape=(512,), dtype=Float32, requires_grad=True), moving_mean=Parameter (name=1.residual_down_sample_layer.1.moving_mean, shape=(512,), dtype=Float32, requires_grad=False), moving_variance=Parameter (name=1.residual_down_sample_layer.1.moving_variance, shape=(512,), dtype=Float32, requires_grad=False)>
+    >
+  >
+replace Basic with CM op!
+mut_result:True
+57 generation!
+
+Adopt LD mut_strategy!
+delete layer_name:conv_dw4.bn
+candidate_in_mutlayers_indice:-1
+adopt DeleteCell EmptyCell
+mut_result:True
+58 generation!
+
+Adopt LD mut_strategy!
+delete layer_name:conv_dw1.pointwise
+mut_result:No suitable ops for LD mutation!
+59 generation!
+
+Adopt CM mut_strategy!
+mut_result:No suitable ops for CM mutation!
+60 generation!
+
+Adopt CM mut_strategy!
+mut_result:No suitable ops for CM mutation!
+61 generation!
+
+Adopt CM mut_strategy!
+candidate_in_mutlayers_indice:-1
+select layer: conv_dw6.relu layer_type: <class 'mindspore.nn.layer.conv.Conv2dTranspose'> in_shape: [1, 512, 14, 14] out_shape: [1, 512, 14, 14]
+mut Basic type: True
+select insert layer: Sigmoid<>
+replace Basic with CM op!
+mut_result:True
+62 generation!
+
+Adopt RA mut_strategy!
+candidate_in_mutlayers_indice:-1
+select layer: conv1 layer_type: <class 'mindspore.nn.layer.conv.Conv2d'> in_shape: [1, 3, 224, 224] out_shape: [1, 32, 112, 112]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: ReLU<>
+insert_layer_outshape not equal!: [1, 32, 112, 112]
+mut_result:True
+63 generation!
+
+Adopt LD mut_strategy!
+delete layer_name:conv_dw_repeated.2.bn
+candidate_in_mutlayers_indice:-1
+adopt DeleteCell EmptyCell
+mut_result:True
+64 generation!
+
+Adopt CM mut_strategy!
+mut_result:No suitable ops for CM mutation!
+65 generation!
+
+Adopt CM mut_strategy!
+mut_result:No suitable ops for CM mutation!
+66 generation!
+
+Adopt SM mut_strategy!
+select layer: bn1 layer_type: <class 'mindspore.nn.layer.container.SequentialCell'> in_shape: [1, 32, 112, 112] out_shape: [1, 32, 112, 112]
+mut Basic type: True
+mut_result:No suitable ops for SM mutation!
+67 generation!
+
+Adopt CM mut_strategy!
+candidate_in_mutlayers_indice:1
+select layer: conv_dw4.pointwise layer_type: <class 'mindspore.nn.layer.container.SequentialCell'> in_shape: [1, 128, 28, 28] out_shape: [1, 256, 28, 28]
+mut Basic type: True
+select insert layer: ReLU6<>
+mut_result:True
+68 generation!
+
+Adopt RA mut_strategy!
+candidate_in_mutlayers_indice:0
+select layer: conv_dw3.relu layer_type: <class 'mindspore.nn.layer.container.SequentialCell'> in_shape: [1, 128, 56, 56] out_shape: [1, 128, 56, 56]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: MaxPool2d<kernel_size=1, stride=1, pad_mode=VALID>
+mut_result:True
+69 generation!
+
+Adopt RA mut_strategy!
+candidate_in_mutlayers_indice:-1
+select layer: conv_dw8.relu layer_type: <class 'mindspore.nn.layer.conv.Conv2dTranspose'> in_shape: [1, 1024, 7, 7] out_shape: [1, 1024, 7, 7]
+mut Basic type: True
+add Basic layer : Cascade_op
+select insert layer: downsample<
+  (downsample_conv): Conv2d<input_channels=1024, output_channels=1024, kernel_size=(1, 1), stride=(1, 1), pad_mode=same, padding=0, dilation=(1, 1), group=1, has_bias=False, weight_init=<mindspore.common.initializer.HeUniform object at 0x7fb4042c7b50>, bias_init=None, format=NCHW>
+  (downsample_bn): BatchNorm2d<num_features=1024, eps=1e-05, momentum=0.9, gamma=Parameter (name=downsample_bn.gamma, shape=(1024,), dtype=Float32, requires_grad=True), beta=Parameter (name=downsample_bn.beta, shape=(1024,), dtype=Float32, requires_grad=True), moving_mean=Parameter (name=downsample_bn.moving_mean, shape=(1024,), dtype=Float32, requires_grad=False), moving_variance=Parameter (name=downsample_bn.moving_variance, shape=(1024,), dtype=Float32, requires_grad=False)>
+  >
+insert_layer_outshape equal!
+mut_result:True
+70 generation!
+
+Adopt SM mut_strategy!
+select layer: conv_dw5.depthwise layer_type: <class 'mindspore.nn.layer.container.SequentialCell'> in_shape: [1, 256, 28, 28] out_shape: [1, 256, 28, 28]
+mut Basic type: True
+mut_result:No suitable ops for SM mutation!
+71 generation!
+
+Adopt LC mut_strategy!
+select layer: conv_dw_repeated.1.bn layer_type: <class 'mindspore.nn.layer.normalization.BatchNorm2d'> in_shape: [1, 512, 14, 14] out_shape: [1, 512, 14, 14]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: BatchNorm2d<num_features=512, eps=1e-05, momentum=0.09999999999999998, gamma=Parameter (name=gamma, shape=(512,), dtype=Float32, requires_grad=True), beta=Parameter (name=beta, shape=(512,), dtype=Float32, requires_grad=True), moving_mean=Parameter (name=mean, shape=(512,), dtype=Float32, requires_grad=False), moving_variance=Parameter (name=variance, shape=(512,), dtype=Float32, requires_grad=False)>
+insert_layer_outshape equal!
+mut_result:True
+72 generation!
+
+Adopt PM mut_strategy!
+candidate_in_mutlayers_indice:-1
+select op: conv_dw_repeated.3.pointwise layer_type: Conv2d selected param:group input_shape:[1, 512, 14, 14] output_shape:[1, 512, 14, 14]
+Edit value: 2 new_inshape: (1, 512, 14, 14) new_outshape: (1, 512, 14, 14)
+Conv2d<input_channels=512, output_channels=512, kernel_size=(1, 1), stride=(1, 1), pad_mode=same, padding=0, dilation=(1, 1), group=2, has_bias=False, weight_init=<mindspore.common.initializer.HeUniform object at 0x7fb4a7502e10>, bias_init=None, format=NCHW>
+mut_result:True
+73 generation!
+
+Adopt RA mut_strategy!
+candidate_in_mutlayers_indice:0
+select layer: conv_dw2.bn layer_type: <class 'mindspore.nn.layer.container.SequentialCell'> in_shape: [1, 128, 56, 56] out_shape: [1, 128, 56, 56]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: LeakyReLU<>
+mut_result:True
+74 generation!
+
+Adopt LA mut_strategy!
+candidate_in_mutlayers_indice:1
+select layer: conv_dw_repeated.0.pointwise layer_type: <class 'mindspore.nn.layer.container.SequentialCell'> in_shape: [1, 512, 14, 14] out_shape: [1, 512, 14, 14]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: AvgPool2d<kernel_size=1, stride=1, pad_mode=VALID>
+insert_layer_outshape equal!
+mut_result:True
+75 generation!
+
+Adopt LA mut_strategy!
+candidate_in_mutlayers_indice:0
+select layer: conv_dw_repeated.0.bn layer_type: <class 'mindspore.nn.layer.container.SequentialCell'> in_shape: [1, 512, 14, 14] out_shape: [1, 512, 14, 14]
+mut Basic type: True
+add Basic layer : Cascade_op
+select insert layer: Inception_A<
+  (branch0): BasicConv2d<
+    (relu): ReLU<>
+    >
+  (branch1): SequentialCell<
+    (0): BasicConv2d<
+      (relu): ReLU<>
+      >
+    (1): BasicConv2d<
+      (relu): ReLU<>
+      >
+    >
+  (branch2): SequentialCell<
+    (0): BasicConv2d<
+      (relu): ReLU<>
+      >
+    (1): BasicConv2d<
+      (relu): ReLU<>
+      >
+    (2): BasicConv2d<
+      (relu): ReLU<>
+      >
+    >
+  (branch_pool): SequentialCell<
+    (0): AvgPool2d<kernel_size=3, stride=1, pad_mode=SAME>
+    (1): BasicConv2d<
+      (relu): ReLU<>
+      >
+    >
+  >
+insert_layer_outshape equal!
+mut_result:True
+76 generation!
+
+Adopt LC mut_strategy!
+select layer: conv_dw7.bn layer_type: <class 'mindspore.nn.layer.normalization.BatchNorm2d'> in_shape: [1, 1024, 7, 7] out_shape: [1, 1024, 7, 7]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: BatchNorm2d<num_features=1024, eps=1e-05, momentum=0.09999999999999998, gamma=Parameter (name=gamma, shape=(1024,), dtype=Float32, requires_grad=True), beta=Parameter (name=beta, shape=(1024,), dtype=Float32, requires_grad=True), moving_mean=Parameter (name=mean, shape=(1024,), dtype=Float32, requires_grad=False), moving_variance=Parameter (name=variance, shape=(1024,), dtype=Float32, requires_grad=False)>
+insert_layer_outshape equal!
+mut_result:True
+77 generation!
+
+Adopt SM mut_strategy!
+select layer: conv_dw5.bn layer_type: <class 'mindspore.nn.layer.container.SequentialCell'> in_shape: [1, 256, 28, 28] out_shape: [1, 256, 28, 28]
+mut Basic type: True
+mut_result:No suitable ops for SM mutation!
+78 generation!
+
+Adopt LD mut_strategy!
+delete layer_name:conv_dw_repeated.2.depthwise
+candidate_in_mutlayers_indice:1
+mut_result:True
+79 generation!
+
+Adopt CM mut_strategy!
+candidate_in_mutlayers_indice:0
+select layer: conv_dw2.bn layer_type: <class 'mindspore.nn.layer.container.SequentialCell'> in_shape: [1, 128, 56, 56] out_shape: [1, 128, 56, 56]
+mut Basic type: True
+select insert layer: convbnrelu<
+  (conbnrelu_conv): Conv2d<input_channels=128, output_channels=128, kernel_size=(1, 1), stride=(1, 1), pad_mode=same, padding=0, dilation=(1, 1), group=1, has_bias=False, weight_init=<mindspore.common.initializer.HeUniform object at 0x7fb487430910>, bias_init=None, format=NCHW>
+  (conbnrelu_bn): BatchNorm2d<num_features=128, eps=1e-05, momentum=0.9, gamma=Parameter (name=1.conbnrelu_bn.gamma, shape=(128,), dtype=Float32, requires_grad=True), beta=Parameter (name=1.conbnrelu_bn.beta, shape=(128,), dtype=Float32, requires_grad=True), moving_mean=Parameter (name=1.conbnrelu_bn.moving_mean, shape=(128,), dtype=Float32, requires_grad=False), moving_variance=Parameter (name=1.conbnrelu_bn.moving_variance, shape=(128,), dtype=Float32, requires_grad=False)>
+  (conbnrelu_relu): ReLU<>
+  >
+mut_result:True
+80 generation!
+
+Adopt CM mut_strategy!
+candidate_in_mutlayers_indice:-1
+select layer: conv_dw3.depthwise layer_type: <class 'mindspore.nn.layer.conv.Conv2d'> in_shape: [1, 128, 56, 56] out_shape: [1, 128, 56, 56]
+mut Basic type: True
+select insert layer: Dense<input_channels=128, output_channels=128>
+Illegal CM mutate!
+For primitive[Conv2D], the input type must be same.
+name:[w]:Ref[Tensor[Float32]].
+name:[x]:Tensor[Float16].
+
+----------------------------------------------------
+- C++ Call Stack: (For framework developers)
+----------------------------------------------------
+mindspore/core/utils/check_convert_utils.cc:1028 _CheckTypeSame
+
+mut_result:CM Create illegal layer!
+81 generation!
+
+Adopt SM mut_strategy!
+select layer: conv_dw_repeated.3.depthwise layer_type: <class 'mindspore.nn.layer.container.SequentialCell'> in_shape: [1, 512, 14, 14] out_shape: [1, 512, 14, 14]
+mut Basic type: True
+candidate_in_mutlayers_indice:1
+mutate state: before
+mutate input_shape: [1, 50]
+mut_result:True
+82 generation!
+
+Adopt RA mut_strategy!
+candidate_in_mutlayers_indice:-1
+select layer: conv_dw8.depthwise layer_type: <class 'mindspore.nn.layer.conv.Conv2d'> in_shape: [1, 1024, 7, 7] out_shape: [1, 1024, 7, 7]
+mut Basic type: True
+add Basic layer : Cascade_op
+select insert layer: convbnrelu<
+  (conbnrelu_conv): Conv2d<input_channels=1024, output_channels=1024, kernel_size=(1, 1), stride=(1, 1), pad_mode=same, padding=0, dilation=(1, 1), group=1, has_bias=False, weight_init=<mindspore.common.initializer.HeUniform object at 0x7fb4a7937e90>, bias_init=None, format=NCHW>
+  (conbnrelu_bn): BatchNorm2d<num_features=1024, eps=1e-05, momentum=0.9, gamma=Parameter (name=conbnrelu_bn.gamma, shape=(1024,), dtype=Float32, requires_grad=True), beta=Parameter (name=conbnrelu_bn.beta, shape=(1024,), dtype=Float32, requires_grad=True), moving_mean=Parameter (name=conbnrelu_bn.moving_mean, shape=(1024,), dtype=Float32, requires_grad=False), moving_variance=Parameter (name=conbnrelu_bn.moving_variance, shape=(1024,), dtype=Float32, requires_grad=False)>
+  (conbnrelu_relu): ReLU<>
+  >
+insert_layer_outshape equal!
+mut_result:True
+83 generation!
+
+Adopt RA mut_strategy!
+mut_result:No suitable ops for RA mutation!
+84 generation!
+
+Adopt LC mut_strategy!
+select layer: conv_dw_repeated.1.pointwise layer_type: <class 'mindspore.nn.layer.conv.Conv2d'> in_shape: [1, 512, 14, 14] out_shape: [1, 512, 14, 14]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: Conv2d<input_channels=512, output_channels=512, kernel_size=(1, 1), stride=(1, 1), pad_mode=same, padding=0, dilation=(1, 1), group=1, has_bias=False, weight_init=<mindspore.common.initializer.HeUniform object at 0x7fb4042dd0d0>, bias_init=None, format=NCHW>
+insert_layer_outshape equal!
+mut_result:True
+85 generation!
+
+Adopt LA mut_strategy!
+candidate_in_mutlayers_indice:0
+select layer: conv_dw8.bn layer_type: <class 'mindspore.nn.layer.container.SequentialCell'> in_shape: [1, 1024, 7, 7] out_shape: [1, 1024, 7, 7]
+mut Basic type: True
+add Basic layer : Cascade_op
+select insert layer: Inception_A<
+  (branch0): BasicConv2d<
+    (relu): ReLU<>
+    >
+  (branch1): SequentialCell<
+    (0): BasicConv2d<
+      (relu): ReLU<>
+      >
+    (1): BasicConv2d<
+      (relu): ReLU<>
+      >
+    >
+  (branch2): SequentialCell<
+    (0): BasicConv2d<
+      (relu): ReLU<>
+      >
+    (1): BasicConv2d<
+      (relu): ReLU<>
+      >
+    (2): BasicConv2d<
+      (relu): ReLU<>
+      >
+    >
+  (branch_pool): SequentialCell<
+    (0): AvgPool2d<kernel_size=3, stride=1, pad_mode=SAME>
+    (1): BasicConv2d<
+      (relu): ReLU<>
+      >
+    >
+  >
+insert_layer_outshape equal!
+mut_result:True
+86 generation!
+
+Adopt SM mut_strategy!
+select layer: conv_dw7.bn layer_type: <class 'mindspore.nn.layer.container.SequentialCell'> in_shape: [1, 1024, 7, 7] out_shape: [1, 1024, 7, 7]
+mut Basic type: True
+candidate_in_mutlayers_indice:1
+mutate state: all
+mutate input_shape: [1, 11, 17]
+mutate output_shape: [1, 19]
+mut_result:True
+87 generation!
+
+Adopt RA mut_strategy!
+candidate_in_mutlayers_indice:1
+select layer: conv_dw_repeated.2.pointwise layer_type: <class 'mindspore.nn.layer.container.SequentialCell'> in_shape: [1, 512, 14, 14] out_shape: [1, 512, 14, 14]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: ReLU6<>
+mut_result:True
+88 generation!
+
+Adopt LD mut_strategy!
+delete layer_name:conv_dw_repeated.3.relu
+candidate_in_mutlayers_indice:-1
+adopt DeleteCell EmptyCell
+mut_result:True
+89 generation!
+
+Adopt SM mut_strategy!
+select layer: conv_dw_repeated.2.relu layer_type: <class 'mindspore.nn.layer.activation.ReLU'> in_shape: [1, 512, 14, 14] out_shape: [1, 512, 14, 14]
+mut Basic type: True
+candidate_in_mutlayers_indice:-1
+mutate state: after
+mutate output_shape: [1, 5]
+mut_result:True
+90 generation!
+
+Adopt RA mut_strategy!
+mut_result:No suitable ops for RA mutation!
+91 generation!
+
+Adopt PM mut_strategy!
+candidate_in_mutlayers_indice:-1
+select op: conv_dw_repeated.4.depthwise layer_type: Conv2d selected param:out_channels input_shape:[1, 512, 14, 14] output_shape:[1, 512, 14, 14]
+Edit value: 1024 new_inshape: (1, 512, 14, 14) new_outshape: (1, 1024, 14, 14)
+mutate op infor:
+SequentialCell<
+  (0): Conv2d<input_channels=512, output_channels=1024, kernel_size=(3, 3), stride=(1, 1), pad_mode=same, padding=0, dilation=(1, 1), group=512, has_bias=False, weight_init=<mindspore.common.initializer.HeUniform object at 0x7fb48417a390>, bias_init=None, format=NCHW>
+  (1): Replace_ms<>
+  >
+mut_result:True
+92 generation!
+
+Adopt RA mut_strategy!
+mut_result:No suitable ops for RA mutation!
+93 generation!
+
+Adopt SM mut_strategy!
+select layer: conv_dw_repeated.4.depthwise layer_type: <class 'mindspore.nn.layer.container.SequentialCell'> in_shape: [1, 512, 14, 14] out_shape: [1, 512, 14, 14]
+mut Basic type: True
+mut_result:No suitable ops for SM mutation!
+94 generation!
+
+Adopt PM mut_strategy!
+candidate_in_mutlayers_indice:-1
+select op: conv_dw8.pointwise layer_type: Conv2d selected param:kernel_size input_shape:[1, 1024, 7, 7] output_shape:[1, 1024, 7, 7]
+Edit value: (3, 3) new_inshape: (1, 1024, 7, 7) new_outshape: (1, 1024, 7, 7)
+Conv2d<input_channels=1024, output_channels=1024, kernel_size=(3, 3), stride=(1, 1), pad_mode=same, padding=0, dilation=(1, 1), group=1, has_bias=False, weight_init=<mindspore.common.initializer.HeUniform object at 0x7fb4a75d37d0>, bias_init=None, format=NCHW>
+mut_result:True
+95 generation!
+
+Adopt CM mut_strategy!
+mut_result:No suitable ops for CM mutation!
+96 generation!
+
+Adopt SM mut_strategy!
+select layer: conv_dw3.bn layer_type: <class 'mindspore.nn.layer.container.SequentialCell'> in_shape: [1, 128, 56, 56] out_shape: [1, 128, 56, 56]
+mut Basic type: True
+mut_result:No suitable ops for SM mutation!
+97 generation!
+
+Adopt LD mut_strategy!
+delete layer_name:conv_dw3.pointwise
+candidate_in_mutlayers_indice:-1
+adopt DeleteCell EmptyCell
+mut_result:True
+98 generation!
+
+Adopt LD mut_strategy!
+delete layer_name:conv_dw5.bn
+mut_result:No suitable ops for LD mutation!
+99 generation!
+
+Adopt LC mut_strategy!
+select layer: conv_dw6.pointwise layer_type: <class 'mindspore.nn.layer.conv.Conv2d'> in_shape: [1, 256, 14, 14] out_shape: [1, 512, 14, 14]
+mut Basic type: True
+add Basic layer : Basic_op
+select insert layer: Conv2d<input_channels=512, output_channels=512, kernel_size=(1, 1), stride=(1, 1), pad_mode=same, padding=0, dilation=(1, 1), group=1, has_bias=False, weight_init=<mindspore.common.initializer.HeUniform object at 0x7fb4840f8810>, bias_init=None, format=NCHW>
+insert_layer_outshape equal!
+mut_result:True
+100 generation!
+
+mutation trace: {'1': [1], '2': [1, 2], '3': [1, 2, 3], '4': [1, 2, 3, 4], '5': [1, 2, 3, 4, 5], '6': [1, 2, 3, 4, 5, 6], '7': [1, 2, 3, 4, 5, 6, 7], '8': [1, 2, 3, 4, 5, 6, 7, 8], '9': [1, 2, 3, 4, 5, 6, 7, 8, 9], '10': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10], '11': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], '12': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], '13': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13], '14': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14], '15': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15], '16': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16], '17': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17], '18': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18], '19': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19], '20': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20], '21': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21], '22': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22], '23': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23], '24': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24], '25': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25], '26': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26], '27': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27], '28': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28], '29': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29], '30': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30], '31': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31], '32': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32], '33': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33], '34': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34], '35': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35], '36': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36], '37': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37], '38': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38], '39': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39], '40': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40], '41': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41], '42': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42], '43': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43], '44': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44], '45': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45], '46': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46], '47': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47], '48': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48], '49': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49], '50': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50], '51': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51], '52': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52], '53': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53], '54': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54], '55': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55], '56': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56], '57': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57], '58': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58], '59': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59], '60': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60], '61': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61], '62': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62], '63': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63], '64': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64], '65': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65], '66': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66], '67': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67], '68': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68], '69': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69], '70': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70], '71': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71], '72': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72], '73': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73], '74': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74], '75': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75], '76': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76], '77': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77], '78': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78], '79': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79], '80': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80], '81': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81], '82': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82], '83': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83], '84': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84], '85': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85], '86': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86], '87': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87], '88': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88], '89': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89], '90': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90], '91': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91], '92': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92], '93': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93], '94': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94], '95': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95], '96': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96], '97': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97], '98': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98], '99': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99], '100': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100]}

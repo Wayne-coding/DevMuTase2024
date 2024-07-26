@@ -1,0 +1,625 @@
+{
+    "edges": [
+        [
+            "LSTM",
+            "Softmax"
+        ],
+        [
+            "Softmax",
+            "Dropout"
+        ],
+        [
+            "Softmax",
+            "Dot"
+        ],
+        [
+            "Dropout",
+            "CustomExpandLayer"
+        ],
+        [
+            "CustomExpandLayer",
+            "GRU"
+        ],
+        [
+            "GRU",
+            "CustomDropDimLayer"
+        ],
+        [
+            "CustomDropDimLayer",
+            "CustomCropLayer"
+        ],
+        [
+            "CustomCropLayer",
+            "Dot"
+        ],
+        [
+            "Dot",
+            "ReLU"
+        ],
+        [
+            "ReLU",
+            "Dense"
+        ],
+        [
+            "Dense",
+            "CustomExpandLayer"
+        ],
+        [
+            "CustomExpandLayer",
+            "SeparableConv1D"
+        ],
+        [
+            "SeparableConv1D",
+            "CustomDropDimLayer"
+        ],
+        [
+            "CustomDropDimLayer",
+            "Dense"
+        ]
+    ],
+    "layer_config": {
+        "LSTM": [
+            {
+                "trainable": true,
+                "batch_input_shape": [
+                    null,
+                    1,
+                    240
+                ],
+                "dtype": "float32",
+                "return_sequences": false,
+                "return_state": false,
+                "go_backwards": true,
+                "stateful": false,
+                "unroll": false,
+                "time_major": false,
+                "activation": "tanh",
+                "recurrent_activation": "hard_sigmoid",
+                "use_bias": false,
+                "kernel_initializer": {
+                    "class_name": "GlorotUniform",
+                    "config": {
+                        "seed": null
+                    }
+                },
+                "recurrent_initializer": {
+                    "class_name": "Orthogonal",
+                    "config": {
+                        "gain": 1.0,
+                        "seed": null
+                    }
+                },
+                "bias_initializer": {
+                    "class_name": "Zeros",
+                    "config": {}
+                },
+                "unit_forget_bias": true,
+                "kernel_regularizer": null,
+                "recurrent_regularizer": null,
+                "bias_regularizer": null,
+                "activity_regularizer": {
+                    "class_name": "L1",
+                    "config": {
+                        "l1": 0.009999999776482582
+                    }
+                },
+                "kernel_constraint": {
+                    "class_name": "NonNeg",
+                    "config": {}
+                },
+                "recurrent_constraint": null,
+                "bias_constraint": {
+                    "class_name": "NonNeg",
+                    "config": {}
+                },
+                "dropout": 0.0,
+                "recurrent_dropout": 0.0,
+                "implementation": 1
+            }
+        ],
+        "Softmax": [
+            {
+                "trainable": true,
+                "dtype": "float32",
+                "axis": -1
+            }
+        ],
+        "Dropout": [
+            {
+                "trainable": true,
+                "dtype": "float32",
+                "rate": 0.1,
+                "noise_shape": null,
+                "seed": null
+            }
+        ],
+        "CustomExpandLayer": [
+            {
+                "trainable": true,
+                "dtype": "float32",
+                "axis": 1
+            }
+        ],
+        "GRU": [
+            {
+                "trainable": true,
+                "dtype": "float32",
+                "return_sequences": true,
+                "return_state": false,
+                "go_backwards": false,
+                "stateful": false,
+                "unroll": false,
+                "time_major": false,
+                "activation": "hard_sigmoid",
+                "recurrent_activation": "relu",
+                "use_bias": true,
+                "kernel_initializer": {
+                    "class_name": "Constant",
+                    "config": {
+                        "value": 0
+                    }
+                },
+                "recurrent_initializer": {
+                    "class_name": "Identity",
+                    "config": {
+                        "gain": 1.0
+                    }
+                },
+                "bias_initializer": {
+                    "class_name": "LecunNormal",
+                    "config": {
+                        "seed": null
+                    }
+                },
+                "kernel_regularizer": {
+                    "class_name": "L1",
+                    "config": {
+                        "l1": 0.009999999776482582
+                    }
+                },
+                "recurrent_regularizer": {
+                    "class_name": "L2",
+                    "config": {
+                        "l2": 0.009999999776482582
+                    }
+                },
+                "bias_regularizer": {
+                    "class_name": "L1",
+                    "config": {
+                        "l1": 0.009999999776482582
+                    }
+                },
+                "activity_regularizer": {
+                    "class_name": "L1",
+                    "config": {
+                        "l1": 0.009999999776482582
+                    }
+                },
+                "kernel_constraint": {
+                    "class_name": "MaxNorm",
+                    "config": {
+                        "max_value": 2,
+                        "axis": 0
+                    }
+                },
+                "recurrent_constraint": {
+                    "class_name": "NonNeg",
+                    "config": {}
+                },
+                "bias_constraint": {
+                    "class_name": "UnitNorm",
+                    "config": {
+                        "axis": 0
+                    }
+                },
+                "dropout": 0.25320523019592844,
+                "recurrent_dropout": 0.8184072533444907,
+                "implementation": 1,
+                "reset_after": true
+            }
+        ],
+        "CustomDropDimLayer": [
+            {
+                "trainable": true,
+                "dtype": "float32",
+                "axis": 1
+            }
+        ],
+        "CustomCropLayer": [
+            {
+                "trainable": true,
+                "dtype": "float32",
+                "cropping": [
+                    [
+                        24,
+                        24
+                    ]
+                ]
+            }
+        ],
+        "Dot": [
+            {
+                "trainable": true,
+                "dtype": "float32",
+                "axes": -1,
+                "normalize": false
+            }
+        ],
+        "ReLU": [
+            {
+                "trainable": true,
+                "dtype": "float32",
+                "negative_slope": 0.0,
+                "threshold": 0.0
+            }
+        ],
+        "Dense": [
+            {
+                "trainable": true,
+                "dtype": "float32",
+                "activation": "linear",
+                "use_bias": true,
+                "kernel_initializer": {
+                    "class_name": "VarianceScaling",
+                    "config": {
+                        "scale": 1.0,
+                        "mode": "fan_avg",
+                        "distribution": "uniform",
+                        "seed": null
+                    }
+                },
+                "bias_initializer": {
+                    "class_name": "Zeros",
+                    "config": {}
+                },
+                "kernel_regularizer": null,
+                "bias_regularizer": null,
+                "activity_regularizer": null,
+                "kernel_constraint": null,
+                "bias_constraint": null
+            },
+            {
+                "trainable": true,
+                "dtype": "float32",
+                "activation": "linear",
+                "use_bias": true,
+                "kernel_initializer": {
+                    "class_name": "GlorotUniform",
+                    "config": {
+                        "seed": null
+                    }
+                },
+                "bias_initializer": {
+                    "class_name": "Zeros",
+                    "config": {}
+                },
+                "kernel_regularizer": null,
+                "bias_regularizer": null,
+                "activity_regularizer": null,
+                "kernel_constraint": null,
+                "bias_constraint": null
+            }
+        ],
+        "SeparableConv1D": [
+            {
+                "trainable": true,
+                "dtype": "float32",
+                "kernel_size": [
+                    8
+                ],
+                "strides": [
+                    1
+                ],
+                "padding": "same",
+                "data_format": "channels_last",
+                "dilation_rate": [
+                    1
+                ],
+                "groups": 1,
+                "activation": "hard_sigmoid",
+                "use_bias": false,
+                "kernel_initializer": {
+                    "class_name": "RandomUniform",
+                    "config": {
+                        "minval": -0.05,
+                        "maxval": 0.05,
+                        "seed": null
+                    }
+                },
+                "bias_initializer": {
+                    "class_name": "Identity",
+                    "config": {
+                        "gain": 1.0
+                    }
+                },
+                "kernel_regularizer": {
+                    "class_name": "L1",
+                    "config": {
+                        "l1": 0.009999999776482582
+                    }
+                },
+                "bias_regularizer": {
+                    "class_name": "L1",
+                    "config": {
+                        "l1": 0.009999999776482582
+                    }
+                },
+                "activity_regularizer": {
+                    "class_name": "L2",
+                    "config": {
+                        "l2": 0.009999999776482582
+                    }
+                },
+                "kernel_constraint": {
+                    "class_name": "MinMaxNorm",
+                    "config": {
+                        "min_value": 0.0,
+                        "max_value": 1.0,
+                        "rate": 1.0,
+                        "axis": 0
+                    }
+                },
+                "bias_constraint": {
+                    "class_name": "NonNeg",
+                    "config": {}
+                },
+                "depth_multiplier": 1,
+                "depthwise_initializer": {
+                    "class_name": "Orthogonal",
+                    "config": {
+                        "gain": 1.0,
+                        "seed": null
+                    }
+                },
+                "pointwise_initializer": {
+                    "class_name": "LecunUniform",
+                    "config": {
+                        "seed": null
+                    }
+                },
+                "depthwise_regularizer": null,
+                "pointwise_regularizer": null,
+                "depthwise_constraint": {
+                    "class_name": "MinMaxNorm",
+                    "config": {
+                        "min_value": 0.0,
+                        "max_value": 1.0,
+                        "rate": 1.0,
+                        "axis": 0
+                    }
+                },
+                "pointwise_constraint": null
+            }
+        ]
+    },
+    "layer_input_info": {
+        "LSTM": {
+            "input_dims": [
+                3
+            ],
+            "dtype": [
+                "<dtype: 'float32'>"
+            ],
+            "shape": [
+                "[None, 1, 240]"
+            ]
+        },
+        "Softmax": {
+            "input_dims": [
+                2
+            ],
+            "dtype": [
+                "<dtype: 'float32'>"
+            ],
+            "shape": [
+                "[None, 2]"
+            ]
+        },
+        "Dropout": {
+            "input_dims": [
+                2
+            ],
+            "dtype": [
+                "<dtype: 'float32'>"
+            ],
+            "shape": [
+                "[None, 2]"
+            ]
+        },
+        "CustomExpandLayer": {
+            "input_dims": [
+                2
+            ],
+            "dtype": [
+                "<dtype: 'float32'>"
+            ],
+            "shape": [
+                "[None, 2]",
+                "[None, 1]"
+            ]
+        },
+        "GRU": {
+            "input_dims": [
+                3
+            ],
+            "dtype": [
+                "<dtype: 'float32'>"
+            ],
+            "shape": [
+                "[None, 1, 2]"
+            ]
+        },
+        "CustomDropDimLayer": {
+            "input_dims": [
+                3
+            ],
+            "dtype": [
+                "<dtype: 'float32'>"
+            ],
+            "shape": [
+                "[None, 1, 50]",
+                "[None, 1, 1]"
+            ]
+        },
+        "CustomCropLayer": {
+            "input_dims": [
+                2
+            ],
+            "dtype": [
+                "<dtype: 'float32'>"
+            ],
+            "shape": [
+                "[None, 50]"
+            ]
+        },
+        "Dot": {
+            "input_dims": [
+                2
+            ],
+            "dtype": [
+                "<dtype: 'float32'>"
+            ],
+            "shape": [
+                "[None, 2]"
+            ]
+        },
+        "ReLU": {
+            "input_dims": [
+                2
+            ],
+            "dtype": [
+                "<dtype: 'float32'>"
+            ],
+            "shape": [
+                "[None, 1]"
+            ]
+        },
+        "Dense": {
+            "input_dims": [
+                2
+            ],
+            "dtype": [
+                "<dtype: 'float32'>"
+            ],
+            "shape": [
+                "[None, 1]"
+            ]
+        },
+        "SeparableConv1D": {
+            "input_dims": [
+                3
+            ],
+            "dtype": [
+                "<dtype: 'float32'>"
+            ],
+            "shape": [
+                "[None, 1, 1]"
+            ]
+        }
+    },
+    "layer_num": 14,
+    "layer_type": [
+        "LSTM",
+        "Softmax",
+        "Dropout",
+        "CustomExpandLayer",
+        "GRU",
+        "CustomDropDimLayer",
+        "CustomCropLayer",
+        "Dot",
+        "ReLU",
+        "Dense",
+        "SeparableConv1D"
+    ],
+    "cur_edge_num": 14,
+    "layer_dims": {
+        "LSTM": {
+            "input_dims": [
+                3
+            ],
+            "output_dims": [
+                2
+            ]
+        },
+        "Softmax": {
+            "input_dims": [
+                2
+            ],
+            "output_dims": [
+                2
+            ]
+        },
+        "Dropout": {
+            "input_dims": [
+                2
+            ],
+            "output_dims": [
+                2
+            ]
+        },
+        "CustomExpandLayer": {
+            "input_dims": [
+                2
+            ],
+            "output_dims": [
+                3
+            ]
+        },
+        "GRU": {
+            "input_dims": [
+                3
+            ],
+            "output_dims": [
+                3
+            ]
+        },
+        "CustomDropDimLayer": {
+            "input_dims": [
+                3
+            ],
+            "output_dims": [
+                2
+            ]
+        },
+        "CustomCropLayer": {
+            "input_dims": [
+                2
+            ],
+            "output_dims": [
+                2
+            ]
+        },
+        "Dot": {
+            "input_dims": [
+                2
+            ],
+            "output_dims": [
+                2
+            ]
+        },
+        "ReLU": {
+            "input_dims": [
+                2
+            ],
+            "output_dims": [
+                2
+            ]
+        },
+        "Dense": {
+            "input_dims": [
+                2
+            ],
+            "output_dims": [
+                2
+            ]
+        },
+        "SeparableConv1D": {
+            "input_dims": [
+                3
+            ],
+            "output_dims": [
+                3
+            ]
+        }
+    }
+}

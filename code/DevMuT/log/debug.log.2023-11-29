@@ -1,0 +1,5 @@
+INFO 2023-12-12 13:14:53 - run_pinns.py:117 - ----------------------------
+INFO 2023-12-12 13:14:53 - run_pinns.py:118 - epoch: 0/1
+INFO 2023-12-12 13:14:56 - run_pinns.py:163 - batch: 0, torch_loss: 0.8828364014625549, ms_loss: 1.5370696783065796, torch_memory: 5594.749805450439MB, ms_memory:  7307.312297821045MB, torch_time: 0.02338385581970215, ms_time:  2.3401951789855957
+INFO 2023-12-12 13:14:56 - run_pinns.py:184 - epoch: 0, torch_loss_avg: 0.8828364014625549, ms_loss_avg: 1.5370696783065796, torch_memory_avg: 5594.749805450439MB, ms_memory_avg:  7307.312297821045MB, torch_time_avg: 0.02338385581970215, ms_time_avg:  2.3401951789855957
+INFO 2023-12-12 13:14:56 - run_pinns.py:207 - MindSpore evaluation error is: 3.410172700881958 Pytorch evaluation error is: 1.3093881607055664
