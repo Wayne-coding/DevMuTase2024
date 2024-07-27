@@ -12,7 +12,7 @@ from mindspore.ops import operations as P
 from common.dataset_utils import get_dataset
 from common.model_utils import get_model
 from common.log_recoder import Logger
-from common.mutation_ms.mutator_selection_logic import Roulette, MCMC
+from common.mutation_ms.mutator_selection_logic import Roulette, MCMC, doubleq_state
 from common.mutation_torch.mutation_main_followlog import analyze_log_torch_followtrace,check_ms_failed_trace
 from common.mutation_ms.model_mutation_operators_followlog import analyze_log_mindspore_followtrace
 from common.mutation_ms.model_mutation_generators import generate_model_by_model_mutation
@@ -22,6 +22,8 @@ from common.help_utils import YoloUtil
 from common.help_utils import get_filter_data
 from common.model_train import get_model_train
 import time
+from utils.util import QNetwork
+from utils.util import check_illegal_mutant
 
 class NetworkGeneralization:
     def __init__(self, args):
@@ -223,6 +225,8 @@ class NetworkGeneralization:
             self.random_mutate(origin_model_ms, imgs_ms_forcal, origin_outputs)
         elif self.mutation_strategy == "MCMC":
             self.MCMC_mutate(imgs_ms_forcal, origin_outputs)
+        elif self.mutation_strategy == "ddqn":
+            self.doubleq_mutate(imgs_ms_forcal, origin_outputs)
 
         mut_succ = os.popen(f"grep -c mut_result:True {self.mut_log_path}").readlines()[0]
         muttypes = os.popen(f"grep -aF 'Adopt' {self.mut_log_path}").readlines()
@@ -241,6 +245,250 @@ class NetworkGeneralization:
         f.close()
         self.run_log.info('mutation iteration:{} ({}), mutation success:{} ({})\n'.format(
             self.mutation_iterations, muttype_count1, mut_succ, muttype_count2))
+
+
+    def doubleq_mutate(self, imgs_ms_forcal, origin_outputs):
+
+        self. origin_outputs = origin_outputs
+
+        self.mutation_outputs = []
+        input_data = [imgs_ms_forcal[0:(0 + self.test_size), :]]
+        model_dtypes_ms = [input_data[0].dtype]
+
+
+        if os.environ['CONTEXT_DEVICE_TARGET'] == 'GPU':
+            devices = os.environ['CUDA_VISIBLE_DEVICES'].split(",")
+            device = devices[-2]
+            final_device = 'cuda:' + device
+        else:
+            final_device = 'cpu'
+
+        if isinstance(origin_outputs, list):
+            model_output4q = origin_outputs[0][0:1,:]
+        else:
+            model_output4q = origin_outputs[0][0:1, :]
+        q1, q2 = QNetwork(model_output4q.shape[-1], len(self.mutation_type)).to(final_device), QNetwork(model_output4q.shape[-1], len(self.mutation_type)).to(final_device)
+
+        eplison = 0.3
+        alpha = 0.1
+        gamma = 0.9
+
+        loss_fun = torch.nn.MSELoss(reduction='none').to(final_device)
+        optimizer1 = torch.optim.Adam(q1.parameters(), lr=1e-4)
+        optimizer2 = torch.optim.Adam(q2.parameters(), lr=1e-4)
+        mutation_scores = []
+
+        net_ms_seed = get_model(self.model_name, input_size=tuple(self.input_size), only_ms=True)
+
+
+        self.mutants_info = {self.model_name + "_seed": doubleq_state(self.model_name + "_seed", 0, 0, {k: 0 for k in self.mutation_type})}
+        self.trace_info = {self.model_name + "_seed":self.model_name + "_seed"}
+        current_seed_name = self.model_name + "_seed"
+
+        self.run_log.info("**** Start DoubleQ Learning ****\n")
+        self.loss =[]
+
+        for generation in range(1, self.mutation_iterations + 1):
+            self.run_log.info("================== start {} generation!({}/{}) ==================".format(generation, generation, self.mutation_iterations))
+            self.trace_info[self.model_name+"_"+str(generation)] = current_seed_name
+            p = np.random.rand(1)[0]
+            if p <= eplison:
+                mut_type = np.random.permutation(self.mutation_type)[0]
+            else:
+                origin_q_input = torch.tensor(model_output4q.asnumpy(), dtype=torch.float32).to(final_device)
+                with torch.no_grad():
+                    q1_value, q2_value = q1(origin_q_input), q2(origin_q_input)
+                q1q2 = (q1_value + q2_value) / 2
+                mut_type = self.mutation_type[np.argmax(q1q2.detach().cpu().numpy())]
+
+
+            mut_result = generate_model_by_model_mutation(net_ms_seed, mut_type, self.input_size, self.mut_log_path, generation, self.run_log, self.train_config)
+
+            self.mutants_info[current_seed_name].selected = self.mutants_info[current_seed_name].selected+1
+            self.mutants_info[current_seed_name].mutator_dict[mut_type] = self.mutants_info[current_seed_name].mutator_dict[mut_type] + 1
+
+
+            if mut_result == 'True' or mut_result is True:
+                r = self.cal_mutation_score(net_ms_seed, imgs_ms_forcal, origin_outputs)
+
+                check_result = check_illegal_mutant(net_ms_seed, self.mutation_outputs)
+                if not check_result:
+                    r = -1
+                    self.mutants_info[current_seed_name].reward = r
+                    maxuct = -99999
+                    maxuct_idx = -1
+                    for mut_model_name in list(self.mutants_info.keys()):
+                        val = self.mutants_info[mut_model_name]
+                        val_score = val.score(mut_type)
+                        if val_score > maxuct:
+                            maxuct = val_score
+                            maxuct_idx = mut_model_name
+
+                    current_seed_name = self.mutants_info[maxuct_idx].name
+
+                    orignial_model = get_model(self.model_name, input_size=tuple(self.input_size), only_ms=True)
+
+                    father_name = deepcopy(current_seed_name)
+                    if "seed" in current_seed_name:
+                        execution_traces = ["seed"]
+                    else:
+                        execution_traces = [int(father_name.split("_")[1])]
+                    while True:
+                        father_name = self.trace_info[father_name]
+                        if "_seed" in father_name:
+                            break
+                        trace_singledot = int(father_name.split("_")[1])
+                        execution_traces.append(trace_singledot)
+
+                    execution_traces.sort()
+                    assert len(execution_traces) > 0
+                    assert net_ms_seed is not None
+                    if "seed" not in current_seed_name:
+                        net_ms_seed = analyze_log_mindspore_followtrace(execution_traces, orignial_model,self.mut_log_path, self.input_size,self.train_config)
+                    mutation_scores.append(-100)
+
+                else:
+                    mutants_names = list(self.mutants_info.keys())
+                    assert not self.model_name + "_" + str(generation) in mutants_names
+                    mutator_dict = {k: 0 for k in self.mutation_type}
+                    mutant_info = doubleq_state(self.model_name + "_" + str(generation), 0, r, mutator_dict)
+
+                    self.mutants_info[self.model_name + "_" + str(generation)] = mutant_info
+                    current_seed_name = self.model_name + "_" + str(generation)
+                    mutation_scores.append(r)
+
+                    # if generation % 2 == 0:
+                    #     try:
+                    #         model_json = ms_model2json(net_ms_seed, input_data, model_dtypes_ms)
+                    #         with open(self.log_path + "/mut_model_json{}.json".format(generation), 'w',
+                    #                   encoding='utf-8') as json_file:
+                    #             json.dump(model_json[0], json_file, ensure_ascii=False, indent=4)
+                    #         json_file.close()
+                    #         del model_json
+                    #     except Exception as e:
+                    #         self.run_log.info(str(e) + "\n")
+
+            else:
+                r = -1
+                self.mutants_info[current_seed_name].reward = r
+                maxuct = -99999
+                maxuct_idx = -1
+                for mut_model_name in list(self.mutants_info.keys()):
+                    val = self.mutants_info[mut_model_name]
+                    val_score = val.score(mut_type)
+                    if val_score > maxuct:
+                        maxuct = val_score
+                        maxuct_idx = mut_model_name
+
+                current_seed_name = self.mutants_info[maxuct_idx].name
+
+                orignial_model = get_model(self.model_name, input_size=tuple(self.input_size), only_ms=True)
+
+                father_name = deepcopy(current_seed_name)
+                if "seed" in current_seed_name:
+                    execution_traces = ["seed"]
+                else:
+                    execution_traces = [int(father_name.split("_")[1])]
+                while True:
+                    father_name = self.trace_info[father_name]
+                    if "_seed" in father_name:
+                        break
+                    trace_singledot = int(father_name.split("_")[1])
+                    execution_traces.append(trace_singledot)
+
+                execution_traces.sort()
+                assert len(execution_traces) > 0
+                assert net_ms_seed is not None
+                if "seed" not in current_seed_name:
+                    net_ms_seed = analyze_log_mindspore_followtrace(execution_traces, orignial_model, self.mut_log_path,self.input_size, self.train_config)
+                mutation_scores.append(-100)
+
+            if len(self.mutation_outputs) == 0:
+                if isinstance(origin_outputs, list):
+                    model_output4q = deepcopy(origin_outputs[0][0:1, :])
+                else:
+                    model_output4q = deepcopy(origin_outputs[0][0:1, :])
+
+
+            p = np.random.rand(1)[0]
+            q_input = torch.tensor(model_output4q.asnumpy(), dtype=torch.float32).to(final_device)
+            self.q_input = q_input
+            if p <= 0.5:
+                q_values = q1(q_input).detach().cpu().numpy()
+                idx = np.argmax(q_values)
+                next_q_values = q2(q_input).detach().cpu().numpy()[0][idx]
+                target_q_values = r + (gamma * next_q_values)
+                q_values = max(q_values) + alpha * (target_q_values - q_values)
+                q_values, target_q_values = torch.tensor([np.max(q_values)],dtype=torch.float32,requires_grad=True).to(final_device),torch.tensor([np.max(target_q_values)],dtype=torch.float32,requires_grad=True).to(final_device)
+                loss = loss_fun(q_values, target_q_values)
+                loss.backward()
+                optimizer1.step()
+                optimizer1.zero_grad()
+                self.loss.append(loss.detach().cpu().numpy())
+                del loss
+                del next_q_values
+                del q_values
+            else:
+                q_values = q2(q_input).detach().cpu().numpy()
+                idx = np.argmax(q_values)
+                next_q_values = q1(q_input).detach().cpu().numpy()[0][idx]
+                target_q_values = r + (gamma * next_q_values)
+                q_values = max(q_values) + alpha * (target_q_values - q_values)
+                q_values, target_q_values = torch.tensor([np.max(q_values)],dtype=torch.float32,requires_grad=True).to(final_device),torch.tensor([np.max(target_q_values)],dtype=torch.float32,requires_grad=True).to(final_device)
+                loss = loss_fun(q_values, target_q_values)
+                loss.backward()
+                optimizer2.step()
+                optimizer2.zero_grad()
+                self.loss.append(loss.detach().cpu().numpy())
+                del loss
+                del next_q_values
+                del q_values
+
+
+        self.run_log.info("mutation_scores: {}".format(mutation_scores))
+        first_select_generations = np.argsort(np.array(mutation_scores))[(len(mutation_scores) - self.selected_model_num):]
+        self.run_log.info("**** stage1 select generations: {} ****\n".format(first_select_generations + 1))
+
+
+        mut_trace = {}
+        for gen in range(1, self.mutation_iterations + 1):
+            start_gen = gen
+            execution_traces = [start_gen]
+            while True:
+                father_name = self.trace_info[self.model_name + "_" + str(start_gen)]
+                if father_name == self.model_name + "_seed":
+                    break
+                trace_singledot = int(father_name.split("_")[1])
+                execution_traces.append(trace_singledot)
+                start_gen = trace_singledot
+
+            execution_traces.sort()
+            mut_trace[str(gen)] = execution_traces
+
+        self.total_trace_record = mut_trace
+        f = open(self.mut_log_path, 'a+')
+        f.write("mutation trace: {}\n".format(mut_trace))
+        f.close()
+
+        first_select_generations = list(map(str, first_select_generations + 1))
+        self.first_generation_tracedict = {gen: trace for gen, trace in mut_trace.items()
+                                           if gen in first_select_generations}
+        self.first_scores = mutation_scores
+
+        check_times = {k: 0 for k in self.mutation_type}
+        for key in list(self.mutants_info.keys()):
+            mutator_dictforcheck = self.mutants_info[key].mutator_dict
+            for m in list(mutator_dictforcheck.keys()):
+                check_times[m] = check_times[m] + mutator_dictforcheck[m]
+        sums = 0
+        for m in list(check_times.keys()):
+            sums = sums + check_times[m]
+
+        assert sums == self.mutation_iterations
+        torch.save(q1.state_dict(), './q1_weight.pth')
+        torch.save(q2.state_dict(), './q2_weight.pth')
+        return self.first_generation_tracedict
+
 
     def random_mutate(self, origin_model_ms, imgs_ms_forcal, origin_outputs):
         mutation_scores = []
@@ -587,7 +835,7 @@ class NetworkGeneralization:
                                                                   self.mut_log_path,
                                                                   (self.batch_size,) + self.input_size[1:],
                                                                   self.train_config)
-            print("[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[",type(model_ms_mutation))
+            # print("[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[",type(model_ms_mutation))
             rename_parameter(model_ms_mutation)  # rename the name of all Parameters
             model_torch_mutation = analyze_log_torch_followtrace(deepcopy(cur_generation_trace), model_torch_origin,
                                                                  self.mut_log_path,
@@ -679,10 +927,13 @@ def get_arg_opt():
 
 
 if __name__ == '__main__':
+
+
     """
     export CONTEXT_DEVICE_TARGET=GPU
     export CUDA_VISIBLE_DEVICES=2,3
     """
+
 
     """
         resnet50 /data1/pzy/raw/cifar10
@@ -690,8 +941,11 @@ if __name__ == '__main__':
         yolov4 /data1/pzy/raw/coco2017
         unet r"/data1/pzy/raw/ischanllge"
         ssimae /data1/pzy/raw/MVTecAD/
+
     """
-    model_name = "resnet50"
+
+
+    model_name = "vgg16" # resnet50 unet unetplus vgg16 yolov4 textcnn
     args_opt = argparse.Namespace(
         model=model_name,
         dataset_path=r"/data1/pzy/raw/cifar10",
@@ -700,14 +954,16 @@ if __name__ == '__main__':
         mutation_iterations=10,
         selected_model_num=1,
         mutation_type=[ 'LD', 'PM', 'LA', 'RA', 'CM', 'SM', 'LC'],#'LD', 'PM', 'LA', 'RA', 'CM', 'SM', 'LS', 'LC','WS', 'NS', 'GF', 'NAI', 'NEB'
-        mutation_strategy="random",
+        mutation_strategy="ddqn",
         mutation_log='/data1/czx/net-sv/common/log',
         selected_gen=None,
     )
 
+
     """
     batch_size > input_size[0] = test_size
     """
+    
     mutate = NetworkGeneralization(args=args_opt)
     # input_size = (2, 3, 224, 224)
     # model1, model2 = get_model(model_name, input_size)

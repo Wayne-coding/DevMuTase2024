@@ -1,5 +1,7 @@
 import numpy as np
+import math
 
+c = math.sqrt(2)
 
 class Roulette:
     class Mutant:
@@ -106,3 +108,78 @@ class MCMC:
             if mu.name == mutator_name:
                 return i
         return -1
+
+
+
+class doubleq_action:
+    class Mutator:
+        def __init__(self, name, total=0, delta_bigger_than_zero=0, epsilon=1e-7):
+            self.name = name
+            self.total = total
+            self.delta_bigger_than_zero = delta_bigger_than_zero
+            self.epsilon = epsilon
+
+        @property
+        def score(self, epsilon=1e-7):
+            rate = self.delta_bigger_than_zero / (self.total + epsilon)
+            return rate
+
+    def __init__(self, mutate_ops=None):
+        if mutate_ops is None:
+            from common.mutation_ms.model_mutation_generators import all_mutate_ops
+            mutate_ops = all_mutate_ops()
+        self.p = 1 / len(mutate_ops)
+        self._mutators = [self.Mutator(name=op) for op in mutate_ops]
+
+    @property
+    def mutators(self):
+        mus = {}
+        for mu in self._mutators:
+            mus[mu.name] = mu
+        return mus
+
+    def choose_mutator(self, mu1=None):
+        if mu1 is None:
+            # which means it's the first mutation
+            return self._mutators[np.random.randint(0, len(self._mutators))].name
+        else:
+            self.sort_mutators()
+            k1 = self.index(mu1)
+            k2 = -1
+            prob = 0
+            while np.random.rand() >= prob:
+                k2 = np.random.randint(0, len(self._mutators))
+                prob = (1 - self.p) ** (k2 - k1)
+            mu2 = self._mutators[k2]
+            return mu2.name
+
+    def sort_mutators(self):
+        import random
+        random.shuffle(self._mutators)
+        self._mutators.sort(key=lambda mutator: mutator.score, reverse=True)
+
+    def index(self, mutator_name):
+        for i, mu in enumerate(self._mutators):
+            if mu.name == mutator_name:
+                return i
+        return -1
+
+
+
+
+class doubleq_state:
+    def __init__(self, name, selected, reward, mutator_dict):
+        self.name = name
+        self.selected = selected
+        self.reward = reward
+        self.mutator_dict = mutator_dict
+
+    def score(self, s):
+        return self.reward + c * np.sqrt((math.log(self.selected)) / (self.mutator_dict[s]+1))
+
+
+    def __str__(self):
+       return "name: "+ str(self.name) + " selected: " + str(self.selected)+" reward: "+str(self.reward)+" mutator_dict: "+str(self.mutator_dict)
+
+
+

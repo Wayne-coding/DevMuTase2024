@@ -19,6 +19,60 @@ In RQ1 and RQ3, we compare different testing methods based on three model divers
 If you have any questions, please leave a message here to contact us. 
 
 
+# Run
+
+## Installation
+
+Ensure you are using Python 3.9 and a Linux-64 platform:
+
+```bash
+$ conda create -n DevMut python=3.9
+$ conda activate DevMut
+$ pip install -r requirements.txt
+```
+
+## Dataset
+
+Due to the large size of the dataset, we will provide a download link upon request. Please contact us to obtain the dataset.
+
+## Usage
+
+### Step 1: Set Environment Variables
+
+```bash
+export CONTEXT_DEVICE_TARGET=GPU
+export CUDA_VISIBLE_DEVICES=0, 1
+```
+
+### Step 2: Run Mutation Tests
+
+```bash
+python mutation_test.py
+```
+
+### Step 3: Check Output
+
+Results will be available in the `./common/log/` directory.
 
 
+## Parameter Settings
+
+The parameters for running the mutation tests can be configured in `mutation_test.py`. Below are the adjustable parameters:
+
+- `model_name`: Name of the model. Options: `resnet50`, `unet`, `unetplus`, `vgg16`, `yolov4`, `textcnn`.
+- `mutation_iterations`: Number of mutation iterations.
+- `epoch`: Number of epochs for training.
+- `batch_size`: Size of the batches for training.
+- `mutation_type`: Type of mutation. Options: `'LD'`, `'PM'`, `'LA'`, `'RA'`, `'CM'`, `'SM'`, `'LS'`, `'LC'`, `'WS'`, `'NS'`, `'GF'`, `'NAI'`, `'NEB'`.
+- `mutation_strategy`: Mutation strategy. Options: `'random'`, `'ddqn'`, `'MCMC'`.
+- `dataset_path`: Path to the dataset.
+
+
+# Directory Structure
+
+- **Scott-Knott Test Results**
+  - Contains the results of the statistical analysis.
+  
+- **code**
+  - Contains the source code for the project.
 
