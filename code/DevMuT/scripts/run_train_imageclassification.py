@@ -279,8 +279,7 @@ if __name__ == '__main__':
         epoch=200,
         mutation_iterations=5,
         selected_model_num=1,
-        mutation_type=["WS", "NS", "NAI", "NEB", "GF"],
-        # "LA","LD","WS","NS","NAI","NEB","GF","LC","LS","RA","WS", "NS", "NAI", "NEB", "GF"
+        mutation_type=["LA","LD","WS","NS","NAI"],
         mutation_log='/data1/myz/netsv/common/log',
         selected_generation=None,
         mutation_strategy="random"
