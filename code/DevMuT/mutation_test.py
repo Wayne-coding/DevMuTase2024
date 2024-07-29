@@ -945,7 +945,7 @@ if __name__ == '__main__':
     """
 
 
-    model_name = "vgg16" # resnet50 unet unetplus vgg16 yolov4 textcnn
+    model_name = "vgg16" # resnet50 unet unetplus vgg16 textcnn
     args_opt = argparse.Namespace(
         model=model_name,
         dataset_path=r"/data1/pzy/raw/cifar10",
@@ -953,7 +953,7 @@ if __name__ == '__main__':
         epoch=5,
         mutation_iterations=10,
         selected_model_num=1,
-        mutation_type=[ 'LD', 'PM', 'LA', 'RA', 'CM', 'SM', 'LC'],#'LD', 'PM', 'LA', 'RA', 'CM', 'SM', 'LS', 'LC','WS', 'NS', 'GF', 'NAI', 'NEB'
+        mutation_type=[ 'LD', 'PM', 'LA', 'RA', 'CM', 'SM', 'LC'],
         mutation_strategy="ddqn",
         mutation_log='/data1/czx/net-sv/common/log',
         selected_gen=None,
