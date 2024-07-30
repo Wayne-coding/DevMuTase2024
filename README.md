@@ -44,7 +44,7 @@ export CONTEXT_DEVICE_TARGET=GPU
 export CUDA_VISIBLE_DEVICES=0, 1
 ```
 
-### Step 2: Run Mutation Tests
+### Step 2: Run the master file:mutation_test.py
 
 ```bash
 python mutation_test.py
@@ -52,7 +52,9 @@ python mutation_test.py
 
 ### Step 3: Check Output
 
-Results will be available in the `./common/log/` directory.
+Results will be available in the `./common/log/` directory.. This folder will contain two files:
+- A `.log` file: Contains the log details.
+- A `.txt` file: Records the results of the process.
 
 
 ## Parameter Settings
@@ -63,7 +65,14 @@ The parameters for running the mutation tests can be configured in `mutation_tes
 - `mutation_iterations`: Number of mutation iterations.
 - `epoch`: Number of epochs for training.
 - `batch_size`: Size of the batches for training.
-- `mutation_type`: Type of mutation. Options: `'LD'`, `'PM'`, `'LA'`, `'RA'`, `'CM'`, `'SM'`, `'LS'`, `'LC'`.
+- `mutation_type`: Type of mutation. Options: `'LD'`, `'PM'`, `'LA'`, `'RA'`, `'CM'`, `'SM'`, `'DM'`.
+  - MO1 corresponds to `RA`
+  - MO2 corresponds to `SM` and `DM`
+  - MO3 corresponds to `LA` and `LD`
+  - MO4 corresponds to `CM` and `LD`
+  - MO5 corresponds to `PM`
+  - MO6 and MO7 require configuration in the YAML files located in the `./config/` folder.
+
 - `mutation_strategy`: Mutation strategy. Options: `'random'`, `'ddqn'`, `'MCMC'`.
 - `dataset_path`: Path to the dataset.
 
@@ -74,12 +83,11 @@ The parameters for running the mutation tests can be configured in `mutation_tes
 
 - **Scott-Knott Test Results**
   - The results of the statistical analysis.
-  
+  -  These figures are based on the statistical analysis of RQ1 as requested by reviewers.In the figures, the closer a method is to the y-axis, the better its performance.Methods on opposite sides of the dashed line have significant differences in performance, while methods on the same side do not.
+
 - **Interview**
   - Details about the interview guidelines, results, and backgrounds.
 
 - **RQ1/quantitative analysis.xlsx**
-  - List of defective choices of concern to interviewees 
-    - Optimizer Type or Parameter Change:Need to adjust parameters in the configuration file to control
-    - Loss Type or Parameter Change:Need to adjust parameters in the configuration file to control
+  - We design the mutation operator based on interview insights from three perspectives。We analyze the numbers of the contents mentioned by interviewees for designing mutation operators. Based on these quantitative results, we select mutation objects, operators, and guidelines that cover over 80% of the interviewees' opinions.
 
