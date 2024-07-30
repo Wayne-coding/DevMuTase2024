@@ -1,0 +1,831 @@
+WARNING 2024-05-28 20:18:56 - mutation_test.py:59 - For PyTorch and MindSpore running separately, CUDA_VISIBLE_DEVICES should have at least two GPUs, such as 'export CUDA_VISIBLE_DEVICES=0,1'
+INFO 2024-05-28 20:18:56 - mutation_test.py:129 - Mutation config:
+----------------------------------------------------------------------------------------
+train_config: {'model_name': 'lenet5mnist', 'dataset_name': 'random', 'batch_size': 5, 'input_size': ['(2,3,224,224)'], 'test_size': 2, 'dtypes': ['float'], 'epoch': 20, 'loss_name': 'CrossEntropy', 'optimizer': 'SGD', 'learning_rate': 0.005, 'loss_ground_truth': 2.950969386100769, 'eval_ground_truth': 0.998740881321355, 'memory_threshold': '1e-2', 'dataset_path': 'lenet5mnist', 'device': 'GPU', 'device_id': '0,1'}
+mutation_config: {'mutation_iterations': 100, 'save_iterations': 1, 'mutation_eval_metric': 'origin_diff', 'validation_threshold': 0.0006, 'output_difference_metric': 'DMAD', 'log_path': '/data1/myz/net-sv/common/log/lenet5mnist-2024.5.28.20.18.56', 'mutation_strategy': 'ddqn', 'mutation_type': ['LA', 'LD', 'LC', 'CM', 'RA', 'PM', 'SM'], 'selected_model_num': 10}
+
+INFO 2024-05-28 20:18:56 - mutation_test.py:1039 - Stage1: start network mutation!
+INFO 2024-05-28 20:19:02 - mutation_test.py:287 - **** Start DoubleQ Learning ****
+
+INFO 2024-05-28 20:19:02 - mutation_test.py:291 - ================== start 1 generation!(1/100) ==================
+INFO 2024-05-28 20:19:02 - model_mutation_operators.py:243 - Adopt LD mut_strategy!
+INFO 2024-05-28 20:19:02 - model_mutation_operators.py:259 - delete layer_name:flatten
+INFO 2024-05-28 20:19:02 - model_mutation_operators.py:321 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-28 20:19:02 - model_mutation_operators.py:330 - adopt DeleteCell Replace_ms
+INFO 2024-05-28 20:19:02 - Other_utils.py:191 - Exception information: For 'Conv2D', 'C_in' of input 'x' shape divide by parameter 'group' must be equal to 'C_in' of input 'weight' shape: 1, but got 'C_in' of input 'x' shape: 3, and 'group': 1.
+
+----------------------------------------------------
+- C++ Call Stack: (For framework developers)
+----------------------------------------------------
+mindspore/core/ops/conv2d.cc:240 Conv2dInferShape
+
+INFO 2024-05-28 20:19:02 - model_mutation_operators.py:506 - mut_result:False
+INFO 2024-05-28 20:19:02 - model_mutation_operators.py:507 - 1 generation!
+
+INFO 2024-05-28 20:19:02 - mutation_test.py:291 - ================== start 2 generation!(2/100) ==================
+INFO 2024-05-28 20:19:02 - model_mutation_operators.py:243 - Adopt LD mut_strategy!
+INFO 2024-05-28 20:19:02 - model_mutation_operators.py:259 - delete layer_name:pool2
+INFO 2024-05-28 20:19:02 - model_mutation_operators.py:321 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-28 20:19:02 - model_mutation_operators.py:330 - adopt DeleteCell Replace_ms
+INFO 2024-05-28 20:19:02 - Other_utils.py:191 - Exception information: For 'Conv2D', 'C_in' of input 'x' shape divide by parameter 'group' must be equal to 'C_in' of input 'weight' shape: 1, but got 'C_in' of input 'x' shape: 3, and 'group': 1.
+
+----------------------------------------------------
+- C++ Call Stack: (For framework developers)
+----------------------------------------------------
+mindspore/core/ops/conv2d.cc:240 Conv2dInferShape
+
+INFO 2024-05-28 20:19:02 - model_mutation_operators.py:506 - mut_result:False
+INFO 2024-05-28 20:19:02 - model_mutation_operators.py:507 - 2 generation!
+
+INFO 2024-05-28 20:19:02 - mutation_test.py:291 - ================== start 3 generation!(3/100) ==================
+INFO 2024-05-28 20:19:02 - model_mutation_operators.py:1924 - Adopt LC mut_strategy!
+INFO 2024-05-28 20:19:02 - model_mutation_operators.py:1991 - select layer: dropout layer_type: <class 'mindspore.nn.layer.basic.Dropout'> in_shape: [2, 120] out_shape: [2, 120]
+INFO 2024-05-28 20:19:02 - model_mutation_operators.py:1992 - mut Basic type: True
+INFO 2024-05-28 20:19:02 - model_mutation_operators.py:1993 - add Basic layer : Basic_op
+INFO 2024-05-28 20:19:02 - model_mutation_operators.py:2006 - select insert layer: Dropout<keep_prob=0.5>
+INFO 2024-05-28 20:19:02 - model_mutation_operators.py:2041 - insert_layer_outshape equal!
+INFO 2024-05-28 20:19:02 - Other_utils.py:191 - Exception information: For 'Conv2D', 'C_in' of input 'x' shape divide by parameter 'group' must be equal to 'C_in' of input 'weight' shape: 1, but got 'C_in' of input 'x' shape: 3, and 'group': 1.
+
+----------------------------------------------------
+- C++ Call Stack: (For framework developers)
+----------------------------------------------------
+mindspore/core/ops/conv2d.cc:240 Conv2dInferShape
+
+INFO 2024-05-28 20:19:02 - model_mutation_operators.py:2109 - mut_result:False
+INFO 2024-05-28 20:19:02 - model_mutation_operators.py:2110 - 3 generation!
+
+INFO 2024-05-28 20:19:02 - mutation_test.py:291 - ================== start 4 generation!(4/100) ==================
+INFO 2024-05-28 20:19:02 - model_mutation_operators.py:243 - Adopt LD mut_strategy!
+INFO 2024-05-28 20:19:02 - model_mutation_operators.py:259 - delete layer_name:dropout
+INFO 2024-05-28 20:19:02 - model_mutation_operators.py:288 - candidate_in_mutlayers_indice:0
+
+INFO 2024-05-28 20:19:02 - Other_utils.py:191 - Exception information: For 'Conv2D', 'C_in' of input 'x' shape divide by parameter 'group' must be equal to 'C_in' of input 'weight' shape: 1, but got 'C_in' of input 'x' shape: 3, and 'group': 1.
+
+----------------------------------------------------
+- C++ Call Stack: (For framework developers)
+----------------------------------------------------
+mindspore/core/ops/conv2d.cc:240 Conv2dInferShape
+
+INFO 2024-05-28 20:19:02 - model_mutation_operators.py:506 - mut_result:False
+INFO 2024-05-28 20:19:02 - model_mutation_operators.py:507 - 4 generation!
+
+INFO 2024-05-28 20:19:02 - mutation_test.py:291 - ================== start 5 generation!(5/100) ==================
+INFO 2024-05-28 20:19:02 - model_mutation_operators.py:1924 - Adopt LC mut_strategy!
+INFO 2024-05-28 20:19:02 - model_mutation_operators.py:1991 - select layer: fc1 layer_type: <class 'mindspore.nn.layer.basic.Dense'> in_shape: [2, 784] out_shape: [2, 120]
+INFO 2024-05-28 20:19:02 - model_mutation_operators.py:1992 - mut Basic type: True
+INFO 2024-05-28 20:19:02 - model_mutation_operators.py:1993 - add Basic layer : Basic_op
+INFO 2024-05-28 20:19:03 - model_mutation_operators.py:2006 - select insert layer: Dense<input_channels=784, output_channels=120, has_bias=True>
+INFO 2024-05-28 20:19:03 - model_mutation_operators.py:2028 - Illegal LC mutate!
+INFO 2024-05-28 20:19:03 - model_mutation_operators.py:2029 - mut_result:LC Create illegal layer!
+INFO 2024-05-28 20:19:03 - model_mutation_operators.py:2030 - Exception information: 
+For 'MatMul', the type of 'x2' should be same as 'x1', but got 'x1' with type Tensor[Float16] and 'x2' with type Tensor[Float32].
+
+----------------------------------------------------
+- C++ Call Stack: (For framework developers)
+----------------------------------------------------
+mindspore/core/ops/mat_mul.cc:143 InferType
+
+INFO 2024-05-28 20:19:03 - model_mutation_operators.py:2031 - 5 generation!
+
+INFO 2024-05-28 20:19:03 - mutation_test.py:291 - ================== start 6 generation!(6/100) ==================
+INFO 2024-05-28 20:19:03 - model_mutation_operators.py:243 - Adopt LD mut_strategy!
+INFO 2024-05-28 20:19:03 - model_mutation_operators.py:259 - delete layer_name:dropout
+INFO 2024-05-28 20:19:03 - model_mutation_operators.py:279 - mut_result:No suitable ops for LD mutation!
+INFO 2024-05-28 20:19:03 - model_mutation_operators.py:280 - 6 generation!
+INFO 2024-05-28 20:19:03 - mutation_test.py:291 - ================== start 7 generation!(7/100) ==================
+INFO 2024-05-28 20:19:03 - model_mutation_operators.py:243 - Adopt LD mut_strategy!
+INFO 2024-05-28 20:19:03 - model_mutation_operators.py:259 - delete layer_name:relu
+INFO 2024-05-28 20:19:03 - model_mutation_operators.py:321 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-28 20:19:03 - model_mutation_operators.py:326 - adopt DeleteCell EmptyCell
+INFO 2024-05-28 20:19:03 - Other_utils.py:191 - Exception information: For 'Conv2D', 'C_in' of input 'x' shape divide by parameter 'group' must be equal to 'C_in' of input 'weight' shape: 1, but got 'C_in' of input 'x' shape: 3, and 'group': 1.
+
+----------------------------------------------------
+- C++ Call Stack: (For framework developers)
+----------------------------------------------------
+mindspore/core/ops/conv2d.cc:240 Conv2dInferShape
+
+INFO 2024-05-28 20:19:03 - model_mutation_operators.py:506 - mut_result:False
+INFO 2024-05-28 20:19:03 - model_mutation_operators.py:507 - 7 generation!
+
+INFO 2024-05-28 20:19:03 - mutation_test.py:291 - ================== start 8 generation!(8/100) ==================
+INFO 2024-05-28 20:19:03 - model_mutation_operators.py:243 - Adopt LD mut_strategy!
+INFO 2024-05-28 20:19:03 - model_mutation_operators.py:259 - delete layer_name:conv2
+INFO 2024-05-28 20:19:03 - model_mutation_operators.py:321 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-28 20:19:03 - model_mutation_operators.py:330 - adopt DeleteCell Replace_ms
+INFO 2024-05-28 20:19:03 - Other_utils.py:191 - Exception information: For 'Conv2D', 'C_in' of input 'x' shape divide by parameter 'group' must be equal to 'C_in' of input 'weight' shape: 1, but got 'C_in' of input 'x' shape: 3, and 'group': 1.
+
+----------------------------------------------------
+- C++ Call Stack: (For framework developers)
+----------------------------------------------------
+mindspore/core/ops/conv2d.cc:240 Conv2dInferShape
+
+INFO 2024-05-28 20:19:03 - model_mutation_operators.py:506 - mut_result:False
+INFO 2024-05-28 20:19:03 - model_mutation_operators.py:507 - 8 generation!
+
+INFO 2024-05-28 20:19:03 - mutation_test.py:291 - ================== start 9 generation!(9/100) ==================
+INFO 2024-05-28 20:19:03 - model_mutation_operators.py:516 - Adopt LA mut_strategy!
+INFO 2024-05-28 20:19:03 - model_mutation_operators.py:591 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-28 20:19:03 - model_mutation_operators.py:600 - select layer: fc3 layer_type: <class 'mindspore.nn.layer.basic.Dense'> in_shape: [2, 84] out_shape: [2, 10]
+INFO 2024-05-28 20:19:03 - model_mutation_operators.py:601 - mut Basic type: True
+INFO 2024-05-28 20:19:03 - model_mutation_operators.py:602 - add Basic layer : Basic_op
+INFO 2024-05-28 20:19:03 - model_mutation_operators.py:616 - select insert layer: Conv2dTranspose<input_channels=10, output_channels=10, kernel_size=(1, 1), stride=(1, 1), pad_mode=same, padding=0, dilation=(1, 1), group=1, has_bias=False, weight_init=<mindspore.common.initializer.HeUniform object at 0x7f7d37e77b50>, bias_init=None, format=NCHW>
+INFO 2024-05-28 20:19:03 - model_mutation_operators.py:629 - insert_layer_outshape equal!
+INFO 2024-05-28 20:19:03 - Other_utils.py:191 - Exception information: For 'Conv2D', 'C_in' of input 'x' shape divide by parameter 'group' must be equal to 'C_in' of input 'weight' shape: 1, but got 'C_in' of input 'x' shape: 3, and 'group': 1.
+
+----------------------------------------------------
+- C++ Call Stack: (For framework developers)
+----------------------------------------------------
+mindspore/core/ops/conv2d.cc:240 Conv2dInferShape
+
+INFO 2024-05-28 20:19:03 - model_mutation_operators.py:746 - mut_result:False
+INFO 2024-05-28 20:19:03 - model_mutation_operators.py:747 - 9 generation!
+
+INFO 2024-05-28 20:19:03 - mutation_test.py:291 - ================== start 10 generation!(10/100) ==================
+INFO 2024-05-28 20:19:03 - model_mutation_operators.py:243 - Adopt LD mut_strategy!
+INFO 2024-05-28 20:19:03 - model_mutation_operators.py:259 - delete layer_name:dropout
+INFO 2024-05-28 20:19:03 - model_mutation_operators.py:279 - mut_result:No suitable ops for LD mutation!
+INFO 2024-05-28 20:19:03 - model_mutation_operators.py:280 - 10 generation!
+INFO 2024-05-28 20:19:03 - mutation_test.py:291 - ================== start 11 generation!(11/100) ==================
+INFO 2024-05-28 20:19:03 - model_mutation_operators.py:756 - Adopt RA mut_strategy!
+INFO 2024-05-28 20:19:03 - model_mutation_operators.py:850 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-28 20:19:03 - model_mutation_operators.py:859 - select layer: conv1 layer_type: <class 'mindspore.nn.layer.conv.Conv2d'> in_shape: [2, 1, 28, 28] out_shape: [2, 6, 28, 28]
+INFO 2024-05-28 20:19:03 - model_mutation_operators.py:860 - mut Basic type: True
+INFO 2024-05-28 20:19:03 - model_mutation_operators.py:861 - add Basic layer : Basic_op
+INFO 2024-05-28 20:19:03 - model_mutation_operators.py:874 - select insert layer: ELU<>
+INFO 2024-05-28 20:19:03 - model_mutation_operators.py:919 - insert_layer_outshape not equal!: [2, 6, 28, 28]
+INFO 2024-05-28 20:19:03 - model_mutation_operators.py:1061 - mut_result:True
+INFO 2024-05-28 20:19:03 - model_mutation_operators.py:1062 - 11 generation!
+
+INFO 2024-05-28 20:19:03 - mutation_test.py:291 - ================== start 12 generation!(12/100) ==================
+INFO 2024-05-28 20:19:03 - model_mutation_operators.py:243 - Adopt LD mut_strategy!
+INFO 2024-05-28 20:19:03 - model_mutation_operators.py:259 - delete layer_name:fc3
+INFO 2024-05-28 20:19:03 - model_mutation_operators.py:288 - candidate_in_mutlayers_indice:1
+
+INFO 2024-05-28 20:19:03 - model_mutation_operators.py:506 - mut_result:True
+INFO 2024-05-28 20:19:03 - model_mutation_operators.py:507 - 12 generation!
+
+INFO 2024-05-28 20:19:03 - mutation_test.py:367 - list index out of range
+
+INFO 2024-05-28 20:19:03 - mutation_test.py:291 - ================== start 13 generation!(13/100) ==================
+INFO 2024-05-28 20:19:03 - model_mutation_operators.py:243 - Adopt LD mut_strategy!
+INFO 2024-05-28 20:19:03 - model_mutation_operators.py:259 - delete layer_name:dropout
+INFO 2024-05-28 20:19:03 - model_mutation_operators.py:279 - mut_result:No suitable ops for LD mutation!
+INFO 2024-05-28 20:19:03 - model_mutation_operators.py:280 - 13 generation!
+INFO 2024-05-28 20:19:03 - mutation_test.py:291 - ================== start 14 generation!(14/100) ==================
+INFO 2024-05-28 20:19:03 - model_mutation_operators.py:243 - Adopt LD mut_strategy!
+INFO 2024-05-28 20:19:03 - model_mutation_operators.py:259 - delete layer_name:fc2
+INFO 2024-05-28 20:19:03 - model_mutation_operators.py:321 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-28 20:19:03 - model_mutation_operators.py:330 - adopt DeleteCell Replace_ms
+INFO 2024-05-28 20:19:03 - model_mutation_operators.py:506 - mut_result:True
+INFO 2024-05-28 20:19:03 - model_mutation_operators.py:507 - 14 generation!
+
+INFO 2024-05-28 20:19:04 - mutation_test.py:291 - ================== start 15 generation!(15/100) ==================
+INFO 2024-05-28 20:19:04 - model_mutation_operators.py:243 - Adopt LD mut_strategy!
+INFO 2024-05-28 20:19:04 - model_mutation_operators.py:259 - delete layer_name:dropout
+INFO 2024-05-28 20:19:04 - model_mutation_operators.py:321 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-28 20:19:04 - model_mutation_operators.py:326 - adopt DeleteCell EmptyCell
+INFO 2024-05-28 20:19:04 - model_mutation_operators.py:506 - mut_result:True
+INFO 2024-05-28 20:19:04 - model_mutation_operators.py:507 - 15 generation!
+
+INFO 2024-05-28 20:19:04 - mutation_test.py:291 - ================== start 16 generation!(16/100) ==================
+INFO 2024-05-28 20:19:04 - model_mutation_operators.py:24 - Adopt PM mut_strategy!
+INFO 2024-05-28 20:19:04 - model_mutation_operators.py:63 - The target model do not have the mutator operators num_features!
+INFO 2024-05-28 20:19:04 - model_mutation_operators.py:64 - mut_result:Parameter Miss
+INFO 2024-05-28 20:19:04 - model_mutation_operators.py:65 - 16 generation!
+
+INFO 2024-05-28 20:19:04 - mutation_test.py:291 - ================== start 17 generation!(17/100) ==================
+INFO 2024-05-28 20:19:04 - model_mutation_operators.py:243 - Adopt LD mut_strategy!
+INFO 2024-05-28 20:19:04 - model_mutation_operators.py:259 - delete layer_name:fc3
+INFO 2024-05-28 20:19:04 - model_mutation_operators.py:321 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-28 20:19:04 - model_mutation_operators.py:330 - adopt DeleteCell Replace_ms
+INFO 2024-05-28 20:19:04 - model_mutation_operators.py:506 - mut_result:True
+INFO 2024-05-28 20:19:04 - model_mutation_operators.py:507 - 17 generation!
+
+INFO 2024-05-28 20:19:04 - mutation_test.py:291 - ================== start 18 generation!(18/100) ==================
+INFO 2024-05-28 20:19:04 - model_mutation_operators.py:243 - Adopt LD mut_strategy!
+INFO 2024-05-28 20:19:04 - model_mutation_operators.py:259 - delete layer_name:fc2
+INFO 2024-05-28 20:19:04 - model_mutation_operators.py:321 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-28 20:19:04 - model_mutation_operators.py:330 - adopt DeleteCell Replace_ms
+INFO 2024-05-28 20:19:04 - model_mutation_operators.py:506 - mut_result:True
+INFO 2024-05-28 20:19:04 - model_mutation_operators.py:507 - 18 generation!
+
+INFO 2024-05-28 20:19:04 - mutation_test.py:291 - ================== start 19 generation!(19/100) ==================
+INFO 2024-05-28 20:19:04 - model_mutation_operators.py:756 - Adopt RA mut_strategy!
+INFO 2024-05-28 20:19:04 - model_mutation_operators.py:850 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-28 20:19:04 - model_mutation_operators.py:859 - select layer: conv2 layer_type: <class 'mindspore.nn.layer.conv.Conv2d'> in_shape: [2, 6, 14, 14] out_shape: [2, 16, 14, 14]
+INFO 2024-05-28 20:19:04 - model_mutation_operators.py:860 - mut Basic type: True
+INFO 2024-05-28 20:19:04 - model_mutation_operators.py:861 - add Basic layer : Basic_op
+INFO 2024-05-28 20:19:04 - model_mutation_operators.py:874 - select insert layer: MaxPool2d<kernel_size=1, stride=1, pad_mode=VALID>
+INFO 2024-05-28 20:19:04 - model_mutation_operators.py:919 - insert_layer_outshape not equal!: [2, 16, 14, 14]
+INFO 2024-05-28 20:19:04 - model_mutation_operators.py:1061 - mut_result:True
+INFO 2024-05-28 20:19:04 - model_mutation_operators.py:1062 - 19 generation!
+
+INFO 2024-05-28 20:19:04 - mutation_test.py:291 - ================== start 20 generation!(20/100) ==================
+INFO 2024-05-28 20:19:04 - model_mutation_operators.py:243 - Adopt LD mut_strategy!
+INFO 2024-05-28 20:19:04 - model_mutation_operators.py:259 - delete layer_name:relu
+INFO 2024-05-28 20:19:04 - model_mutation_operators.py:321 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-28 20:19:04 - model_mutation_operators.py:326 - adopt DeleteCell EmptyCell
+INFO 2024-05-28 20:19:04 - model_mutation_operators.py:506 - mut_result:True
+INFO 2024-05-28 20:19:04 - model_mutation_operators.py:507 - 20 generation!
+
+INFO 2024-05-28 20:19:05 - mutation_test.py:291 - ================== start 21 generation!(21/100) ==================
+INFO 2024-05-28 20:19:05 - model_mutation_operators.py:243 - Adopt LD mut_strategy!
+INFO 2024-05-28 20:19:05 - model_mutation_operators.py:259 - delete layer_name:fc1
+INFO 2024-05-28 20:19:05 - model_mutation_operators.py:321 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-28 20:19:05 - model_mutation_operators.py:330 - adopt DeleteCell Replace_ms
+INFO 2024-05-28 20:19:05 - model_mutation_operators.py:506 - mut_result:True
+INFO 2024-05-28 20:19:05 - model_mutation_operators.py:507 - 21 generation!
+
+INFO 2024-05-28 20:19:05 - mutation_test.py:291 - ================== start 22 generation!(22/100) ==================
+INFO 2024-05-28 20:19:05 - model_mutation_operators.py:243 - Adopt LD mut_strategy!
+INFO 2024-05-28 20:19:05 - model_mutation_operators.py:259 - delete layer_name:pool1
+INFO 2024-05-28 20:19:05 - model_mutation_operators.py:321 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-28 20:19:05 - model_mutation_operators.py:330 - adopt DeleteCell Replace_ms
+INFO 2024-05-28 20:19:05 - model_mutation_operators.py:506 - mut_result:True
+INFO 2024-05-28 20:19:05 - model_mutation_operators.py:507 - 22 generation!
+
+INFO 2024-05-28 20:19:05 - mutation_test.py:291 - ================== start 23 generation!(23/100) ==================
+INFO 2024-05-28 20:19:05 - model_mutation_operators.py:516 - Adopt LA mut_strategy!
+INFO 2024-05-28 20:19:05 - model_mutation_operators.py:561 - mut_result:No suitable ops for LA mutation!
+INFO 2024-05-28 20:19:05 - model_mutation_operators.py:562 - 23 generation!
+INFO 2024-05-28 20:19:05 - mutation_test.py:291 - ================== start 24 generation!(24/100) ==================
+INFO 2024-05-28 20:19:05 - model_mutation_operators.py:243 - Adopt LD mut_strategy!
+INFO 2024-05-28 20:19:05 - model_mutation_operators.py:259 - delete layer_name:conv1
+INFO 2024-05-28 20:19:05 - model_mutation_operators.py:279 - mut_result:No suitable ops for LD mutation!
+INFO 2024-05-28 20:19:05 - model_mutation_operators.py:280 - 24 generation!
+INFO 2024-05-28 20:19:05 - mutation_test.py:291 - ================== start 25 generation!(25/100) ==================
+INFO 2024-05-28 20:19:05 - model_mutation_operators.py:243 - Adopt LD mut_strategy!
+INFO 2024-05-28 20:19:05 - model_mutation_operators.py:259 - delete layer_name:dropout
+INFO 2024-05-28 20:19:05 - model_mutation_operators.py:321 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-28 20:19:05 - model_mutation_operators.py:326 - adopt DeleteCell EmptyCell
+INFO 2024-05-28 20:19:05 - model_mutation_operators.py:506 - mut_result:True
+INFO 2024-05-28 20:19:05 - model_mutation_operators.py:507 - 25 generation!
+
+INFO 2024-05-28 20:19:05 - mutation_test.py:291 - ================== start 26 generation!(26/100) ==================
+INFO 2024-05-28 20:19:05 - model_mutation_operators.py:243 - Adopt LD mut_strategy!
+INFO 2024-05-28 20:19:05 - model_mutation_operators.py:259 - delete layer_name:flatten
+INFO 2024-05-28 20:19:05 - model_mutation_operators.py:321 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-28 20:19:05 - model_mutation_operators.py:330 - adopt DeleteCell Replace_ms
+INFO 2024-05-28 20:19:05 - model_mutation_operators.py:506 - mut_result:True
+INFO 2024-05-28 20:19:05 - model_mutation_operators.py:507 - 26 generation!
+
+INFO 2024-05-28 20:19:06 - mutation_test.py:291 - ================== start 27 generation!(27/100) ==================
+INFO 2024-05-28 20:19:06 - model_mutation_operators.py:756 - Adopt RA mut_strategy!
+INFO 2024-05-28 20:19:06 - model_mutation_operators.py:850 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-28 20:19:06 - model_mutation_operators.py:859 - select layer: pool1 layer_type: <class 'mindspore.nn.layer.pooling.AvgPool2d'> in_shape: [2, 6, 28, 28] out_shape: [2, 6, 14, 14]
+INFO 2024-05-28 20:19:06 - model_mutation_operators.py:860 - mut Basic type: True
+INFO 2024-05-28 20:19:06 - model_mutation_operators.py:861 - add Basic layer : Cascade_op
+INFO 2024-05-28 20:19:06 - model_mutation_operators.py:874 - select insert layer: SE<
+  (SE_pool): GlobalAvgPooling<>
+  (act): HSigmoid<>
+  (SE_act1): ReLU<>
+  (SE_act2): HSigmoid<>
+  >
+INFO 2024-05-28 20:19:06 - model_mutation_operators.py:919 - insert_layer_outshape not equal!: [2, 6, 14, 14]
+INFO 2024-05-28 20:19:06 - model_mutation_operators.py:1061 - mut_result:True
+INFO 2024-05-28 20:19:06 - model_mutation_operators.py:1062 - 27 generation!
+
+INFO 2024-05-28 20:19:06 - mutation_test.py:291 - ================== start 28 generation!(28/100) ==================
+INFO 2024-05-28 20:19:06 - model_mutation_operators.py:243 - Adopt LD mut_strategy!
+INFO 2024-05-28 20:19:06 - model_mutation_operators.py:259 - delete layer_name:pool1
+INFO 2024-05-28 20:19:06 - model_mutation_operators.py:279 - mut_result:No suitable ops for LD mutation!
+INFO 2024-05-28 20:19:06 - model_mutation_operators.py:280 - 28 generation!
+INFO 2024-05-28 20:19:06 - mutation_test.py:291 - ================== start 29 generation!(29/100) ==================
+INFO 2024-05-28 20:19:06 - model_mutation_operators.py:243 - Adopt LD mut_strategy!
+INFO 2024-05-28 20:19:06 - model_mutation_operators.py:259 - delete layer_name:conv1
+INFO 2024-05-28 20:19:06 - model_mutation_operators.py:279 - mut_result:No suitable ops for LD mutation!
+INFO 2024-05-28 20:19:06 - model_mutation_operators.py:280 - 29 generation!
+INFO 2024-05-28 20:19:06 - mutation_test.py:291 - ================== start 30 generation!(30/100) ==================
+INFO 2024-05-28 20:19:06 - model_mutation_operators.py:24 - Adopt PM mut_strategy!
+INFO 2024-05-28 20:19:06 - model_mutation_operators.py:63 - The target model do not have the mutator operators in_channels!
+INFO 2024-05-28 20:19:06 - model_mutation_operators.py:64 - mut_result:Parameter Miss
+INFO 2024-05-28 20:19:06 - model_mutation_operators.py:65 - 30 generation!
+
+INFO 2024-05-28 20:19:06 - mutation_test.py:291 - ================== start 31 generation!(31/100) ==================
+INFO 2024-05-28 20:19:06 - model_mutation_operators.py:243 - Adopt LD mut_strategy!
+INFO 2024-05-28 20:19:06 - model_mutation_operators.py:259 - delete layer_name:conv1
+INFO 2024-05-28 20:19:06 - model_mutation_operators.py:279 - mut_result:No suitable ops for LD mutation!
+INFO 2024-05-28 20:19:06 - model_mutation_operators.py:280 - 31 generation!
+INFO 2024-05-28 20:19:07 - mutation_test.py:291 - ================== start 32 generation!(32/100) ==================
+INFO 2024-05-28 20:19:07 - model_mutation_operators.py:243 - Adopt LD mut_strategy!
+INFO 2024-05-28 20:19:07 - model_mutation_operators.py:259 - delete layer_name:pool1
+INFO 2024-05-28 20:19:07 - model_mutation_operators.py:321 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-28 20:19:07 - model_mutation_operators.py:330 - adopt DeleteCell Replace_ms
+INFO 2024-05-28 20:19:07 - model_mutation_operators.py:506 - mut_result:True
+INFO 2024-05-28 20:19:07 - model_mutation_operators.py:507 - 32 generation!
+
+INFO 2024-05-28 20:19:08 - mutation_test.py:291 - ================== start 33 generation!(33/100) ==================
+INFO 2024-05-28 20:19:08 - model_mutation_operators.py:243 - Adopt LD mut_strategy!
+INFO 2024-05-28 20:19:08 - model_mutation_operators.py:259 - delete layer_name:conv2
+INFO 2024-05-28 20:19:08 - model_mutation_operators.py:279 - mut_result:No suitable ops for LD mutation!
+INFO 2024-05-28 20:19:08 - model_mutation_operators.py:280 - 33 generation!
+INFO 2024-05-28 20:19:08 - mutation_test.py:291 - ================== start 34 generation!(34/100) ==================
+INFO 2024-05-28 20:19:08 - model_mutation_operators.py:243 - Adopt LD mut_strategy!
+INFO 2024-05-28 20:19:08 - model_mutation_operators.py:259 - delete layer_name:pool1
+INFO 2024-05-28 20:19:08 - model_mutation_operators.py:321 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-28 20:19:08 - model_mutation_operators.py:330 - adopt DeleteCell Replace_ms
+INFO 2024-05-28 20:19:08 - model_mutation_operators.py:506 - mut_result:True
+INFO 2024-05-28 20:19:08 - model_mutation_operators.py:507 - 34 generation!
+
+INFO 2024-05-28 20:19:08 - mutation_test.py:291 - ================== start 35 generation!(35/100) ==================
+INFO 2024-05-28 20:19:08 - model_mutation_operators.py:243 - Adopt LD mut_strategy!
+INFO 2024-05-28 20:19:08 - model_mutation_operators.py:259 - delete layer_name:conv1
+INFO 2024-05-28 20:19:08 - model_mutation_operators.py:279 - mut_result:No suitable ops for LD mutation!
+INFO 2024-05-28 20:19:08 - model_mutation_operators.py:280 - 35 generation!
+INFO 2024-05-28 20:19:08 - mutation_test.py:291 - ================== start 36 generation!(36/100) ==================
+INFO 2024-05-28 20:19:08 - model_mutation_operators.py:243 - Adopt LD mut_strategy!
+INFO 2024-05-28 20:19:08 - model_mutation_operators.py:259 - delete layer_name:pool1
+INFO 2024-05-28 20:19:08 - model_mutation_operators.py:321 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-28 20:19:08 - model_mutation_operators.py:330 - adopt DeleteCell Replace_ms
+INFO 2024-05-28 20:19:08 - model_mutation_operators.py:506 - mut_result:True
+INFO 2024-05-28 20:19:08 - model_mutation_operators.py:507 - 36 generation!
+
+INFO 2024-05-28 20:19:09 - mutation_test.py:291 - ================== start 37 generation!(37/100) ==================
+INFO 2024-05-28 20:19:09 - model_mutation_operators.py:243 - Adopt LD mut_strategy!
+INFO 2024-05-28 20:19:09 - model_mutation_operators.py:259 - delete layer_name:conv1
+INFO 2024-05-28 20:19:09 - model_mutation_operators.py:279 - mut_result:No suitable ops for LD mutation!
+INFO 2024-05-28 20:19:09 - model_mutation_operators.py:280 - 37 generation!
+INFO 2024-05-28 20:19:09 - mutation_test.py:291 - ================== start 38 generation!(38/100) ==================
+INFO 2024-05-28 20:19:09 - model_mutation_operators.py:243 - Adopt LD mut_strategy!
+INFO 2024-05-28 20:19:09 - model_mutation_operators.py:259 - delete layer_name:pool2
+INFO 2024-05-28 20:19:09 - model_mutation_operators.py:321 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-28 20:19:09 - model_mutation_operators.py:330 - adopt DeleteCell Replace_ms
+INFO 2024-05-28 20:19:09 - model_mutation_operators.py:506 - mut_result:True
+INFO 2024-05-28 20:19:09 - model_mutation_operators.py:507 - 38 generation!
+
+INFO 2024-05-28 20:19:10 - mutation_test.py:291 - ================== start 39 generation!(39/100) ==================
+INFO 2024-05-28 20:19:10 - model_mutation_operators.py:243 - Adopt LD mut_strategy!
+INFO 2024-05-28 20:19:10 - model_mutation_operators.py:259 - delete layer_name:conv1
+INFO 2024-05-28 20:19:10 - model_mutation_operators.py:279 - mut_result:No suitable ops for LD mutation!
+INFO 2024-05-28 20:19:10 - model_mutation_operators.py:280 - 39 generation!
+INFO 2024-05-28 20:19:10 - mutation_test.py:291 - ================== start 40 generation!(40/100) ==================
+INFO 2024-05-28 20:19:10 - model_mutation_operators.py:243 - Adopt LD mut_strategy!
+INFO 2024-05-28 20:19:10 - model_mutation_operators.py:259 - delete layer_name:pool1
+INFO 2024-05-28 20:19:10 - model_mutation_operators.py:321 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-28 20:19:10 - model_mutation_operators.py:330 - adopt DeleteCell Replace_ms
+INFO 2024-05-28 20:19:10 - model_mutation_operators.py:506 - mut_result:True
+INFO 2024-05-28 20:19:10 - model_mutation_operators.py:507 - 40 generation!
+
+INFO 2024-05-28 20:19:11 - mutation_test.py:291 - ================== start 41 generation!(41/100) ==================
+INFO 2024-05-28 20:19:11 - model_mutation_operators.py:243 - Adopt LD mut_strategy!
+INFO 2024-05-28 20:19:11 - model_mutation_operators.py:259 - delete layer_name:conv2
+INFO 2024-05-28 20:19:11 - model_mutation_operators.py:279 - mut_result:No suitable ops for LD mutation!
+INFO 2024-05-28 20:19:11 - model_mutation_operators.py:280 - 41 generation!
+INFO 2024-05-28 20:19:11 - mutation_test.py:291 - ================== start 42 generation!(42/100) ==================
+INFO 2024-05-28 20:19:11 - model_mutation_operators.py:243 - Adopt LD mut_strategy!
+INFO 2024-05-28 20:19:11 - model_mutation_operators.py:259 - delete layer_name:conv2
+INFO 2024-05-28 20:19:11 - model_mutation_operators.py:279 - mut_result:No suitable ops for LD mutation!
+INFO 2024-05-28 20:19:11 - model_mutation_operators.py:280 - 42 generation!
+INFO 2024-05-28 20:19:11 - mutation_test.py:291 - ================== start 43 generation!(43/100) ==================
+INFO 2024-05-28 20:19:11 - model_mutation_operators.py:2119 - Adopt SM mut_strategy!
+INFO 2024-05-28 20:19:11 - model_mutation_operators.py:2157 - select layer: conv1 layer_type: <class 'mindspore.nn.layer.container.SequentialCell'> in_shape: [2, 1, 28, 28] out_shape: [2, 6, 28, 28]
+INFO 2024-05-28 20:19:11 - model_mutation_operators.py:2158 - mut Basic type: True
+INFO 2024-05-28 20:19:11 - model_mutation_operators.py:2169 - No suitable ops for SM mutation!
+INFO 2024-05-28 20:19:11 - model_mutation_operators.py:2170 - 43 generation!
+INFO 2024-05-28 20:19:11 - mutation_test.py:291 - ================== start 44 generation!(44/100) ==================
+INFO 2024-05-28 20:19:11 - model_mutation_operators.py:1071 - Adopt CM mut_strategy!
+INFO 2024-05-28 20:19:11 - model_mutation_operators.py:1154 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-28 20:19:11 - model_mutation_operators.py:1161 - select layer: flatten layer_type: <class 'mindspore.nn.layer.basic.Flatten'> in_shape: [2, 16, 7, 7] out_shape: [2, 784]
+INFO 2024-05-28 20:19:11 - model_mutation_operators.py:1162 - mut Basic type: True
+INFO 2024-05-28 20:19:11 - model_mutation_operators.py:1205 - select insert layer: Conv2d<input_channels=16, output_channels=784, kernel_size=(1, 1), stride=(1, 1), pad_mode=same, padding=0, dilation=(1, 1), group=1, has_bias=False, weight_init=<mindspore.common.initializer.HeUniform object at 0x7f7d36fe2790>, bias_init=None, format=NCHW>
+INFO 2024-05-28 20:19:11 - model_mutation_operators.py:1250 - replace Basic with CM op!
+INFO 2024-05-28 20:19:11 - model_mutation_operators.py:1301 - mut_result:True
+INFO 2024-05-28 20:19:11 - model_mutation_operators.py:1302 - 44 generation!
+
+INFO 2024-05-28 20:19:12 - mutation_test.py:291 - ================== start 45 generation!(45/100) ==================
+INFO 2024-05-28 20:19:12 - model_mutation_operators.py:243 - Adopt LD mut_strategy!
+INFO 2024-05-28 20:19:12 - model_mutation_operators.py:259 - delete layer_name:relu
+INFO 2024-05-28 20:19:12 - model_mutation_operators.py:321 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-28 20:19:12 - model_mutation_operators.py:326 - adopt DeleteCell EmptyCell
+INFO 2024-05-28 20:19:12 - model_mutation_operators.py:506 - mut_result:True
+INFO 2024-05-28 20:19:12 - model_mutation_operators.py:507 - 45 generation!
+
+INFO 2024-05-28 20:19:12 - mutation_test.py:291 - ================== start 46 generation!(46/100) ==================
+INFO 2024-05-28 20:19:12 - model_mutation_operators.py:243 - Adopt LD mut_strategy!
+INFO 2024-05-28 20:19:12 - model_mutation_operators.py:259 - delete layer_name:conv2
+INFO 2024-05-28 20:19:12 - model_mutation_operators.py:279 - mut_result:No suitable ops for LD mutation!
+INFO 2024-05-28 20:19:12 - model_mutation_operators.py:280 - 46 generation!
+INFO 2024-05-28 20:19:12 - mutation_test.py:291 - ================== start 47 generation!(47/100) ==================
+INFO 2024-05-28 20:19:12 - model_mutation_operators.py:243 - Adopt LD mut_strategy!
+INFO 2024-05-28 20:19:12 - model_mutation_operators.py:259 - delete layer_name:conv2
+INFO 2024-05-28 20:19:12 - model_mutation_operators.py:321 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-28 20:19:12 - model_mutation_operators.py:330 - adopt DeleteCell Replace_ms
+INFO 2024-05-28 20:19:12 - model_mutation_operators.py:506 - mut_result:True
+INFO 2024-05-28 20:19:12 - model_mutation_operators.py:507 - 47 generation!
+
+INFO 2024-05-28 20:19:12 - mutation_test.py:291 - ================== start 48 generation!(48/100) ==================
+INFO 2024-05-28 20:19:12 - model_mutation_operators.py:243 - Adopt LD mut_strategy!
+INFO 2024-05-28 20:19:12 - model_mutation_operators.py:259 - delete layer_name:pool1
+INFO 2024-05-28 20:19:12 - model_mutation_operators.py:321 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-28 20:19:12 - model_mutation_operators.py:330 - adopt DeleteCell Replace_ms
+INFO 2024-05-28 20:19:12 - model_mutation_operators.py:506 - mut_result:True
+INFO 2024-05-28 20:19:12 - model_mutation_operators.py:507 - 48 generation!
+
+INFO 2024-05-28 20:19:12 - mutation_test.py:291 - ================== start 49 generation!(49/100) ==================
+INFO 2024-05-28 20:19:12 - model_mutation_operators.py:756 - Adopt RA mut_strategy!
+INFO 2024-05-28 20:19:12 - model_mutation_operators.py:850 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-28 20:19:12 - model_mutation_operators.py:859 - select layer: pool2 layer_type: <class 'mindspore.nn.layer.pooling.AvgPool2d'> in_shape: [2, 16, 14, 14] out_shape: [2, 16, 7, 7]
+INFO 2024-05-28 20:19:12 - model_mutation_operators.py:860 - mut Basic type: True
+INFO 2024-05-28 20:19:12 - model_mutation_operators.py:861 - add Basic layer : Cascade_op
+INFO 2024-05-28 20:19:12 - model_mutation_operators.py:874 - select insert layer: SE<
+  (SE_pool): GlobalAvgPooling<>
+  (act): HSigmoid<>
+  (SE_act1): ReLU<>
+  (SE_act2): HSigmoid<>
+  >
+INFO 2024-05-28 20:19:12 - model_mutation_operators.py:919 - insert_layer_outshape not equal!: [2, 16, 7, 7]
+INFO 2024-05-28 20:19:12 - model_mutation_operators.py:1061 - mut_result:True
+INFO 2024-05-28 20:19:12 - model_mutation_operators.py:1062 - 49 generation!
+
+INFO 2024-05-28 20:19:12 - mutation_test.py:291 - ================== start 50 generation!(50/100) ==================
+INFO 2024-05-28 20:19:12 - model_mutation_operators.py:243 - Adopt LD mut_strategy!
+INFO 2024-05-28 20:19:12 - model_mutation_operators.py:259 - delete layer_name:flatten
+INFO 2024-05-28 20:19:12 - model_mutation_operators.py:321 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-28 20:19:12 - model_mutation_operators.py:330 - adopt DeleteCell Replace_ms
+INFO 2024-05-28 20:19:12 - model_mutation_operators.py:506 - mut_result:True
+INFO 2024-05-28 20:19:12 - model_mutation_operators.py:507 - 50 generation!
+
+INFO 2024-05-28 20:19:13 - mutation_test.py:291 - ================== start 51 generation!(51/100) ==================
+INFO 2024-05-28 20:19:13 - model_mutation_operators.py:1924 - Adopt LC mut_strategy!
+INFO 2024-05-28 20:19:13 - model_mutation_operators.py:1991 - select layer: fc3 layer_type: <class 'mindspore.nn.layer.basic.Dense'> in_shape: [2, 84] out_shape: [2, 10]
+INFO 2024-05-28 20:19:13 - model_mutation_operators.py:1992 - mut Basic type: True
+INFO 2024-05-28 20:19:13 - model_mutation_operators.py:1993 - add Basic layer : Basic_op
+INFO 2024-05-28 20:19:13 - model_mutation_operators.py:2006 - select insert layer: Dense<input_channels=84, output_channels=10, has_bias=True>
+INFO 2024-05-28 20:19:13 - model_mutation_operators.py:2028 - Illegal LC mutate!
+INFO 2024-05-28 20:19:13 - model_mutation_operators.py:2029 - mut_result:LC Create illegal layer!
+INFO 2024-05-28 20:19:13 - model_mutation_operators.py:2030 - Exception information: 
+For 'MatMul', the type of 'x2' should be same as 'x1', but got 'x1' with type Tensor[Float16] and 'x2' with type Tensor[Float32].
+
+----------------------------------------------------
+- C++ Call Stack: (For framework developers)
+----------------------------------------------------
+mindspore/core/ops/mat_mul.cc:143 InferType
+
+INFO 2024-05-28 20:19:13 - model_mutation_operators.py:2031 - 51 generation!
+
+INFO 2024-05-28 20:19:13 - mutation_test.py:291 - ================== start 52 generation!(52/100) ==================
+INFO 2024-05-28 20:19:13 - model_mutation_operators.py:243 - Adopt LD mut_strategy!
+INFO 2024-05-28 20:19:13 - model_mutation_operators.py:259 - delete layer_name:flatten
+INFO 2024-05-28 20:19:13 - model_mutation_operators.py:321 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-28 20:19:13 - model_mutation_operators.py:330 - adopt DeleteCell Replace_ms
+INFO 2024-05-28 20:19:13 - model_mutation_operators.py:506 - mut_result:True
+INFO 2024-05-28 20:19:13 - model_mutation_operators.py:507 - 52 generation!
+
+INFO 2024-05-28 20:19:14 - mutation_test.py:291 - ================== start 53 generation!(53/100) ==================
+INFO 2024-05-28 20:19:14 - model_mutation_operators.py:1071 - Adopt CM mut_strategy!
+INFO 2024-05-28 20:19:14 - model_mutation_operators.py:1154 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-28 20:19:14 - model_mutation_operators.py:1161 - select layer: pool1 layer_type: <class 'mindspore.nn.layer.pooling.AvgPool2d'> in_shape: [2, 6, 28, 28] out_shape: [2, 6, 14, 14]
+INFO 2024-05-28 20:19:14 - model_mutation_operators.py:1162 - mut Basic type: True
+INFO 2024-05-28 20:19:14 - model_mutation_operators.py:1205 - select insert layer: MaxPool2d<kernel_size=1, stride=1, pad_mode=VALID>
+INFO 2024-05-28 20:19:14 - model_mutation_operators.py:1250 - replace Basic with CM op!
+INFO 2024-05-28 20:19:14 - model_mutation_operators.py:1301 - mut_result:True
+INFO 2024-05-28 20:19:14 - model_mutation_operators.py:1302 - 53 generation!
+
+INFO 2024-05-28 20:19:14 - mutation_test.py:291 - ================== start 54 generation!(54/100) ==================
+INFO 2024-05-28 20:19:14 - model_mutation_operators.py:243 - Adopt LD mut_strategy!
+INFO 2024-05-28 20:19:14 - model_mutation_operators.py:259 - delete layer_name:relu
+INFO 2024-05-28 20:19:14 - model_mutation_operators.py:321 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-28 20:19:14 - model_mutation_operators.py:326 - adopt DeleteCell EmptyCell
+INFO 2024-05-28 20:19:14 - model_mutation_operators.py:506 - mut_result:True
+INFO 2024-05-28 20:19:14 - model_mutation_operators.py:507 - 54 generation!
+
+INFO 2024-05-28 20:19:15 - mutation_test.py:291 - ================== start 55 generation!(55/100) ==================
+INFO 2024-05-28 20:19:15 - model_mutation_operators.py:243 - Adopt LD mut_strategy!
+INFO 2024-05-28 20:19:15 - model_mutation_operators.py:259 - delete layer_name:pool1
+INFO 2024-05-28 20:19:15 - model_mutation_operators.py:321 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-28 20:19:15 - model_mutation_operators.py:330 - adopt DeleteCell Replace_ms
+INFO 2024-05-28 20:19:15 - model_mutation_operators.py:506 - mut_result:True
+INFO 2024-05-28 20:19:15 - model_mutation_operators.py:507 - 55 generation!
+
+INFO 2024-05-28 20:19:15 - mutation_test.py:291 - ================== start 56 generation!(56/100) ==================
+INFO 2024-05-28 20:19:15 - model_mutation_operators.py:243 - Adopt LD mut_strategy!
+INFO 2024-05-28 20:19:15 - model_mutation_operators.py:259 - delete layer_name:dropout
+INFO 2024-05-28 20:19:15 - model_mutation_operators.py:321 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-28 20:19:15 - model_mutation_operators.py:326 - adopt DeleteCell EmptyCell
+INFO 2024-05-28 20:19:15 - model_mutation_operators.py:506 - mut_result:True
+INFO 2024-05-28 20:19:15 - model_mutation_operators.py:507 - 56 generation!
+
+INFO 2024-05-28 20:19:15 - mutation_test.py:291 - ================== start 57 generation!(57/100) ==================
+INFO 2024-05-28 20:19:15 - model_mutation_operators.py:243 - Adopt LD mut_strategy!
+INFO 2024-05-28 20:19:15 - model_mutation_operators.py:259 - delete layer_name:conv2
+INFO 2024-05-28 20:19:15 - model_mutation_operators.py:321 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-28 20:19:15 - model_mutation_operators.py:330 - adopt DeleteCell Replace_ms
+INFO 2024-05-28 20:19:15 - model_mutation_operators.py:506 - mut_result:True
+INFO 2024-05-28 20:19:15 - model_mutation_operators.py:507 - 57 generation!
+
+INFO 2024-05-28 20:19:15 - mutation_test.py:291 - ================== start 58 generation!(58/100) ==================
+INFO 2024-05-28 20:19:15 - model_mutation_operators.py:243 - Adopt LD mut_strategy!
+INFO 2024-05-28 20:19:15 - model_mutation_operators.py:259 - delete layer_name:pool2
+INFO 2024-05-28 20:19:15 - model_mutation_operators.py:321 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-28 20:19:15 - model_mutation_operators.py:330 - adopt DeleteCell Replace_ms
+INFO 2024-05-28 20:19:15 - model_mutation_operators.py:506 - mut_result:True
+INFO 2024-05-28 20:19:15 - model_mutation_operators.py:507 - 58 generation!
+
+INFO 2024-05-28 20:19:16 - mutation_test.py:291 - ================== start 59 generation!(59/100) ==================
+INFO 2024-05-28 20:19:16 - model_mutation_operators.py:243 - Adopt LD mut_strategy!
+INFO 2024-05-28 20:19:16 - model_mutation_operators.py:259 - delete layer_name:fc3
+INFO 2024-05-28 20:19:16 - model_mutation_operators.py:321 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-28 20:19:16 - model_mutation_operators.py:330 - adopt DeleteCell Replace_ms
+INFO 2024-05-28 20:19:16 - model_mutation_operators.py:506 - mut_result:True
+INFO 2024-05-28 20:19:16 - model_mutation_operators.py:507 - 59 generation!
+
+INFO 2024-05-28 20:19:16 - mutation_test.py:291 - ================== start 60 generation!(60/100) ==================
+INFO 2024-05-28 20:19:16 - model_mutation_operators.py:243 - Adopt LD mut_strategy!
+INFO 2024-05-28 20:19:16 - model_mutation_operators.py:259 - delete layer_name:fc1
+INFO 2024-05-28 20:19:16 - model_mutation_operators.py:321 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-28 20:19:16 - model_mutation_operators.py:330 - adopt DeleteCell Replace_ms
+INFO 2024-05-28 20:19:16 - model_mutation_operators.py:506 - mut_result:True
+INFO 2024-05-28 20:19:16 - model_mutation_operators.py:507 - 60 generation!
+
+INFO 2024-05-28 20:19:17 - mutation_test.py:291 - ================== start 61 generation!(61/100) ==================
+INFO 2024-05-28 20:19:17 - model_mutation_operators.py:516 - Adopt LA mut_strategy!
+INFO 2024-05-28 20:19:17 - model_mutation_operators.py:561 - mut_result:No suitable ops for LA mutation!
+INFO 2024-05-28 20:19:17 - model_mutation_operators.py:562 - 61 generation!
+INFO 2024-05-28 20:19:17 - mutation_test.py:291 - ================== start 62 generation!(62/100) ==================
+INFO 2024-05-28 20:19:17 - model_mutation_operators.py:243 - Adopt LD mut_strategy!
+INFO 2024-05-28 20:19:17 - model_mutation_operators.py:259 - delete layer_name:fc1
+INFO 2024-05-28 20:19:17 - model_mutation_operators.py:321 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-28 20:19:17 - model_mutation_operators.py:330 - adopt DeleteCell Replace_ms
+INFO 2024-05-28 20:19:17 - model_mutation_operators.py:506 - mut_result:True
+INFO 2024-05-28 20:19:17 - model_mutation_operators.py:507 - 62 generation!
+
+INFO 2024-05-28 20:19:18 - mutation_test.py:291 - ================== start 63 generation!(63/100) ==================
+INFO 2024-05-28 20:19:18 - model_mutation_operators.py:243 - Adopt LD mut_strategy!
+INFO 2024-05-28 20:19:18 - model_mutation_operators.py:250 - mut_result:not enough layers to delete!
+INFO 2024-05-28 20:19:18 - model_mutation_operators.py:251 - not enough layers to delete!
+INFO 2024-05-28 20:19:18 - mutation_test.py:291 - ================== start 64 generation!(64/100) ==================
+INFO 2024-05-28 20:19:18 - model_mutation_operators.py:243 - Adopt LD mut_strategy!
+INFO 2024-05-28 20:19:18 - model_mutation_operators.py:259 - delete layer_name:conv1
+INFO 2024-05-28 20:19:18 - model_mutation_operators.py:279 - mut_result:No suitable ops for LD mutation!
+INFO 2024-05-28 20:19:18 - model_mutation_operators.py:280 - 64 generation!
+INFO 2024-05-28 20:19:18 - mutation_test.py:291 - ================== start 65 generation!(65/100) ==================
+INFO 2024-05-28 20:19:18 - model_mutation_operators.py:243 - Adopt LD mut_strategy!
+INFO 2024-05-28 20:19:18 - model_mutation_operators.py:259 - delete layer_name:conv1
+INFO 2024-05-28 20:19:18 - model_mutation_operators.py:279 - mut_result:No suitable ops for LD mutation!
+INFO 2024-05-28 20:19:18 - model_mutation_operators.py:280 - 65 generation!
+INFO 2024-05-28 20:19:18 - mutation_test.py:291 - ================== start 66 generation!(66/100) ==================
+INFO 2024-05-28 20:19:18 - model_mutation_operators.py:243 - Adopt LD mut_strategy!
+INFO 2024-05-28 20:19:18 - model_mutation_operators.py:259 - delete layer_name:fc3
+INFO 2024-05-28 20:19:18 - model_mutation_operators.py:321 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-28 20:19:18 - model_mutation_operators.py:330 - adopt DeleteCell Replace_ms
+INFO 2024-05-28 20:19:18 - model_mutation_operators.py:506 - mut_result:True
+INFO 2024-05-28 20:19:18 - model_mutation_operators.py:507 - 66 generation!
+
+INFO 2024-05-28 20:19:19 - mutation_test.py:291 - ================== start 67 generation!(67/100) ==================
+INFO 2024-05-28 20:19:19 - model_mutation_operators.py:516 - Adopt LA mut_strategy!
+INFO 2024-05-28 20:19:19 - model_mutation_operators.py:591 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-28 20:19:19 - model_mutation_operators.py:600 - select layer: fc1 layer_type: <class 'mindspore.nn.layer.basic.Dense'> in_shape: [2, 784] out_shape: [2, 120]
+INFO 2024-05-28 20:19:19 - model_mutation_operators.py:601 - mut Basic type: True
+INFO 2024-05-28 20:19:19 - model_mutation_operators.py:602 - add Basic layer : Cascade_op
+INFO 2024-05-28 20:19:19 - model_mutation_operators.py:616 - select insert layer: ResidualBlock<
+  (residual_conv1): Conv2d<input_channels=120, output_channels=30, kernel_size=(1, 1), stride=(1, 1), pad_mode=same, padding=0, dilation=(1, 1), group=1, has_bias=False, weight_init=<mindspore.common.initializer.HeUniform object at 0x7f7d3731ead0>, bias_init=None, format=NCHW>
+  (residual_bn1): BatchNorm2d<num_features=30, eps=0.0001, momentum=0.9, gamma=Parameter (name=residual_bn1.gamma, shape=(30,), dtype=Float32, requires_grad=True), beta=Parameter (name=residual_bn1.beta, shape=(30,), dtype=Float32, requires_grad=True), moving_mean=Parameter (name=residual_bn1.moving_mean, shape=(30,), dtype=Float32, requires_grad=False), moving_variance=Parameter (name=residual_bn1.moving_variance, shape=(30,), dtype=Float32, requires_grad=False)>
+  (residual_conv2): Conv2d<input_channels=30, output_channels=30, kernel_size=(3, 3), stride=(1, 1), pad_mode=same, padding=0, dilation=(1, 1), group=1, has_bias=False, weight_init=<mindspore.common.initializer.HeUniform object at 0x7f7d3731edd0>, bias_init=None, format=NCHW>
+  (residual_bn2): BatchNorm2d<num_features=30, eps=0.0001, momentum=0.9, gamma=Parameter (name=residual_bn2.gamma, shape=(30,), dtype=Float32, requires_grad=True), beta=Parameter (name=residual_bn2.beta, shape=(30,), dtype=Float32, requires_grad=True), moving_mean=Parameter (name=residual_bn2.moving_mean, shape=(30,), dtype=Float32, requires_grad=False), moving_variance=Parameter (name=residual_bn2.moving_variance, shape=(30,), dtype=Float32, requires_grad=False)>
+  (residual_conv3): Conv2d<input_channels=30, output_channels=120, kernel_size=(1, 1), stride=(1, 1), pad_mode=same, padding=0, dilation=(1, 1), group=1, has_bias=False, weight_init=<mindspore.common.initializer.HeUniform object at 0x7f7d36efb8d0>, bias_init=None, format=NCHW>
+  (residual_bn3): BatchNorm2d<num_features=120, eps=0.0001, momentum=0.9, gamma=Parameter (name=residual_bn3.gamma, shape=(120,), dtype=Float32, requires_grad=True), beta=Parameter (name=residual_bn3.beta, shape=(120,), dtype=Float32, requires_grad=True), moving_mean=Parameter (name=residual_bn3.moving_mean, shape=(120,), dtype=Float32, requires_grad=False), moving_variance=Parameter (name=residual_bn3.moving_variance, shape=(120,), dtype=Float32, requires_grad=False)>
+  (residual_relu1): ReLU<>
+  (residual_relu2): ReLU<>
+  (residual_relu3): ReLU<>
+  (residual_down_sample_layer): SequentialCell<
+    (0): Conv2d<input_channels=120, output_channels=120, kernel_size=(1, 1), stride=(1, 1), pad_mode=same, padding=0, dilation=(1, 1), group=1, has_bias=False, weight_init=<mindspore.common.initializer.HeUniform object at 0x7f7d36efbd50>, bias_init=None, format=NCHW>
+    (1): BatchNorm2d<num_features=120, eps=0.0001, momentum=0.9, gamma=Parameter (name=residual_down_sample_layer.1.gamma, shape=(120,), dtype=Float32, requires_grad=True), beta=Parameter (name=residual_down_sample_layer.1.beta, shape=(120,), dtype=Float32, requires_grad=True), moving_mean=Parameter (name=residual_down_sample_layer.1.moving_mean, shape=(120,), dtype=Float32, requires_grad=False), moving_variance=Parameter (name=residual_down_sample_layer.1.moving_variance, shape=(120,), dtype=Float32, requires_grad=False)>
+    >
+  >
+INFO 2024-05-28 20:19:19 - model_mutation_operators.py:629 - insert_layer_outshape equal!
+INFO 2024-05-28 20:19:19 - model_mutation_operators.py:694 - add Cascade_op after basicop!
+INFO 2024-05-28 20:19:19 - model_mutation_operators.py:746 - mut_result:True
+INFO 2024-05-28 20:19:19 - model_mutation_operators.py:747 - 67 generation!
+
+INFO 2024-05-28 20:19:19 - mutation_test.py:291 - ================== start 68 generation!(68/100) ==================
+INFO 2024-05-28 20:19:19 - model_mutation_operators.py:243 - Adopt LD mut_strategy!
+INFO 2024-05-28 20:19:19 - model_mutation_operators.py:259 - delete layer_name:conv1
+INFO 2024-05-28 20:19:19 - model_mutation_operators.py:279 - mut_result:No suitable ops for LD mutation!
+INFO 2024-05-28 20:19:19 - model_mutation_operators.py:280 - 68 generation!
+INFO 2024-05-28 20:19:19 - mutation_test.py:291 - ================== start 69 generation!(69/100) ==================
+INFO 2024-05-28 20:19:19 - model_mutation_operators.py:243 - Adopt LD mut_strategy!
+INFO 2024-05-28 20:19:19 - model_mutation_operators.py:259 - delete layer_name:fc1
+INFO 2024-05-28 20:19:19 - model_mutation_operators.py:321 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-28 20:19:19 - model_mutation_operators.py:330 - adopt DeleteCell Replace_ms
+INFO 2024-05-28 20:19:19 - model_mutation_operators.py:506 - mut_result:True
+INFO 2024-05-28 20:19:19 - model_mutation_operators.py:507 - 69 generation!
+
+INFO 2024-05-28 20:19:19 - mutation_test.py:291 - ================== start 70 generation!(70/100) ==================
+INFO 2024-05-28 20:19:19 - model_mutation_operators.py:756 - Adopt RA mut_strategy!
+INFO 2024-05-28 20:19:19 - model_mutation_operators.py:807 - mut_result:No suitable ops for RA mutation!
+INFO 2024-05-28 20:19:19 - model_mutation_operators.py:808 - 70 generation!
+INFO 2024-05-28 20:19:20 - mutation_test.py:291 - ================== start 71 generation!(71/100) ==================
+INFO 2024-05-28 20:19:20 - model_mutation_operators.py:243 - Adopt LD mut_strategy!
+INFO 2024-05-28 20:19:20 - model_mutation_operators.py:259 - delete layer_name:conv1
+INFO 2024-05-28 20:19:20 - model_mutation_operators.py:279 - mut_result:No suitable ops for LD mutation!
+INFO 2024-05-28 20:19:20 - model_mutation_operators.py:280 - 71 generation!
+INFO 2024-05-28 20:19:20 - mutation_test.py:291 - ================== start 72 generation!(72/100) ==================
+INFO 2024-05-28 20:19:20 - model_mutation_operators.py:243 - Adopt LD mut_strategy!
+INFO 2024-05-28 20:19:20 - model_mutation_operators.py:259 - delete layer_name:fc3
+INFO 2024-05-28 20:19:20 - model_mutation_operators.py:321 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-28 20:19:20 - model_mutation_operators.py:330 - adopt DeleteCell Replace_ms
+INFO 2024-05-28 20:19:20 - model_mutation_operators.py:506 - mut_result:True
+INFO 2024-05-28 20:19:20 - model_mutation_operators.py:507 - 72 generation!
+
+INFO 2024-05-28 20:19:21 - mutation_test.py:291 - ================== start 73 generation!(73/100) ==================
+INFO 2024-05-28 20:19:21 - model_mutation_operators.py:1071 - Adopt CM mut_strategy!
+INFO 2024-05-28 20:19:21 - model_mutation_operators.py:1117 - mut_result:No suitable ops for CM mutation!
+INFO 2024-05-28 20:19:21 - model_mutation_operators.py:1118 - 73 generation!
+INFO 2024-05-28 20:19:21 - mutation_test.py:291 - ================== start 74 generation!(74/100) ==================
+INFO 2024-05-28 20:19:21 - model_mutation_operators.py:243 - Adopt LD mut_strategy!
+INFO 2024-05-28 20:19:21 - model_mutation_operators.py:259 - delete layer_name:fc1
+INFO 2024-05-28 20:19:21 - model_mutation_operators.py:321 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-28 20:19:21 - model_mutation_operators.py:330 - adopt DeleteCell Replace_ms
+INFO 2024-05-28 20:19:21 - model_mutation_operators.py:506 - mut_result:True
+INFO 2024-05-28 20:19:21 - model_mutation_operators.py:507 - 74 generation!
+
+INFO 2024-05-28 20:19:22 - mutation_test.py:291 - ================== start 75 generation!(75/100) ==================
+INFO 2024-05-28 20:19:22 - model_mutation_operators.py:243 - Adopt LD mut_strategy!
+INFO 2024-05-28 20:19:22 - model_mutation_operators.py:259 - delete layer_name:conv1
+INFO 2024-05-28 20:19:22 - model_mutation_operators.py:279 - mut_result:No suitable ops for LD mutation!
+INFO 2024-05-28 20:19:22 - model_mutation_operators.py:280 - 75 generation!
+INFO 2024-05-28 20:19:22 - mutation_test.py:291 - ================== start 76 generation!(76/100) ==================
+INFO 2024-05-28 20:19:22 - model_mutation_operators.py:243 - Adopt LD mut_strategy!
+INFO 2024-05-28 20:19:22 - model_mutation_operators.py:259 - delete layer_name:conv1
+INFO 2024-05-28 20:19:22 - model_mutation_operators.py:279 - mut_result:No suitable ops for LD mutation!
+INFO 2024-05-28 20:19:22 - model_mutation_operators.py:280 - 76 generation!
+INFO 2024-05-28 20:19:22 - mutation_test.py:291 - ================== start 77 generation!(77/100) ==================
+INFO 2024-05-28 20:19:22 - model_mutation_operators.py:243 - Adopt LD mut_strategy!
+INFO 2024-05-28 20:19:22 - model_mutation_operators.py:259 - delete layer_name:fc1
+INFO 2024-05-28 20:19:22 - model_mutation_operators.py:321 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-28 20:19:22 - model_mutation_operators.py:330 - adopt DeleteCell Replace_ms
+INFO 2024-05-28 20:19:22 - model_mutation_operators.py:506 - mut_result:True
+INFO 2024-05-28 20:19:22 - model_mutation_operators.py:507 - 77 generation!
+
+INFO 2024-05-28 20:19:22 - mutation_test.py:291 - ================== start 78 generation!(78/100) ==================
+INFO 2024-05-28 20:19:22 - model_mutation_operators.py:243 - Adopt LD mut_strategy!
+INFO 2024-05-28 20:19:22 - model_mutation_operators.py:259 - delete layer_name:pool2
+INFO 2024-05-28 20:19:22 - model_mutation_operators.py:321 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-28 20:19:22 - model_mutation_operators.py:330 - adopt DeleteCell Replace_ms
+INFO 2024-05-28 20:19:22 - model_mutation_operators.py:506 - mut_result:True
+INFO 2024-05-28 20:19:22 - model_mutation_operators.py:507 - 78 generation!
+
+INFO 2024-05-28 20:19:22 - mutation_test.py:291 - ================== start 79 generation!(79/100) ==================
+INFO 2024-05-28 20:19:22 - model_mutation_operators.py:243 - Adopt LD mut_strategy!
+INFO 2024-05-28 20:19:22 - model_mutation_operators.py:259 - delete layer_name:dropout
+INFO 2024-05-28 20:19:22 - model_mutation_operators.py:321 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-28 20:19:22 - model_mutation_operators.py:326 - adopt DeleteCell EmptyCell
+INFO 2024-05-28 20:19:22 - model_mutation_operators.py:506 - mut_result:True
+INFO 2024-05-28 20:19:22 - model_mutation_operators.py:507 - 79 generation!
+
+INFO 2024-05-28 20:19:22 - mutation_test.py:291 - ================== start 80 generation!(80/100) ==================
+INFO 2024-05-28 20:19:22 - model_mutation_operators.py:243 - Adopt LD mut_strategy!
+INFO 2024-05-28 20:19:22 - model_mutation_operators.py:259 - delete layer_name:conv1
+INFO 2024-05-28 20:19:22 - model_mutation_operators.py:279 - mut_result:No suitable ops for LD mutation!
+INFO 2024-05-28 20:19:22 - model_mutation_operators.py:280 - 80 generation!
+INFO 2024-05-28 20:19:23 - mutation_test.py:291 - ================== start 81 generation!(81/100) ==================
+INFO 2024-05-28 20:19:23 - model_mutation_operators.py:243 - Adopt LD mut_strategy!
+INFO 2024-05-28 20:19:23 - model_mutation_operators.py:259 - delete layer_name:flatten
+INFO 2024-05-28 20:19:23 - model_mutation_operators.py:321 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-28 20:19:23 - model_mutation_operators.py:330 - adopt DeleteCell Replace_ms
+INFO 2024-05-28 20:19:23 - model_mutation_operators.py:506 - mut_result:True
+INFO 2024-05-28 20:19:23 - model_mutation_operators.py:507 - 81 generation!
+
+INFO 2024-05-28 20:19:23 - mutation_test.py:291 - ================== start 82 generation!(82/100) ==================
+INFO 2024-05-28 20:19:23 - model_mutation_operators.py:24 - Adopt PM mut_strategy!
+INFO 2024-05-28 20:19:23 - model_mutation_operators.py:63 - The target model do not have the mutator operators kernel_size!
+INFO 2024-05-28 20:19:23 - model_mutation_operators.py:64 - mut_result:Parameter Miss
+INFO 2024-05-28 20:19:23 - model_mutation_operators.py:65 - 82 generation!
+
+INFO 2024-05-28 20:19:23 - mutation_test.py:291 - ================== start 83 generation!(83/100) ==================
+INFO 2024-05-28 20:19:23 - model_mutation_operators.py:243 - Adopt LD mut_strategy!
+INFO 2024-05-28 20:19:23 - model_mutation_operators.py:259 - delete layer_name:dropout
+INFO 2024-05-28 20:19:23 - model_mutation_operators.py:321 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-28 20:19:23 - model_mutation_operators.py:326 - adopt DeleteCell EmptyCell
+INFO 2024-05-28 20:19:23 - model_mutation_operators.py:506 - mut_result:True
+INFO 2024-05-28 20:19:23 - model_mutation_operators.py:507 - 83 generation!
+
+INFO 2024-05-28 20:19:23 - mutation_test.py:291 - ================== start 84 generation!(84/100) ==================
+INFO 2024-05-28 20:19:23 - model_mutation_operators.py:1071 - Adopt CM mut_strategy!
+INFO 2024-05-28 20:19:23 - model_mutation_operators.py:1154 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-28 20:19:23 - model_mutation_operators.py:1161 - select layer: fc3 layer_type: <class 'mindspore.nn.layer.basic.Dense'> in_shape: [2, 84] out_shape: [2, 10]
+INFO 2024-05-28 20:19:23 - model_mutation_operators.py:1162 - mut Basic type: True
+INFO 2024-05-28 20:19:23 - model_mutation_operators.py:1205 - select insert layer: GELU<>
+INFO 2024-05-28 20:19:23 - model_mutation_operators.py:1250 - replace Basic with CM op!
+INFO 2024-05-28 20:19:23 - model_mutation_operators.py:1301 - mut_result:True
+INFO 2024-05-28 20:19:23 - model_mutation_operators.py:1302 - 84 generation!
+
+INFO 2024-05-28 20:19:23 - mutation_test.py:291 - ================== start 85 generation!(85/100) ==================
+INFO 2024-05-28 20:19:23 - model_mutation_operators.py:243 - Adopt LD mut_strategy!
+INFO 2024-05-28 20:19:23 - model_mutation_operators.py:259 - delete layer_name:fc3
+INFO 2024-05-28 20:19:23 - model_mutation_operators.py:321 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-28 20:19:23 - model_mutation_operators.py:330 - adopt DeleteCell Replace_ms
+INFO 2024-05-28 20:19:23 - model_mutation_operators.py:506 - mut_result:True
+INFO 2024-05-28 20:19:23 - model_mutation_operators.py:507 - 85 generation!
+
+INFO 2024-05-28 20:19:24 - mutation_test.py:291 - ================== start 86 generation!(86/100) ==================
+INFO 2024-05-28 20:19:24 - model_mutation_operators.py:243 - Adopt LD mut_strategy!
+INFO 2024-05-28 20:19:24 - model_mutation_operators.py:259 - delete layer_name:flatten
+INFO 2024-05-28 20:19:24 - model_mutation_operators.py:321 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-28 20:19:24 - model_mutation_operators.py:330 - adopt DeleteCell Replace_ms
+INFO 2024-05-28 20:19:24 - model_mutation_operators.py:506 - mut_result:True
+INFO 2024-05-28 20:19:24 - model_mutation_operators.py:507 - 86 generation!
+
+INFO 2024-05-28 20:19:24 - mutation_test.py:291 - ================== start 87 generation!(87/100) ==================
+INFO 2024-05-28 20:19:24 - model_mutation_operators.py:243 - Adopt LD mut_strategy!
+INFO 2024-05-28 20:19:24 - model_mutation_operators.py:259 - delete layer_name:conv1
+INFO 2024-05-28 20:19:24 - model_mutation_operators.py:279 - mut_result:No suitable ops for LD mutation!
+INFO 2024-05-28 20:19:24 - model_mutation_operators.py:280 - 87 generation!
+INFO 2024-05-28 20:19:24 - mutation_test.py:291 - ================== start 88 generation!(88/100) ==================
+INFO 2024-05-28 20:19:24 - model_mutation_operators.py:2119 - Adopt SM mut_strategy!
+INFO 2024-05-28 20:19:24 - model_mutation_operators.py:2157 - select layer: flatten layer_type: <class 'mindspore.nn.layer.basic.Flatten'> in_shape: [2, 16, 7, 7] out_shape: [2, 784]
+INFO 2024-05-28 20:19:24 - model_mutation_operators.py:2158 - mut Basic type: True
+INFO 2024-05-28 20:19:24 - model_mutation_operators.py:2206 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-28 20:19:24 - model_mutation_operators.py:2279 - mutate input_shape: [2, 2, 13, 11, 43]
+INFO 2024-05-28 20:19:24 - model_mutation_operators.py:2280 - mutate output_shape: [2, 13, 7]
+INFO 2024-05-28 20:19:24 - model_mutation_operators.py:2360 - mut_result:True
+INFO 2024-05-28 20:19:24 - model_mutation_operators.py:2361 - 88 generation!
+
+INFO 2024-05-28 20:19:25 - mutation_test.py:291 - ================== start 89 generation!(89/100) ==================
+INFO 2024-05-28 20:19:25 - model_mutation_operators.py:1071 - Adopt CM mut_strategy!
+INFO 2024-05-28 20:19:25 - model_mutation_operators.py:1154 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-28 20:19:25 - model_mutation_operators.py:1161 - select layer: fc3 layer_type: <class 'mindspore.nn.layer.basic.Dense'> in_shape: [2, 84] out_shape: [2, 10]
+INFO 2024-05-28 20:19:25 - model_mutation_operators.py:1162 - mut Basic type: True
+INFO 2024-05-28 20:19:25 - model_mutation_operators.py:1205 - select insert layer: BatchNorm2d<num_features=84, eps=1e-05, momentum=0.9, gamma=Parameter (name=1.gamma, shape=(84,), dtype=Float32, requires_grad=True), beta=Parameter (name=1.beta, shape=(84,), dtype=Float32, requires_grad=True), moving_mean=Parameter (name=1.moving_mean, shape=(84,), dtype=Float32, requires_grad=False), moving_variance=Parameter (name=1.moving_variance, shape=(84,), dtype=Float32, requires_grad=False)>
+INFO 2024-05-28 20:19:25 - model_mutation_operators.py:1250 - replace Basic with CM op!
+INFO 2024-05-28 20:19:25 - model_mutation_operators.py:1301 - mut_result:True
+INFO 2024-05-28 20:19:25 - model_mutation_operators.py:1302 - 89 generation!
+
+INFO 2024-05-28 20:19:25 - mutation_test.py:291 - ================== start 90 generation!(90/100) ==================
+INFO 2024-05-28 20:19:25 - model_mutation_operators.py:243 - Adopt LD mut_strategy!
+INFO 2024-05-28 20:19:25 - model_mutation_operators.py:259 - delete layer_name:relu
+INFO 2024-05-28 20:19:25 - model_mutation_operators.py:321 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-28 20:19:25 - model_mutation_operators.py:326 - adopt DeleteCell EmptyCell
+INFO 2024-05-28 20:19:25 - model_mutation_operators.py:506 - mut_result:True
+INFO 2024-05-28 20:19:25 - model_mutation_operators.py:507 - 90 generation!
+
+INFO 2024-05-28 20:19:27 - mutation_test.py:291 - ================== start 91 generation!(91/100) ==================
+INFO 2024-05-28 20:19:27 - model_mutation_operators.py:243 - Adopt LD mut_strategy!
+INFO 2024-05-28 20:19:27 - model_mutation_operators.py:259 - delete layer_name:conv1
+INFO 2024-05-28 20:19:27 - model_mutation_operators.py:279 - mut_result:No suitable ops for LD mutation!
+INFO 2024-05-28 20:19:27 - model_mutation_operators.py:280 - 91 generation!
+INFO 2024-05-28 20:19:27 - mutation_test.py:291 - ================== start 92 generation!(92/100) ==================
+INFO 2024-05-28 20:19:27 - model_mutation_operators.py:243 - Adopt LD mut_strategy!
+INFO 2024-05-28 20:19:27 - model_mutation_operators.py:259 - delete layer_name:conv1
+INFO 2024-05-28 20:19:27 - model_mutation_operators.py:279 - mut_result:No suitable ops for LD mutation!
+INFO 2024-05-28 20:19:27 - model_mutation_operators.py:280 - 92 generation!
+INFO 2024-05-28 20:19:27 - mutation_test.py:291 - ================== start 93 generation!(93/100) ==================
+INFO 2024-05-28 20:19:27 - model_mutation_operators.py:243 - Adopt LD mut_strategy!
+INFO 2024-05-28 20:19:27 - model_mutation_operators.py:259 - delete layer_name:conv1
+INFO 2024-05-28 20:19:27 - model_mutation_operators.py:279 - mut_result:No suitable ops for LD mutation!
+INFO 2024-05-28 20:19:27 - model_mutation_operators.py:280 - 93 generation!
+INFO 2024-05-28 20:19:27 - mutation_test.py:291 - ================== start 94 generation!(94/100) ==================
+INFO 2024-05-28 20:19:27 - model_mutation_operators.py:243 - Adopt LD mut_strategy!
+INFO 2024-05-28 20:19:27 - model_mutation_operators.py:259 - delete layer_name:dropout
+INFO 2024-05-28 20:19:27 - model_mutation_operators.py:321 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-28 20:19:27 - model_mutation_operators.py:326 - adopt DeleteCell EmptyCell
+INFO 2024-05-28 20:19:27 - model_mutation_operators.py:506 - mut_result:True
+INFO 2024-05-28 20:19:27 - model_mutation_operators.py:507 - 94 generation!
+
+INFO 2024-05-28 20:19:28 - mutation_test.py:291 - ================== start 95 generation!(95/100) ==================
+INFO 2024-05-28 20:19:28 - model_mutation_operators.py:243 - Adopt LD mut_strategy!
+INFO 2024-05-28 20:19:28 - model_mutation_operators.py:259 - delete layer_name:relu
+INFO 2024-05-28 20:19:28 - model_mutation_operators.py:321 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-28 20:19:28 - model_mutation_operators.py:326 - adopt DeleteCell EmptyCell
+INFO 2024-05-28 20:19:28 - model_mutation_operators.py:506 - mut_result:True
+INFO 2024-05-28 20:19:28 - model_mutation_operators.py:507 - 95 generation!
+
+INFO 2024-05-28 20:19:28 - mutation_test.py:291 - ================== start 96 generation!(96/100) ==================
+INFO 2024-05-28 20:19:28 - model_mutation_operators.py:516 - Adopt LA mut_strategy!
+INFO 2024-05-28 20:19:28 - model_mutation_operators.py:561 - mut_result:No suitable ops for LA mutation!
+INFO 2024-05-28 20:19:28 - model_mutation_operators.py:562 - 96 generation!
+INFO 2024-05-28 20:19:28 - mutation_test.py:291 - ================== start 97 generation!(97/100) ==================
+INFO 2024-05-28 20:19:28 - model_mutation_operators.py:243 - Adopt LD mut_strategy!
+INFO 2024-05-28 20:19:28 - model_mutation_operators.py:259 - delete layer_name:conv1
+INFO 2024-05-28 20:19:28 - model_mutation_operators.py:279 - mut_result:No suitable ops for LD mutation!
+INFO 2024-05-28 20:19:28 - model_mutation_operators.py:280 - 97 generation!
+INFO 2024-05-28 20:19:28 - mutation_test.py:291 - ================== start 98 generation!(98/100) ==================
+INFO 2024-05-28 20:19:28 - model_mutation_operators.py:756 - Adopt RA mut_strategy!
+INFO 2024-05-28 20:19:28 - model_mutation_operators.py:850 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-28 20:19:28 - model_mutation_operators.py:859 - select layer: flatten layer_type: <class 'mindspore.nn.layer.basic.Flatten'> in_shape: [2, 16, 7, 7] out_shape: [2, 784]
+INFO 2024-05-28 20:19:28 - model_mutation_operators.py:860 - mut Basic type: True
+INFO 2024-05-28 20:19:28 - model_mutation_operators.py:861 - add Basic layer : Basic_op
+INFO 2024-05-28 20:19:28 - model_mutation_operators.py:874 - select insert layer: BatchNorm2d<num_features=16, eps=1e-05, momentum=0.9, gamma=Parameter (name=gamma, shape=(16,), dtype=Float32, requires_grad=True), beta=Parameter (name=beta, shape=(16,), dtype=Float32, requires_grad=True), moving_mean=Parameter (name=mean, shape=(16,), dtype=Float32, requires_grad=False), moving_variance=Parameter (name=variance, shape=(16,), dtype=Float32, requires_grad=False)>
+INFO 2024-05-28 20:19:28 - model_mutation_operators.py:919 - insert_layer_outshape not equal!: [2, 784]
+INFO 2024-05-28 20:19:28 - model_mutation_operators.py:1061 - mut_result:True
+INFO 2024-05-28 20:19:28 - model_mutation_operators.py:1062 - 98 generation!
+
+INFO 2024-05-28 20:19:29 - mutation_test.py:291 - ================== start 99 generation!(99/100) ==================
+INFO 2024-05-28 20:19:29 - model_mutation_operators.py:243 - Adopt LD mut_strategy!
+INFO 2024-05-28 20:19:29 - model_mutation_operators.py:259 - delete layer_name:flatten
+INFO 2024-05-28 20:19:29 - model_mutation_operators.py:279 - mut_result:No suitable ops for LD mutation!
+INFO 2024-05-28 20:19:29 - model_mutation_operators.py:280 - 99 generation!
+INFO 2024-05-28 20:19:29 - mutation_test.py:291 - ================== start 100 generation!(100/100) ==================
+INFO 2024-05-28 20:19:29 - model_mutation_operators.py:243 - Adopt LD mut_strategy!
+INFO 2024-05-28 20:19:29 - model_mutation_operators.py:259 - delete layer_name:flatten
+INFO 2024-05-28 20:19:29 - model_mutation_operators.py:321 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-28 20:19:29 - model_mutation_operators.py:330 - adopt DeleteCell Replace_ms
+INFO 2024-05-28 20:19:29 - model_mutation_operators.py:506 - mut_result:True
+INFO 2024-05-28 20:19:29 - model_mutation_operators.py:507 - 100 generation!
+
+INFO 2024-05-28 20:19:30 - mutation_test.py:442 - mutation_scores: [-100, -100, -100, -100, -100, -100, -100, -100, -100, -100, 0.46427923, 0.42678174, -100, 0.55556667, 0.55190957, -100, 0.3998345, 0.33134872, 0.5750906, 0.39141673, 1.5808327, 2.602803, -100, -100, 1.1172379, 1.1172379, 0.2937656, -100, -100, -100, -100, 1.9246998, -100, 1.9246998, -100, 1.9246998, -100, 1.9436541, -100, 1.9246998, -100, -100, -100, 0.51442975, 0.41404653, -100, 0.65000814, 0.729215, 0.55818826, 0.5448935, -100, 0.47313127, 0.4780639, 0.4954733, 0.5981285, 0.55685306, 0.56789637, 1.0269669, 2.1506371, 3.0851345, -100, 3.0851345, -100, -100, -100, 2.0208354, 0.79889643, -100, 3.0851345, -100, -100, 1.9789026, -100, 2.0128365, -100, -100, 1.7998374, 2.6735322, 1.9555296, -100, 2.2227442, -100, 1.8470577, 1.8470577, 2.5016198, 2.5016198, -100, 2.7419314, 2.8546257, 3.0149245, -100, -100, -100, 2.092374, 2.164772, -100, -100, 2.501607, -100, 2.5016198]
+INFO 2024-05-28 20:19:30 - mutation_test.py:444 - **** stage1 select generations: [ 86 100  22  78  88  89  90  69  62  60] ****
+
+INFO 2024-05-28 20:19:30 - mutation_test.py:250 - mutation iteration:100 ({'LA': 5, 'LD': 76, 'LC': 3, 'CM': 5, 'RA': 6, 'PM': 3, 'SM': 2}), mutation success:54
+ ({'LA': 1, 'LD': 43, 'LC': 0, 'CM': 4, 'RA': 5, 'PM': 0, 'SM': 1})
+

@@ -1,0 +1,3 @@
+WARNING 2023-11-12 09:53:46 - log.py:94 - [*User Attention*] The PTH has been converted to the checkpoint of MindSpore. Please check whether the conversion result is correct. The saved path is: ./convert_ms.ckpt
+INFO 2023-11-12 09:53:50 - run_GPT3.py:92 - ----------------------------
+INFO 2023-11-12 09:53:50 - run_GPT3.py:93 - epoch: 0/2

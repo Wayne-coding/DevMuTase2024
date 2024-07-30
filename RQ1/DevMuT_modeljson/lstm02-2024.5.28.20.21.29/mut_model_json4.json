@@ -1,0 +1,317 @@
+{
+    "edges": [
+        [
+            "LSTM",
+            "_DynamicLSTMCPUGPU"
+        ],
+        [
+            "_DynamicLSTMCPUGPU",
+            "Dropout"
+        ],
+        [
+            "Dropout",
+            "Tanh"
+        ],
+        [
+            "Tanh",
+            "_DynamicLSTMCPUGPU"
+        ],
+        [
+            "Dropout",
+            "Replace_ms"
+        ]
+    ],
+    "layer_config": {
+        "_DynamicLSTMCPUGPU": [
+            {
+                "ge_sync_data": false,
+                "_is_check_and_refresh": true,
+                "_amp_level": "",
+                "tanh": null,
+                "_forward_pre_hook_key": 0,
+                "_forward_hook_key": 0,
+                "_func_graph_flags": null,
+                "_params": null,
+                "_cells": null,
+                "_params_list": null,
+                "_tensor_list": null,
+                "in_shape": [
+                    2,
+                    100
+                ],
+                "output_shape": [
+                    2,
+                    25
+                ],
+                "in_channels": 25,
+                "out_channels": 1,
+                "has_bias": true,
+                "reshape": null,
+                "shape_op": null
+            }
+        ],
+        "Dropout": [
+            {
+                "ge_sync_data": false,
+                "_is_check_and_refresh": true,
+                "_amp_level": "",
+                "tanh": null,
+                "_forward_pre_hook_key": 0,
+                "_forward_hook_key": 0,
+                "_func_graph_flags": null,
+                "_params": null,
+                "_cells": null,
+                "_params_list": null,
+                "_tensor_list": null,
+                "in_shape": [
+                    2,
+                    100
+                ],
+                "output_shape": [
+                    2,
+                    25
+                ],
+                "in_channels": 25,
+                "out_channels": 1,
+                "has_bias": true,
+                "reshape": null,
+                "shape_op": null
+            }
+        ],
+        "Tanh": [
+            {
+                "ge_sync_data": false,
+                "_is_check_and_refresh": true,
+                "_amp_level": "",
+                "tanh": null,
+                "_forward_pre_hook_key": 0,
+                "_forward_hook_key": 0,
+                "_func_graph_flags": null,
+                "_params": null,
+                "_cells": null,
+                "_params_list": null,
+                "_tensor_list": null,
+                "in_shape": [
+                    2,
+                    100
+                ],
+                "output_shape": [
+                    2,
+                    25
+                ],
+                "in_channels": 25,
+                "out_channels": 1,
+                "has_bias": true,
+                "reshape": null,
+                "shape_op": null
+            }
+        ],
+        "Replace_ms": [
+            {
+                "ge_sync_data": false,
+                "_is_check_and_refresh": true,
+                "_amp_level": "",
+                "tanh": null,
+                "_forward_pre_hook_key": 0,
+                "_forward_hook_key": 0,
+                "_func_graph_flags": null,
+                "_params": null,
+                "_cells": null,
+                "_params_list": null,
+                "_tensor_list": null,
+                "in_shape": [
+                    2,
+                    100
+                ],
+                "output_shape": [
+                    2,
+                    25
+                ],
+                "in_channels": 25,
+                "out_channels": 1,
+                "has_bias": true,
+                "reshape": null,
+                "shape_op": null
+            }
+        ],
+        "Dense": [
+            {
+                "ge_sync_data": false,
+                "_is_check_and_refresh": true,
+                "_amp_level": "",
+                "tanh": null,
+                "_forward_pre_hook_key": 0,
+                "_forward_hook_key": 0,
+                "_func_graph_flags": null,
+                "_params": null,
+                "_cells": null,
+                "_params_list": null,
+                "_tensor_list": null,
+                "in_shape": [
+                    2,
+                    100
+                ],
+                "output_shape": [
+                    2,
+                    25
+                ],
+                "in_channels": 25,
+                "out_channels": 1,
+                "has_bias": true,
+                "reshape": null,
+                "shape_op": null
+            }
+        ]
+    },
+    "layer_input_info": {
+        "LSTM": {
+            "input_dims": [
+                3
+            ],
+            "dtype": [
+                "[mindspore.float32]"
+            ],
+            "shape": [
+                "[2, 49, 50]"
+            ]
+        },
+        "_DynamicLSTMCPUGPU": {
+            "input_dims": [
+                3
+            ],
+            "dtype": [
+                "[mindspore.float32]"
+            ],
+            "shape": [
+                "[49, 2, 50]"
+            ]
+        },
+        "SequentialCell": {
+            "input_dims": [
+                3,
+                2
+            ],
+            "dtype": [
+                "[mindspore.float32]"
+            ],
+            "shape": [
+                "[2, 49, 50]",
+                "[2, 100]"
+            ]
+        },
+        "Dropout": {
+            "input_dims": [
+                3
+            ],
+            "dtype": [
+                "[mindspore.float32]"
+            ],
+            "shape": [
+                "[2, 49, 50]",
+                "[2, 49, 100]"
+            ]
+        },
+        "Tanh": {
+            "input_dims": [
+                3
+            ],
+            "dtype": [
+                "[mindspore.float32]"
+            ],
+            "shape": [
+                "[2, 49, 50]"
+            ]
+        },
+        "Replace_ms": {
+            "input_dims": [
+                2
+            ],
+            "dtype": [
+                "[mindspore.float32]"
+            ],
+            "shape": [
+                "[2, 100]"
+            ]
+        },
+        "Dense": {
+            "input_dims": [
+                2
+            ],
+            "dtype": [
+                "[mindspore.float32]"
+            ],
+            "shape": [
+                "[2, 25]"
+            ]
+        }
+    },
+    "cur_edge_num": 6,
+    "layer_num": 9,
+    "layer_type": [
+        "_DynamicLSTMCPUGPU",
+        "Dropout",
+        "Tanh",
+        "Replace_ms",
+        "Dense"
+    ],
+    "layer_dims": {
+        "LSTM": {
+            "input_dims": [
+                3
+            ],
+            "output_dims": [
+                2
+            ]
+        },
+        "_DynamicLSTMCPUGPU": {
+            "input_dims": [
+                3
+            ],
+            "output_dims": [
+                2
+            ]
+        },
+        "SequentialCell": {
+            "input_dims": [
+                3,
+                2
+            ],
+            "output_dims": [
+                3,
+                2
+            ]
+        },
+        "Dropout": {
+            "input_dims": [
+                3
+            ],
+            "output_dims": [
+                3
+            ]
+        },
+        "Tanh": {
+            "input_dims": [
+                3
+            ],
+            "output_dims": [
+                3
+            ]
+        },
+        "Replace_ms": {
+            "input_dims": [
+                2
+            ],
+            "output_dims": [
+                2
+            ]
+        },
+        "Dense": {
+            "input_dims": [
+                2
+            ],
+            "output_dims": [
+                2
+            ]
+        }
+    }
+}

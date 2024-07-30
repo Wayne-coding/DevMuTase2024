@@ -1,0 +1,230 @@
+{
+    "edges": [
+        [
+            "global_max_pooling2D",
+            "repeat_vector"
+        ],
+        [
+            "repeat_vector",
+            "reshape"
+        ],
+        [
+            "reshape",
+            "bidirectional"
+        ],
+        [
+            "bidirectional",
+            "dense"
+        ],
+        [
+            "dense",
+            "reshape"
+        ]
+    ],
+    "layer_config": {
+        "global_max_pooling2D": [
+            {
+                "data_format": "channels_first"
+            }
+        ],
+        "repeat_vector": [
+            {
+                "n": 5
+            }
+        ],
+        "reshape": [
+            {
+                "target_shape": [
+                    5,
+                    32
+                ]
+            },
+            {
+                "target_shape": [
+                    10
+                ]
+            }
+        ],
+        "bidirectional": [
+            {
+                "layer": {
+                    "type": "LSTM",
+                    "args": {
+                        "units": 5,
+                        "activation": "sigmoid",
+                        "recurrent_activation": "selu",
+                        "use_bias": false,
+                        "kernel_initializer": "random_uniform",
+                        "recurrent_initializer": "random_uniform",
+                        "bias_initializer": "random_uniform",
+                        "unit_forget_bias": false,
+                        "kernel_regularizer": null,
+                        "recurrent_regularizer": null,
+                        "bias_regularizer": null,
+                        "activity_regularizer": null,
+                        "kernel_constraint": null,
+                        "recurrent_constraint": null,
+                        "bias_constraint": null,
+                        "dropout": 0.0,
+                        "recurrent_dropout": 0.0,
+                        "implementation": 1,
+                        "return_sequences": false,
+                        "return_state": false,
+                        "go_backwards": true,
+                        "stateful": false,
+                        "unroll": true
+                    }
+                },
+                "merge_mode": "mul",
+                "weights": null
+            }
+        ],
+        "dense": [
+            {
+                "activation": "linear",
+                "use_bias": false,
+                "kernel_initializer": "random_uniform",
+                "bias_initializer": "random_uniform",
+                "kernel_regularizer": null,
+                "bias_regularizer": null,
+                "activity_regularizer": null,
+                "kernel_constraint": null,
+                "bias_constraint": null
+            }
+        ]
+    },
+    "layer_input_info": {
+        "global_max_pooling2D": {
+            "input_dims": [
+                4
+            ],
+            "dtype": [
+                "float32"
+            ],
+            "shape": [
+                [
+                    null,
+                    32,
+                    32,
+                    3
+                ]
+            ]
+        },
+        "repeat_vector": {
+            "input_dims": [
+                2
+            ],
+            "dtype": [
+                "float32"
+            ],
+            "shape": [
+                [
+                    null,
+                    32
+                ]
+            ]
+        },
+        "reshape": {
+            "input_dims": [
+                3,
+                2
+            ],
+            "dtype": [
+                "float32"
+            ],
+            "shape": [
+                [
+                    null,
+                    5,
+                    32
+                ],
+                [
+                    null,
+                    10
+                ]
+            ]
+        },
+        "bidirectional": {
+            "input_dims": [
+                3
+            ],
+            "dtype": [
+                "float32"
+            ],
+            "shape": [
+                [
+                    null,
+                    5,
+                    32
+                ]
+            ]
+        },
+        "dense": {
+            "input_dims": [
+                2
+            ],
+            "dtype": [
+                "float32"
+            ],
+            "shape": [
+                [
+                    null,
+                    5
+                ]
+            ]
+        }
+    },
+    "layer_num": 7,
+    "layer_type": [
+        "global_max_pooling2D",
+        "repeat_vector",
+        "reshape",
+        "bidirectional",
+        "dense"
+    ],
+    "cur_edge_num": 6,
+    "layer_dims": {
+        "global_max_pooling2D": {
+            "input_dims": [
+                4
+            ],
+            "output_dims": [
+                2
+            ]
+        },
+        "repeat_vector": {
+            "input_dims": [
+                2
+            ],
+            "output_dims": [
+                3
+            ]
+        },
+        "reshape": {
+            "input_dims": [
+                3,
+                2
+            ],
+            "output_dims": [
+                3,
+                2
+            ]
+        },
+        "bidirectional": {
+            "input_dims": [
+                3
+            ],
+            "output_dims": [
+                2
+            ]
+        },
+        "dense": {
+            "input_dims": [
+                2
+            ],
+            "output_dims": [
+                2
+            ]
+        }
+    }
+}

@@ -1,0 +1,225 @@
+{
+    "edges": [
+        [
+            "SequentialCell",
+            "ELU"
+        ],
+        [
+            "ELU",
+            "Replace_ms"
+        ],
+        [
+            "Replace_ms",
+            "ReLU"
+        ],
+        [
+            "ReLU",
+            "Replace_ms"
+        ],
+        [
+            "Replace_ms",
+            "Replace_ms"
+        ],
+        [
+            "ReLU",
+            "EmptyCell"
+        ],
+        [
+            "EmptyCell",
+            "Replace_ms"
+        ]
+    ],
+    "layer_config": {
+        "ELU": [
+            {
+                "ge_sync_data": false,
+                "_is_check_and_refresh": true,
+                "_amp_level": "",
+                "in_shape": "(2, 84)",
+                "output_shape": "(2, 10)",
+                "_forward_pre_hook_key": 1,
+                "_forward_hook_key": 1,
+                "_func_graph_flags": null,
+                "_params": null,
+                "_cells": null,
+                "_params_list": null,
+                "_tensor_list": null,
+                "relu": null
+            }
+        ],
+        "Replace_ms": [
+            {
+                "ge_sync_data": false,
+                "_is_check_and_refresh": true,
+                "_amp_level": "",
+                "in_shape": "(2, 84)",
+                "output_shape": "(2, 10)",
+                "_forward_pre_hook_key": 1,
+                "_forward_hook_key": 1,
+                "_func_graph_flags": null,
+                "_params": null,
+                "_cells": null,
+                "_params_list": null,
+                "_tensor_list": null,
+                "relu": null
+            }
+        ],
+        "Cell": [
+            {
+                "ge_sync_data": false,
+                "_is_check_and_refresh": true,
+                "_amp_level": "",
+                "in_shape": "(2, 84)",
+                "output_shape": "(2, 10)",
+                "_forward_pre_hook_key": 1,
+                "_forward_hook_key": 1,
+                "_func_graph_flags": null,
+                "_params": null,
+                "_cells": null,
+                "_params_list": null,
+                "_tensor_list": null,
+                "relu": null
+            }
+        ],
+        "ReLU": [
+            {
+                "ge_sync_data": false,
+                "_is_check_and_refresh": true,
+                "_amp_level": "",
+                "in_shape": "(2, 84)",
+                "output_shape": "(2, 10)",
+                "_forward_pre_hook_key": 1,
+                "_forward_hook_key": 1,
+                "_func_graph_flags": null,
+                "_params": null,
+                "_cells": null,
+                "_params_list": null,
+                "_tensor_list": null,
+                "relu": null
+            }
+        ]
+    },
+    "layer_input_info": {
+        "SequentialCell": {
+            "input_dims": [
+                4
+            ],
+            "dtype": [
+                "[mindspore.float32]"
+            ],
+            "shape": [
+                "[2, 1, 28, 28]"
+            ]
+        },
+        "ELU": {
+            "input_dims": [
+                4
+            ],
+            "dtype": [
+                "[mindspore.float32]"
+            ],
+            "shape": [
+                "[2, 1, 28, 28]"
+            ]
+        },
+        "Replace_ms": {
+            "input_dims": [
+                4,
+                2
+            ],
+            "dtype": [
+                "[mindspore.float32]"
+            ],
+            "shape": [
+                "[2, 1, 28, 28]",
+                "[2, 6, 28, 28]",
+                "[2, 6, 14, 14]",
+                "[2, 16, 14, 14]",
+                "[2, 16, 7, 7]",
+                "[2, 784]",
+                "[2, 120]",
+                "[2, 84]"
+            ]
+        },
+        "ReLU": {
+            "input_dims": [
+                4,
+                2
+            ],
+            "dtype": [
+                "[mindspore.float32]"
+            ],
+            "shape": [
+                "[2, 6, 28, 28]",
+                "[2, 16, 14, 14]",
+                "[2, 120]",
+                "[2, 84]"
+            ]
+        },
+        "EmptyCell": {
+            "input_dims": [
+                2
+            ],
+            "dtype": [
+                "[mindspore.float32]"
+            ],
+            "shape": [
+                "[2, 120]"
+            ]
+        }
+    },
+    "cur_edge_num": 13,
+    "layer_num": 11,
+    "layer_type": [
+        "ELU",
+        "Replace_ms",
+        "Cell",
+        "ReLU"
+    ],
+    "layer_dims": {
+        "SequentialCell": {
+            "input_dims": [
+                4
+            ],
+            "output_dims": [
+                4
+            ]
+        },
+        "ELU": {
+            "input_dims": [
+                4
+            ],
+            "output_dims": [
+                4
+            ]
+        },
+        "Replace_ms": {
+            "input_dims": [
+                4,
+                2
+            ],
+            "output_dims": [
+                4,
+                2
+            ]
+        },
+        "ReLU": {
+            "input_dims": [
+                4,
+                2
+            ],
+            "output_dims": [
+                4,
+                2
+            ]
+        },
+        "EmptyCell": {
+            "input_dims": [
+                2
+            ],
+            "output_dims": [
+                2
+            ]
+        }
+    }
+}

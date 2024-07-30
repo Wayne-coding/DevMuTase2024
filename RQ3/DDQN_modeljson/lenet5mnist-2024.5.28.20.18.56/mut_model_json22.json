@@ -1,0 +1,407 @@
+{
+    "edges": [
+        [
+            "SequentialCell",
+            "ELU"
+        ],
+        [
+            "ELU",
+            "Replace_ms"
+        ],
+        [
+            "Replace_ms",
+            "EmptyCell"
+        ],
+        [
+            "EmptyCell",
+            "Replace_ms"
+        ],
+        [
+            "Replace_ms",
+            "MaxPool2d"
+        ],
+        [
+            "MaxPool2d",
+            "Replace_ms"
+        ],
+        [
+            "EmptyCell",
+            "AvgPool2d"
+        ],
+        [
+            "AvgPool2d",
+            "Flatten"
+        ],
+        [
+            "Flatten",
+            "Replace_ms"
+        ],
+        [
+            "EmptyCell",
+            "Dropout"
+        ],
+        [
+            "Dropout",
+            "Replace_ms"
+        ]
+    ],
+    "layer_config": {
+        "ELU": [
+            {
+                "ge_sync_data": false,
+                "_is_check_and_refresh": false,
+                "_amp_level": "",
+                "in_shape": "(2, 84)",
+                "output_shape": "(2, 10)",
+                "_forward_pre_hook_key": 1,
+                "_forward_hook_key": 1,
+                "_func_graph_flags": null,
+                "_params": null,
+                "_cells": null,
+                "_params_list": null,
+                "_tensor_list": null,
+                "pad_mode": "VALID",
+                "format": "NCHW",
+                "kernel_size": 2,
+                "stride": 2,
+                "return_indices": false,
+                "use_pad": false,
+                "is_expand": false,
+                "start_dim": 1,
+                "end_dim": -1
+            }
+        ],
+        "Replace_ms": [
+            {
+                "ge_sync_data": false,
+                "_is_check_and_refresh": false,
+                "_amp_level": "",
+                "in_shape": "(2, 84)",
+                "output_shape": "(2, 10)",
+                "_forward_pre_hook_key": 1,
+                "_forward_hook_key": 1,
+                "_func_graph_flags": null,
+                "_params": null,
+                "_cells": null,
+                "_params_list": null,
+                "_tensor_list": null,
+                "pad_mode": "VALID",
+                "format": "NCHW",
+                "kernel_size": 2,
+                "stride": 2,
+                "return_indices": false,
+                "use_pad": false,
+                "is_expand": false,
+                "start_dim": 1,
+                "end_dim": -1
+            }
+        ],
+        "MaxPool2d": [
+            {
+                "ge_sync_data": false,
+                "_is_check_and_refresh": false,
+                "_amp_level": "",
+                "in_shape": "(2, 84)",
+                "output_shape": "(2, 10)",
+                "_forward_pre_hook_key": 1,
+                "_forward_hook_key": 1,
+                "_func_graph_flags": null,
+                "_params": null,
+                "_cells": null,
+                "_params_list": null,
+                "_tensor_list": null,
+                "pad_mode": "VALID",
+                "format": "NCHW",
+                "kernel_size": 2,
+                "stride": 2,
+                "return_indices": false,
+                "use_pad": false,
+                "is_expand": false,
+                "start_dim": 1,
+                "end_dim": -1
+            }
+        ],
+        "AvgPool2d": [
+            {
+                "ge_sync_data": false,
+                "_is_check_and_refresh": false,
+                "_amp_level": "",
+                "in_shape": "(2, 84)",
+                "output_shape": "(2, 10)",
+                "_forward_pre_hook_key": 1,
+                "_forward_hook_key": 1,
+                "_func_graph_flags": null,
+                "_params": null,
+                "_cells": null,
+                "_params_list": null,
+                "_tensor_list": null,
+                "pad_mode": "VALID",
+                "format": "NCHW",
+                "kernel_size": 2,
+                "stride": 2,
+                "return_indices": false,
+                "use_pad": false,
+                "is_expand": false,
+                "start_dim": 1,
+                "end_dim": -1
+            }
+        ],
+        "Flatten": [
+            {
+                "ge_sync_data": false,
+                "_is_check_and_refresh": false,
+                "_amp_level": "",
+                "in_shape": "(2, 84)",
+                "output_shape": "(2, 10)",
+                "_forward_pre_hook_key": 1,
+                "_forward_hook_key": 1,
+                "_func_graph_flags": null,
+                "_params": null,
+                "_cells": null,
+                "_params_list": null,
+                "_tensor_list": null,
+                "pad_mode": "VALID",
+                "format": "NCHW",
+                "kernel_size": 2,
+                "stride": 2,
+                "return_indices": false,
+                "use_pad": false,
+                "is_expand": false,
+                "start_dim": 1,
+                "end_dim": -1
+            }
+        ],
+        "Dropout": [
+            {
+                "ge_sync_data": false,
+                "_is_check_and_refresh": false,
+                "_amp_level": "",
+                "in_shape": "(2, 84)",
+                "output_shape": "(2, 10)",
+                "_forward_pre_hook_key": 1,
+                "_forward_hook_key": 1,
+                "_func_graph_flags": null,
+                "_params": null,
+                "_cells": null,
+                "_params_list": null,
+                "_tensor_list": null,
+                "pad_mode": "VALID",
+                "format": "NCHW",
+                "kernel_size": 2,
+                "stride": 2,
+                "return_indices": false,
+                "use_pad": false,
+                "is_expand": false,
+                "start_dim": 1,
+                "end_dim": -1
+            }
+        ],
+        "Cell": [
+            {
+                "ge_sync_data": false,
+                "_is_check_and_refresh": false,
+                "_amp_level": "",
+                "in_shape": "(2, 84)",
+                "output_shape": "(2, 10)",
+                "_forward_pre_hook_key": 1,
+                "_forward_hook_key": 1,
+                "_func_graph_flags": null,
+                "_params": null,
+                "_cells": null,
+                "_params_list": null,
+                "_tensor_list": null,
+                "pad_mode": "VALID",
+                "format": "NCHW",
+                "kernel_size": 2,
+                "stride": 2,
+                "return_indices": false,
+                "use_pad": false,
+                "is_expand": false,
+                "start_dim": 1,
+                "end_dim": -1
+            }
+        ]
+    },
+    "layer_input_info": {
+        "SequentialCell": {
+            "input_dims": [
+                4
+            ],
+            "dtype": [
+                "[mindspore.float32]"
+            ],
+            "shape": [
+                "[2, 1, 28, 28]",
+                "[2, 6, 14, 14]"
+            ]
+        },
+        "ELU": {
+            "input_dims": [
+                4
+            ],
+            "dtype": [
+                "[mindspore.float32]"
+            ],
+            "shape": [
+                "[2, 1, 28, 28]"
+            ]
+        },
+        "Replace_ms": {
+            "input_dims": [
+                4,
+                2
+            ],
+            "dtype": [
+                "[mindspore.float32]"
+            ],
+            "shape": [
+                "[2, 1, 28, 28]",
+                "[2, 6, 28, 28]",
+                "[2, 6, 14, 14]",
+                "[2, 784]",
+                "[2, 120]",
+                "[2, 84]"
+            ]
+        },
+        "EmptyCell": {
+            "input_dims": [
+                4,
+                2
+            ],
+            "dtype": [
+                "[mindspore.float32]"
+            ],
+            "shape": [
+                "[2, 6, 28, 28]",
+                "[2, 16, 14, 14]",
+                "[2, 120]",
+                "[2, 84]"
+            ]
+        },
+        "MaxPool2d": {
+            "input_dims": [
+                4
+            ],
+            "dtype": [
+                "[mindspore.float32]"
+            ],
+            "shape": [
+                "[2, 6, 14, 14]"
+            ]
+        },
+        "AvgPool2d": {
+            "input_dims": [
+                4
+            ],
+            "dtype": [
+                "[mindspore.float32]"
+            ],
+            "shape": [
+                "[2, 16, 14, 14]"
+            ]
+        },
+        "Flatten": {
+            "input_dims": [
+                4
+            ],
+            "dtype": [
+                "[mindspore.float32]"
+            ],
+            "shape": [
+                "[2, 16, 7, 7]"
+            ]
+        },
+        "Dropout": {
+            "input_dims": [
+                2
+            ],
+            "dtype": [
+                "[mindspore.float32]"
+            ],
+            "shape": [
+                "[2, 120]"
+            ]
+        }
+    },
+    "cur_edge_num": 14,
+    "layer_num": 12,
+    "layer_type": [
+        "ELU",
+        "Replace_ms",
+        "MaxPool2d",
+        "AvgPool2d",
+        "Flatten",
+        "Dropout",
+        "Cell"
+    ],
+    "layer_dims": {
+        "SequentialCell": {
+            "input_dims": [
+                4
+            ],
+            "output_dims": [
+                4
+            ]
+        },
+        "ELU": {
+            "input_dims": [
+                4
+            ],
+            "output_dims": [
+                4
+            ]
+        },
+        "Replace_ms": {
+            "input_dims": [
+                4,
+                2
+            ],
+            "output_dims": [
+                4,
+                2
+            ]
+        },
+        "EmptyCell": {
+            "input_dims": [
+                4,
+                2
+            ],
+            "output_dims": [
+                4,
+                2
+            ]
+        },
+        "MaxPool2d": {
+            "input_dims": [
+                4
+            ],
+            "output_dims": [
+                4
+            ]
+        },
+        "AvgPool2d": {
+            "input_dims": [
+                4
+            ],
+            "output_dims": [
+                4
+            ]
+        },
+        "Flatten": {
+            "input_dims": [
+                4
+            ],
+            "output_dims": [
+                2
+            ]
+        },
+        "Dropout": {
+            "input_dims": [
+                2
+            ],
+            "output_dims": [
+                2
+            ]
+        }
+    }
+}

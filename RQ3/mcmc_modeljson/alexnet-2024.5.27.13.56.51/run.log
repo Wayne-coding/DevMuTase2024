@@ -1,0 +1,1300 @@
+WARNING 2024-05-27 13:56:51 - mutation_test.py:59 - For PyTorch and MindSpore running separately, CUDA_VISIBLE_DEVICES should have at least two GPUs, such as 'export CUDA_VISIBLE_DEVICES=0,1'
+INFO 2024-05-27 13:56:51 - mutation_test.py:129 - Mutation config:
+----------------------------------------------------------------------------------------
+train_config: {'model_name': 'alexnet', 'dataset_name': 'random', 'batch_size': 5, 'input_size': ['(2,3,32, 32)'], 'test_size': 2, 'dtypes': ['float'], 'epoch': 20, 'loss_name': 'CrossEntropy', 'optimizer': 'SGD', 'learning_rate': 0.005, 'loss_ground_truth': 2.950969386100769, 'eval_ground_truth': 0.998740881321355, 'memory_threshold': '1e-2', 'dataset_path': 'alexnet', 'device': 'GPU', 'device_id': '0,1'}
+mutation_config: {'mutation_iterations': 100, 'save_iterations': 1, 'mutation_eval_metric': 'origin_diff', 'validation_threshold': 0.0006, 'output_difference_metric': 'DMAD', 'log_path': '/data1/myz/net-sv/common/log/alexnet-2024.5.27.13.56.51', 'mutation_strategy': 'MCMC', 'mutation_type': ['LD', 'PM', 'LA', 'RA', 'SM', 'CM', 'LC'], 'selected_model_num': 10}
+
+INFO 2024-05-27 13:56:51 - mutation_test.py:1045 - Stage1: start network mutation!
+INFO 2024-05-27 13:56:57 - mutation_test.py:592 - ================== start 1 generation!(1/100) ==================
+INFO 2024-05-27 13:56:57 - model_mutation_operators.py:755 - Adopt RA mut_strategy!
+INFO 2024-05-27 13:56:57 - model_mutation_operators.py:849 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-27 13:56:57 - model_mutation_operators.py:858 - select layer: pool2 layer_type: <class 'mindspore.nn.layer.pooling.MaxPool2d'> in_shape: [2, 256, 8, 8] out_shape: [2, 256, 4, 4]
+INFO 2024-05-27 13:56:57 - model_mutation_operators.py:859 - mut Basic type: True
+INFO 2024-05-27 13:56:57 - model_mutation_operators.py:860 - add Basic layer : Basic_op
+INFO 2024-05-27 13:56:57 - model_mutation_operators.py:873 - select insert layer: MaxPool2d<kernel_size=1, stride=1, pad_mode=VALID>
+INFO 2024-05-27 13:56:57 - model_mutation_operators.py:918 - insert_layer_outshape not equal!: [2, 256, 4, 4]
+INFO 2024-05-27 13:56:57 - model_mutation_operators.py:1060 - mut_result:True
+INFO 2024-05-27 13:56:57 - model_mutation_operators.py:1061 - 1 generation!
+
+INFO 2024-05-27 13:56:57 - mutation_test.py:592 - ================== start 2 generation!(2/100) ==================
+INFO 2024-05-27 13:56:57 - model_mutation_operators.py:755 - Adopt RA mut_strategy!
+INFO 2024-05-27 13:56:57 - model_mutation_operators.py:849 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-27 13:56:57 - model_mutation_operators.py:858 - select layer: conv3 layer_type: <class 'mindspore.nn.layer.conv.Conv2d'> in_shape: [2, 256, 4, 4] out_shape: [2, 384, 4, 4]
+INFO 2024-05-27 13:56:57 - model_mutation_operators.py:859 - mut Basic type: True
+INFO 2024-05-27 13:56:57 - model_mutation_operators.py:860 - add Basic layer : Basic_op
+INFO 2024-05-27 13:56:57 - model_mutation_operators.py:873 - select insert layer: AvgPool2d<kernel_size=1, stride=1, pad_mode=VALID>
+INFO 2024-05-27 13:56:57 - model_mutation_operators.py:918 - insert_layer_outshape not equal!: [2, 384, 4, 4]
+INFO 2024-05-27 13:56:57 - model_mutation_operators.py:1060 - mut_result:True
+INFO 2024-05-27 13:56:57 - model_mutation_operators.py:1061 - 2 generation!
+
+INFO 2024-05-27 13:56:58 - mutation_test.py:592 - ================== start 3 generation!(3/100) ==================
+INFO 2024-05-27 13:56:58 - model_mutation_operators.py:24 - Adopt PM mut_strategy!
+INFO 2024-05-27 13:56:58 - model_mutation_operators.py:80 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-27 13:56:58 - model_mutation_operators.py:93 - select op: pool3 layer_type: MaxPool2d selected param:stride input_shape:[2, 256, 4, 4] output_shape:[2, 256, 2, 2]
+INFO 2024-05-27 13:56:58 - model_mutation_operators.py:160 - mutate_replace_layer: MaxPool2d<kernel_size=3, stride=(4, 2), pad_mode=VALID>
+INFO 2024-05-27 13:56:58 - model_mutation_operators.py:192 - Previous value: 2 Edit value: (4, 2) new_inshape: (2, 256, 4, 4) new_outshape: (2, 256, 1, 1)
+INFO 2024-05-27 13:56:58 - model_mutation_operators.py:231 - SequentialCell<
+  (0): MaxPool2d<kernel_size=3, stride=(4, 2), pad_mode=VALID>
+  (1): Replace_ms<>
+  >
+INFO 2024-05-27 13:56:58 - model_mutation_operators.py:232 - mut_result:True
+INFO 2024-05-27 13:56:58 - model_mutation_operators.py:233 - 3 generation!
+
+INFO 2024-05-27 13:56:58 - mutation_test.py:592 - ================== start 4 generation!(4/100) ==================
+INFO 2024-05-27 13:56:58 - model_mutation_operators.py:2118 - Adopt SM mut_strategy!
+INFO 2024-05-27 13:56:58 - model_mutation_operators.py:2156 - select layer: conv3 layer_type: <class 'mindspore.nn.layer.conv.Conv2d'> in_shape: [2, 256, 4, 4] out_shape: [2, 384, 4, 4]
+INFO 2024-05-27 13:56:58 - model_mutation_operators.py:2157 - mut Basic type: True
+INFO 2024-05-27 13:56:58 - model_mutation_operators.py:2205 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-27 13:56:58 - model_mutation_operators.py:2270 - mutate output_shape: [2, 4]
+INFO 2024-05-27 13:56:58 - model_mutation_operators.py:2359 - mut_result:True
+INFO 2024-05-27 13:56:58 - model_mutation_operators.py:2360 - 4 generation!
+
+INFO 2024-05-27 13:56:58 - mutation_test.py:592 - ================== start 5 generation!(5/100) ==================
+INFO 2024-05-27 13:56:59 - model_mutation_operators.py:24 - Adopt PM mut_strategy!
+INFO 2024-05-27 13:56:59 - model_mutation_operators.py:80 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-27 13:56:59 - model_mutation_operators.py:93 - select op: conv5 layer_type: Conv2d selected param:out_channels input_shape:[2, 384, 4, 4] output_shape:[2, 256, 4, 4]
+INFO 2024-05-27 13:56:59 - model_mutation_operators.py:160 - mutate_replace_layer: Conv2d<input_channels=384, output_channels=512, kernel_size=(3, 3), stride=(1, 1), pad_mode=same, padding=0, dilation=(1, 1), group=1, has_bias=False, weight_init=<mindspore.common.initializer.HeUniform object at 0x7fccfa34cb10>, bias_init=None, format=NCHW>
+INFO 2024-05-27 13:56:59 - model_mutation_operators.py:192 - Previous value: 256 Edit value: 512 new_inshape: (2, 384, 4, 4) new_outshape: (2, 512, 4, 4)
+INFO 2024-05-27 13:56:59 - model_mutation_operators.py:231 - SequentialCell<
+  (0): Conv2d<input_channels=384, output_channels=512, kernel_size=(3, 3), stride=(1, 1), pad_mode=same, padding=0, dilation=(1, 1), group=1, has_bias=False, weight_init=<mindspore.common.initializer.HeUniform object at 0x7fccfa34cb10>, bias_init=None, format=NCHW>
+  (1): Replace_ms<>
+  >
+INFO 2024-05-27 13:56:59 - model_mutation_operators.py:232 - mut_result:True
+INFO 2024-05-27 13:56:59 - model_mutation_operators.py:233 - 5 generation!
+
+INFO 2024-05-27 13:56:59 - mutation_test.py:592 - ================== start 6 generation!(6/100) ==================
+INFO 2024-05-27 13:56:59 - model_mutation_operators.py:2118 - Adopt SM mut_strategy!
+INFO 2024-05-27 13:56:59 - model_mutation_operators.py:2156 - select layer: bn3 layer_type: <class 'mindspore.nn.layer.normalization.BatchNorm2d'> in_shape: [2, 256, 2, 2] out_shape: [2, 256, 2, 2]
+INFO 2024-05-27 13:56:59 - model_mutation_operators.py:2157 - mut Basic type: True
+INFO 2024-05-27 13:56:59 - model_mutation_operators.py:2205 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-27 13:56:59 - model_mutation_operators.py:2270 - mutate output_shape: [2, 8, 12]
+INFO 2024-05-27 13:56:59 - model_mutation_operators.py:2359 - mut_result:True
+INFO 2024-05-27 13:56:59 - model_mutation_operators.py:2360 - 6 generation!
+
+INFO 2024-05-27 13:56:59 - mutation_test.py:592 - ================== start 7 generation!(7/100) ==================
+INFO 2024-05-27 13:56:59 - model_mutation_operators.py:2118 - Adopt SM mut_strategy!
+INFO 2024-05-27 13:56:59 - model_mutation_operators.py:2156 - select layer: dropout1 layer_type: <class 'mindspore.nn.layer.basic.Dropout'> in_shape: [2, 4096] out_shape: [2, 4096]
+INFO 2024-05-27 13:56:59 - model_mutation_operators.py:2157 - mut Basic type: True
+INFO 2024-05-27 13:56:59 - model_mutation_operators.py:2205 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-27 13:56:59 - model_mutation_operators.py:2264 - mutate input_shape: [2, 50]
+INFO 2024-05-27 13:56:59 - model_mutation_operators.py:2359 - mut_result:True
+INFO 2024-05-27 13:56:59 - model_mutation_operators.py:2360 - 7 generation!
+
+INFO 2024-05-27 13:56:59 - mutation_test.py:592 - ================== start 8 generation!(8/100) ==================
+INFO 2024-05-27 13:56:59 - model_mutation_operators.py:2118 - Adopt SM mut_strategy!
+INFO 2024-05-27 13:56:59 - model_mutation_operators.py:2156 - select layer: bn1 layer_type: <class 'mindspore.nn.layer.normalization.BatchNorm2d'> in_shape: [2, 96, 8, 8] out_shape: [2, 96, 8, 8]
+INFO 2024-05-27 13:56:59 - model_mutation_operators.py:2157 - mut Basic type: True
+INFO 2024-05-27 13:56:59 - model_mutation_operators.py:2205 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-27 13:56:59 - model_mutation_operators.py:2270 - mutate output_shape: [2, 5, 35, 10]
+INFO 2024-05-27 13:56:59 - model_mutation_operators.py:2359 - mut_result:True
+INFO 2024-05-27 13:56:59 - model_mutation_operators.py:2360 - 8 generation!
+
+INFO 2024-05-27 13:57:00 - mutation_test.py:592 - ================== start 9 generation!(9/100) ==================
+INFO 2024-05-27 13:57:00 - model_mutation_operators.py:24 - Adopt PM mut_strategy!
+INFO 2024-05-27 13:57:00 - model_mutation_operators.py:80 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-27 13:57:00 - model_mutation_operators.py:93 - select op: conv2 layer_type: Conv2d selected param:stride input_shape:[2, 96, 8, 8] output_shape:[2, 256, 8, 8]
+INFO 2024-05-27 13:57:00 - model_mutation_operators.py:160 - mutate_replace_layer: Conv2d<input_channels=96, output_channels=256, kernel_size=(5, 5), stride=(3, 3), pad_mode=same, padding=0, dilation=(1, 1), group=1, has_bias=False, weight_init=<mindspore.common.initializer.HeUniform object at 0x7fccfa2c3350>, bias_init=None, format=NCHW>
+INFO 2024-05-27 13:57:00 - model_mutation_operators.py:192 - Previous value: (1, 1) Edit value: (3, 3) new_inshape: (2, 96, 8, 8) new_outshape: (2, 256, 3, 3)
+INFO 2024-05-27 13:57:00 - model_mutation_operators.py:231 - SequentialCell<
+  (0): Conv2d<input_channels=96, output_channels=256, kernel_size=(5, 5), stride=(3, 3), pad_mode=same, padding=0, dilation=(1, 1), group=1, has_bias=False, weight_init=<mindspore.common.initializer.HeUniform object at 0x7fccfa2c3350>, bias_init=None, format=NCHW>
+  (1): Replace_ms<>
+  >
+INFO 2024-05-27 13:57:00 - model_mutation_operators.py:232 - mut_result:True
+INFO 2024-05-27 13:57:00 - model_mutation_operators.py:233 - 9 generation!
+
+INFO 2024-05-27 13:57:00 - mutation_test.py:592 - ================== start 10 generation!(10/100) ==================
+INFO 2024-05-27 13:57:00 - model_mutation_operators.py:242 - Adopt LD mut_strategy!
+INFO 2024-05-27 13:57:00 - model_mutation_operators.py:258 - delete layer_name:bn1
+INFO 2024-05-27 13:57:00 - model_mutation_operators.py:320 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-27 13:57:00 - model_mutation_operators.py:325 - adopt DeleteCell EmptyCell
+INFO 2024-05-27 13:57:00 - model_mutation_operators.py:505 - mut_result:True
+INFO 2024-05-27 13:57:00 - model_mutation_operators.py:506 - 10 generation!
+
+INFO 2024-05-27 13:57:00 - mutation_test.py:592 - ================== start 11 generation!(11/100) ==================
+INFO 2024-05-27 13:57:00 - model_mutation_operators.py:755 - Adopt RA mut_strategy!
+INFO 2024-05-27 13:57:00 - model_mutation_operators.py:849 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-27 13:57:00 - model_mutation_operators.py:858 - select layer: dropout1 layer_type: <class 'mindspore.nn.layer.basic.Dropout'> in_shape: [2, 4096] out_shape: [2, 4096]
+INFO 2024-05-27 13:57:00 - model_mutation_operators.py:859 - mut Basic type: True
+INFO 2024-05-27 13:57:00 - model_mutation_operators.py:860 - add Basic layer : Basic_op
+INFO 2024-05-27 13:57:00 - model_mutation_operators.py:873 - select insert layer: ReLU<>
+INFO 2024-05-27 13:57:00 - model_mutation_operators.py:921 - insert_layer_outshape equal!
+INFO 2024-05-27 13:57:00 - model_mutation_operators.py:1060 - mut_result:True
+INFO 2024-05-27 13:57:00 - model_mutation_operators.py:1061 - 11 generation!
+
+INFO 2024-05-27 13:57:00 - mutation_test.py:592 - ================== start 12 generation!(12/100) ==================
+INFO 2024-05-27 13:57:00 - model_mutation_operators.py:1923 - Adopt LC mut_strategy!
+INFO 2024-05-27 13:57:00 - model_mutation_operators.py:1990 - select layer: bn3 layer_type: <class 'mindspore.nn.layer.normalization.BatchNorm2d'> in_shape: [2, 256, 2, 2] out_shape: [2, 256, 2, 2]
+INFO 2024-05-27 13:57:00 - model_mutation_operators.py:1991 - mut Basic type: True
+INFO 2024-05-27 13:57:00 - model_mutation_operators.py:1992 - add Basic layer : Basic_op
+INFO 2024-05-27 13:57:00 - model_mutation_operators.py:2005 - select insert layer: BatchNorm2d<num_features=256, eps=1e-05, momentum=0.09999999999999998, gamma=Parameter (name=gamma, shape=(256,), dtype=Float32, requires_grad=True), beta=Parameter (name=beta, shape=(256,), dtype=Float32, requires_grad=True), moving_mean=Parameter (name=mean, shape=(256,), dtype=Float32, requires_grad=False), moving_variance=Parameter (name=variance, shape=(256,), dtype=Float32, requires_grad=False)>
+INFO 2024-05-27 13:57:00 - model_mutation_operators.py:2040 - insert_layer_outshape equal!
+INFO 2024-05-27 13:57:00 - model_mutation_operators.py:2108 - mut_result:True
+INFO 2024-05-27 13:57:00 - model_mutation_operators.py:2109 - 12 generation!
+
+INFO 2024-05-27 13:57:01 - mutation_test.py:592 - ================== start 13 generation!(13/100) ==================
+INFO 2024-05-27 13:57:01 - model_mutation_operators.py:755 - Adopt RA mut_strategy!
+INFO 2024-05-27 13:57:01 - model_mutation_operators.py:849 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-27 13:57:01 - model_mutation_operators.py:858 - select layer: fc1 layer_type: <class 'mindspore.nn.layer.basic.Dense'> in_shape: [2, 1024] out_shape: [2, 4096]
+INFO 2024-05-27 13:57:01 - model_mutation_operators.py:859 - mut Basic type: True
+INFO 2024-05-27 13:57:01 - model_mutation_operators.py:860 - add Basic layer : Basic_op
+INFO 2024-05-27 13:57:01 - model_mutation_operators.py:873 - select insert layer: BatchNorm2d<num_features=1024, eps=1e-05, momentum=0.9, gamma=Parameter (name=gamma, shape=(1024,), dtype=Float32, requires_grad=True), beta=Parameter (name=beta, shape=(1024,), dtype=Float32, requires_grad=True), moving_mean=Parameter (name=mean, shape=(1024,), dtype=Float32, requires_grad=False), moving_variance=Parameter (name=variance, shape=(1024,), dtype=Float32, requires_grad=False)>
+INFO 2024-05-27 13:57:01 - model_mutation_operators.py:918 - insert_layer_outshape not equal!: [2, 4096]
+INFO 2024-05-27 13:57:01 - model_mutation_operators.py:1060 - mut_result:True
+INFO 2024-05-27 13:57:01 - model_mutation_operators.py:1061 - 13 generation!
+
+INFO 2024-05-27 13:57:01 - mutation_test.py:592 - ================== start 14 generation!(14/100) ==================
+INFO 2024-05-27 13:57:01 - model_mutation_operators.py:755 - Adopt RA mut_strategy!
+INFO 2024-05-27 13:57:01 - model_mutation_operators.py:849 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-27 13:57:01 - model_mutation_operators.py:858 - select layer: fc1 layer_type: <class 'mindspore.nn.layer.basic.Dense'> in_shape: [2, 1024] out_shape: [2, 4096]
+INFO 2024-05-27 13:57:01 - model_mutation_operators.py:859 - mut Basic type: True
+INFO 2024-05-27 13:57:01 - model_mutation_operators.py:860 - add Basic layer : Cascade_op
+INFO 2024-05-27 13:57:01 - model_mutation_operators.py:873 - select insert layer: Inception_A<
+  (branch0): BasicConv2d<
+    (relu): ReLU<>
+    >
+  (branch1): SequentialCell<
+    (0): BasicConv2d<
+      (relu): ReLU<>
+      >
+    (1): BasicConv2d<
+      (relu): ReLU<>
+      >
+    >
+  (branch2): SequentialCell<
+    (0): BasicConv2d<
+      (relu): ReLU<>
+      >
+    (1): BasicConv2d<
+      (relu): ReLU<>
+      >
+    (2): BasicConv2d<
+      (relu): ReLU<>
+      >
+    >
+  (branch_pool): SequentialCell<
+    (0): AvgPool2d<kernel_size=3, stride=1, pad_mode=SAME>
+    (1): BasicConv2d<
+      (relu): ReLU<>
+      >
+    >
+  >
+INFO 2024-05-27 13:57:01 - model_mutation_operators.py:918 - insert_layer_outshape not equal!: [2, 4096]
+INFO 2024-05-27 13:57:01 - model_mutation_operators.py:1060 - mut_result:True
+INFO 2024-05-27 13:57:01 - model_mutation_operators.py:1061 - 14 generation!
+
+INFO 2024-05-27 13:57:02 - mutation_test.py:592 - ================== start 15 generation!(15/100) ==================
+INFO 2024-05-27 13:57:02 - model_mutation_operators.py:755 - Adopt RA mut_strategy!
+INFO 2024-05-27 13:57:02 - model_mutation_operators.py:806 - mut_result:No suitable ops for RA mutation!
+INFO 2024-05-27 13:57:02 - model_mutation_operators.py:807 - 15 generation!
+INFO 2024-05-27 13:57:02 - mutation_test.py:592 - ================== start 16 generation!(16/100) ==================
+INFO 2024-05-27 13:57:02 - model_mutation_operators.py:1923 - Adopt LC mut_strategy!
+INFO 2024-05-27 13:57:02 - model_mutation_operators.py:1990 - select layer: conv1 layer_type: <class 'mindspore.nn.layer.conv.Conv2d'> in_shape: [2, 3, 32, 32] out_shape: [2, 96, 16, 16]
+INFO 2024-05-27 13:57:02 - model_mutation_operators.py:1991 - mut Basic type: True
+INFO 2024-05-27 13:57:02 - model_mutation_operators.py:1992 - add Basic layer : Basic_op
+INFO 2024-05-27 13:57:02 - model_mutation_operators.py:2005 - select insert layer: Conv2d<input_channels=96, output_channels=96, kernel_size=(3, 3), stride=(2, 2), pad_mode=same, padding=0, dilation=(1, 1), group=1, has_bias=False, weight_init=<mindspore.common.initializer.HeUniform object at 0x7fccfa3642d0>, bias_init=None, format=NCHW>
+INFO 2024-05-27 13:57:02 - model_mutation_operators.py:2035 - insert_layer_outshape not equal!: [2, 96, 16, 16]
+INFO 2024-05-27 13:57:03 - model_mutation_operators.py:2108 - mut_result:True
+INFO 2024-05-27 13:57:03 - model_mutation_operators.py:2109 - 16 generation!
+
+INFO 2024-05-27 13:57:03 - mutation_test.py:592 - ================== start 17 generation!(17/100) ==================
+INFO 2024-05-27 13:57:03 - model_mutation_operators.py:24 - Adopt PM mut_strategy!
+INFO 2024-05-27 13:57:03 - model_mutation_operators.py:80 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-27 13:57:03 - model_mutation_operators.py:93 - select op: conv1 layer_type: Conv2d selected param:group input_shape:[2, 3, 32, 32] output_shape:[2, 96, 16, 16]
+INFO 2024-05-27 13:57:03 - model_mutation_operators.py:160 - mutate_replace_layer: Conv2d<input_channels=3, output_channels=96, kernel_size=(3, 3), stride=(2, 2), pad_mode=same, padding=0, dilation=(1, 1), group=1, has_bias=False, weight_init=<mindspore.common.initializer.HeUniform object at 0x7fccfa3e5350>, bias_init=None, format=NCHW>
+INFO 2024-05-27 13:57:03 - model_mutation_operators.py:192 - Previous value: 1 Edit value: 1 new_inshape: (2, 3, 32, 32) new_outshape: (2, 96, 16, 16)
+INFO 2024-05-27 13:57:03 - model_mutation_operators.py:231 - Conv2d<input_channels=3, output_channels=96, kernel_size=(3, 3), stride=(2, 2), pad_mode=same, padding=0, dilation=(1, 1), group=1, has_bias=False, weight_init=<mindspore.common.initializer.HeUniform object at 0x7fccfa3e5350>, bias_init=None, format=NCHW>
+INFO 2024-05-27 13:57:03 - model_mutation_operators.py:232 - mut_result:True
+INFO 2024-05-27 13:57:03 - model_mutation_operators.py:233 - 17 generation!
+
+INFO 2024-05-27 13:57:03 - mutation_test.py:592 - ================== start 18 generation!(18/100) ==================
+INFO 2024-05-27 13:57:04 - model_mutation_operators.py:242 - Adopt LD mut_strategy!
+INFO 2024-05-27 13:57:04 - model_mutation_operators.py:258 - delete layer_name:conv4
+INFO 2024-05-27 13:57:04 - model_mutation_operators.py:320 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-27 13:57:04 - model_mutation_operators.py:325 - adopt DeleteCell EmptyCell
+INFO 2024-05-27 13:57:04 - model_mutation_operators.py:505 - mut_result:True
+INFO 2024-05-27 13:57:04 - model_mutation_operators.py:506 - 18 generation!
+
+INFO 2024-05-27 13:57:05 - mutation_test.py:592 - ================== start 19 generation!(19/100) ==================
+INFO 2024-05-27 13:57:05 - model_mutation_operators.py:515 - Adopt LA mut_strategy!
+INFO 2024-05-27 13:57:05 - model_mutation_operators.py:590 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-27 13:57:05 - model_mutation_operators.py:599 - select layer: fc2 layer_type: <class 'mindspore.nn.layer.basic.Dense'> in_shape: [2, 4096] out_shape: [2, 4096]
+INFO 2024-05-27 13:57:05 - model_mutation_operators.py:600 - mut Basic type: True
+INFO 2024-05-27 13:57:05 - model_mutation_operators.py:601 - add Basic layer : Basic_op
+INFO 2024-05-27 13:57:05 - model_mutation_operators.py:615 - select insert layer: LeakyReLU<>
+INFO 2024-05-27 13:57:05 - model_mutation_operators.py:628 - insert_layer_outshape equal!
+INFO 2024-05-27 13:57:05 - model_mutation_operators.py:745 - mut_result:True
+INFO 2024-05-27 13:57:05 - model_mutation_operators.py:746 - 19 generation!
+
+INFO 2024-05-27 13:57:05 - mutation_test.py:592 - ================== start 20 generation!(20/100) ==================
+INFO 2024-05-27 13:57:05 - model_mutation_operators.py:242 - Adopt LD mut_strategy!
+INFO 2024-05-27 13:57:05 - model_mutation_operators.py:258 - delete layer_name:bn2
+INFO 2024-05-27 13:57:05 - model_mutation_operators.py:320 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-27 13:57:05 - model_mutation_operators.py:325 - adopt DeleteCell EmptyCell
+INFO 2024-05-27 13:57:05 - model_mutation_operators.py:505 - mut_result:True
+INFO 2024-05-27 13:57:05 - model_mutation_operators.py:506 - 20 generation!
+
+INFO 2024-05-27 13:57:06 - mutation_test.py:592 - ================== start 21 generation!(21/100) ==================
+INFO 2024-05-27 13:57:07 - model_mutation_operators.py:515 - Adopt LA mut_strategy!
+INFO 2024-05-27 13:57:07 - model_mutation_operators.py:590 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-27 13:57:07 - model_mutation_operators.py:599 - select layer: bn2 layer_type: <class 'mindspore.nn.layer.normalization.BatchNorm2d'> in_shape: [2, 256, 4, 4] out_shape: [2, 256, 4, 4]
+INFO 2024-05-27 13:57:07 - model_mutation_operators.py:600 - mut Basic type: True
+INFO 2024-05-27 13:57:07 - model_mutation_operators.py:601 - add Basic layer : Basic_op
+INFO 2024-05-27 13:57:07 - model_mutation_operators.py:615 - select insert layer: Conv2dTranspose<input_channels=256, output_channels=256, kernel_size=(1, 1), stride=(1, 1), pad_mode=same, padding=0, dilation=(1, 1), group=1, has_bias=False, weight_init=<mindspore.common.initializer.HeUniform object at 0x7fccfa25fb90>, bias_init=None, format=NCHW>
+INFO 2024-05-27 13:57:07 - model_mutation_operators.py:628 - insert_layer_outshape equal!
+INFO 2024-05-27 13:57:07 - model_mutation_operators.py:745 - mut_result:True
+INFO 2024-05-27 13:57:07 - model_mutation_operators.py:746 - 21 generation!
+
+INFO 2024-05-27 13:57:07 - mutation_test.py:592 - ================== start 22 generation!(22/100) ==================
+INFO 2024-05-27 13:57:07 - model_mutation_operators.py:1923 - Adopt LC mut_strategy!
+INFO 2024-05-27 13:57:07 - model_mutation_operators.py:1990 - select layer: fc3 layer_type: <class 'mindspore.nn.layer.basic.Dense'> in_shape: [2, 4096] out_shape: [2, 10]
+INFO 2024-05-27 13:57:07 - model_mutation_operators.py:1991 - mut Basic type: True
+INFO 2024-05-27 13:57:07 - model_mutation_operators.py:1992 - add Basic layer : Basic_op
+INFO 2024-05-27 13:57:07 - model_mutation_operators.py:2005 - select insert layer: Dense<input_channels=4096, output_channels=10, has_bias=True>
+INFO 2024-05-27 13:57:07 - model_mutation_operators.py:2027 - Illegal LC mutate!
+INFO 2024-05-27 13:57:07 - model_mutation_operators.py:2028 - mut_result:LC Create illegal layer!
+INFO 2024-05-27 13:57:07 - model_mutation_operators.py:2029 - Exception information: 
+For 'MatMul', the type of 'x2' should be same as 'x1', but got 'x1' with type Tensor[Float16] and 'x2' with type Tensor[Float32].
+
+----------------------------------------------------
+- C++ Call Stack: (For framework developers)
+----------------------------------------------------
+mindspore/core/ops/mat_mul.cc:143 InferType
+
+INFO 2024-05-27 13:57:07 - model_mutation_operators.py:2030 - 22 generation!
+
+INFO 2024-05-27 13:57:07 - mutation_test.py:592 - ================== start 23 generation!(23/100) ==================
+INFO 2024-05-27 13:57:07 - model_mutation_operators.py:1923 - Adopt LC mut_strategy!
+INFO 2024-05-27 13:57:07 - model_mutation_operators.py:1990 - select layer: pool1 layer_type: <class 'mindspore.nn.layer.pooling.MaxPool2d'> in_shape: [2, 96, 16, 16] out_shape: [2, 96, 8, 8]
+INFO 2024-05-27 13:57:07 - model_mutation_operators.py:1991 - mut Basic type: True
+INFO 2024-05-27 13:57:07 - model_mutation_operators.py:1992 - add Basic layer : Basic_op
+INFO 2024-05-27 13:57:08 - model_mutation_operators.py:2005 - select insert layer: MaxPool2d<kernel_size=3, stride=2, pad_mode=VALID>
+INFO 2024-05-27 13:57:08 - model_mutation_operators.py:2035 - insert_layer_outshape not equal!: [2, 96, 8, 8]
+INFO 2024-05-27 13:57:08 - model_mutation_operators.py:2108 - mut_result:True
+INFO 2024-05-27 13:57:08 - model_mutation_operators.py:2109 - 23 generation!
+
+INFO 2024-05-27 13:57:08 - mutation_test.py:592 - ================== start 24 generation!(24/100) ==================
+INFO 2024-05-27 13:57:08 - model_mutation_operators.py:24 - Adopt PM mut_strategy!
+INFO 2024-05-27 13:57:08 - model_mutation_operators.py:80 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-27 13:57:08 - model_mutation_operators.py:93 - select op: conv3 layer_type: Conv2d selected param:out_channels input_shape:[2, 256, 4, 4] output_shape:[2, 384, 4, 4]
+INFO 2024-05-27 13:57:08 - model_mutation_operators.py:160 - mutate_replace_layer: Conv2d<input_channels=256, output_channels=96, kernel_size=(3, 3), stride=(1, 1), pad_mode=same, padding=0, dilation=(1, 1), group=1, has_bias=False, weight_init=<mindspore.common.initializer.HeUniform object at 0x7fccfa281850>, bias_init=None, format=NCHW>
+INFO 2024-05-27 13:57:08 - model_mutation_operators.py:192 - Previous value: 384 Edit value: 96 new_inshape: (2, 256, 4, 4) new_outshape: (2, 96, 4, 4)
+INFO 2024-05-27 13:57:08 - model_mutation_operators.py:231 - SequentialCell<
+  (0): Conv2d<input_channels=256, output_channels=96, kernel_size=(3, 3), stride=(1, 1), pad_mode=same, padding=0, dilation=(1, 1), group=1, has_bias=False, weight_init=<mindspore.common.initializer.HeUniform object at 0x7fccfa281850>, bias_init=None, format=NCHW>
+  (1): Replace_ms<>
+  >
+INFO 2024-05-27 13:57:08 - model_mutation_operators.py:232 - mut_result:True
+INFO 2024-05-27 13:57:08 - model_mutation_operators.py:233 - 24 generation!
+
+INFO 2024-05-27 13:57:09 - mutation_test.py:592 - ================== start 25 generation!(25/100) ==================
+INFO 2024-05-27 13:57:09 - model_mutation_operators.py:515 - Adopt LA mut_strategy!
+INFO 2024-05-27 13:57:09 - model_mutation_operators.py:590 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-27 13:57:09 - model_mutation_operators.py:599 - select layer: conv3 layer_type: <class 'mindspore.nn.layer.conv.Conv2d'> in_shape: [2, 256, 4, 4] out_shape: [2, 384, 4, 4]
+INFO 2024-05-27 13:57:09 - model_mutation_operators.py:600 - mut Basic type: True
+INFO 2024-05-27 13:57:09 - model_mutation_operators.py:601 - add Basic layer : Basic_op
+INFO 2024-05-27 13:57:09 - model_mutation_operators.py:615 - select insert layer: Tanh<>
+INFO 2024-05-27 13:57:09 - model_mutation_operators.py:628 - insert_layer_outshape equal!
+INFO 2024-05-27 13:57:09 - model_mutation_operators.py:745 - mut_result:True
+INFO 2024-05-27 13:57:09 - model_mutation_operators.py:746 - 25 generation!
+
+INFO 2024-05-27 13:57:09 - mutation_test.py:592 - ================== start 26 generation!(26/100) ==================
+INFO 2024-05-27 13:57:10 - model_mutation_operators.py:1070 - Adopt CM mut_strategy!
+INFO 2024-05-27 13:57:10 - model_mutation_operators.py:1153 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-27 13:57:10 - model_mutation_operators.py:1160 - select layer: fc2 layer_type: <class 'mindspore.nn.layer.basic.Dense'> in_shape: [2, 4096] out_shape: [2, 4096]
+INFO 2024-05-27 13:57:10 - model_mutation_operators.py:1161 - mut Basic type: True
+INFO 2024-05-27 13:57:10 - model_mutation_operators.py:1204 - select insert layer: ELU<>
+INFO 2024-05-27 13:57:10 - model_mutation_operators.py:1249 - replace Basic with CM op!
+INFO 2024-05-27 13:57:10 - model_mutation_operators.py:1300 - mut_result:True
+INFO 2024-05-27 13:57:10 - model_mutation_operators.py:1301 - 26 generation!
+
+INFO 2024-05-27 13:57:11 - mutation_test.py:592 - ================== start 27 generation!(27/100) ==================
+INFO 2024-05-27 13:57:12 - model_mutation_operators.py:515 - Adopt LA mut_strategy!
+INFO 2024-05-27 13:57:12 - model_mutation_operators.py:590 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-27 13:57:12 - model_mutation_operators.py:599 - select layer: bn2 layer_type: <class 'mindspore.nn.layer.normalization.BatchNorm2d'> in_shape: [2, 256, 4, 4] out_shape: [2, 256, 4, 4]
+INFO 2024-05-27 13:57:12 - model_mutation_operators.py:600 - mut Basic type: True
+INFO 2024-05-27 13:57:12 - model_mutation_operators.py:601 - add Basic layer : Cascade_op
+INFO 2024-05-27 13:57:12 - model_mutation_operators.py:615 - select insert layer: convbnrelu<
+  (conbnrelu_conv): Conv2d<input_channels=256, output_channels=256, kernel_size=(1, 1), stride=(1, 1), pad_mode=same, padding=0, dilation=(1, 1), group=1, has_bias=False, weight_init=<mindspore.common.initializer.HeUniform object at 0x7fccfa3dca90>, bias_init=None, format=NCHW>
+  (conbnrelu_bn): BatchNorm2d<num_features=256, eps=1e-05, momentum=0.9, gamma=Parameter (name=conbnrelu_bn.gamma, shape=(256,), dtype=Float32, requires_grad=True), beta=Parameter (name=conbnrelu_bn.beta, shape=(256,), dtype=Float32, requires_grad=True), moving_mean=Parameter (name=conbnrelu_bn.moving_mean, shape=(256,), dtype=Float32, requires_grad=False), moving_variance=Parameter (name=conbnrelu_bn.moving_variance, shape=(256,), dtype=Float32, requires_grad=False)>
+  (conbnrelu_relu): ReLU<>
+  >
+INFO 2024-05-27 13:57:12 - model_mutation_operators.py:628 - insert_layer_outshape equal!
+INFO 2024-05-27 13:57:12 - model_mutation_operators.py:693 - add Cascade_op after basicop!
+INFO 2024-05-27 13:57:12 - model_mutation_operators.py:745 - mut_result:True
+INFO 2024-05-27 13:57:12 - model_mutation_operators.py:746 - 27 generation!
+
+INFO 2024-05-27 13:57:12 - mutation_test.py:592 - ================== start 28 generation!(28/100) ==================
+INFO 2024-05-27 13:57:13 - model_mutation_operators.py:755 - Adopt RA mut_strategy!
+INFO 2024-05-27 13:57:13 - model_mutation_operators.py:849 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-27 13:57:13 - model_mutation_operators.py:858 - select layer: pool1 layer_type: <class 'mindspore.nn.layer.pooling.MaxPool2d'> in_shape: [2, 96, 16, 16] out_shape: [2, 96, 8, 8]
+INFO 2024-05-27 13:57:13 - model_mutation_operators.py:859 - mut Basic type: True
+INFO 2024-05-27 13:57:13 - model_mutation_operators.py:860 - add Basic layer : Basic_op
+INFO 2024-05-27 13:57:13 - model_mutation_operators.py:873 - select insert layer: Conv2d<input_channels=96, output_channels=96, kernel_size=(1, 1), stride=(1, 1), pad_mode=same, padding=0, dilation=(1, 1), group=1, has_bias=False, weight_init=<mindspore.common.initializer.HeUniform object at 0x7fccf9752250>, bias_init=None, format=NCHW>
+INFO 2024-05-27 13:57:13 - model_mutation_operators.py:918 - insert_layer_outshape not equal!: [2, 96, 8, 8]
+INFO 2024-05-27 13:57:13 - model_mutation_operators.py:1060 - mut_result:True
+INFO 2024-05-27 13:57:13 - model_mutation_operators.py:1061 - 28 generation!
+
+INFO 2024-05-27 13:57:14 - mutation_test.py:592 - ================== start 29 generation!(29/100) ==================
+INFO 2024-05-27 13:57:15 - model_mutation_operators.py:515 - Adopt LA mut_strategy!
+INFO 2024-05-27 13:57:15 - model_mutation_operators.py:590 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-27 13:57:15 - model_mutation_operators.py:599 - select layer: pool2 layer_type: <class 'mindspore.nn.layer.pooling.MaxPool2d'> in_shape: [2, 256, 8, 8] out_shape: [2, 256, 4, 4]
+INFO 2024-05-27 13:57:15 - model_mutation_operators.py:600 - mut Basic type: True
+INFO 2024-05-27 13:57:15 - model_mutation_operators.py:601 - add Basic layer : Cascade_op
+INFO 2024-05-27 13:57:15 - model_mutation_operators.py:615 - select insert layer: downsample<
+  (downsample_conv): Conv2d<input_channels=256, output_channels=256, kernel_size=(1, 1), stride=(1, 1), pad_mode=same, padding=0, dilation=(1, 1), group=1, has_bias=False, weight_init=<mindspore.common.initializer.HeUniform object at 0x7fccf9b95650>, bias_init=None, format=NCHW>
+  (downsample_bn): BatchNorm2d<num_features=256, eps=1e-05, momentum=0.9, gamma=Parameter (name=downsample_bn.gamma, shape=(256,), dtype=Float32, requires_grad=True), beta=Parameter (name=downsample_bn.beta, shape=(256,), dtype=Float32, requires_grad=True), moving_mean=Parameter (name=downsample_bn.moving_mean, shape=(256,), dtype=Float32, requires_grad=False), moving_variance=Parameter (name=downsample_bn.moving_variance, shape=(256,), dtype=Float32, requires_grad=False)>
+  >
+INFO 2024-05-27 13:57:15 - model_mutation_operators.py:628 - insert_layer_outshape equal!
+INFO 2024-05-27 13:57:15 - model_mutation_operators.py:693 - add Cascade_op after basicop!
+INFO 2024-05-27 13:57:15 - model_mutation_operators.py:745 - mut_result:True
+INFO 2024-05-27 13:57:15 - model_mutation_operators.py:746 - 29 generation!
+
+INFO 2024-05-27 13:57:15 - mutation_test.py:592 - ================== start 30 generation!(30/100) ==================
+INFO 2024-05-27 13:57:16 - model_mutation_operators.py:1070 - Adopt CM mut_strategy!
+INFO 2024-05-27 13:57:16 - model_mutation_operators.py:1153 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-27 13:57:16 - model_mutation_operators.py:1160 - select layer: flatten layer_type: <class 'mindspore.nn.layer.basic.Flatten'> in_shape: [2, 256, 2, 2] out_shape: [2, 1024]
+INFO 2024-05-27 13:57:16 - model_mutation_operators.py:1161 - mut Basic type: True
+INFO 2024-05-27 13:57:16 - model_mutation_operators.py:1204 - select insert layer: downsample<
+  (downsample_conv): Conv2d<input_channels=256, output_channels=1024, kernel_size=(1, 1), stride=(1, 1), pad_mode=same, padding=0, dilation=(1, 1), group=1, has_bias=False, weight_init=<mindspore.common.initializer.HeUniform object at 0x7fccf9e53610>, bias_init=None, format=NCHW>
+  (downsample_bn): BatchNorm2d<num_features=1024, eps=1e-05, momentum=0.9, gamma=Parameter (name=1.downsample_bn.gamma, shape=(1024,), dtype=Float32, requires_grad=True), beta=Parameter (name=1.downsample_bn.beta, shape=(1024,), dtype=Float32, requires_grad=True), moving_mean=Parameter (name=1.downsample_bn.moving_mean, shape=(1024,), dtype=Float32, requires_grad=False), moving_variance=Parameter (name=1.downsample_bn.moving_variance, shape=(1024,), dtype=Float32, requires_grad=False)>
+  >
+INFO 2024-05-27 13:57:16 - model_mutation_operators.py:1249 - replace Basic with CM op!
+INFO 2024-05-27 13:57:16 - model_mutation_operators.py:1300 - mut_result:True
+INFO 2024-05-27 13:57:16 - model_mutation_operators.py:1301 - 30 generation!
+
+INFO 2024-05-27 13:57:17 - mutation_test.py:592 - ================== start 31 generation!(31/100) ==================
+INFO 2024-05-27 13:57:17 - model_mutation_operators.py:755 - Adopt RA mut_strategy!
+INFO 2024-05-27 13:57:17 - model_mutation_operators.py:849 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-27 13:57:17 - model_mutation_operators.py:858 - select layer: bn3 layer_type: <class 'mindspore.nn.layer.normalization.BatchNorm2d'> in_shape: [2, 256, 2, 2] out_shape: [2, 256, 2, 2]
+INFO 2024-05-27 13:57:17 - model_mutation_operators.py:859 - mut Basic type: True
+INFO 2024-05-27 13:57:17 - model_mutation_operators.py:860 - add Basic layer : Cascade_op
+INFO 2024-05-27 13:57:17 - model_mutation_operators.py:873 - select insert layer: Inception_A<
+  (branch0): BasicConv2d<
+    (relu): ReLU<>
+    >
+  (branch1): SequentialCell<
+    (0): BasicConv2d<
+      (relu): ReLU<>
+      >
+    (1): BasicConv2d<
+      (relu): ReLU<>
+      >
+    >
+  (branch2): SequentialCell<
+    (0): BasicConv2d<
+      (relu): ReLU<>
+      >
+    (1): BasicConv2d<
+      (relu): ReLU<>
+      >
+    (2): BasicConv2d<
+      (relu): ReLU<>
+      >
+    >
+  (branch_pool): SequentialCell<
+    (0): AvgPool2d<kernel_size=3, stride=1, pad_mode=SAME>
+    (1): BasicConv2d<
+      (relu): ReLU<>
+      >
+    >
+  >
+INFO 2024-05-27 13:57:17 - model_mutation_operators.py:918 - insert_layer_outshape not equal!: [2, 256, 2, 2]
+INFO 2024-05-27 13:57:17 - model_mutation_operators.py:1060 - mut_result:True
+INFO 2024-05-27 13:57:17 - model_mutation_operators.py:1061 - 31 generation!
+
+INFO 2024-05-27 13:57:18 - mutation_test.py:592 - ================== start 32 generation!(32/100) ==================
+INFO 2024-05-27 13:57:18 - model_mutation_operators.py:24 - Adopt PM mut_strategy!
+INFO 2024-05-27 13:57:18 - model_mutation_operators.py:80 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-27 13:57:18 - model_mutation_operators.py:93 - select op: conv4 layer_type: Conv2d selected param:in_channels input_shape:[2, 384, 4, 4] output_shape:[2, 384, 4, 4]
+INFO 2024-05-27 13:57:18 - model_mutation_operators.py:160 - mutate_replace_layer: Conv2d<input_channels=128, output_channels=384, kernel_size=(3, 3), stride=(1, 1), pad_mode=same, padding=0, dilation=(1, 1), group=1, has_bias=False, weight_init=<mindspore.common.initializer.HeUniform object at 0x7fccf9ad74d0>, bias_init=None, format=NCHW>
+INFO 2024-05-27 13:57:18 - model_mutation_operators.py:192 - Previous value: 384 Edit value: 128 new_inshape: (2, 128, 4, 4) new_outshape: (2, 384, 4, 4)
+INFO 2024-05-27 13:57:18 - model_mutation_operators.py:211 - SequentialCell<
+  (0): Replace_ms<>
+  (1): Conv2d<input_channels=128, output_channels=384, kernel_size=(3, 3), stride=(1, 1), pad_mode=same, padding=0, dilation=(1, 1), group=1, has_bias=False, weight_init=<mindspore.common.initializer.HeUniform object at 0x7fccf9ad74d0>, bias_init=None, format=NCHW>
+  >
+INFO 2024-05-27 13:57:18 - model_mutation_operators.py:212 - mut_result:True
+INFO 2024-05-27 13:57:18 - model_mutation_operators.py:213 - 32 generation!
+
+INFO 2024-05-27 13:57:20 - mutation_test.py:592 - ================== start 33 generation!(33/100) ==================
+INFO 2024-05-27 13:57:21 - model_mutation_operators.py:515 - Adopt LA mut_strategy!
+INFO 2024-05-27 13:57:21 - model_mutation_operators.py:560 - mut_result:No suitable ops for LA mutation!
+INFO 2024-05-27 13:57:21 - model_mutation_operators.py:561 - 33 generation!
+INFO 2024-05-27 13:57:21 - mutation_test.py:592 - ================== start 34 generation!(34/100) ==================
+INFO 2024-05-27 13:57:22 - model_mutation_operators.py:1070 - Adopt CM mut_strategy!
+INFO 2024-05-27 13:57:22 - model_mutation_operators.py:1153 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-27 13:57:22 - model_mutation_operators.py:1160 - select layer: flatten layer_type: <class 'mindspore.nn.layer.basic.Flatten'> in_shape: [2, 256, 2, 2] out_shape: [2, 1024]
+INFO 2024-05-27 13:57:22 - model_mutation_operators.py:1161 - mut Basic type: True
+INFO 2024-05-27 13:57:22 - model_mutation_operators.py:1204 - select insert layer: AvgPool2d<kernel_size=1, stride=1, pad_mode=VALID>
+INFO 2024-05-27 13:57:22 - model_mutation_operators.py:1249 - replace Basic with CM op!
+INFO 2024-05-27 13:57:22 - model_mutation_operators.py:1300 - mut_result:True
+INFO 2024-05-27 13:57:22 - model_mutation_operators.py:1301 - 34 generation!
+
+INFO 2024-05-27 13:57:23 - mutation_test.py:592 - ================== start 35 generation!(35/100) ==================
+INFO 2024-05-27 13:57:24 - model_mutation_operators.py:24 - Adopt PM mut_strategy!
+INFO 2024-05-27 13:57:24 - model_mutation_operators.py:80 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-27 13:57:24 - model_mutation_operators.py:93 - select op: bn3 layer_type: BatchNorm2d selected param:momentum input_shape:[2, 256, 2, 2] output_shape:[2, 256, 2, 2]
+INFO 2024-05-27 13:57:24 - model_mutation_operators.py:160 - mutate_replace_layer: BatchNorm2d<num_features=256, eps=1e-05, momentum=0.033333333333333326, gamma=Parameter (name=gamma, shape=(256,), dtype=Float32, requires_grad=True), beta=Parameter (name=beta, shape=(256,), dtype=Float32, requires_grad=True), moving_mean=Parameter (name=mean, shape=(256,), dtype=Float32, requires_grad=False), moving_variance=Parameter (name=variance, shape=(256,), dtype=Float32, requires_grad=False)>
+INFO 2024-05-27 13:57:24 - model_mutation_operators.py:192 - Previous value: 0.09999999999999998 Edit value: 0.033333333333333326 new_inshape: (2, 256, 2, 2) new_outshape: (2, 256, 2, 2)
+INFO 2024-05-27 13:57:24 - model_mutation_operators.py:231 - BatchNorm2d<num_features=256, eps=1e-05, momentum=0.033333333333333326, gamma=Parameter (name=bn3.gamma, shape=(256,), dtype=Float32, requires_grad=True), beta=Parameter (name=bn3.beta, shape=(256,), dtype=Float32, requires_grad=True), moving_mean=Parameter (name=bn3.moving_mean, shape=(256,), dtype=Float32, requires_grad=False), moving_variance=Parameter (name=bn3.moving_variance, shape=(256,), dtype=Float32, requires_grad=False)>
+INFO 2024-05-27 13:57:24 - model_mutation_operators.py:232 - mut_result:True
+INFO 2024-05-27 13:57:24 - model_mutation_operators.py:233 - 35 generation!
+
+INFO 2024-05-27 13:57:24 - mutation_test.py:592 - ================== start 36 generation!(36/100) ==================
+INFO 2024-05-27 13:57:24 - model_mutation_operators.py:242 - Adopt LD mut_strategy!
+INFO 2024-05-27 13:57:24 - model_mutation_operators.py:258 - delete layer_name:fc2
+INFO 2024-05-27 13:57:24 - model_mutation_operators.py:320 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-27 13:57:24 - model_mutation_operators.py:325 - adopt DeleteCell EmptyCell
+INFO 2024-05-27 13:57:24 - model_mutation_operators.py:505 - mut_result:True
+INFO 2024-05-27 13:57:24 - model_mutation_operators.py:506 - 36 generation!
+
+INFO 2024-05-27 13:57:25 - mutation_test.py:592 - ================== start 37 generation!(37/100) ==================
+INFO 2024-05-27 13:57:25 - model_mutation_operators.py:242 - Adopt LD mut_strategy!
+INFO 2024-05-27 13:57:25 - model_mutation_operators.py:258 - delete layer_name:conv4
+INFO 2024-05-27 13:57:25 - model_mutation_operators.py:320 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-27 13:57:25 - model_mutation_operators.py:325 - adopt DeleteCell EmptyCell
+INFO 2024-05-27 13:57:25 - model_mutation_operators.py:505 - mut_result:True
+INFO 2024-05-27 13:57:25 - model_mutation_operators.py:506 - 37 generation!
+
+INFO 2024-05-27 13:57:25 - mutation_test.py:592 - ================== start 38 generation!(38/100) ==================
+INFO 2024-05-27 13:57:26 - model_mutation_operators.py:242 - Adopt LD mut_strategy!
+INFO 2024-05-27 13:57:26 - model_mutation_operators.py:258 - delete layer_name:dropout1
+INFO 2024-05-27 13:57:26 - model_mutation_operators.py:320 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-27 13:57:26 - model_mutation_operators.py:325 - adopt DeleteCell EmptyCell
+INFO 2024-05-27 13:57:26 - model_mutation_operators.py:505 - mut_result:True
+INFO 2024-05-27 13:57:26 - model_mutation_operators.py:506 - 38 generation!
+
+INFO 2024-05-27 13:57:28 - mutation_test.py:592 - ================== start 39 generation!(39/100) ==================
+INFO 2024-05-27 13:57:29 - model_mutation_operators.py:1923 - Adopt LC mut_strategy!
+INFO 2024-05-27 13:57:29 - model_mutation_operators.py:1990 - select layer: bn2 layer_type: <class 'mindspore.nn.layer.normalization.BatchNorm2d'> in_shape: [2, 256, 4, 4] out_shape: [2, 256, 4, 4]
+INFO 2024-05-27 13:57:29 - model_mutation_operators.py:1991 - mut Basic type: True
+INFO 2024-05-27 13:57:29 - model_mutation_operators.py:1992 - add Basic layer : Basic_op
+INFO 2024-05-27 13:57:29 - model_mutation_operators.py:2005 - select insert layer: BatchNorm2d<num_features=256, eps=1e-05, momentum=0.09999999999999998, gamma=Parameter (name=gamma, shape=(256,), dtype=Float32, requires_grad=True), beta=Parameter (name=beta, shape=(256,), dtype=Float32, requires_grad=True), moving_mean=Parameter (name=mean, shape=(256,), dtype=Float32, requires_grad=False), moving_variance=Parameter (name=variance, shape=(256,), dtype=Float32, requires_grad=False)>
+INFO 2024-05-27 13:57:29 - model_mutation_operators.py:2040 - insert_layer_outshape equal!
+INFO 2024-05-27 13:57:29 - model_mutation_operators.py:2108 - mut_result:True
+INFO 2024-05-27 13:57:29 - model_mutation_operators.py:2109 - 39 generation!
+
+INFO 2024-05-27 13:57:29 - mutation_test.py:592 - ================== start 40 generation!(40/100) ==================
+INFO 2024-05-27 13:57:29 - model_mutation_operators.py:1070 - Adopt CM mut_strategy!
+INFO 2024-05-27 13:57:29 - model_mutation_operators.py:1153 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-27 13:57:29 - model_mutation_operators.py:1160 - select layer: dropout2 layer_type: <class 'mindspore.nn.layer.basic.Dropout'> in_shape: [2, 4096] out_shape: [2, 4096]
+INFO 2024-05-27 13:57:29 - model_mutation_operators.py:1161 - mut Basic type: True
+INFO 2024-05-27 13:57:29 - model_mutation_operators.py:1204 - select insert layer: LeakyReLU<>
+INFO 2024-05-27 13:57:29 - model_mutation_operators.py:1249 - replace Basic with CM op!
+INFO 2024-05-27 13:57:29 - model_mutation_operators.py:1300 - mut_result:True
+INFO 2024-05-27 13:57:29 - model_mutation_operators.py:1301 - 40 generation!
+
+INFO 2024-05-27 13:57:31 - mutation_test.py:592 - ================== start 41 generation!(41/100) ==================
+INFO 2024-05-27 13:57:31 - model_mutation_operators.py:755 - Adopt RA mut_strategy!
+INFO 2024-05-27 13:57:31 - model_mutation_operators.py:849 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-27 13:57:31 - model_mutation_operators.py:858 - select layer: fc2 layer_type: <class 'common.mutation_ms.Layer_utils.CM_branchCell'> in_shape: [2, 4096] out_shape: [2, 4096]
+INFO 2024-05-27 13:57:31 - model_mutation_operators.py:859 - mut Basic type: True
+INFO 2024-05-27 13:57:31 - model_mutation_operators.py:860 - add Basic layer : Cascade_op
+INFO 2024-05-27 13:57:32 - model_mutation_operators.py:873 - select insert layer: downsample<
+  (downsample_conv): Conv2d<input_channels=4096, output_channels=4096, kernel_size=(1, 1), stride=(1, 1), pad_mode=same, padding=0, dilation=(1, 1), group=1, has_bias=False, weight_init=<mindspore.common.initializer.HeUniform object at 0x7fccfa306590>, bias_init=None, format=NCHW>
+  (downsample_bn): BatchNorm2d<num_features=4096, eps=1e-05, momentum=0.9, gamma=Parameter (name=downsample_bn.gamma, shape=(4096,), dtype=Float32, requires_grad=True), beta=Parameter (name=downsample_bn.beta, shape=(4096,), dtype=Float32, requires_grad=True), moving_mean=Parameter (name=downsample_bn.moving_mean, shape=(4096,), dtype=Float32, requires_grad=False), moving_variance=Parameter (name=downsample_bn.moving_variance, shape=(4096,), dtype=Float32, requires_grad=False)>
+  >
+INFO 2024-05-27 13:57:32 - model_mutation_operators.py:918 - insert_layer_outshape not equal!: [2, 4096]
+INFO 2024-05-27 13:57:32 - model_mutation_operators.py:1060 - mut_result:True
+INFO 2024-05-27 13:57:32 - model_mutation_operators.py:1061 - 41 generation!
+
+INFO 2024-05-27 13:57:32 - mutation_test.py:592 - ================== start 42 generation!(42/100) ==================
+INFO 2024-05-27 13:57:32 - model_mutation_operators.py:755 - Adopt RA mut_strategy!
+INFO 2024-05-27 13:57:32 - model_mutation_operators.py:849 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-27 13:57:32 - model_mutation_operators.py:858 - select layer: conv3 layer_type: <class 'mindspore.nn.layer.conv.Conv2d'> in_shape: [2, 256, 4, 4] out_shape: [2, 384, 4, 4]
+INFO 2024-05-27 13:57:32 - model_mutation_operators.py:859 - mut Basic type: True
+INFO 2024-05-27 13:57:32 - model_mutation_operators.py:860 - add Basic layer : Basic_op
+INFO 2024-05-27 13:57:32 - model_mutation_operators.py:873 - select insert layer: Conv2d<input_channels=256, output_channels=384, kernel_size=(1, 1), stride=(1, 1), pad_mode=same, padding=0, dilation=(1, 1), group=1, has_bias=False, weight_init=<mindspore.common.initializer.HeUniform object at 0x7fccfa3dab90>, bias_init=None, format=NCHW>
+INFO 2024-05-27 13:57:32 - model_mutation_operators.py:921 - insert_layer_outshape equal!
+INFO 2024-05-27 13:57:32 - model_mutation_operators.py:1060 - mut_result:True
+INFO 2024-05-27 13:57:32 - model_mutation_operators.py:1061 - 42 generation!
+
+INFO 2024-05-27 13:57:33 - mutation_test.py:592 - ================== start 43 generation!(43/100) ==================
+INFO 2024-05-27 13:57:33 - model_mutation_operators.py:1923 - Adopt LC mut_strategy!
+INFO 2024-05-27 13:57:33 - model_mutation_operators.py:1990 - select layer: pool1 layer_type: <class 'mindspore.nn.layer.pooling.MaxPool2d'> in_shape: [2, 96, 16, 16] out_shape: [2, 96, 8, 8]
+INFO 2024-05-27 13:57:33 - model_mutation_operators.py:1991 - mut Basic type: True
+INFO 2024-05-27 13:57:33 - model_mutation_operators.py:1992 - add Basic layer : Basic_op
+INFO 2024-05-27 13:57:33 - model_mutation_operators.py:2005 - select insert layer: MaxPool2d<kernel_size=3, stride=2, pad_mode=VALID>
+INFO 2024-05-27 13:57:33 - model_mutation_operators.py:2035 - insert_layer_outshape not equal!: [2, 96, 8, 8]
+INFO 2024-05-27 13:57:33 - model_mutation_operators.py:2108 - mut_result:True
+INFO 2024-05-27 13:57:33 - model_mutation_operators.py:2109 - 43 generation!
+
+INFO 2024-05-27 13:57:33 - mutation_test.py:592 - ================== start 44 generation!(44/100) ==================
+INFO 2024-05-27 13:57:34 - model_mutation_operators.py:1070 - Adopt CM mut_strategy!
+INFO 2024-05-27 13:57:34 - model_mutation_operators.py:1153 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-27 13:57:34 - model_mutation_operators.py:1160 - select layer: bn2 layer_type: <class 'mindspore.nn.layer.normalization.BatchNorm2d'> in_shape: [2, 256, 4, 4] out_shape: [2, 256, 4, 4]
+INFO 2024-05-27 13:57:34 - model_mutation_operators.py:1161 - mut Basic type: True
+INFO 2024-05-27 13:57:34 - model_mutation_operators.py:1204 - select insert layer: AvgPool2d<kernel_size=1, stride=1, pad_mode=VALID>
+INFO 2024-05-27 13:57:34 - model_mutation_operators.py:1249 - replace Basic with CM op!
+INFO 2024-05-27 13:57:34 - model_mutation_operators.py:1300 - mut_result:True
+INFO 2024-05-27 13:57:34 - model_mutation_operators.py:1301 - 44 generation!
+
+INFO 2024-05-27 13:57:36 - mutation_test.py:592 - ================== start 45 generation!(45/100) ==================
+INFO 2024-05-27 13:57:36 - model_mutation_operators.py:242 - Adopt LD mut_strategy!
+INFO 2024-05-27 13:57:36 - model_mutation_operators.py:258 - delete layer_name:flatten
+INFO 2024-05-27 13:57:36 - model_mutation_operators.py:320 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-27 13:57:36 - model_mutation_operators.py:329 - adopt DeleteCell Replace_ms
+INFO 2024-05-27 13:57:36 - model_mutation_operators.py:505 - mut_result:True
+INFO 2024-05-27 13:57:36 - model_mutation_operators.py:506 - 45 generation!
+
+INFO 2024-05-27 13:57:36 - mutation_test.py:592 - ================== start 46 generation!(46/100) ==================
+INFO 2024-05-27 13:57:36 - model_mutation_operators.py:755 - Adopt RA mut_strategy!
+INFO 2024-05-27 13:57:36 - model_mutation_operators.py:849 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-27 13:57:36 - model_mutation_operators.py:858 - select layer: bn3 layer_type: <class 'mindspore.nn.layer.normalization.BatchNorm2d'> in_shape: [2, 256, 2, 2] out_shape: [2, 256, 2, 2]
+INFO 2024-05-27 13:57:36 - model_mutation_operators.py:859 - mut Basic type: True
+INFO 2024-05-27 13:57:36 - model_mutation_operators.py:860 - add Basic layer : Cascade_op
+INFO 2024-05-27 13:57:36 - model_mutation_operators.py:873 - select insert layer: SE<
+  (SE_pool): GlobalAvgPooling<>
+  (act): HSigmoid<>
+  (SE_act1): ReLU<>
+  (SE_act2): HSigmoid<>
+  >
+INFO 2024-05-27 13:57:36 - model_mutation_operators.py:918 - insert_layer_outshape not equal!: [2, 256, 2, 2]
+INFO 2024-05-27 13:57:36 - model_mutation_operators.py:1060 - mut_result:True
+INFO 2024-05-27 13:57:36 - model_mutation_operators.py:1061 - 46 generation!
+
+INFO 2024-05-27 13:57:37 - mutation_test.py:592 - ================== start 47 generation!(47/100) ==================
+INFO 2024-05-27 13:57:37 - model_mutation_operators.py:755 - Adopt RA mut_strategy!
+INFO 2024-05-27 13:57:37 - model_mutation_operators.py:849 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-27 13:57:37 - model_mutation_operators.py:858 - select layer: dropout2 layer_type: <class 'mindspore.nn.layer.basic.Dropout'> in_shape: [2, 4096] out_shape: [2, 4096]
+INFO 2024-05-27 13:57:37 - model_mutation_operators.py:859 - mut Basic type: True
+INFO 2024-05-27 13:57:37 - model_mutation_operators.py:860 - add Basic layer : Cascade_op
+INFO 2024-05-27 13:57:38 - model_mutation_operators.py:873 - select insert layer: Inception_A<
+  (branch0): BasicConv2d<
+    (relu): ReLU<>
+    >
+  (branch1): SequentialCell<
+    (0): BasicConv2d<
+      (relu): ReLU<>
+      >
+    (1): BasicConv2d<
+      (relu): ReLU<>
+      >
+    >
+  (branch2): SequentialCell<
+    (0): BasicConv2d<
+      (relu): ReLU<>
+      >
+    (1): BasicConv2d<
+      (relu): ReLU<>
+      >
+    (2): BasicConv2d<
+      (relu): ReLU<>
+      >
+    >
+  (branch_pool): SequentialCell<
+    (0): AvgPool2d<kernel_size=3, stride=1, pad_mode=SAME>
+    (1): BasicConv2d<
+      (relu): ReLU<>
+      >
+    >
+  >
+INFO 2024-05-27 13:57:38 - model_mutation_operators.py:918 - insert_layer_outshape not equal!: [2, 4096]
+INFO 2024-05-27 13:57:38 - model_mutation_operators.py:1060 - mut_result:True
+INFO 2024-05-27 13:57:38 - model_mutation_operators.py:1061 - 47 generation!
+
+INFO 2024-05-27 13:57:38 - mutation_test.py:592 - ================== start 48 generation!(48/100) ==================
+INFO 2024-05-27 13:57:39 - model_mutation_operators.py:242 - Adopt LD mut_strategy!
+INFO 2024-05-27 13:57:39 - model_mutation_operators.py:258 - delete layer_name:conv3
+INFO 2024-05-27 13:57:39 - model_mutation_operators.py:320 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-27 13:57:39 - model_mutation_operators.py:329 - adopt DeleteCell Replace_ms
+INFO 2024-05-27 13:57:39 - model_mutation_operators.py:505 - mut_result:True
+INFO 2024-05-27 13:57:39 - model_mutation_operators.py:506 - 48 generation!
+
+INFO 2024-05-27 13:57:40 - mutation_test.py:592 - ================== start 49 generation!(49/100) ==================
+INFO 2024-05-27 13:57:40 - model_mutation_operators.py:755 - Adopt RA mut_strategy!
+INFO 2024-05-27 13:57:40 - model_mutation_operators.py:849 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-27 13:57:40 - model_mutation_operators.py:858 - select layer: conv3 layer_type: <class 'mindspore.nn.layer.conv.Conv2d'> in_shape: [2, 256, 4, 4] out_shape: [2, 384, 4, 4]
+INFO 2024-05-27 13:57:40 - model_mutation_operators.py:859 - mut Basic type: True
+INFO 2024-05-27 13:57:40 - model_mutation_operators.py:860 - add Basic layer : Cascade_op
+INFO 2024-05-27 13:57:40 - model_mutation_operators.py:873 - select insert layer: convbnrelu<
+  (conbnrelu_conv): Conv2d<input_channels=256, output_channels=384, kernel_size=(1, 1), stride=(1, 1), pad_mode=same, padding=0, dilation=(1, 1), group=1, has_bias=False, weight_init=<mindspore.common.initializer.HeUniform object at 0x7fccfa2c7450>, bias_init=None, format=NCHW>
+  (conbnrelu_bn): BatchNorm2d<num_features=384, eps=1e-05, momentum=0.9, gamma=Parameter (name=conbnrelu_bn.gamma, shape=(384,), dtype=Float32, requires_grad=True), beta=Parameter (name=conbnrelu_bn.beta, shape=(384,), dtype=Float32, requires_grad=True), moving_mean=Parameter (name=conbnrelu_bn.moving_mean, shape=(384,), dtype=Float32, requires_grad=False), moving_variance=Parameter (name=conbnrelu_bn.moving_variance, shape=(384,), dtype=Float32, requires_grad=False)>
+  (conbnrelu_relu): ReLU<>
+  >
+INFO 2024-05-27 13:57:40 - model_mutation_operators.py:921 - insert_layer_outshape equal!
+INFO 2024-05-27 13:57:40 - model_mutation_operators.py:1060 - mut_result:True
+INFO 2024-05-27 13:57:40 - model_mutation_operators.py:1061 - 49 generation!
+
+INFO 2024-05-27 13:57:40 - mutation_test.py:592 - ================== start 50 generation!(50/100) ==================
+INFO 2024-05-27 13:57:41 - model_mutation_operators.py:24 - Adopt PM mut_strategy!
+INFO 2024-05-27 13:57:41 - model_mutation_operators.py:80 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-27 13:57:41 - model_mutation_operators.py:93 - select op: conv5 layer_type: Conv2d selected param:in_channels input_shape:[2, 384, 4, 4] output_shape:[2, 256, 4, 4]
+INFO 2024-05-27 13:57:41 - model_mutation_operators.py:160 - mutate_replace_layer: Conv2d<input_channels=192, output_channels=256, kernel_size=(3, 3), stride=(1, 1), pad_mode=same, padding=0, dilation=(1, 1), group=1, has_bias=False, weight_init=<mindspore.common.initializer.HeUniform object at 0x7fccfa2b6c90>, bias_init=None, format=NCHW>
+INFO 2024-05-27 13:57:41 - model_mutation_operators.py:192 - Previous value: 384 Edit value: 192 new_inshape: (2, 192, 4, 4) new_outshape: (2, 256, 4, 4)
+INFO 2024-05-27 13:57:41 - model_mutation_operators.py:211 - SequentialCell<
+  (0): Replace_ms<>
+  (1): Conv2d<input_channels=192, output_channels=256, kernel_size=(3, 3), stride=(1, 1), pad_mode=same, padding=0, dilation=(1, 1), group=1, has_bias=False, weight_init=<mindspore.common.initializer.HeUniform object at 0x7fccfa2b6c90>, bias_init=None, format=NCHW>
+  >
+INFO 2024-05-27 13:57:41 - model_mutation_operators.py:212 - mut_result:True
+INFO 2024-05-27 13:57:41 - model_mutation_operators.py:213 - 50 generation!
+
+INFO 2024-05-27 13:57:42 - mutation_test.py:592 - ================== start 51 generation!(51/100) ==================
+INFO 2024-05-27 13:57:42 - model_mutation_operators.py:242 - Adopt LD mut_strategy!
+INFO 2024-05-27 13:57:42 - model_mutation_operators.py:258 - delete layer_name:fc2
+INFO 2024-05-27 13:57:42 - model_mutation_operators.py:320 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-27 13:57:42 - model_mutation_operators.py:325 - adopt DeleteCell EmptyCell
+INFO 2024-05-27 13:57:42 - model_mutation_operators.py:505 - mut_result:True
+INFO 2024-05-27 13:57:42 - model_mutation_operators.py:506 - 51 generation!
+
+INFO 2024-05-27 13:57:42 - mutation_test.py:592 - ================== start 52 generation!(52/100) ==================
+INFO 2024-05-27 13:57:42 - model_mutation_operators.py:24 - Adopt PM mut_strategy!
+INFO 2024-05-27 13:57:42 - model_mutation_operators.py:80 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-27 13:57:42 - model_mutation_operators.py:93 - select op: bn2 layer_type: BatchNorm2d selected param:eps input_shape:[2, 256, 4, 4] output_shape:[2, 256, 4, 4]
+INFO 2024-05-27 13:57:42 - model_mutation_operators.py:160 - mutate_replace_layer: BatchNorm2d<num_features=256, eps=2e-05, momentum=0.09999999999999998, gamma=Parameter (name=gamma, shape=(256,), dtype=Float32, requires_grad=True), beta=Parameter (name=beta, shape=(256,), dtype=Float32, requires_grad=True), moving_mean=Parameter (name=mean, shape=(256,), dtype=Float32, requires_grad=False), moving_variance=Parameter (name=variance, shape=(256,), dtype=Float32, requires_grad=False)>
+INFO 2024-05-27 13:57:42 - model_mutation_operators.py:192 - Previous value: 1e-05 Edit value: 2e-05 new_inshape: (2, 256, 4, 4) new_outshape: (2, 256, 4, 4)
+INFO 2024-05-27 13:57:42 - model_mutation_operators.py:231 - BatchNorm2d<num_features=256, eps=2e-05, momentum=0.09999999999999998, gamma=Parameter (name=bn2.gamma, shape=(256,), dtype=Float32, requires_grad=True), beta=Parameter (name=bn2.beta, shape=(256,), dtype=Float32, requires_grad=True), moving_mean=Parameter (name=bn2.moving_mean, shape=(256,), dtype=Float32, requires_grad=False), moving_variance=Parameter (name=bn2.moving_variance, shape=(256,), dtype=Float32, requires_grad=False)>
+INFO 2024-05-27 13:57:42 - model_mutation_operators.py:232 - mut_result:True
+INFO 2024-05-27 13:57:42 - model_mutation_operators.py:233 - 52 generation!
+
+INFO 2024-05-27 13:57:42 - mutation_test.py:592 - ================== start 53 generation!(53/100) ==================
+INFO 2024-05-27 13:57:42 - model_mutation_operators.py:1070 - Adopt CM mut_strategy!
+INFO 2024-05-27 13:57:42 - model_mutation_operators.py:1153 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-27 13:57:42 - model_mutation_operators.py:1160 - select layer: fc2 layer_type: <class 'mindspore.nn.layer.basic.Dense'> in_shape: [2, 4096] out_shape: [2, 4096]
+INFO 2024-05-27 13:57:42 - model_mutation_operators.py:1161 - mut Basic type: True
+INFO 2024-05-27 13:57:43 - model_mutation_operators.py:1204 - select insert layer: Softmax<>
+INFO 2024-05-27 13:57:43 - model_mutation_operators.py:1249 - replace Basic with CM op!
+INFO 2024-05-27 13:57:43 - model_mutation_operators.py:1300 - mut_result:True
+INFO 2024-05-27 13:57:43 - model_mutation_operators.py:1301 - 53 generation!
+
+INFO 2024-05-27 13:57:43 - mutation_test.py:592 - ================== start 54 generation!(54/100) ==================
+INFO 2024-05-27 13:57:43 - model_mutation_operators.py:2118 - Adopt SM mut_strategy!
+INFO 2024-05-27 13:57:43 - model_mutation_operators.py:2156 - select layer: flatten layer_type: <class 'mindspore.nn.layer.basic.Flatten'> in_shape: [2, 256, 2, 2] out_shape: [2, 1024]
+INFO 2024-05-27 13:57:43 - model_mutation_operators.py:2157 - mut Basic type: True
+INFO 2024-05-27 13:57:43 - model_mutation_operators.py:2205 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-27 13:57:43 - model_mutation_operators.py:2278 - mutate input_shape: [2, 41, 46]
+INFO 2024-05-27 13:57:43 - model_mutation_operators.py:2279 - mutate output_shape: [2, 14, 13]
+INFO 2024-05-27 13:57:43 - model_mutation_operators.py:2359 - mut_result:True
+INFO 2024-05-27 13:57:43 - model_mutation_operators.py:2360 - 54 generation!
+
+INFO 2024-05-27 13:57:44 - mutation_test.py:592 - ================== start 55 generation!(55/100) ==================
+INFO 2024-05-27 13:57:44 - model_mutation_operators.py:24 - Adopt PM mut_strategy!
+INFO 2024-05-27 13:57:44 - model_mutation_operators.py:80 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-27 13:57:44 - model_mutation_operators.py:93 - select op: conv1 layer_type: Conv2d selected param:group input_shape:[2, 3, 32, 32] output_shape:[2, 96, 16, 16]
+INFO 2024-05-27 13:57:44 - model_mutation_operators.py:160 - mutate_replace_layer: Conv2d<input_channels=3, output_channels=96, kernel_size=(3, 3), stride=(2, 2), pad_mode=same, padding=0, dilation=(1, 1), group=3, has_bias=False, weight_init=<mindspore.common.initializer.HeUniform object at 0x7fccfa2bde90>, bias_init=None, format=NCHW>
+INFO 2024-05-27 13:57:44 - model_mutation_operators.py:192 - Previous value: 1 Edit value: 3 new_inshape: (2, 3, 32, 32) new_outshape: (2, 96, 16, 16)
+INFO 2024-05-27 13:57:44 - model_mutation_operators.py:231 - Conv2d<input_channels=3, output_channels=96, kernel_size=(3, 3), stride=(2, 2), pad_mode=same, padding=0, dilation=(1, 1), group=3, has_bias=False, weight_init=<mindspore.common.initializer.HeUniform object at 0x7fccfa2bde90>, bias_init=None, format=NCHW>
+INFO 2024-05-27 13:57:44 - model_mutation_operators.py:232 - mut_result:True
+INFO 2024-05-27 13:57:44 - model_mutation_operators.py:233 - 55 generation!
+
+INFO 2024-05-27 13:57:44 - mutation_test.py:592 - ================== start 56 generation!(56/100) ==================
+INFO 2024-05-27 13:57:44 - model_mutation_operators.py:2118 - Adopt SM mut_strategy!
+INFO 2024-05-27 13:57:44 - model_mutation_operators.py:2156 - select layer: pool2 layer_type: <class 'mindspore.nn.layer.pooling.MaxPool2d'> in_shape: [2, 256, 8, 8] out_shape: [2, 256, 4, 4]
+INFO 2024-05-27 13:57:44 - model_mutation_operators.py:2157 - mut Basic type: True
+INFO 2024-05-27 13:57:44 - model_mutation_operators.py:2205 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-27 13:57:44 - model_mutation_operators.py:2278 - mutate input_shape: [2, 40]
+INFO 2024-05-27 13:57:44 - model_mutation_operators.py:2279 - mutate output_shape: [2, 8, 27, 48, 36]
+INFO 2024-05-27 13:57:44 - model_mutation_operators.py:2359 - mut_result:True
+INFO 2024-05-27 13:57:44 - model_mutation_operators.py:2360 - 56 generation!
+
+INFO 2024-05-27 13:57:45 - mutation_test.py:592 - ================== start 57 generation!(57/100) ==================
+INFO 2024-05-27 13:57:45 - model_mutation_operators.py:515 - Adopt LA mut_strategy!
+INFO 2024-05-27 13:57:45 - model_mutation_operators.py:590 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-27 13:57:45 - model_mutation_operators.py:599 - select layer: pool1 layer_type: <class 'mindspore.nn.layer.pooling.MaxPool2d'> in_shape: [2, 96, 16, 16] out_shape: [2, 96, 8, 8]
+INFO 2024-05-27 13:57:45 - model_mutation_operators.py:600 - mut Basic type: True
+INFO 2024-05-27 13:57:45 - model_mutation_operators.py:601 - add Basic layer : Basic_op
+INFO 2024-05-27 13:57:45 - model_mutation_operators.py:615 - select insert layer: Dropout<keep_prob=0.5>
+INFO 2024-05-27 13:57:45 - model_mutation_operators.py:628 - insert_layer_outshape equal!
+INFO 2024-05-27 13:57:45 - model_mutation_operators.py:745 - mut_result:True
+INFO 2024-05-27 13:57:45 - model_mutation_operators.py:746 - 57 generation!
+
+INFO 2024-05-27 13:57:45 - mutation_test.py:592 - ================== start 58 generation!(58/100) ==================
+INFO 2024-05-27 13:57:46 - model_mutation_operators.py:24 - Adopt PM mut_strategy!
+INFO 2024-05-27 13:57:46 - model_mutation_operators.py:80 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-27 13:57:46 - model_mutation_operators.py:93 - select op: pool3 layer_type: MaxPool2d selected param:stride input_shape:[2, 256, 4, 4] output_shape:[2, 256, 2, 2]
+INFO 2024-05-27 13:57:46 - model_mutation_operators.py:160 - mutate_replace_layer: MaxPool2d<kernel_size=3, stride=(2, 2), pad_mode=VALID>
+INFO 2024-05-27 13:57:46 - model_mutation_operators.py:192 - Previous value: 2 Edit value: (2, 2) new_inshape: (2, 256, 4, 4) new_outshape: (2, 256, 1, 1)
+INFO 2024-05-27 13:57:46 - model_mutation_operators.py:231 - SequentialCell<
+  (0): MaxPool2d<kernel_size=3, stride=(2, 2), pad_mode=VALID>
+  (1): Replace_ms<>
+  >
+INFO 2024-05-27 13:57:46 - model_mutation_operators.py:232 - mut_result:True
+INFO 2024-05-27 13:57:46 - model_mutation_operators.py:233 - 58 generation!
+
+INFO 2024-05-27 13:57:48 - mutation_test.py:592 - ================== start 59 generation!(59/100) ==================
+INFO 2024-05-27 13:57:48 - model_mutation_operators.py:24 - Adopt PM mut_strategy!
+INFO 2024-05-27 13:57:48 - model_mutation_operators.py:80 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-27 13:57:48 - model_mutation_operators.py:93 - select op: conv2 layer_type: Conv2d selected param:kernel_size input_shape:[2, 96, 8, 8] output_shape:[2, 256, 8, 8]
+INFO 2024-05-27 13:57:48 - model_mutation_operators.py:160 - mutate_replace_layer: Conv2d<input_channels=96, output_channels=256, kernel_size=(3, 3), stride=(1, 1), pad_mode=same, padding=0, dilation=(1, 1), group=1, has_bias=False, weight_init=<mindspore.common.initializer.HeUniform object at 0x7fccf9ff0590>, bias_init=None, format=NCHW>
+INFO 2024-05-27 13:57:48 - model_mutation_operators.py:192 - Previous value: (5, 5) Edit value: (3, 3) new_inshape: (2, 96, 8, 8) new_outshape: (2, 256, 8, 8)
+INFO 2024-05-27 13:57:48 - model_mutation_operators.py:231 - Conv2d<input_channels=96, output_channels=256, kernel_size=(3, 3), stride=(1, 1), pad_mode=same, padding=0, dilation=(1, 1), group=1, has_bias=False, weight_init=<mindspore.common.initializer.HeUniform object at 0x7fccf9ff0590>, bias_init=None, format=NCHW>
+INFO 2024-05-27 13:57:48 - model_mutation_operators.py:232 - mut_result:True
+INFO 2024-05-27 13:57:48 - model_mutation_operators.py:233 - 59 generation!
+
+INFO 2024-05-27 13:57:49 - mutation_test.py:592 - ================== start 60 generation!(60/100) ==================
+INFO 2024-05-27 13:57:49 - model_mutation_operators.py:1923 - Adopt LC mut_strategy!
+INFO 2024-05-27 13:57:49 - model_mutation_operators.py:1990 - select layer: pool3 layer_type: <class 'mindspore.nn.layer.pooling.MaxPool2d'> in_shape: [2, 256, 4, 4] out_shape: [2, 256, 2, 2]
+INFO 2024-05-27 13:57:49 - model_mutation_operators.py:1991 - mut Basic type: True
+INFO 2024-05-27 13:57:49 - model_mutation_operators.py:1992 - add Basic layer : Basic_op
+INFO 2024-05-27 13:57:49 - model_mutation_operators.py:2005 - select insert layer: MaxPool2d<kernel_size=3, stride=2, pad_mode=VALID>
+INFO 2024-05-27 13:57:49 - model_mutation_operators.py:2027 - Illegal LC mutate!
+INFO 2024-05-27 13:57:49 - model_mutation_operators.py:2028 - mut_result:LC Create illegal layer!
+INFO 2024-05-27 13:57:49 - model_mutation_operators.py:2029 - Exception information: 
+For 'MaxPool', the each element of the output shape must be larger than 0, but got output shape: [const vector]{2, 256, 0, 0}. The input shape: [const vector]{2, 256, 2, 2}, kernel size: [const vector]{1, 1, 3, 3}, strides: [const vector]{1, 1, 2, 2}. Please check the official api documents for more information about the output.
+
+----------------------------------------------------
+- C++ Call Stack: (For framework developers)
+----------------------------------------------------
+mindspore/core/ops/max_pool.cc:84 CheckOutshapeValid
+
+INFO 2024-05-27 13:57:49 - model_mutation_operators.py:2030 - 60 generation!
+
+INFO 2024-05-27 13:57:49 - mutation_test.py:592 - ================== start 61 generation!(61/100) ==================
+INFO 2024-05-27 13:57:50 - model_mutation_operators.py:1923 - Adopt LC mut_strategy!
+INFO 2024-05-27 13:57:50 - model_mutation_operators.py:1990 - select layer: bn1 layer_type: <class 'mindspore.nn.layer.normalization.BatchNorm2d'> in_shape: [2, 96, 8, 8] out_shape: [2, 96, 8, 8]
+INFO 2024-05-27 13:57:50 - model_mutation_operators.py:1991 - mut Basic type: True
+INFO 2024-05-27 13:57:50 - model_mutation_operators.py:1992 - add Basic layer : Basic_op
+INFO 2024-05-27 13:57:50 - model_mutation_operators.py:2005 - select insert layer: BatchNorm2d<num_features=96, eps=1e-05, momentum=0.09999999999999998, gamma=Parameter (name=gamma, shape=(96,), dtype=Float32, requires_grad=True), beta=Parameter (name=beta, shape=(96,), dtype=Float32, requires_grad=True), moving_mean=Parameter (name=mean, shape=(96,), dtype=Float32, requires_grad=False), moving_variance=Parameter (name=variance, shape=(96,), dtype=Float32, requires_grad=False)>
+INFO 2024-05-27 13:57:50 - model_mutation_operators.py:2040 - insert_layer_outshape equal!
+INFO 2024-05-27 13:57:50 - model_mutation_operators.py:2108 - mut_result:True
+INFO 2024-05-27 13:57:50 - model_mutation_operators.py:2109 - 61 generation!
+
+INFO 2024-05-27 13:57:50 - mutation_test.py:592 - ================== start 62 generation!(62/100) ==================
+INFO 2024-05-27 13:57:50 - model_mutation_operators.py:24 - Adopt PM mut_strategy!
+INFO 2024-05-27 13:57:50 - model_mutation_operators.py:80 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-27 13:57:50 - model_mutation_operators.py:93 - select op: dropout1 layer_type: Dropout selected param:keep_prob input_shape:[2, 4096] output_shape:[2, 4096]
+INFO 2024-05-27 13:57:50 - model_mutation_operators.py:160 - mutate_replace_layer: Dropout<keep_prob=0.25>
+INFO 2024-05-27 13:57:50 - model_mutation_operators.py:192 - Previous value: 0.5 Edit value: 0.25 new_inshape: (2, 4096) new_outshape: (2, 4096)
+INFO 2024-05-27 13:57:50 - model_mutation_operators.py:231 - Dropout<keep_prob=0.25>
+INFO 2024-05-27 13:57:50 - model_mutation_operators.py:232 - mut_result:True
+INFO 2024-05-27 13:57:50 - model_mutation_operators.py:233 - 62 generation!
+
+INFO 2024-05-27 13:57:51 - mutation_test.py:592 - ================== start 63 generation!(63/100) ==================
+INFO 2024-05-27 13:57:51 - model_mutation_operators.py:755 - Adopt RA mut_strategy!
+INFO 2024-05-27 13:57:51 - model_mutation_operators.py:849 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-27 13:57:51 - model_mutation_operators.py:858 - select layer: dropout2 layer_type: <class 'mindspore.nn.layer.basic.Dropout'> in_shape: [2, 4096] out_shape: [2, 4096]
+INFO 2024-05-27 13:57:51 - model_mutation_operators.py:859 - mut Basic type: True
+INFO 2024-05-27 13:57:51 - model_mutation_operators.py:860 - add Basic layer : Basic_op
+INFO 2024-05-27 13:57:51 - model_mutation_operators.py:873 - select insert layer: Conv2d<input_channels=4096, output_channels=4096, kernel_size=(1, 1), stride=(1, 1), pad_mode=same, padding=0, dilation=(1, 1), group=1, has_bias=False, weight_init=<mindspore.common.initializer.HeUniform object at 0x7fccf9f57790>, bias_init=None, format=NCHW>
+INFO 2024-05-27 13:57:51 - model_mutation_operators.py:918 - insert_layer_outshape not equal!: [2, 4096]
+INFO 2024-05-27 13:57:51 - model_mutation_operators.py:1060 - mut_result:True
+INFO 2024-05-27 13:57:51 - model_mutation_operators.py:1061 - 63 generation!
+
+INFO 2024-05-27 13:57:51 - mutation_test.py:592 - ================== start 64 generation!(64/100) ==================
+INFO 2024-05-27 13:57:52 - model_mutation_operators.py:1923 - Adopt LC mut_strategy!
+INFO 2024-05-27 13:57:52 - model_mutation_operators.py:1990 - select layer: bn3 layer_type: <class 'mindspore.nn.layer.normalization.BatchNorm2d'> in_shape: [2, 256, 2, 2] out_shape: [2, 256, 2, 2]
+INFO 2024-05-27 13:57:52 - model_mutation_operators.py:1991 - mut Basic type: True
+INFO 2024-05-27 13:57:52 - model_mutation_operators.py:1992 - add Basic layer : Basic_op
+INFO 2024-05-27 13:57:52 - model_mutation_operators.py:2005 - select insert layer: BatchNorm2d<num_features=256, eps=1e-05, momentum=0.09999999999999998, gamma=Parameter (name=gamma, shape=(256,), dtype=Float32, requires_grad=True), beta=Parameter (name=beta, shape=(256,), dtype=Float32, requires_grad=True), moving_mean=Parameter (name=mean, shape=(256,), dtype=Float32, requires_grad=False), moving_variance=Parameter (name=variance, shape=(256,), dtype=Float32, requires_grad=False)>
+INFO 2024-05-27 13:57:52 - model_mutation_operators.py:2040 - insert_layer_outshape equal!
+INFO 2024-05-27 13:57:52 - model_mutation_operators.py:2108 - mut_result:True
+INFO 2024-05-27 13:57:52 - model_mutation_operators.py:2109 - 64 generation!
+
+INFO 2024-05-27 13:57:53 - mutation_test.py:592 - ================== start 65 generation!(65/100) ==================
+INFO 2024-05-27 13:57:53 - model_mutation_operators.py:1923 - Adopt LC mut_strategy!
+INFO 2024-05-27 13:57:53 - model_mutation_operators.py:1990 - select layer: conv1 layer_type: <class 'mindspore.nn.layer.conv.Conv2d'> in_shape: [2, 3, 32, 32] out_shape: [2, 96, 16, 16]
+INFO 2024-05-27 13:57:53 - model_mutation_operators.py:1991 - mut Basic type: True
+INFO 2024-05-27 13:57:53 - model_mutation_operators.py:1992 - add Basic layer : Basic_op
+INFO 2024-05-27 13:57:53 - model_mutation_operators.py:2005 - select insert layer: Conv2d<input_channels=96, output_channels=96, kernel_size=(3, 3), stride=(2, 2), pad_mode=same, padding=0, dilation=(1, 1), group=1, has_bias=False, weight_init=<mindspore.common.initializer.HeUniform object at 0x7fccf9fca0d0>, bias_init=None, format=NCHW>
+INFO 2024-05-27 13:57:53 - model_mutation_operators.py:2035 - insert_layer_outshape not equal!: [2, 96, 16, 16]
+INFO 2024-05-27 13:57:53 - model_mutation_operators.py:2108 - mut_result:True
+INFO 2024-05-27 13:57:53 - model_mutation_operators.py:2109 - 65 generation!
+
+INFO 2024-05-27 13:57:53 - mutation_test.py:592 - ================== start 66 generation!(66/100) ==================
+INFO 2024-05-27 13:57:54 - model_mutation_operators.py:755 - Adopt RA mut_strategy!
+INFO 2024-05-27 13:57:54 - model_mutation_operators.py:849 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-27 13:57:54 - model_mutation_operators.py:858 - select layer: dropout1 layer_type: <class 'mindspore.nn.layer.basic.Dropout'> in_shape: [2, 4096] out_shape: [2, 4096]
+INFO 2024-05-27 13:57:54 - model_mutation_operators.py:859 - mut Basic type: True
+INFO 2024-05-27 13:57:54 - model_mutation_operators.py:860 - add Basic layer : Basic_op
+INFO 2024-05-27 13:57:54 - model_mutation_operators.py:873 - select insert layer: LeakyReLU<>
+INFO 2024-05-27 13:57:54 - model_mutation_operators.py:921 - insert_layer_outshape equal!
+INFO 2024-05-27 13:57:54 - model_mutation_operators.py:1060 - mut_result:True
+INFO 2024-05-27 13:57:54 - model_mutation_operators.py:1061 - 66 generation!
+
+INFO 2024-05-27 13:57:55 - mutation_test.py:592 - ================== start 67 generation!(67/100) ==================
+INFO 2024-05-27 13:57:55 - model_mutation_operators.py:1070 - Adopt CM mut_strategy!
+INFO 2024-05-27 13:57:55 - model_mutation_operators.py:1153 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-27 13:57:55 - model_mutation_operators.py:1160 - select layer: bn3 layer_type: <class 'mindspore.nn.layer.normalization.BatchNorm2d'> in_shape: [2, 256, 2, 2] out_shape: [2, 256, 2, 2]
+INFO 2024-05-27 13:57:55 - model_mutation_operators.py:1161 - mut Basic type: True
+INFO 2024-05-27 13:57:55 - model_mutation_operators.py:1204 - select insert layer: ReLU6<>
+INFO 2024-05-27 13:57:55 - model_mutation_operators.py:1249 - replace Basic with CM op!
+INFO 2024-05-27 13:57:55 - model_mutation_operators.py:1300 - mut_result:True
+INFO 2024-05-27 13:57:55 - model_mutation_operators.py:1301 - 67 generation!
+
+INFO 2024-05-27 13:57:55 - mutation_test.py:592 - ================== start 68 generation!(68/100) ==================
+INFO 2024-05-27 13:57:56 - model_mutation_operators.py:1070 - Adopt CM mut_strategy!
+INFO 2024-05-27 13:57:56 - model_mutation_operators.py:1153 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-27 13:57:56 - model_mutation_operators.py:1160 - select layer: bn2 layer_type: <class 'mindspore.nn.layer.normalization.BatchNorm2d'> in_shape: [2, 256, 4, 4] out_shape: [2, 256, 4, 4]
+INFO 2024-05-27 13:57:56 - model_mutation_operators.py:1161 - mut Basic type: True
+INFO 2024-05-27 13:57:56 - model_mutation_operators.py:1204 - select insert layer: dwpw_group<
+  (depthwise): dwpw_basic<
+    (dwpw_conv): Conv2d<input_channels=256, output_channels=256, kernel_size=(1, 1), stride=(1, 1), pad_mode=same, padding=0, dilation=(1, 1), group=256, has_bias=False, weight_init=<mindspore.common.initializer.HeUniform object at 0x7fccf9eda3d0>, bias_init=None, format=NCHW>
+    (dwpw_bn): BatchNorm2d<num_features=256, eps=1e-05, momentum=0.9, gamma=Parameter (name=1.depthwise.dwpw_bn.gamma, shape=(256,), dtype=Float32, requires_grad=True), beta=Parameter (name=1.depthwise.dwpw_bn.beta, shape=(256,), dtype=Float32, requires_grad=True), moving_mean=Parameter (name=1.depthwise.dwpw_bn.moving_mean, shape=(256,), dtype=Float32, requires_grad=False), moving_variance=Parameter (name=1.depthwise.dwpw_bn.moving_variance, shape=(256,), dtype=Float32, requires_grad=False)>
+    (dwpw_activation): GELU<>
+    >
+  (pointwise): dwpw_basic<
+    (dwpw_conv): Conv2d<input_channels=256, output_channels=256, kernel_size=(1, 1), stride=(1, 1), pad_mode=same, padding=0, dilation=(1, 1), group=1, has_bias=False, weight_init=<mindspore.common.initializer.HeUniform object at 0x7fccf9efb590>, bias_init=None, format=NCHW>
+    (dwpw_bn): BatchNorm2d<num_features=256, eps=1e-05, momentum=0.9, gamma=Parameter (name=1.pointwise.dwpw_bn.gamma, shape=(256,), dtype=Float32, requires_grad=True), beta=Parameter (name=1.pointwise.dwpw_bn.beta, shape=(256,), dtype=Float32, requires_grad=True), moving_mean=Parameter (name=1.pointwise.dwpw_bn.moving_mean, shape=(256,), dtype=Float32, requires_grad=False), moving_variance=Parameter (name=1.pointwise.dwpw_bn.moving_variance, shape=(256,), dtype=Float32, requires_grad=False)>
+    (dwpw_activation): GELU<>
+    >
+  >
+INFO 2024-05-27 13:57:56 - model_mutation_operators.py:1249 - replace Basic with CM op!
+INFO 2024-05-27 13:57:56 - model_mutation_operators.py:1300 - mut_result:True
+INFO 2024-05-27 13:57:56 - model_mutation_operators.py:1301 - 68 generation!
+
+INFO 2024-05-27 13:57:58 - mutation_test.py:592 - ================== start 69 generation!(69/100) ==================
+INFO 2024-05-27 13:57:58 - model_mutation_operators.py:242 - Adopt LD mut_strategy!
+INFO 2024-05-27 13:57:58 - model_mutation_operators.py:258 - delete layer_name:bn1
+INFO 2024-05-27 13:57:58 - model_mutation_operators.py:320 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-27 13:57:58 - model_mutation_operators.py:325 - adopt DeleteCell EmptyCell
+INFO 2024-05-27 13:57:58 - model_mutation_operators.py:505 - mut_result:True
+INFO 2024-05-27 13:57:58 - model_mutation_operators.py:506 - 69 generation!
+
+INFO 2024-05-27 13:57:59 - mutation_test.py:592 - ================== start 70 generation!(70/100) ==================
+INFO 2024-05-27 13:57:59 - model_mutation_operators.py:515 - Adopt LA mut_strategy!
+INFO 2024-05-27 13:57:59 - model_mutation_operators.py:590 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-27 13:57:59 - model_mutation_operators.py:599 - select layer: conv5 layer_type: <class 'mindspore.nn.layer.conv.Conv2d'> in_shape: [2, 384, 4, 4] out_shape: [2, 256, 4, 4]
+INFO 2024-05-27 13:57:59 - model_mutation_operators.py:600 - mut Basic type: True
+INFO 2024-05-27 13:57:59 - model_mutation_operators.py:601 - add Basic layer : Basic_op
+INFO 2024-05-27 13:57:59 - model_mutation_operators.py:615 - select insert layer: Sigmoid<>
+INFO 2024-05-27 13:57:59 - model_mutation_operators.py:628 - insert_layer_outshape equal!
+INFO 2024-05-27 13:57:59 - model_mutation_operators.py:745 - mut_result:True
+INFO 2024-05-27 13:57:59 - model_mutation_operators.py:746 - 70 generation!
+
+INFO 2024-05-27 13:57:59 - mutation_test.py:592 - ================== start 71 generation!(71/100) ==================
+INFO 2024-05-27 13:57:59 - model_mutation_operators.py:242 - Adopt LD mut_strategy!
+INFO 2024-05-27 13:57:59 - model_mutation_operators.py:258 - delete layer_name:fc3
+INFO 2024-05-27 13:57:59 - model_mutation_operators.py:320 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-27 13:57:59 - model_mutation_operators.py:329 - adopt DeleteCell Replace_ms
+INFO 2024-05-27 13:57:59 - model_mutation_operators.py:505 - mut_result:True
+INFO 2024-05-27 13:57:59 - model_mutation_operators.py:506 - 71 generation!
+
+INFO 2024-05-27 13:57:59 - mutation_test.py:592 - ================== start 72 generation!(72/100) ==================
+INFO 2024-05-27 13:58:00 - model_mutation_operators.py:515 - Adopt LA mut_strategy!
+INFO 2024-05-27 13:58:00 - model_mutation_operators.py:560 - mut_result:No suitable ops for LA mutation!
+INFO 2024-05-27 13:58:00 - model_mutation_operators.py:561 - 72 generation!
+INFO 2024-05-27 13:58:00 - mutation_test.py:592 - ================== start 73 generation!(73/100) ==================
+INFO 2024-05-27 13:58:00 - model_mutation_operators.py:515 - Adopt LA mut_strategy!
+INFO 2024-05-27 13:58:00 - model_mutation_operators.py:590 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-27 13:58:00 - model_mutation_operators.py:599 - select layer: conv5 layer_type: <class 'mindspore.nn.layer.conv.Conv2d'> in_shape: [2, 384, 4, 4] out_shape: [2, 256, 4, 4]
+INFO 2024-05-27 13:58:00 - model_mutation_operators.py:600 - mut Basic type: True
+INFO 2024-05-27 13:58:00 - model_mutation_operators.py:601 - add Basic layer : Cascade_op
+INFO 2024-05-27 13:58:00 - model_mutation_operators.py:615 - select insert layer: Inception_A<
+  (branch0): BasicConv2d<
+    (relu): ReLU<>
+    >
+  (branch1): SequentialCell<
+    (0): BasicConv2d<
+      (relu): ReLU<>
+      >
+    (1): BasicConv2d<
+      (relu): ReLU<>
+      >
+    >
+  (branch2): SequentialCell<
+    (0): BasicConv2d<
+      (relu): ReLU<>
+      >
+    (1): BasicConv2d<
+      (relu): ReLU<>
+      >
+    (2): BasicConv2d<
+      (relu): ReLU<>
+      >
+    >
+  (branch_pool): SequentialCell<
+    (0): AvgPool2d<kernel_size=3, stride=1, pad_mode=SAME>
+    (1): BasicConv2d<
+      (relu): ReLU<>
+      >
+    >
+  >
+INFO 2024-05-27 13:58:00 - model_mutation_operators.py:628 - insert_layer_outshape equal!
+INFO 2024-05-27 13:58:00 - Other_utils.py:191 - Exception information: For 'BatchNorm', 'scale_dim0' and input channel should be equal, but got 256 and 8.
+
+----------------------------------------------------
+- C++ Call Stack: (For framework developers)
+----------------------------------------------------
+mindspore/core/ops/batch_norm.cc:171 InferShape
+
+INFO 2024-05-27 13:58:00 - model_mutation_operators.py:693 - add Cascade_op after basicop!
+INFO 2024-05-27 13:58:00 - model_mutation_operators.py:745 - mut_result:False
+INFO 2024-05-27 13:58:00 - model_mutation_operators.py:746 - 73 generation!
+
+INFO 2024-05-27 13:58:00 - mutation_test.py:592 - ================== start 74 generation!(74/100) ==================
+INFO 2024-05-27 13:58:00 - model_mutation_operators.py:24 - Adopt PM mut_strategy!
+INFO 2024-05-27 13:58:00 - model_mutation_operators.py:80 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-27 13:58:00 - model_mutation_operators.py:93 - select op: pool3 layer_type: MaxPool2d selected param:stride input_shape:[2, 256, 4, 4] output_shape:[2, 256, 2, 2]
+INFO 2024-05-27 13:58:00 - model_mutation_operators.py:160 - mutate_replace_layer: MaxPool2d<kernel_size=3, stride=(3, 3), pad_mode=VALID>
+INFO 2024-05-27 13:58:00 - model_mutation_operators.py:192 - Previous value: 2 Edit value: (3, 3) new_inshape: (2, 256, 4, 4) new_outshape: (2, 256, 1, 1)
+INFO 2024-05-27 13:58:00 - model_mutation_operators.py:231 - SequentialCell<
+  (0): MaxPool2d<kernel_size=3, stride=(3, 3), pad_mode=VALID>
+  (1): Replace_ms<>
+  >
+INFO 2024-05-27 13:58:00 - model_mutation_operators.py:232 - mut_result:True
+INFO 2024-05-27 13:58:00 - model_mutation_operators.py:233 - 74 generation!
+
+INFO 2024-05-27 13:58:01 - mutation_test.py:592 - ================== start 75 generation!(75/100) ==================
+INFO 2024-05-27 13:58:01 - model_mutation_operators.py:2118 - Adopt SM mut_strategy!
+INFO 2024-05-27 13:58:01 - model_mutation_operators.py:2156 - select layer: dropout1 layer_type: <class 'mindspore.nn.layer.basic.Dropout'> in_shape: [2, 4096] out_shape: [2, 4096]
+INFO 2024-05-27 13:58:01 - model_mutation_operators.py:2157 - mut Basic type: True
+INFO 2024-05-27 13:58:01 - model_mutation_operators.py:2205 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-27 13:58:01 - model_mutation_operators.py:2278 - mutate input_shape: [2, 43, 9, 9]
+INFO 2024-05-27 13:58:01 - model_mutation_operators.py:2279 - mutate output_shape: [2, 7, 23, 25, 45]
+INFO 2024-05-27 13:58:01 - model_mutation_operators.py:2359 - mut_result:True
+INFO 2024-05-27 13:58:01 - model_mutation_operators.py:2360 - 75 generation!
+
+INFO 2024-05-27 13:58:01 - mutation_test.py:592 - ================== start 76 generation!(76/100) ==================
+INFO 2024-05-27 13:58:02 - model_mutation_operators.py:1923 - Adopt LC mut_strategy!
+INFO 2024-05-27 13:58:02 - model_mutation_operators.py:1990 - select layer: bn3 layer_type: <class 'mindspore.nn.layer.normalization.BatchNorm2d'> in_shape: [2, 256, 2, 2] out_shape: [2, 256, 2, 2]
+INFO 2024-05-27 13:58:02 - model_mutation_operators.py:1991 - mut Basic type: True
+INFO 2024-05-27 13:58:02 - model_mutation_operators.py:1992 - add Basic layer : Basic_op
+INFO 2024-05-27 13:58:02 - model_mutation_operators.py:2005 - select insert layer: BatchNorm2d<num_features=256, eps=1e-05, momentum=0.09999999999999998, gamma=Parameter (name=gamma, shape=(256,), dtype=Float32, requires_grad=True), beta=Parameter (name=beta, shape=(256,), dtype=Float32, requires_grad=True), moving_mean=Parameter (name=mean, shape=(256,), dtype=Float32, requires_grad=False), moving_variance=Parameter (name=variance, shape=(256,), dtype=Float32, requires_grad=False)>
+INFO 2024-05-27 13:58:02 - model_mutation_operators.py:2040 - insert_layer_outshape equal!
+INFO 2024-05-27 13:58:02 - model_mutation_operators.py:2108 - mut_result:True
+INFO 2024-05-27 13:58:02 - model_mutation_operators.py:2109 - 76 generation!
+
+INFO 2024-05-27 13:58:03 - mutation_test.py:592 - ================== start 77 generation!(77/100) ==================
+INFO 2024-05-27 13:58:04 - model_mutation_operators.py:2118 - Adopt SM mut_strategy!
+INFO 2024-05-27 13:58:04 - model_mutation_operators.py:2156 - select layer: fc3 layer_type: <class 'mindspore.nn.layer.basic.Dense'> in_shape: [2, 4096] out_shape: [2, 10]
+INFO 2024-05-27 13:58:04 - model_mutation_operators.py:2157 - mut Basic type: True
+INFO 2024-05-27 13:58:04 - model_mutation_operators.py:2205 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-27 13:58:04 - model_mutation_operators.py:2270 - mutate output_shape: [2, 47]
+INFO 2024-05-27 13:58:04 - model_mutation_operators.py:2359 - mut_result:True
+INFO 2024-05-27 13:58:04 - model_mutation_operators.py:2360 - 77 generation!
+
+INFO 2024-05-27 13:58:04 - mutation_test.py:592 - ================== start 78 generation!(78/100) ==================
+INFO 2024-05-27 13:58:05 - model_mutation_operators.py:1070 - Adopt CM mut_strategy!
+INFO 2024-05-27 13:58:05 - model_mutation_operators.py:1153 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-27 13:58:05 - model_mutation_operators.py:1160 - select layer: conv5 layer_type: <class 'mindspore.nn.layer.conv.Conv2d'> in_shape: [2, 384, 4, 4] out_shape: [2, 256, 4, 4]
+INFO 2024-05-27 13:58:05 - model_mutation_operators.py:1161 - mut Basic type: True
+INFO 2024-05-27 13:58:05 - model_mutation_operators.py:1204 - select insert layer: Sigmoid<>
+INFO 2024-05-27 13:58:05 - model_mutation_operators.py:1249 - replace Basic with CM op!
+INFO 2024-05-27 13:58:05 - model_mutation_operators.py:1300 - mut_result:True
+INFO 2024-05-27 13:58:05 - model_mutation_operators.py:1301 - 78 generation!
+
+INFO 2024-05-27 13:58:06 - mutation_test.py:592 - ================== start 79 generation!(79/100) ==================
+INFO 2024-05-27 13:58:06 - model_mutation_operators.py:2118 - Adopt SM mut_strategy!
+INFO 2024-05-27 13:58:06 - model_mutation_operators.py:2156 - select layer: conv5 layer_type: <class 'mindspore.nn.layer.conv.Conv2d'> in_shape: [2, 384, 4, 4] out_shape: [2, 256, 4, 4]
+INFO 2024-05-27 13:58:06 - model_mutation_operators.py:2157 - mut Basic type: True
+INFO 2024-05-27 13:58:06 - model_mutation_operators.py:2205 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-27 13:58:06 - model_mutation_operators.py:2278 - mutate input_shape: [2, 12, 3, 30]
+INFO 2024-05-27 13:58:06 - model_mutation_operators.py:2279 - mutate output_shape: [2, 8, 35, 12]
+INFO 2024-05-27 13:58:06 - model_mutation_operators.py:2359 - mut_result:True
+INFO 2024-05-27 13:58:06 - model_mutation_operators.py:2360 - 79 generation!
+
+INFO 2024-05-27 13:58:06 - mutation_test.py:592 - ================== start 80 generation!(80/100) ==================
+INFO 2024-05-27 13:58:06 - model_mutation_operators.py:24 - Adopt PM mut_strategy!
+INFO 2024-05-27 13:58:06 - model_mutation_operators.py:80 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-27 13:58:06 - model_mutation_operators.py:93 - select op: bn3 layer_type: BatchNorm2d selected param:momentum input_shape:[2, 256, 2, 2] output_shape:[2, 256, 2, 2]
+INFO 2024-05-27 13:58:06 - model_mutation_operators.py:160 - mutate_replace_layer: BatchNorm2d<num_features=256, eps=1e-05, momentum=0.050000000000000044, gamma=Parameter (name=gamma, shape=(256,), dtype=Float32, requires_grad=True), beta=Parameter (name=beta, shape=(256,), dtype=Float32, requires_grad=True), moving_mean=Parameter (name=mean, shape=(256,), dtype=Float32, requires_grad=False), moving_variance=Parameter (name=variance, shape=(256,), dtype=Float32, requires_grad=False)>
+INFO 2024-05-27 13:58:06 - model_mutation_operators.py:192 - Previous value: 0.09999999999999998 Edit value: 0.04999999999999999 new_inshape: (2, 256, 2, 2) new_outshape: (2, 256, 2, 2)
+INFO 2024-05-27 13:58:06 - model_mutation_operators.py:231 - BatchNorm2d<num_features=256, eps=1e-05, momentum=0.050000000000000044, gamma=Parameter (name=bn3.gamma, shape=(256,), dtype=Float32, requires_grad=True), beta=Parameter (name=bn3.beta, shape=(256,), dtype=Float32, requires_grad=True), moving_mean=Parameter (name=bn3.moving_mean, shape=(256,), dtype=Float32, requires_grad=False), moving_variance=Parameter (name=bn3.moving_variance, shape=(256,), dtype=Float32, requires_grad=False)>
+INFO 2024-05-27 13:58:06 - model_mutation_operators.py:232 - mut_result:True
+INFO 2024-05-27 13:58:06 - model_mutation_operators.py:233 - 80 generation!
+
+INFO 2024-05-27 13:58:07 - mutation_test.py:592 - ================== start 81 generation!(81/100) ==================
+INFO 2024-05-27 13:58:08 - model_mutation_operators.py:1923 - Adopt LC mut_strategy!
+INFO 2024-05-27 13:58:08 - model_mutation_operators.py:1990 - select layer: fc3 layer_type: <class 'mindspore.nn.layer.basic.Dense'> in_shape: [2, 4096] out_shape: [2, 10]
+INFO 2024-05-27 13:58:08 - model_mutation_operators.py:1991 - mut Basic type: True
+INFO 2024-05-27 13:58:08 - model_mutation_operators.py:1992 - add Basic layer : Basic_op
+INFO 2024-05-27 13:58:08 - model_mutation_operators.py:2005 - select insert layer: Dense<input_channels=4096, output_channels=10, has_bias=True>
+INFO 2024-05-27 13:58:08 - model_mutation_operators.py:2027 - Illegal LC mutate!
+INFO 2024-05-27 13:58:08 - model_mutation_operators.py:2028 - mut_result:LC Create illegal layer!
+INFO 2024-05-27 13:58:08 - model_mutation_operators.py:2029 - Exception information: 
+For 'MatMul', the type of 'x2' should be same as 'x1', but got 'x1' with type Tensor[Float16] and 'x2' with type Tensor[Float32].
+
+----------------------------------------------------
+- C++ Call Stack: (For framework developers)
+----------------------------------------------------
+mindspore/core/ops/mat_mul.cc:143 InferType
+
+INFO 2024-05-27 13:58:08 - model_mutation_operators.py:2030 - 81 generation!
+
+INFO 2024-05-27 13:58:08 - mutation_test.py:592 - ================== start 82 generation!(82/100) ==================
+INFO 2024-05-27 13:58:09 - model_mutation_operators.py:242 - Adopt LD mut_strategy!
+INFO 2024-05-27 13:58:09 - model_mutation_operators.py:258 - delete layer_name:conv3
+INFO 2024-05-27 13:58:09 - model_mutation_operators.py:320 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-27 13:58:09 - model_mutation_operators.py:329 - adopt DeleteCell Replace_ms
+INFO 2024-05-27 13:58:09 - model_mutation_operators.py:505 - mut_result:True
+INFO 2024-05-27 13:58:09 - model_mutation_operators.py:506 - 82 generation!
+
+INFO 2024-05-27 13:58:10 - mutation_test.py:592 - ================== start 83 generation!(83/100) ==================
+INFO 2024-05-27 13:58:10 - model_mutation_operators.py:755 - Adopt RA mut_strategy!
+INFO 2024-05-27 13:58:10 - model_mutation_operators.py:849 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-27 13:58:10 - model_mutation_operators.py:858 - select layer: bn2 layer_type: <class 'mindspore.nn.layer.normalization.BatchNorm2d'> in_shape: [2, 256, 4, 4] out_shape: [2, 256, 4, 4]
+INFO 2024-05-27 13:58:10 - model_mutation_operators.py:859 - mut Basic type: True
+INFO 2024-05-27 13:58:10 - model_mutation_operators.py:860 - add Basic layer : Cascade_op
+INFO 2024-05-27 13:58:10 - model_mutation_operators.py:873 - select insert layer: ResidualBlock<
+  (residual_conv1): Conv2d<input_channels=256, output_channels=64, kernel_size=(1, 1), stride=(1, 1), pad_mode=same, padding=0, dilation=(1, 1), group=1, has_bias=False, weight_init=<mindspore.common.initializer.HeUniform object at 0x7fccf9ba7190>, bias_init=None, format=NCHW>
+  (residual_bn1): BatchNorm2d<num_features=64, eps=0.0001, momentum=0.9, gamma=Parameter (name=residual_bn1.gamma, shape=(64,), dtype=Float32, requires_grad=True), beta=Parameter (name=residual_bn1.beta, shape=(64,), dtype=Float32, requires_grad=True), moving_mean=Parameter (name=residual_bn1.moving_mean, shape=(64,), dtype=Float32, requires_grad=False), moving_variance=Parameter (name=residual_bn1.moving_variance, shape=(64,), dtype=Float32, requires_grad=False)>
+  (residual_conv2): Conv2d<input_channels=64, output_channels=64, kernel_size=(3, 3), stride=(1, 1), pad_mode=same, padding=0, dilation=(1, 1), group=1, has_bias=False, weight_init=<mindspore.common.initializer.HeUniform object at 0x7fccf9ba7350>, bias_init=None, format=NCHW>
+  (residual_bn2): BatchNorm2d<num_features=64, eps=0.0001, momentum=0.9, gamma=Parameter (name=residual_bn2.gamma, shape=(64,), dtype=Float32, requires_grad=True), beta=Parameter (name=residual_bn2.beta, shape=(64,), dtype=Float32, requires_grad=True), moving_mean=Parameter (name=residual_bn2.moving_mean, shape=(64,), dtype=Float32, requires_grad=False), moving_variance=Parameter (name=residual_bn2.moving_variance, shape=(64,), dtype=Float32, requires_grad=False)>
+  (residual_conv3): Conv2d<input_channels=64, output_channels=256, kernel_size=(1, 1), stride=(1, 1), pad_mode=same, padding=0, dilation=(1, 1), group=1, has_bias=False, weight_init=<mindspore.common.initializer.HeUniform object at 0x7fccf9a86710>, bias_init=None, format=NCHW>
+  (residual_bn3): BatchNorm2d<num_features=256, eps=0.0001, momentum=0.9, gamma=Parameter (name=residual_bn3.gamma, shape=(256,), dtype=Float32, requires_grad=True), beta=Parameter (name=residual_bn3.beta, shape=(256,), dtype=Float32, requires_grad=True), moving_mean=Parameter (name=residual_bn3.moving_mean, shape=(256,), dtype=Float32, requires_grad=False), moving_variance=Parameter (name=residual_bn3.moving_variance, shape=(256,), dtype=Float32, requires_grad=False)>
+  (residual_relu1): ReLU<>
+  (residual_relu2): ReLU<>
+  (residual_relu3): ReLU<>
+  (residual_down_sample_layer): SequentialCell<
+    (0): Conv2d<input_channels=256, output_channels=256, kernel_size=(1, 1), stride=(1, 1), pad_mode=same, padding=0, dilation=(1, 1), group=1, has_bias=False, weight_init=<mindspore.common.initializer.HeUniform object at 0x7fccf9ba7210>, bias_init=None, format=NCHW>
+    (1): BatchNorm2d<num_features=256, eps=0.0001, momentum=0.9, gamma=Parameter (name=residual_down_sample_layer.1.gamma, shape=(256,), dtype=Float32, requires_grad=True), beta=Parameter (name=residual_down_sample_layer.1.beta, shape=(256,), dtype=Float32, requires_grad=True), moving_mean=Parameter (name=residual_down_sample_layer.1.moving_mean, shape=(256,), dtype=Float32, requires_grad=False), moving_variance=Parameter (name=residual_down_sample_layer.1.moving_variance, shape=(256,), dtype=Float32, requires_grad=False)>
+    >
+  >
+INFO 2024-05-27 13:58:10 - model_mutation_operators.py:921 - insert_layer_outshape equal!
+INFO 2024-05-27 13:58:10 - model_mutation_operators.py:1060 - mut_result:True
+INFO 2024-05-27 13:58:10 - model_mutation_operators.py:1061 - 83 generation!
+
+INFO 2024-05-27 13:58:11 - mutation_test.py:592 - ================== start 84 generation!(84/100) ==================
+INFO 2024-05-27 13:58:11 - model_mutation_operators.py:515 - Adopt LA mut_strategy!
+INFO 2024-05-27 13:58:11 - model_mutation_operators.py:590 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-27 13:58:11 - model_mutation_operators.py:599 - select layer: fc1 layer_type: <class 'mindspore.nn.layer.basic.Dense'> in_shape: [2, 1024] out_shape: [2, 4096]
+INFO 2024-05-27 13:58:11 - model_mutation_operators.py:600 - mut Basic type: True
+INFO 2024-05-27 13:58:11 - model_mutation_operators.py:601 - add Basic layer : Cascade_op
+INFO 2024-05-27 13:58:11 - model_mutation_operators.py:615 - select insert layer: ResidualBlock<
+  (residual_conv1): Conv2d<input_channels=4096, output_channels=1024, kernel_size=(1, 1), stride=(1, 1), pad_mode=same, padding=0, dilation=(1, 1), group=1, has_bias=False, weight_init=<mindspore.common.initializer.HeUniform object at 0x7fccf9f56410>, bias_init=None, format=NCHW>
+  (residual_bn1): BatchNorm2d<num_features=1024, eps=0.0001, momentum=0.9, gamma=Parameter (name=residual_bn1.gamma, shape=(1024,), dtype=Float32, requires_grad=True), beta=Parameter (name=residual_bn1.beta, shape=(1024,), dtype=Float32, requires_grad=True), moving_mean=Parameter (name=residual_bn1.moving_mean, shape=(1024,), dtype=Float32, requires_grad=False), moving_variance=Parameter (name=residual_bn1.moving_variance, shape=(1024,), dtype=Float32, requires_grad=False)>
+  (residual_conv2): Conv2d<input_channels=1024, output_channels=1024, kernel_size=(3, 3), stride=(1, 1), pad_mode=same, padding=0, dilation=(1, 1), group=1, has_bias=False, weight_init=<mindspore.common.initializer.HeUniform object at 0x7fccf9e6d0d0>, bias_init=None, format=NCHW>
+  (residual_bn2): BatchNorm2d<num_features=1024, eps=0.0001, momentum=0.9, gamma=Parameter (name=residual_bn2.gamma, shape=(1024,), dtype=Float32, requires_grad=True), beta=Parameter (name=residual_bn2.beta, shape=(1024,), dtype=Float32, requires_grad=True), moving_mean=Parameter (name=residual_bn2.moving_mean, shape=(1024,), dtype=Float32, requires_grad=False), moving_variance=Parameter (name=residual_bn2.moving_variance, shape=(1024,), dtype=Float32, requires_grad=False)>
+  (residual_conv3): Conv2d<input_channels=1024, output_channels=4096, kernel_size=(1, 1), stride=(1, 1), pad_mode=same, padding=0, dilation=(1, 1), group=1, has_bias=False, weight_init=<mindspore.common.initializer.HeUniform object at 0x7fccd4109310>, bias_init=None, format=NCHW>
+  (residual_bn3): BatchNorm2d<num_features=4096, eps=0.0001, momentum=0.9, gamma=Parameter (name=residual_bn3.gamma, shape=(4096,), dtype=Float32, requires_grad=True), beta=Parameter (name=residual_bn3.beta, shape=(4096,), dtype=Float32, requires_grad=True), moving_mean=Parameter (name=residual_bn3.moving_mean, shape=(4096,), dtype=Float32, requires_grad=False), moving_variance=Parameter (name=residual_bn3.moving_variance, shape=(4096,), dtype=Float32, requires_grad=False)>
+  (residual_relu1): ReLU<>
+  (residual_relu2): ReLU<>
+  (residual_relu3): ReLU<>
+  (residual_down_sample_layer): SequentialCell<
+    (0): Conv2d<input_channels=4096, output_channels=4096, kernel_size=(1, 1), stride=(1, 1), pad_mode=same, padding=0, dilation=(1, 1), group=1, has_bias=False, weight_init=<mindspore.common.initializer.HeUniform object at 0x7fccf9e6d4d0>, bias_init=None, format=NCHW>
+    (1): BatchNorm2d<num_features=4096, eps=0.0001, momentum=0.9, gamma=Parameter (name=residual_down_sample_layer.1.gamma, shape=(4096,), dtype=Float32, requires_grad=True), beta=Parameter (name=residual_down_sample_layer.1.beta, shape=(4096,), dtype=Float32, requires_grad=True), moving_mean=Parameter (name=residual_down_sample_layer.1.moving_mean, shape=(4096,), dtype=Float32, requires_grad=False), moving_variance=Parameter (name=residual_down_sample_layer.1.moving_variance, shape=(4096,), dtype=Float32, requires_grad=False)>
+    >
+  >
+INFO 2024-05-27 13:58:11 - model_mutation_operators.py:628 - insert_layer_outshape equal!
+INFO 2024-05-27 13:58:11 - Other_utils.py:191 - Exception information: For 'MatMul' the input dimensions must be equal, but got 'x1_col': 1 and 'x2_row': 4096.
+
+----------------------------------------------------
+- C++ Call Stack: (For framework developers)
+----------------------------------------------------
+mindspore/core/ops/mat_mul.cc:107 InferShape
+
+INFO 2024-05-27 13:58:11 - model_mutation_operators.py:693 - add Cascade_op after basicop!
+INFO 2024-05-27 13:58:11 - model_mutation_operators.py:745 - mut_result:False
+INFO 2024-05-27 13:58:11 - model_mutation_operators.py:746 - 84 generation!
+
+INFO 2024-05-27 13:58:11 - mutation_test.py:592 - ================== start 85 generation!(85/100) ==================
+INFO 2024-05-27 13:58:12 - model_mutation_operators.py:755 - Adopt RA mut_strategy!
+INFO 2024-05-27 13:58:12 - model_mutation_operators.py:849 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-27 13:58:12 - model_mutation_operators.py:858 - select layer: conv5 layer_type: <class 'mindspore.nn.layer.conv.Conv2d'> in_shape: [2, 384, 4, 4] out_shape: [2, 256, 4, 4]
+INFO 2024-05-27 13:58:12 - model_mutation_operators.py:859 - mut Basic type: True
+INFO 2024-05-27 13:58:12 - model_mutation_operators.py:860 - add Basic layer : Basic_op
+INFO 2024-05-27 13:58:12 - model_mutation_operators.py:873 - select insert layer: GELU<>
+INFO 2024-05-27 13:58:12 - model_mutation_operators.py:918 - insert_layer_outshape not equal!: [2, 256, 4, 4]
+INFO 2024-05-27 13:58:12 - model_mutation_operators.py:1060 - mut_result:True
+INFO 2024-05-27 13:58:12 - model_mutation_operators.py:1061 - 85 generation!
+
+INFO 2024-05-27 13:58:12 - mutation_test.py:592 - ================== start 86 generation!(86/100) ==================
+INFO 2024-05-27 13:58:12 - model_mutation_operators.py:755 - Adopt RA mut_strategy!
+INFO 2024-05-27 13:58:12 - model_mutation_operators.py:849 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-27 13:58:12 - model_mutation_operators.py:858 - select layer: conv3 layer_type: <class 'mindspore.nn.layer.conv.Conv2d'> in_shape: [2, 256, 4, 4] out_shape: [2, 384, 4, 4]
+INFO 2024-05-27 13:58:12 - model_mutation_operators.py:859 - mut Basic type: True
+INFO 2024-05-27 13:58:12 - model_mutation_operators.py:860 - add Basic layer : Cascade_op
+INFO 2024-05-27 13:58:12 - model_mutation_operators.py:873 - select insert layer: SE<
+  (SE_pool): GlobalAvgPooling<>
+  (act): HSigmoid<>
+  (SE_act1): ReLU<>
+  (SE_act2): HSigmoid<>
+  >
+INFO 2024-05-27 13:58:12 - model_mutation_operators.py:918 - insert_layer_outshape not equal!: [2, 384, 4, 4]
+INFO 2024-05-27 13:58:12 - model_mutation_operators.py:1060 - mut_result:True
+INFO 2024-05-27 13:58:12 - model_mutation_operators.py:1061 - 86 generation!
+
+INFO 2024-05-27 13:58:14 - mutation_test.py:592 - ================== start 87 generation!(87/100) ==================
+INFO 2024-05-27 13:58:14 - model_mutation_operators.py:755 - Adopt RA mut_strategy!
+INFO 2024-05-27 13:58:14 - model_mutation_operators.py:849 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-27 13:58:14 - model_mutation_operators.py:858 - select layer: fc3 layer_type: <class 'mindspore.nn.layer.basic.Dense'> in_shape: [2, 4096] out_shape: [2, 10]
+INFO 2024-05-27 13:58:14 - model_mutation_operators.py:859 - mut Basic type: True
+INFO 2024-05-27 13:58:14 - model_mutation_operators.py:860 - add Basic layer : Cascade_op
+INFO 2024-05-27 13:58:14 - model_mutation_operators.py:873 - select insert layer: ResidualBlock<
+  (residual_conv1): Conv2d<input_channels=4096, output_channels=2, kernel_size=(1, 1), stride=(1, 1), pad_mode=same, padding=0, dilation=(1, 1), group=1, has_bias=False, weight_init=<mindspore.common.initializer.HeUniform object at 0x7fccf9fa9b50>, bias_init=None, format=NCHW>
+  (residual_bn1): BatchNorm2d<num_features=2, eps=0.0001, momentum=0.9, gamma=Parameter (name=residual_bn1.gamma, shape=(2,), dtype=Float32, requires_grad=True), beta=Parameter (name=residual_bn1.beta, shape=(2,), dtype=Float32, requires_grad=True), moving_mean=Parameter (name=residual_bn1.moving_mean, shape=(2,), dtype=Float32, requires_grad=False), moving_variance=Parameter (name=residual_bn1.moving_variance, shape=(2,), dtype=Float32, requires_grad=False)>
+  (residual_conv2): Conv2d<input_channels=2, output_channels=2, kernel_size=(3, 3), stride=(1, 1), pad_mode=same, padding=0, dilation=(1, 1), group=1, has_bias=False, weight_init=<mindspore.common.initializer.HeUniform object at 0x7fccfa6f6810>, bias_init=None, format=NCHW>
+  (residual_bn2): BatchNorm2d<num_features=2, eps=0.0001, momentum=0.9, gamma=Parameter (name=residual_bn2.gamma, shape=(2,), dtype=Float32, requires_grad=True), beta=Parameter (name=residual_bn2.beta, shape=(2,), dtype=Float32, requires_grad=True), moving_mean=Parameter (name=residual_bn2.moving_mean, shape=(2,), dtype=Float32, requires_grad=False), moving_variance=Parameter (name=residual_bn2.moving_variance, shape=(2,), dtype=Float32, requires_grad=False)>
+  (residual_conv3): Conv2d<input_channels=2, output_channels=10, kernel_size=(1, 1), stride=(1, 1), pad_mode=same, padding=0, dilation=(1, 1), group=1, has_bias=False, weight_init=<mindspore.common.initializer.HeUniform object at 0x7fccf9f56cd0>, bias_init=None, format=NCHW>
+  (residual_bn3): BatchNorm2d<num_features=10, eps=0.0001, momentum=0.9, gamma=Parameter (name=residual_bn3.gamma, shape=(10,), dtype=Float32, requires_grad=True), beta=Parameter (name=residual_bn3.beta, shape=(10,), dtype=Float32, requires_grad=True), moving_mean=Parameter (name=residual_bn3.moving_mean, shape=(10,), dtype=Float32, requires_grad=False), moving_variance=Parameter (name=residual_bn3.moving_variance, shape=(10,), dtype=Float32, requires_grad=False)>
+  (residual_relu1): ReLU<>
+  (residual_relu2): ReLU<>
+  (residual_relu3): ReLU<>
+  (residual_down_sample_layer): SequentialCell<
+    (0): Conv2d<input_channels=4096, output_channels=10, kernel_size=(1, 1), stride=(1, 1), pad_mode=same, padding=0, dilation=(1, 1), group=1, has_bias=False, weight_init=<mindspore.common.initializer.HeUniform object at 0x7fccf9e6d3d0>, bias_init=None, format=NCHW>
+    (1): BatchNorm2d<num_features=10, eps=0.0001, momentum=0.9, gamma=Parameter (name=residual_down_sample_layer.1.gamma, shape=(10,), dtype=Float32, requires_grad=True), beta=Parameter (name=residual_down_sample_layer.1.beta, shape=(10,), dtype=Float32, requires_grad=True), moving_mean=Parameter (name=residual_down_sample_layer.1.moving_mean, shape=(10,), dtype=Float32, requires_grad=False), moving_variance=Parameter (name=residual_down_sample_layer.1.moving_variance, shape=(10,), dtype=Float32, requires_grad=False)>
+    >
+  >
+INFO 2024-05-27 13:58:14 - model_mutation_operators.py:918 - insert_layer_outshape not equal!: [2, 10]
+INFO 2024-05-27 13:58:14 - model_mutation_operators.py:1060 - mut_result:True
+INFO 2024-05-27 13:58:14 - model_mutation_operators.py:1061 - 87 generation!
+
+INFO 2024-05-27 13:58:14 - mutation_test.py:592 - ================== start 88 generation!(88/100) ==================
+INFO 2024-05-27 13:58:15 - model_mutation_operators.py:515 - Adopt LA mut_strategy!
+INFO 2024-05-27 13:58:15 - model_mutation_operators.py:590 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-27 13:58:15 - model_mutation_operators.py:599 - select layer: dropout2 layer_type: <class 'mindspore.nn.layer.basic.Dropout'> in_shape: [2, 4096] out_shape: [2, 4096]
+INFO 2024-05-27 13:58:15 - model_mutation_operators.py:600 - mut Basic type: True
+INFO 2024-05-27 13:58:15 - model_mutation_operators.py:601 - add Basic layer : Basic_op
+INFO 2024-05-27 13:58:15 - model_mutation_operators.py:615 - select insert layer: Conv2d<input_channels=4096, output_channels=4096, kernel_size=(1, 1), stride=(1, 1), pad_mode=same, padding=0, dilation=(1, 1), group=1, has_bias=False, weight_init=<mindspore.common.initializer.HeUniform object at 0x7fccf97d3d50>, bias_init=None, format=NCHW>
+INFO 2024-05-27 13:58:15 - model_mutation_operators.py:628 - insert_layer_outshape equal!
+INFO 2024-05-27 13:58:15 - Other_utils.py:191 - Exception information: For 'MatMul' the input dimensions must be equal, but got 'x1_col': 1 and 'x2_row': 4096.
+
+----------------------------------------------------
+- C++ Call Stack: (For framework developers)
+----------------------------------------------------
+mindspore/core/ops/mat_mul.cc:107 InferShape
+
+INFO 2024-05-27 13:58:15 - model_mutation_operators.py:745 - mut_result:False
+INFO 2024-05-27 13:58:15 - model_mutation_operators.py:746 - 88 generation!
+
+INFO 2024-05-27 13:58:15 - mutation_test.py:592 - ================== start 89 generation!(89/100) ==================
+INFO 2024-05-27 13:58:15 - model_mutation_operators.py:1070 - Adopt CM mut_strategy!
+INFO 2024-05-27 13:58:15 - model_mutation_operators.py:1153 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-27 13:58:15 - model_mutation_operators.py:1160 - select layer: dropout2 layer_type: <class 'mindspore.nn.layer.basic.Dropout'> in_shape: [2, 4096] out_shape: [2, 4096]
+INFO 2024-05-27 13:58:15 - model_mutation_operators.py:1161 - mut Basic type: True
+INFO 2024-05-27 13:58:16 - model_mutation_operators.py:1204 - select insert layer: Dense<input_channels=4096, output_channels=4096>
+INFO 2024-05-27 13:58:16 - model_mutation_operators.py:1249 - replace Basic with CM op!
+INFO 2024-05-27 13:58:16 - model_mutation_operators.py:1300 - mut_result:True
+INFO 2024-05-27 13:58:16 - model_mutation_operators.py:1301 - 89 generation!
+
+INFO 2024-05-27 13:58:16 - mutation_test.py:592 - ================== start 90 generation!(90/100) ==================
+INFO 2024-05-27 13:58:17 - model_mutation_operators.py:2118 - Adopt SM mut_strategy!
+INFO 2024-05-27 13:58:17 - model_mutation_operators.py:2156 - select layer: bn3 layer_type: <class 'mindspore.nn.layer.normalization.BatchNorm2d'> in_shape: [2, 256, 2, 2] out_shape: [2, 256, 2, 2]
+INFO 2024-05-27 13:58:17 - model_mutation_operators.py:2157 - mut Basic type: True
+INFO 2024-05-27 13:58:17 - model_mutation_operators.py:2205 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-27 13:58:17 - model_mutation_operators.py:2278 - mutate input_shape: [2, 33, 17, 46, 1]
+INFO 2024-05-27 13:58:17 - model_mutation_operators.py:2279 - mutate output_shape: [2, 7, 27]
+INFO 2024-05-27 13:58:17 - model_mutation_operators.py:2359 - mut_result:True
+INFO 2024-05-27 13:58:17 - model_mutation_operators.py:2360 - 90 generation!
+
+INFO 2024-05-27 13:58:18 - mutation_test.py:592 - ================== start 91 generation!(91/100) ==================
+INFO 2024-05-27 13:58:18 - model_mutation_operators.py:2118 - Adopt SM mut_strategy!
+INFO 2024-05-27 13:58:18 - model_mutation_operators.py:2156 - select layer: conv5 layer_type: <class 'mindspore.nn.layer.conv.Conv2d'> in_shape: [2, 384, 4, 4] out_shape: [2, 256, 4, 4]
+INFO 2024-05-27 13:58:18 - model_mutation_operators.py:2157 - mut Basic type: True
+INFO 2024-05-27 13:58:18 - model_mutation_operators.py:2205 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-27 13:58:18 - model_mutation_operators.py:2270 - mutate output_shape: [2, 18, 37]
+INFO 2024-05-27 13:58:18 - model_mutation_operators.py:2359 - mut_result:True
+INFO 2024-05-27 13:58:18 - model_mutation_operators.py:2360 - 91 generation!
+
+INFO 2024-05-27 13:58:18 - mutation_test.py:592 - ================== start 92 generation!(92/100) ==================
+INFO 2024-05-27 13:58:18 - model_mutation_operators.py:24 - Adopt PM mut_strategy!
+INFO 2024-05-27 13:58:18 - model_mutation_operators.py:80 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-27 13:58:18 - model_mutation_operators.py:93 - select op: bn1 layer_type: BatchNorm2d selected param:num_features input_shape:[2, 96, 8, 8] output_shape:[2, 96, 8, 8]
+INFO 2024-05-27 13:58:18 - model_mutation_operators.py:160 - mutate_replace_layer: BatchNorm2d<num_features=32, eps=1e-05, momentum=0.09999999999999998, gamma=Parameter (name=gamma, shape=(32,), dtype=Float32, requires_grad=True), beta=Parameter (name=beta, shape=(32,), dtype=Float32, requires_grad=True), moving_mean=Parameter (name=mean, shape=(32,), dtype=Float32, requires_grad=False), moving_variance=Parameter (name=variance, shape=(32,), dtype=Float32, requires_grad=False)>
+INFO 2024-05-27 13:58:18 - model_mutation_operators.py:192 - Previous value: 96 Edit value: 32 new_inshape: (2, 32, 8, 8) new_outshape: (2, 32, 8, 8)
+INFO 2024-05-27 13:58:18 - model_mutation_operators.py:211 - SequentialCell<
+  (0): Replace_ms<>
+  (1): BatchNorm2d<num_features=32, eps=1e-05, momentum=0.09999999999999998, gamma=Parameter (name=bn1.1.gamma, shape=(32,), dtype=Float32, requires_grad=True), beta=Parameter (name=bn1.1.beta, shape=(32,), dtype=Float32, requires_grad=True), moving_mean=Parameter (name=bn1.1.moving_mean, shape=(32,), dtype=Float32, requires_grad=False), moving_variance=Parameter (name=bn1.1.moving_variance, shape=(32,), dtype=Float32, requires_grad=False)>
+  (2): Replace_ms<>
+  >
+INFO 2024-05-27 13:58:18 - model_mutation_operators.py:212 - mut_result:True
+INFO 2024-05-27 13:58:18 - model_mutation_operators.py:213 - 92 generation!
+
+INFO 2024-05-27 13:58:19 - mutation_test.py:592 - ================== start 93 generation!(93/100) ==================
+INFO 2024-05-27 13:58:20 - model_mutation_operators.py:24 - Adopt PM mut_strategy!
+INFO 2024-05-27 13:58:20 - model_mutation_operators.py:80 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-27 13:58:20 - model_mutation_operators.py:93 - select op: bn2 layer_type: BatchNorm2d selected param:num_features input_shape:[2, 256, 4, 4] output_shape:[2, 256, 4, 4]
+INFO 2024-05-27 13:58:20 - model_mutation_operators.py:160 - mutate_replace_layer: BatchNorm2d<num_features=128, eps=1e-05, momentum=0.09999999999999998, gamma=Parameter (name=gamma, shape=(128,), dtype=Float32, requires_grad=True), beta=Parameter (name=beta, shape=(128,), dtype=Float32, requires_grad=True), moving_mean=Parameter (name=mean, shape=(128,), dtype=Float32, requires_grad=False), moving_variance=Parameter (name=variance, shape=(128,), dtype=Float32, requires_grad=False)>
+INFO 2024-05-27 13:58:20 - model_mutation_operators.py:192 - Previous value: 256 Edit value: 128 new_inshape: (2, 128, 4, 4) new_outshape: (2, 128, 4, 4)
+INFO 2024-05-27 13:58:20 - model_mutation_operators.py:211 - SequentialCell<
+  (0): Replace_ms<>
+  (1): BatchNorm2d<num_features=128, eps=1e-05, momentum=0.09999999999999998, gamma=Parameter (name=bn2.1.gamma, shape=(128,), dtype=Float32, requires_grad=True), beta=Parameter (name=bn2.1.beta, shape=(128,), dtype=Float32, requires_grad=True), moving_mean=Parameter (name=bn2.1.moving_mean, shape=(128,), dtype=Float32, requires_grad=False), moving_variance=Parameter (name=bn2.1.moving_variance, shape=(128,), dtype=Float32, requires_grad=False)>
+  (2): Replace_ms<>
+  >
+INFO 2024-05-27 13:58:20 - model_mutation_operators.py:212 - mut_result:True
+INFO 2024-05-27 13:58:20 - model_mutation_operators.py:213 - 93 generation!
+
+INFO 2024-05-27 13:58:20 - mutation_test.py:592 - ================== start 94 generation!(94/100) ==================
+INFO 2024-05-27 13:58:20 - model_mutation_operators.py:24 - Adopt PM mut_strategy!
+INFO 2024-05-27 13:58:20 - model_mutation_operators.py:80 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-27 13:58:20 - model_mutation_operators.py:93 - select op: bn1 layer_type: BatchNorm2d selected param:momentum input_shape:[2, 96, 8, 8] output_shape:[2, 96, 8, 8]
+INFO 2024-05-27 13:58:20 - model_mutation_operators.py:160 - mutate_replace_layer: BatchNorm2d<num_features=96, eps=1e-05, momentum=0.050000000000000044, gamma=Parameter (name=gamma, shape=(96,), dtype=Float32, requires_grad=True), beta=Parameter (name=beta, shape=(96,), dtype=Float32, requires_grad=True), moving_mean=Parameter (name=mean, shape=(96,), dtype=Float32, requires_grad=False), moving_variance=Parameter (name=variance, shape=(96,), dtype=Float32, requires_grad=False)>
+INFO 2024-05-27 13:58:20 - model_mutation_operators.py:192 - Previous value: 0.09999999999999998 Edit value: 0.04999999999999999 new_inshape: (2, 96, 8, 8) new_outshape: (2, 96, 8, 8)
+INFO 2024-05-27 13:58:20 - model_mutation_operators.py:231 - BatchNorm2d<num_features=96, eps=1e-05, momentum=0.050000000000000044, gamma=Parameter (name=bn1.gamma, shape=(96,), dtype=Float32, requires_grad=True), beta=Parameter (name=bn1.beta, shape=(96,), dtype=Float32, requires_grad=True), moving_mean=Parameter (name=bn1.moving_mean, shape=(96,), dtype=Float32, requires_grad=False), moving_variance=Parameter (name=bn1.moving_variance, shape=(96,), dtype=Float32, requires_grad=False)>
+INFO 2024-05-27 13:58:20 - model_mutation_operators.py:232 - mut_result:True
+INFO 2024-05-27 13:58:20 - model_mutation_operators.py:233 - 94 generation!
+
+INFO 2024-05-27 13:58:21 - mutation_test.py:592 - ================== start 95 generation!(95/100) ==================
+INFO 2024-05-27 13:58:21 - model_mutation_operators.py:515 - Adopt LA mut_strategy!
+INFO 2024-05-27 13:58:21 - model_mutation_operators.py:590 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-27 13:58:21 - model_mutation_operators.py:599 - select layer: bn3 layer_type: <class 'mindspore.nn.layer.normalization.BatchNorm2d'> in_shape: [2, 256, 2, 2] out_shape: [2, 256, 2, 2]
+INFO 2024-05-27 13:58:21 - model_mutation_operators.py:600 - mut Basic type: True
+INFO 2024-05-27 13:58:21 - model_mutation_operators.py:601 - add Basic layer : Basic_op
+INFO 2024-05-27 13:58:21 - model_mutation_operators.py:615 - select insert layer: Softmax<>
+INFO 2024-05-27 13:58:21 - model_mutation_operators.py:628 - insert_layer_outshape equal!
+INFO 2024-05-27 13:58:21 - model_mutation_operators.py:745 - mut_result:True
+INFO 2024-05-27 13:58:21 - model_mutation_operators.py:746 - 95 generation!
+
+INFO 2024-05-27 13:58:21 - mutation_test.py:592 - ================== start 96 generation!(96/100) ==================
+INFO 2024-05-27 13:58:22 - model_mutation_operators.py:2118 - Adopt SM mut_strategy!
+INFO 2024-05-27 13:58:22 - model_mutation_operators.py:2156 - select layer: bn3 layer_type: <class 'mindspore.nn.layer.normalization.BatchNorm2d'> in_shape: [2, 256, 2, 2] out_shape: [2, 256, 2, 2]
+INFO 2024-05-27 13:58:22 - model_mutation_operators.py:2157 - mut Basic type: True
+INFO 2024-05-27 13:58:22 - model_mutation_operators.py:2205 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-27 13:58:22 - model_mutation_operators.py:2264 - mutate input_shape: [2, 42, 7, 16, 47]
+INFO 2024-05-27 13:58:22 - model_mutation_operators.py:2359 - mut_result:True
+INFO 2024-05-27 13:58:22 - model_mutation_operators.py:2360 - 96 generation!
+
+INFO 2024-05-27 13:58:23 - mutation_test.py:592 - ================== start 97 generation!(97/100) ==================
+INFO 2024-05-27 13:58:23 - model_mutation_operators.py:755 - Adopt RA mut_strategy!
+INFO 2024-05-27 13:58:23 - model_mutation_operators.py:849 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-27 13:58:23 - model_mutation_operators.py:858 - select layer: bn3 layer_type: <class 'mindspore.nn.layer.normalization.BatchNorm2d'> in_shape: [2, 256, 2, 2] out_shape: [2, 256, 2, 2]
+INFO 2024-05-27 13:58:23 - model_mutation_operators.py:859 - mut Basic type: True
+INFO 2024-05-27 13:58:23 - model_mutation_operators.py:860 - add Basic layer : Cascade_op
+INFO 2024-05-27 13:58:23 - model_mutation_operators.py:873 - select insert layer: Inception_A<
+  (branch0): BasicConv2d<
+    (relu): ReLU<>
+    >
+  (branch1): SequentialCell<
+    (0): BasicConv2d<
+      (relu): ReLU<>
+      >
+    (1): BasicConv2d<
+      (relu): ReLU<>
+      >
+    >
+  (branch2): SequentialCell<
+    (0): BasicConv2d<
+      (relu): ReLU<>
+      >
+    (1): BasicConv2d<
+      (relu): ReLU<>
+      >
+    (2): BasicConv2d<
+      (relu): ReLU<>
+      >
+    >
+  (branch_pool): SequentialCell<
+    (0): AvgPool2d<kernel_size=3, stride=1, pad_mode=SAME>
+    (1): BasicConv2d<
+      (relu): ReLU<>
+      >
+    >
+  >
+INFO 2024-05-27 13:58:23 - model_mutation_operators.py:918 - insert_layer_outshape not equal!: [2, 256, 2, 2]
+INFO 2024-05-27 13:58:23 - model_mutation_operators.py:1060 - mut_result:True
+INFO 2024-05-27 13:58:23 - model_mutation_operators.py:1061 - 97 generation!
+
+INFO 2024-05-27 13:58:23 - mutation_test.py:592 - ================== start 98 generation!(98/100) ==================
+INFO 2024-05-27 13:58:24 - model_mutation_operators.py:24 - Adopt PM mut_strategy!
+INFO 2024-05-27 13:58:24 - model_mutation_operators.py:80 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-27 13:58:24 - model_mutation_operators.py:93 - select op: bn2 layer_type: BatchNorm2d selected param:momentum input_shape:[2, 256, 4, 4] output_shape:[2, 256, 4, 4]
+INFO 2024-05-27 13:58:24 - model_mutation_operators.py:160 - mutate_replace_layer: BatchNorm2d<num_features=256, eps=1e-05, momentum=0.025000000000000022, gamma=Parameter (name=gamma, shape=(256,), dtype=Float32, requires_grad=True), beta=Parameter (name=beta, shape=(256,), dtype=Float32, requires_grad=True), moving_mean=Parameter (name=mean, shape=(256,), dtype=Float32, requires_grad=False), moving_variance=Parameter (name=variance, shape=(256,), dtype=Float32, requires_grad=False)>
+INFO 2024-05-27 13:58:24 - model_mutation_operators.py:192 - Previous value: 0.09999999999999998 Edit value: 0.024999999999999994 new_inshape: (2, 256, 4, 4) new_outshape: (2, 256, 4, 4)
+INFO 2024-05-27 13:58:24 - model_mutation_operators.py:231 - BatchNorm2d<num_features=256, eps=1e-05, momentum=0.025000000000000022, gamma=Parameter (name=bn2.gamma, shape=(256,), dtype=Float32, requires_grad=True), beta=Parameter (name=bn2.beta, shape=(256,), dtype=Float32, requires_grad=True), moving_mean=Parameter (name=bn2.moving_mean, shape=(256,), dtype=Float32, requires_grad=False), moving_variance=Parameter (name=bn2.moving_variance, shape=(256,), dtype=Float32, requires_grad=False)>
+INFO 2024-05-27 13:58:24 - model_mutation_operators.py:232 - mut_result:True
+INFO 2024-05-27 13:58:24 - model_mutation_operators.py:233 - 98 generation!
+
+INFO 2024-05-27 13:58:24 - mutation_test.py:592 - ================== start 99 generation!(99/100) ==================
+INFO 2024-05-27 13:58:25 - model_mutation_operators.py:1923 - Adopt LC mut_strategy!
+INFO 2024-05-27 13:58:25 - model_mutation_operators.py:1990 - select layer: dropout1 layer_type: <class 'mindspore.nn.layer.basic.Dropout'> in_shape: [2, 4096] out_shape: [2, 4096]
+INFO 2024-05-27 13:58:25 - model_mutation_operators.py:1991 - mut Basic type: True
+INFO 2024-05-27 13:58:25 - model_mutation_operators.py:1992 - add Basic layer : Basic_op
+INFO 2024-05-27 13:58:25 - model_mutation_operators.py:2005 - select insert layer: Dropout<keep_prob=0.5>
+INFO 2024-05-27 13:58:25 - model_mutation_operators.py:2040 - insert_layer_outshape equal!
+INFO 2024-05-27 13:58:25 - model_mutation_operators.py:2108 - mut_result:True
+INFO 2024-05-27 13:58:25 - model_mutation_operators.py:2109 - 99 generation!
+
+INFO 2024-05-27 13:58:25 - mutation_test.py:592 - ================== start 100 generation!(100/100) ==================
+INFO 2024-05-27 13:58:26 - model_mutation_operators.py:1070 - Adopt CM mut_strategy!
+INFO 2024-05-27 13:58:26 - model_mutation_operators.py:1153 - candidate_in_mutlayers_indice:-1
+INFO 2024-05-27 13:58:26 - model_mutation_operators.py:1160 - select layer: conv3 layer_type: <class 'mindspore.nn.layer.conv.Conv2d'> in_shape: [2, 256, 4, 4] out_shape: [2, 384, 4, 4]
+INFO 2024-05-27 13:58:26 - model_mutation_operators.py:1161 - mut Basic type: True
+INFO 2024-05-27 13:58:26 - model_mutation_operators.py:1204 - select insert layer: AvgPool2d<kernel_size=1, stride=1, pad_mode=VALID>
+INFO 2024-05-27 13:58:26 - model_mutation_operators.py:1249 - replace Basic with CM op!
+INFO 2024-05-27 13:58:26 - model_mutation_operators.py:1300 - mut_result:True
+INFO 2024-05-27 13:58:26 - model_mutation_operators.py:1301 - 100 generation!
+
+INFO 2024-05-27 13:58:27 - mutation_test.py:659 - mutation_scores: [2.718256, 2.694044, 1.9658499, 2.0575118, 2.551997, 1.994463, 1.8646228, 2.341043, 2.757673, 2.6416051, 2.0849853, 2.4282386, 2.2985835, 2.9329438, -100, 3.0042286, 2.6955285, 3.3134644, 2.3110359, 2.5623965, 2.9714453, -100, 3.05542, 3.2047195, 2.50012, 3.6660423, 3.3153434, 2.6516404, 2.926012, 2.7364094, 2.1499722, 3.9298873, -100, 3.4402974, 1.9937559, 5.453228, 2.7171872, 2.2597775, 3.3978124, 3.0574884, 3.093933, 2.8144011, 2.5623493, 3.274994, 3.6150002, 1.8655382, 4.3167467, 2.7991338, 2.4671292, 3.2761664, 3.4339252, 2.4375358, 2.61447, 2.0186582, 2.6130946, 2.537775, 2.2294018, 2.32361, 2.9948218, -100, 3.4471116, 3.538691, 2.4797347, 3.1807437, 3.0213041, 2.5233333, 3.0923378, 3.3135753, 4.2594495, 2.2622952, 3.518479, -100, -100, 2.106137, 3.843544, 4.9861503, 3.0196018, 2.8523524, 3.2165082, 1.9695374, -100, 2.9239087, 4.228958, -100, 2.5954845, 2.2363665, 2.4457743, -100, 3.9138572, 1.923345, 1.9990088, 2.8542485, 2.6891456, 2.6501765, 2.265935, 2.9556432, 1.8882473, 4.0197215, 2.9829295, 2.6631656]
+INFO 2024-05-27 13:58:27 - mutation_test.py:661 - **** stage1 select generations: [26 75 89 32 98 83 69 47 76 36] ****
+
+INFO 2024-05-27 13:58:28 - mutation_test.py:250 - mutation iteration:100 ({'LD': 12, 'PM': 19, 'LA': 13, 'RA': 20, 'SM': 12, 'CM': 11, 'LC': 13}), mutation success:91
+ ({'LD': 12, 'PM': 19, 'LA': 8, 'RA': 19, 'SM': 12, 'CM': 11, 'LC': 10})
+
